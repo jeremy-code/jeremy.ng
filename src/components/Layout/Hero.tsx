@@ -1,5 +1,6 @@
 import { Image } from "@chakra-ui/next-js";
 import {
+  Box,
   Button,
   ButtonGroup,
   Container,

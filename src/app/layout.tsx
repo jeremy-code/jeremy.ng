@@ -21,8 +21,10 @@ const RootLayout = ({ children }: RootLayoutProps) => {
     <html lang="en">
       <head />
       <body>
-        <Analytics />
-        <AppProvider>{children}</AppProvider>
+        <AppProvider>
+          <Analytics />
+          {children}
+        </AppProvider>
       </body>
     </html>
   );
