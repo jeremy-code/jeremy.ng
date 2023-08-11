@@ -13,7 +13,7 @@ type NavbarProps = {
 
 const Navbar = forwardRef<HTMLDivElement, NavbarProps>(({ tabs, ...props }, ref) => {
   return (
-    <Box as="header" py={6} ref={ref} {...props}>
+    <Box as="header" mt={4} py={6} ref={ref} {...props}>
       <Flex as={Container} justify="space-between">
         <Link
           href="/"

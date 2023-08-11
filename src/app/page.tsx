@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Heading, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
+import { Box, Heading, SimpleGrid, Text, useColorModeValue } from "@chakra-ui/react";
 
 import { Carousel } from "@/components/Carousel";
 import { ContactForm } from "@/components/Contact";
@@ -54,7 +54,19 @@ const Home = () => {
         <Heading as="h1" size="xl" mb={8}>
           Skills
         </Heading>
-        Skills
+        <Text>
+          <Text as="span" fontWeight="bold">
+            Languages:
+          </Text>{" "}
+          JavaScript, TypeScript, Python, Java, HTML, CSS, Rust, C, SQL, LaTeX
+        </Text>
+        <Text>
+          <Text as="span" fontWeight="bold">
+            Technologies:
+          </Text>{" "}
+          React, Node.js, AWS, Git, Express, REST APIs, MongoDB, GraphQL, Next.js, Docker, Flask,
+          Sass
+        </Text>
       </Section>
 
       <Section id="projects" variant="container">

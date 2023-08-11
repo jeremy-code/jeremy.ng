@@ -4,9 +4,8 @@ const debounce = <T extends unknown[]>(
 ) => {
   let debounceTimer: ReturnType<typeof setTimeout>;
   return function (this: unknown, ...args: T) {
-    const context = this;
     clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => func.apply(context, args), delay);
+    debounceTimer = setTimeout(() => func.apply(this, args), delay);
   };
 };
 

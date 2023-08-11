@@ -79,6 +79,11 @@ const components = {
       },
     },
   },
+  Textarea: {
+    baseStyle: {
+      minH: 32,
+    },
+  },
 };
 
 const styles = {

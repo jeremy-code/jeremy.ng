@@ -17,6 +17,7 @@ import {
 
 import { CarouselItemData } from "@/components/Carousel";
 import { Icon } from "@/components/Misc";
+import * as projectImages from "@/assets/projects";
 
 type CarouselItemProps = CarouselItemData & CardProps;
 
@@ -24,9 +25,9 @@ const CarouselItem = ({ title, description, image, tags, links, ...props }: Caro
   return (
     <Card minW="20rem" variant={useColorModeValue("outline", "filled")} {...props}>
       <CardBody>
-        <Image src={image.src} alt={image.alt} width={200} height={200} borderRadius="lg" />
+        <Image src={projectImages[image.src]} alt={image.alt} borderRadius="lg" />
         <Stack mt="6" spacing="3">
-          <Heading size="md">Living room Sofa</Heading>
+          <Heading size="md">{title}</Heading>
           <Flex gap={2}>
             {tags.map((tag) => (
               <Tag key={tag}>{tag}</Tag>

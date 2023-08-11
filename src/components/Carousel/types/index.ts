@@ -1,8 +1,10 @@
+import * as projectsAssets from "@/assets/projects";
+
 export type CarouselItemData = {
   title: string;
   description: string;
   image: {
-    src: string;
+    src: keyof typeof projectsAssets;
     alt: string;
   };
   tags: string[];

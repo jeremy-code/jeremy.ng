@@ -4,7 +4,13 @@ import { Center, Text, useColorModeValue } from "@chakra-ui/react";
 
 const Footer = () => {
   return (
-    <Center as="footer" py={6} mt={4}>
+    <Center
+      as="footer"
+      py={6}
+      mt={4}
+      borderColor={useColorModeValue("gray.200", "gray.700")}
+      borderTopWidth={1}
+    >
       <Text>
         {"Made with "}
         <span role="img" aria-label="love">
