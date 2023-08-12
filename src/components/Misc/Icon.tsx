@@ -2,7 +2,14 @@
 
 import { Icon as CIcon, IconProps as CIconProps } from "@chakra-ui/react";
 // Icon imports
-import { CodeBracketIcon, EnvelopeIcon, LinkIcon, UserIcon } from "@heroicons/react/24/outline";
+import {
+  AcademicCapIcon,
+  BriefcaseIcon,
+  CodeBracketIcon,
+  EnvelopeIcon,
+  LinkIcon,
+  UserIcon,
+} from "@heroicons/react/24/outline";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 
@@ -15,6 +22,8 @@ export const icons = {
   light: SunIcon,
   code: CodeBracketIcon,
   link: LinkIcon,
+  school: AcademicCapIcon,
+  work: BriefcaseIcon,
 };
 
 export type iconType = keyof typeof icons;

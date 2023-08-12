@@ -1,6 +1,5 @@
 import { Image } from "@chakra-ui/next-js";
 import {
-  Box,
   Button,
   ButtonGroup,
   Container,
@@ -12,6 +11,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
+import { NavLink } from "@/components/Navbar";
 import { Terminal } from "@/components/Terminal";
 import { nikeLogo } from "@/assets";
 
@@ -44,9 +44,11 @@ const Hero = (props: ContainerProps) => {
           </Stack>
 
           <ButtonGroup>
-            <Button size="lg">See my Projects</Button>
+            <NavLink href="projects">
+              <Button size="lg">See my Projects</Button>
+            </NavLink>
             <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" variant="ghost" colorScheme="gray">
+              <Button size="lg" variant="ghost" color={useColorModeValue("gray.800", "white")}>
                 Resume
               </Button>
             </a>

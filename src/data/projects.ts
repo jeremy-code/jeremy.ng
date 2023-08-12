@@ -11,7 +11,7 @@ const projects = [
     },
     image: {
       src: "Integra",
-      alt: "Integra",
+      alt: "Integra screenshot",
     },
   },
   {
@@ -24,7 +24,7 @@ const projects = [
     },
     image: {
       src: "PatientPort",
-      alt: "PatientPort",
+      alt: "PatientPort screenshot",
     },
   },
   {
@@ -38,7 +38,7 @@ const projects = [
     },
     image: {
       src: "RhythmRoom",
-      alt: "Rhythm Room",
+      alt: "Rhythm Room screenshot",
     },
   },
   {
@@ -52,7 +52,7 @@ const projects = [
     },
     image: {
       src: "CryptoApp",
-      alt: "Crypto App",
+      alt: "Crypto App screenshot",
     },
   },
   {
@@ -66,7 +66,7 @@ const projects = [
     },
     image: {
       src: "Crowdpage",
-      alt: "Crowdpage",
+      alt: "Crowdpage screenshot",
     },
   },
   {
@@ -79,7 +79,7 @@ const projects = [
     },
     image: {
       src: "CovidTracker",
-      alt: "COVID-19 Tracker",
+      alt: "COVID-19 tracker screenshot",
     },
   },
 ] satisfies CarouselItemData[];

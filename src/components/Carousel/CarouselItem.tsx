@@ -24,9 +24,9 @@ type CarouselItemProps = CarouselItemData & CardProps;
 const CarouselItem = ({ title, description, image, tags, links, ...props }: CarouselItemProps) => {
   return (
     <Card minW="20rem" variant={useColorModeValue("outline", "filled")} {...props}>
+      <Image src={projectImages[image.src]} alt={image.alt} borderTopRadius="md" sizes="318px" />
       <CardBody>
-        <Image src={projectImages[image.src]} alt={image.alt} borderRadius="lg" />
-        <Stack mt="6" spacing="3">
+        <Stack spacing="3">
           <Heading size="md">{title}</Heading>
           <Flex gap={2}>
             {tags.map((tag) => (
