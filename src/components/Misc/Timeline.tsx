@@ -17,21 +17,19 @@ const TimelineItem = ({ icon, text, subtitle, date }: TimelineItemProps) => {
   const subtitleColor = useColorModeValue("gray.500", "gray.400");
 
   return (
-    <Flex align="center" gap={4}>
-      <Circle size="10" bg={useColorModeValue("white", "gray.800")}>
-        <Icon name={icon} />
+    <Flex gap={4}>
+      <Circle size="14" bg={useColorModeValue("white", "gray.800")}>
+        <Icon name={icon} boxSize="1.5em" />
       </Circle>
-      <Box position="relative">
-        {text}
-        {subtitle && (
-          <Box position="absolute" top="100%" whiteSpace="nowrap" color={subtitleColor}>
+      <Flex pt={4} gap={4} flexDir={["column", null, "row"]}>
+        <Box>
+          {text}
+          <Box fontSize="sm" color={subtitleColor}>
             {subtitle}
           </Box>
-        )}
-      </Box>
-      <Text fontSize="sm" color={subtitleColor}>
-        {date}
-      </Text>
+        </Box>
+        <Text color={subtitleColor}>{date}</Text>
+      </Flex>
     </Flex>
   );
 };
@@ -52,7 +50,7 @@ export const Timeline = ({ events }: TimelineProps) => {
         position: "absolute",
         top: 0,
         bottom: 0,
-        left: 5,
+        left: 7,
         zIndex: -1,
       }}
     >

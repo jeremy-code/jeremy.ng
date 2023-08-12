@@ -43,8 +43,7 @@ const projects = [
   },
   {
     title: "Crypto App",
-    description:
-      "A web app that allows you to buy and sell cryptocurrencies. You can also view the current price of each cryptocurrency.",
+    description: "A web app that allows you to buy and sell cryptocurrencies.",
     tags: ["React", "Solidity", "Ether.js"],
     links: {
       url: "https://another-crypto-app.netlify.app/",
