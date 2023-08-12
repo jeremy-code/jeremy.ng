@@ -1,17 +1,17 @@
 import React, { useTransition } from "react";
 import { Button, useToast } from "@chakra-ui/react";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import { email, object, string, toTrimmed } from "valibot";
 
 import { ContactFormInput, ContactFormTextarea } from "@/components/Contact";
 import { addItem } from "@/app/actions";
 import type { ContactFormData } from "./types";
 
-const schema = yup.object().shape({
-  name: yup.string().required("Name is required"),
-  email: yup.string().required("Email is required").email("Email is not valid"),
-  message: yup.string().required("Message is required"),
+const schema = object({
+  name: string("Name is required", [toTrimmed()]),
+  email: string("Email is required", [toTrimmed(), email()]),
+  message: string("Message is required", [toTrimmed()]),
 });
 
 const ContactForm = () => {
@@ -20,7 +20,7 @@ const ContactForm = () => {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<ContactFormData>({ resolver: yupResolver(schema) });
+  } = useForm<ContactFormData>({ resolver: valibotResolver(schema) });
   const [_isPending, startTransition] = useTransition();
   const toast = useToast();
 

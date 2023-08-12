@@ -2,19 +2,19 @@
 
 import { ContactFormData } from "@/components/Contact";
 
-const API_KEY = process.env.SENDGRID_API_KEY;
-const TEMPLATE_ID = process.env.SENDGRID_TEMPLATE_ID;
+const { SENDGRID_API_KEY, SENDGRID_TEMPLATE_ID } = process.env;
 
 export async function addItem(data: ContactFormData) {
-  const { name, email, message } = data;
+  if (!SENDGRID_API_KEY || !SENDGRID_TEMPLATE_ID) {
+    throw new Error("Missing SendGrid API key or template ID.");
+  }
 
-  console.log("API_KEY", API_KEY);
-  console.log("TEMPLATE_ID", TEMPLATE_ID);
+  const { name, email, message } = data;
 
   const fetchRequestOptions: RequestInit = {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${API_KEY}`,
+      Authorization: `Bearer ${SENDGRID_API_KEY}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -36,7 +36,7 @@ export async function addItem(data: ContactFormData) {
           },
         },
       ],
-      template_id: TEMPLATE_ID,
+      template_id: SENDGRID_TEMPLATE_ID,
     }),
   };
 
