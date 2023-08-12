@@ -7,7 +7,7 @@ const Footer = () => {
     <Center
       as="footer"
       py={6}
-      mt={4}
+      mt={8}
       borderColor={useColorModeValue("gray.200", "gray.700")}
       borderTopWidth={1}
     >
