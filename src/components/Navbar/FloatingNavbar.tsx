@@ -77,8 +77,13 @@ const FloatingNavbar = ({ isActive, tabs }: FloatingNavbarProps) => {
   useScrollSpy((entry, isInViewport) => {
     if (isInViewport) {
       setCurrTab(entry.target.id);
+      window.document.title = `Jeremy Nguyen - ${
+        entry.target.id.charAt(0).toUpperCase() + entry.target.id.slice(1)
+      }`;
+      // Scrolling up from second tab to first tab
     } else if (entry.target.id === tabs[1]) {
       setCurrTab(tabs[0]);
+      window.document.title = "Jeremy Nguyen";
     }
   });
 
