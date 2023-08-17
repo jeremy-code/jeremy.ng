@@ -6,6 +6,10 @@ const Sitemap = (): MetadataRoute.Sitemap => {
       url: "https://jeremy.ng",
       lastModified: new Date(),
     },
+    {
+      url: "https://jeremy.ng/resume",
+      lastModified: new Date(),
+    },
   ];
 };
 

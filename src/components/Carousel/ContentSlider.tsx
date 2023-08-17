@@ -1,6 +1,6 @@
-import React, { ReactNode, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { ReactNode, useCallback, useLayoutEffect, useRef, useState } from "react";
 import { Box, BoxProps } from "@chakra-ui/react";
-import { motion, ResolvedValues, useMotionValue, useScroll } from "framer-motion";
+import { motion, ResolvedValues, useMotionValue } from "framer-motion";
 
 import { ScrollIndicator } from "@/components/Carousel";
 import { useWindowSize } from "@/hooks";

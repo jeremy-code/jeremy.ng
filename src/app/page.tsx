@@ -39,8 +39,9 @@ const Home = () => {
             opacity={0.3}
           />
         </Box>
-        <DynamicNavbar tabs={tabs} />
-        <Hero />
+        <Hero>
+          <DynamicNavbar tabs={tabs} />
+        </Hero>
       </Box>
 
       <Section id="about" variant="container">
