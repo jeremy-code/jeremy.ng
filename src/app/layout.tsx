@@ -2,6 +2,8 @@ import React, { type ReactNode } from "react";
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 
+import { Providers } from "@/components/misc/Providers";
+
 import "./globals.css";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--fonts-outfit" });
@@ -11,8 +13,17 @@ export const metadata: Metadata = {
   title: { default: "Jeremy Nguyen", template: "%s | Jeremy Nguyen" },
   description: "Jeremy Nguyen's personal site",
   applicationName: "jeremy.ng",
-  authors: { name: "Jeremy Nguyen", url: "https://jeremy.ng" },
-  keywords: ["Jeremy", "Nguyen", "portfolio", "personal", "website"],
+  authors: { name: "Jeremy Nguyen", url: new URL("https://jeremy.ng") },
+  keywords: [
+    "Jeremy",
+    "Nguyen",
+    "Jeremy Nguyen",
+    "developer",
+    "personal",
+    "personal website",
+    "portfolio",
+    "web developer",
+  ],
   creator: "Jeremy Nguyen",
 };
 
@@ -25,7 +36,9 @@ const RootLayout = ({ children }: { children: Readonly<ReactNode> }) => {
      * hydration warnings won't be blocked on children elements
      */
     <html lang="en" className={outfit.variable} suppressHydrationWarning>
-      <body>{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 };

@@ -4,23 +4,25 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/strict",
     "next/core-web-vitals",
-    "plugin:@pandacss/recommended",
-    "plugin:jest/recommended"
+    "plugin:@pandacss/recommended"
   ],
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "tsdoc", "@pandacss", "jest"],
-  "rules": {
-    "tsdoc/syntax": "warn"
-  },
+  "plugins": ["tsdoc"],
   "parserOptions": {
     "EXPERIMENTAL_useProjectService": true
   },
+  "rules": {
+    "tsdoc/syntax": "warn"
+  },
   "overrides": [
     {
-      "files": ["**/*.js", "**/*.jsx", "**/*.cjs", "**/*.mjs"],
+      "files": ["**/*.{js,jsx,cjs,mjs}"],
       "rules": {
         "tsdoc/syntax": "off"
       }
+    },
+    {
+      "files": ["**/?(*.)+(test).{js,jsx,ts,tsx}"],
+      "extends": ["plugin:jest/recommended"]
     }
   ],
   "root": true

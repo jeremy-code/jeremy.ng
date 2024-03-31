@@ -21,11 +21,10 @@ type CombineProps<T, U> = Omit<T, keyof U> & U;
 
 const cx = (...args: (string | undefined)[]) => args.filter(Boolean).join(" ");
 
-export function getDisplayName<P>(Component: ElementType<P>) {
-  return typeof Component === "string"
+const getDisplayName = <P,>(Component: ElementType<P>) =>
+  typeof Component === "string"
     ? Component
     : Component.displayName || Component.name || "Unknown";
-}
 
 export interface ComponentVariants<
   T extends ElementType,
@@ -76,8 +75,5 @@ export const createStyleContext = <R extends StyleRecipe>(recipe: R) => {
     return StyledComponent as unknown as T;
   };
 
-  return {
-    withProvider,
-    withContext,
-  };
+  return { withProvider, withContext };
 };
