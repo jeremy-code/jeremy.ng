@@ -2,25 +2,28 @@
 
 ![GitHub Actions badge](https://github.com/jeremy-code/jeremy.ng/actions/workflows/ci.yml/badge.svg)
 
-This is my personal website. It was built using Next.js, React, and TypeScript.
-
 ## Installation
 
 ```bash
 git clone https://github.com/jeremy-code/jeremy.ng
 cd jeremy.ng
+corepack enable
 yarn
 ```
 
 ## Usage
 
 ```bash
+# Set Node.js version
+nvm use
+
 # Run the development server locally
 yarn dev
 
-# Lint and format code
+# Lint, format, and test code
 yarn lint
 yarn format
+yarn test
 
 # Build
 yarn build
@@ -28,4 +31,4 @@ yarn build
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit)
+This project is licensed under the [MIT license](LICENSE).

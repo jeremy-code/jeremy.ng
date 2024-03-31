@@ -2,93 +2,42 @@ name: CI
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "dev"]
   pull_request:
     types: [opened, synchronize]
 
 jobs:
-  setup:
-    name: Setup
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: "yarn"
-
-      - name: Install dependencies
-        run: yarn install --immutable
-
   build_and_lint:
-    name: Build and Test
-    needs: setup
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest]
-        node: [18]
+    name: Build and Lint
+    runs-on: ubuntu-latest
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Setup Node.js environment
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
-          cache: "yarn"
+          node-version-file: ".nvmrc"
+          cache: yarn
 
       - name: Cache Next.js builds
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ github.workspace }}/.next/cache
-          key: ${{ matrix.os }}-${{ hashFiles('**/yarn.lock') }}-nextjs
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-nextjs
 
       - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Build
-        run: yarn build
-
-      - name: Lint Code
+      - name: Lint code
         run: yarn lint
 
       - name: Test code
-        run: yarn test --passWithNoTests
-
-  run_lighthouse:
-    name: Run Lighthouse CI
-    needs: build_and_lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: "yarn"
-
-      - name: Install dependencies
-        run: yarn install --immutable
-
-      - name: Cache Next.js builds
-        uses: actions/cache@v3
-        with:
-          path: ${{ github.workspace }}/.next/cache
-          key: ubuntu-latest-${{ hashFiles('**/yarn.lock') }}-nextjs
+        run: yarn test
 
       - name: Build
         run: yarn build
-
-      - name: Run Lighthouse CI
-        run: yarn dlx -p @lhci/cli@0.12.x lhci autorun
-        env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

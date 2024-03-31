@@ -1,7 +1,6 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig.json",
   "compilerOptions": {
-    "target": "ES2015",
+    "target": "ES2022",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -15,12 +14,9 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "plugins": [{ "name": "next" }],
     "paths": {
+      "@/lib/styled/*": ["./styled-system/*"],
       "@/*": ["./src/*"]
     }
   },
