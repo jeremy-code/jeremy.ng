@@ -7,8 +7,8 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  build_and_lint:
-    name: Build and Lint
+  build_and_test:
+    name: Build and Test
     runs-on: ubuntu-latest
 
     steps:
