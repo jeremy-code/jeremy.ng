@@ -1,5 +1,7 @@
 import { defineConfig } from "@pandacss/dev";
-import { createPreset } from "@park-ui/panda-preset";
+import defaultPreset, { createPreset } from "@park-ui/panda-preset";
+
+const switchRecipe = defaultPreset.theme?.extend?.slotRecipes?.switchRecipe;
 
 export default defineConfig({
   presets: [
@@ -22,6 +24,22 @@ export default defineConfig({
     extend: {
       tokens: {
         fonts: { sans: { value: "{fonts.outfit}, var(--font-fallback)" } },
+      },
+      slotRecipes: {
+        iconSwitch: {
+          ...switchRecipe,
+          className: "iconSwitch",
+          jsx: ["IconSwitch", /IconSwitch\.+/],
+          base: {
+            ...switchRecipe?.base,
+            thumb: {
+              ...switchRecipe?.base?.thumb,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            },
+          },
+        },
       },
     },
   },

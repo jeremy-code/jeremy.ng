@@ -10,7 +10,7 @@ module.exports = {
     "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",
     "",
-    "^@/(app|components|hooks|lib)/(.*)$",
+    "^@/(actions|app|assets|components|hooks|lib)/(.*)$",
     "^@/(.*)$",
     "^[./]",
   ],
