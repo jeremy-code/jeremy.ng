@@ -17,3 +17,6 @@ export * from "./IconSwitch";
 export * from "./Input";
 export * from "./Skeleton";
 export * from "./Textarea";
+
+// Custom
+export * from "./Spinner";

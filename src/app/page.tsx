@@ -1,8 +1,8 @@
 "use client";
 
 import { submitContact } from "@/actions/contact/submitContact";
+import { Captcha, SubmitButton } from "@/components/form";
 import { Footer, Navbar } from "@/components/layout";
-import { Captcha } from "@/components/misc/Captcha";
 import { Button, Input, Textarea } from "@/components/ui";
 import { css, cx } from "@/lib/styled/css";
 import { container } from "@/lib/styled/patterns";
@@ -40,10 +40,8 @@ const Home = () => {
             placeholder="saul.goodman@bettercallsaul.com"
           />
           <Textarea name="message" placeholder="Hello, World!" />
-
           <Captcha />
-
-          <Button type="submit">Submit</Button>
+          <SubmitButton>Submit</SubmitButton>
         </form>
       </main>
       <Footer />

@@ -7094,7 +7094,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loose-envify@npm:^1.1.0, loose-envify@npm:^1.4.0":
+"loose-envify@npm:^1.4.0":
   version: 1.4.0
   resolution: "loose-envify@npm:1.4.0"
   dependencies:
@@ -9044,15 +9044,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^18.2.0":
-  version: 18.2.0
-  resolution: "react-dom@npm:18.2.0"
+"react-dom@npm:canary":
+  version: 19.0.0-canary-7a2609eed-20240403
+  resolution: "react-dom@npm:19.0.0-canary-7a2609eed-20240403"
   dependencies:
-    loose-envify: "npm:^1.1.0"
-    scheduler: "npm:^0.23.0"
+    scheduler: "npm:0.25.0-canary-7a2609eed-20240403"
   peerDependencies:
-    react: ^18.2.0
-  checksum: 10c0/66dfc5f93e13d0674e78ef41f92ed21dfb80f9c4ac4ac25a4b51046d41d4d2186abc915b897f69d3d0ebbffe6184e7c5876f2af26bfa956f179225d921be713a
+    react: 19.0.0-canary-7a2609eed-20240403
+  checksum: 10c0/465578406ad7ac8fcf124bf5bd34ebdd22195e4cc911780dfca9ec4f0b01adc05e086647cca5110dfa398fc8261af8b1d0191b36f073108b936e9d60aae0f47f
   languageName: node
   linkType: hard
 
@@ -9077,12 +9076,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^18.2.0":
-  version: 18.2.0
-  resolution: "react@npm:18.2.0"
-  dependencies:
-    loose-envify: "npm:^1.1.0"
-  checksum: 10c0/b562d9b569b0cb315e44b48099f7712283d93df36b19a39a67c254c6686479d3980b7f013dc931f4a5a3ae7645eae6386b4aa5eea933baa54ecd0f9acb0902b8
+"react@npm:canary":
+  version: 19.0.0-canary-7a2609eed-20240403
+  resolution: "react@npm:19.0.0-canary-7a2609eed-20240403"
+  checksum: 10c0/61524218c3a26c471fef3987519ba1bf84cc10b44b02c35b0419ed2de926c398d98b74998ee8bec4775284913e0092dc1cff0a465580e4d57d4c2dd29dd83d67
   languageName: node
   linkType: hard
 
@@ -9446,12 +9443,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:^0.23.0":
-  version: 0.23.0
-  resolution: "scheduler@npm:0.23.0"
-  dependencies:
-    loose-envify: "npm:^1.1.0"
-  checksum: 10c0/b777f7ca0115e6d93e126ac490dbd82642d14983b3079f58f35519d992fa46260be7d6e6cede433a92db70306310c6f5f06e144f0e40c484199e09c1f7be53dd
+"scheduler@npm:0.25.0-canary-7a2609eed-20240403":
+  version: 0.25.0-canary-7a2609eed-20240403
+  resolution: "scheduler@npm:0.25.0-canary-7a2609eed-20240403"
+  checksum: 10c0/3cfe2adef942600ab2c3e07742416e922b9bea8bc19c5d842ca8d4f3a23008f105ee894e9cff5ce0f8fc282c099c53d32ba0ad4ea874d6f1f69f9677a656b4eb
   languageName: node
   linkType: hard
 
