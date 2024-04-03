@@ -27,8 +27,12 @@ const Home = () => {
           nascetur ridiculus mus. Quisque dignissim mi eros, nec venenatis magna
           convallis accumsan. Morbi posuere convallis ipsum vitae malesuada.
         </p>
-
-        <form action={submitContact}>
+        <form
+          action={submitContact}
+          // using setTimeout() so FormData is not reset before action request
+          // is sent to server
+          onSubmit={() => setTimeout(turnstile.reset)}
+        >
           <Input name="name" type="text" placeholder="X Æ A-12 Musk" />
           <Input
             name="email"

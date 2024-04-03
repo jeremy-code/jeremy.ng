@@ -15,6 +15,10 @@ import {
   variant,
 } from "valibot";
 
+export const TurnstileResponse = string();
+
+export type TurnstileResponse = Output<typeof TurnstileResponse>;
+
 export const ValidationRequestParams = object({
   secret: union([
     string([startsWith("0x"), length(35)]),
@@ -26,7 +30,7 @@ export const ValidationRequestParams = object({
       "3x0000000000000000000000000000000AA",
     ]),
   ]),
-  response: string(),
+  response: TurnstileResponse,
   remoteip: optional(string([ip()])),
   idempotency_key: optional(string([uuid()])),
 });

@@ -22,7 +22,7 @@
     },
     {
       "files": ["**/?(*.)+(test).{js,jsx,ts,tsx}"],
-      "extends": ["plugin:jest/recommended"]
+      "extends": ["plugin:vitest/recommended"]
     }
   ],
   "root": true
