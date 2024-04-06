@@ -6,7 +6,11 @@ const switchRecipe = defaultPreset.theme?.extend?.slotRecipes?.switchRecipe;
 export default defineConfig({
   presets: [
     "@pandacss/preset-panda",
-    createPreset({ accentColor: "blue", grayColor: "slate" }),
+    createPreset({
+      accentColor: "blue",
+      grayColor: "slate",
+      additionalColors: ["purple", "violet"],
+    }),
   ],
   preflight: true,
   minify: true,
@@ -16,7 +20,7 @@ export default defineConfig({
     extend: {
       html: { h: "full", "--global-font-body": "{fonts.sans}" },
       body: { h: "full", display: "flex", flexDir: "column" },
-      "body > *": { flex: "1 0 auto" },
+      "body > main": { flex: "1 0 auto" },
       "header, footer": { flex: "none" },
     },
   },

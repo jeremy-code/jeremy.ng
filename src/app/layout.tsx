@@ -2,6 +2,7 @@ import React, { type ReactNode } from "react";
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 
+import { Footer, Navbar } from "@/components/layout";
 import { Providers } from "@/components/misc/Providers";
 
 import "./globals.css";
@@ -37,7 +38,11 @@ const RootLayout = ({ children }: { children: Readonly<ReactNode> }) => {
      */
     <html lang="en" className={outfit.variable} suppressHydrationWarning>
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Navbar />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

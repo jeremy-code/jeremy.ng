@@ -13,7 +13,12 @@ export const Navbar = (props: ComponentProps<"header">) => {
     <header
       {...props}
       className={cx(
-        css({ py: 5, borderBottom: "1px solid {colors.border.default}" }),
+        css({
+          pos: "absolute",
+          left: 0,
+          right: 0,
+          py: 5,
+        }),
         props.className
       )}
     >

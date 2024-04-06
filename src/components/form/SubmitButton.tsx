@@ -15,6 +15,7 @@ const SubmitButtonChildren = styled("div", {
       false: { visibility: "visible" },
     },
   },
+  defaultVariants: { hidden: false },
 });
 
 /**

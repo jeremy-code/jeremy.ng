@@ -1,5 +1,5 @@
 export const parseFormData = (formData: FormData) =>
-  Array.from(formData.entries())
+  Array.from(formData)
     // in server actions, formData will include additional $ACTION_ properties
     .filter(([k]) => !k.startsWith("$ACTION_"))
     .reduce<Record<string, FormDataEntryValue | FormDataEntryValue[]>>(
