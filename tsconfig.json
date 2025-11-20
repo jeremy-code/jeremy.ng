@@ -1,0 +1,3 @@
+{
+  "extends": "@jeremyng/tsconfig/tsconfig-base"
+}

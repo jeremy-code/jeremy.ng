@@ -1,0 +1,15 @@
+{
+  "display": "React Library",
+  "extends": "./tsconfig-base",
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+
+    /* Language and Environment */
+    "lib": ["ES2024", "DOM", "DOM.Iterable"],
+    "jsx": "preserve",
+
+    /* Modules */
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  }
+}

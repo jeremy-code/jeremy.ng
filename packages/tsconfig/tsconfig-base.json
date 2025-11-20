@@ -1,0 +1,57 @@
+{
+  "display": "Default",
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+
+    /* Projects */
+    "incremental": false,
+
+    /* Language and Environment */
+    "target": "ES2024",
+    "lib": ["ES2024"],
+    "moduleDetection": "force",
+
+    /* Modules */
+    "module": "NodeNext",
+    /**
+     * By default, TypeScript will substitute `.js` for `.ts`, `.tsx`, etc. In
+     * `enhanced-resolve`, if file `*.js` is not found, it then searches for
+     * `*.js.ts`, `*.js.tsx`, ...; hence, use custom namespace for TypeScript
+     * and extensionless imports otherwise.
+     *
+     * Note that the Webpack configs' extensions are:
+     * 1. Next.js: [".js", ".mjs", ".tsx", ".ts", ".jsx", ".json", ".wasm"]
+     * 2. `eslint-import-resolver-typescript`: [".ts", ".tsx", ".d.ts", ".js",
+     *    ".jsx", ".json", ".node"]
+     *
+     * @see {@link https://www.typescriptlang.org/docs/handbook/modules/reference.html#file-extension-substitution}
+     * @see {@link https://webpack.js.org/configuration/resolve/#resolveextensions}
+     * @see {@link https://colinhacks.com/essays/live-types-typescript-monorepo}
+     */
+    "customConditions": ["@jeremyng/development"],
+    "resolveJsonModule": true,
+
+    /* Emit */
+    "declaration": true,
+    "declarationMap": true,
+
+    /* Interop Constraints */
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+
+    /* Type Checking */
+    "strict": true,
+    "strictNullChecks": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+
+    /* Completeness */
+    "skipLibCheck": true
+  },
+  "include": [
+    "${configDir}/**/*.ts",
+    "${configDir}/**/*.tsx",
+    "${configDir}/**/*.d.ts"
+  ]
+}

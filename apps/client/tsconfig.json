@@ -1,0 +1,16 @@
+{
+  "extends": "@jeremyng/tsconfig/tsconfig-nextjs",
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+
+    /* Editor Support */
+    "plugins": [{ "name": "next" }]
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "next-env.d.ts",
+    "eslint.config.mjs"
+  ]
+}

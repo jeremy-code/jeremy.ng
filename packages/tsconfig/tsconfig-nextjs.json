@@ -1,0 +1,14 @@
+{
+  "display": "Next.js",
+  "extends": "./tsconfig-react",
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+
+    /* JavaScript Support */
+    "allowJs": true,
+
+    /* Emit */
+    "noEmit": true
+  },
+  "exclude": ["${configDir}/node_modules"]
+}

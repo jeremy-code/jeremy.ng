@@ -1,0 +1,14 @@
+packages:
+  - apps/*
+  - packages/*
+
+# Build settings
+verifyDepsBeforeRun: install
+onlyBuiltDependencies:
+  - esbuild
+  - unrs-resolver
+ignoredBuiltDependencies:
+  - sharp
+
+# Other Settings
+shellEmulator: true

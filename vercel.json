@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "turbo run build --filter=@jeremyng/client",
+  "devCommand": "turbo run dev -- --port $PORT",
+  "framework": "nextjs",
+  "ignoreCommand": "pnpm dlx turbo-ignore --fallback=HEAD^1",
+  "installCommand": "pnpm install",
+  "regions": ["sfo1"]
+}
