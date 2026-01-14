@@ -6,10 +6,7 @@
     "./*": {
       "@jeremyng/development": "./*.js",
       "default": "./*"
-    },
-    "./package.json": "./package.json",
-    "./postcss.config.mjs": "./postcss.config.mjs",
-    "./globals.css": "./globals.css"
+    }
   },
   "scripts": {
     "lint": "eslint ."
@@ -23,9 +20,9 @@
   "devDependencies": {
     "@jeremyng/eslint-config": "workspace:*",
     "@jeremyng/tsconfig": "workspace:*",
-    "@tailwindcss/postcss": "^4.1.17",
-    "@types/react": "^19.2.6",
-    "eslint": "^9.31.1",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/react": "^19.2.8",
+    "eslint": "^9.39.2",
     "tailwindcss": "^4.1.17"
   },
   "peerDependencies": {

@@ -9,20 +9,20 @@
     "./react.js": "./react.js"
   },
   "devDependencies": {
-    "@eslint-community/eslint-plugin-eslint-comments": "^4.4.1",
-    "@eslint-react/eslint-plugin": "^2.3.5",
-    "@eslint/config-helpers": "^0.5.0",
-    "@eslint/js": "^9.39.1",
-    "eslint-config-next": "^16.0.3",
+    "@eslint-community/eslint-plugin-eslint-comments": "^4.6.0",
+    "@eslint-react/eslint-plugin": "^2.6.0",
+    "@eslint/config-helpers": "^0.5.1",
+    "@eslint/js": "^9.39.2",
+    "eslint-config-next": "^16.1.1",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import-x": "^4.6.1",
     "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-react-compiler": "19.1.0-rc.2",
     "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-turbo": "^2.3.4",
-    "globals": "^16.5.0",
+    "eslint-plugin-turbo": "^2.7.4",
+    "globals": "^17.0.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.47.0"
+    "typescript-eslint": "^8.53.0"
   },
   "peerDependencies": {
     "eslint": "^9.31.1"
