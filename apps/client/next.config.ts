@@ -12,6 +12,7 @@ const nextConfig = {
   },
   reactCompiler: true,
   experimental: {
+    viewTransition: true,
     webpackBuildWorker: true,
   },
 } satisfies NextConfig;

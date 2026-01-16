@@ -2,7 +2,7 @@ packages:
   - apps/*
   - packages/*
 
-# Build settings
+# Build settings (https://pnpm.io/settings#build-settings)
 verifyDepsBeforeRun: install
 onlyBuiltDependencies:
   - esbuild
@@ -10,5 +10,5 @@ onlyBuiltDependencies:
 ignoredBuiltDependencies:
   - sharp
 
-# Other Settings
+# Other Settings (https://pnpm.io/settings#other-settings)
 shellEmulator: true

@@ -10,5 +10,6 @@
   },
   "typescript.enablePromptUseWorkspaceTsdk": true, // Use the workspace TypeScript version (useful for Next.js)
   "typescript.tsdk": "./node_modules/typescript/lib",
-  "prettier.documentSelectors": ["**/*.astro"]
+
+  "tailwindCSS.classFunctions": ["cx", "cn", "cnMerge", "tv", "twMerge"]
 }

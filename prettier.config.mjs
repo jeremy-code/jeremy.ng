@@ -13,5 +13,5 @@ export default {
   experimentalTernaries: true,
   plugins: ["prettier-plugin-tailwindcss"],
   tailwindStylesheet: "./packages/ui/globals.css",
-  tailwindFunctions: ["classnames", "clsx", "cn", "ctl", "cva", "twMerge"],
+  tailwindFunctions: ["cx", "cn", "cnMerge", "tv", "twMerge"],
 };
