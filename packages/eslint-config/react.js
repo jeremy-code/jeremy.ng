@@ -1,6 +1,7 @@
 import { defineConfig } from "@eslint/config-helpers";
 import eslintReact from "@eslint-react/eslint-plugin";
 import globals from "globals";
+import pluginQuery from "@tanstack/eslint-plugin-query";
 import reactCompiler from "eslint-plugin-react-compiler";
 import reactHooks from "eslint-plugin-react-hooks";
 
@@ -12,12 +13,7 @@ export const reactConfig = defineConfig(
   eslintReact.configs["recommended-type-checked"],
   reactCompiler.configs.recommended,
   reactHooks.configs.flat["recommended-latest"],
-  // { name: "react-compiler/recommended", ...reactCompiler.configs.recommended },
-  // {
-  //   name: "react-hooks/recommended",
-  //   plugins: { "react-hooks": reactHooks },
-  //   rules: reactHooks.configs.recommended.rules,
-  // },
+  pluginQuery.configs["flat/recommended"],
   {
     name: "@jeremyng/eslint-config/react.js",
     rules: {

@@ -26,5 +26,8 @@
   },
   "peerDependencies": {
     "eslint": "^9.31.1"
+  },
+  "dependencies": {
+    "@tanstack/eslint-plugin-query": "^5.91.2"
   }
 }

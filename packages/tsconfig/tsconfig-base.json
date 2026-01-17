@@ -31,10 +31,6 @@
     "customConditions": ["@jeremyng/development"],
     "resolveJsonModule": true,
 
-    /* Emit */
-    "declaration": true,
-    "declarationMap": true,
-
     /* Interop Constraints */
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
