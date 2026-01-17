@@ -1,6 +1,5 @@
-@import "tailwindcss";
+@import "tailwindcss" source("../..");
 @import "tw-animate-css";
-@source "./components/";
 
 @utility container {
   margin-inline: auto;
@@ -36,7 +35,10 @@
   --color-gray-800: oklch(27.9% 0.041 260.031);
   --color-gray-900: oklch(20.8% 0.042 265.755);
   --color-gray-950: oklch(12.9% 0.042 264.695);
+}
 
+/* https://tailwindcss.com/docs/theme#referencing-other-variables */
+@theme inline {
   --color-primary-foreground: light-dark(
     var(--color-primary-700),
     var(--color-primary-300)
@@ -62,14 +64,13 @@
     var(--color-primary-600),
     var(--color-primary-600)
   );
-
   --color-input: light-dark(var(--color-white), var(--color-gray-900));
   --color-background: light-dark(var(--color-gray-50), var(--color-gray-950));
   --color-foreground: light-dark(var(--color-gray-950), var(--color-gray-50));
   --color-muted: light-dark(var(--color-gray-200), var(--color-gray-800));
   --color-subtle: light-dark(var(--color-gray-100), var(--color-gray-900));
   --color-border: light-dark(var(--color-gray-300), var(--color-gray-700));
-  --color-solid: var(--color-solid);
+  --color-solid: var(--color-gray-600);
 }
 
 @layer base {
