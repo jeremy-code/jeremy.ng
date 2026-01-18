@@ -1,18 +1,17 @@
 import { ThemeToggle } from "#components/misc/ThemeToggle";
-import { helpers } from "#lib/trpc/server";
+import { NpmSearchList } from "#components/npm/NpmSearchList";
 import { Button } from "@jeremyng/ui/components/Button";
-
-import { UserList } from "./_components/ClientComponent";
+import { Heading } from "@jeremyng/ui/components/Heading";
 
 const Home = () => {
-  void helpers.hello.prefetch({ text: "Bilbo" });
-
   return (
     <div className="container">
-      Welcome
       <Button>Test Button</Button>
       <ThemeToggle variant="secondary" size="icon" />
-      <UserList />
+      <Heading as="h1" size="2xl" className="mb-2">
+        NPM Libraries
+      </Heading>
+      <NpmSearchList />
     </div>
   );
 };

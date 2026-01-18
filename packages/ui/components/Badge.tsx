@@ -8,7 +8,7 @@ const badgeVariants = tv({
   ],
   variants: {
     color: {
-      gray: "bg-subtle text-foreground",
+      gray: "bg-muted text-foreground",
       primary: "bg-primary-subtle text-primary-foreground",
     },
     size: {

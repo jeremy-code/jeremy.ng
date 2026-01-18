@@ -14,6 +14,8 @@ const buttonVariants = tv({
       primary:
         "border border-primary-muted bg-primary-subtle text-primary-foreground hover:bg-primary-muted",
       secondary: "border border-muted bg-subtle text-foreground hover:bg-muted",
+      outline:
+        "border border-border bg-background text-foreground hover:bg-subtle",
     },
     size: {
       xs: "h-8 min-w-8 gap-1 px-2.5 text-xs/4",

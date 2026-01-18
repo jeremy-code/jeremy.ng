@@ -73,6 +73,12 @@
   --color-subtle: light-dark(var(--color-gray-100), var(--color-gray-900));
   --color-border: light-dark(var(--color-gray-300), var(--color-gray-700));
   --color-solid: var(--color-gray-600);
+
+  --color-surface: light-dark(var(--color-gray-50), var(--color-gray-900));
+  --color-surface-darker: light-dark(
+    var(--color-gray-100),
+    var(--color-gray-950)
+  );
 }
 
 @layer base {
@@ -81,7 +87,7 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-muted, currentColor);
+    border-color: var(--color-border, currentColor);
   }
 
   html {
