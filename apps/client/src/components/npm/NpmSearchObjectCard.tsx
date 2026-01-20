@@ -22,7 +22,7 @@ const NpmSearchObjectCard = ({
   const cardStyles = card({ className, size });
 
   return (
-    <li className={cardStyles.base()}>
+    <div className={cardStyles.base({ className: "h-full" })}>
       <div className={cardStyles.header()}>
         <Badge className="w-fit">{npmSearchObject.package.version}</Badge>
         <Link
@@ -70,7 +70,7 @@ const NpmSearchObjectCard = ({
           </Button>
         </a>
       </div>
-    </li>
+    </div>
   );
 };
 
