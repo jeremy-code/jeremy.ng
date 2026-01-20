@@ -3,7 +3,7 @@
 import { useState, type ReactNode } from "react";
 
 import { QueryClientProvider } from "@tanstack/react-query";
-import { createTRPCClient, httpBatchLink } from "@trpc/client";
+import { createTRPCClient, httpBatchLink, type TRPCLink } from "@trpc/client";
 import { createTRPCContext } from "@trpc/tanstack-react-query";
 import superjson from "superjson";
 
@@ -20,7 +20,7 @@ const links = [
     url: `${getBaseUrl()}${TRPC_ENDPOINT}`,
     transformer: superjson,
   }),
-];
+] satisfies TRPCLink<AppRouter>[];
 
 export const TrpcReactProvider = ({
   children,

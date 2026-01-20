@@ -4,8 +4,8 @@ import {
 } from "@tanstack/react-query";
 import { serialize, deserialize } from "superjson";
 
-export function makeQueryClient() {
-  return new QueryClient({
+export const makeQueryClient = () =>
+  new QueryClient({
     defaultOptions: {
       queries: {
         staleTime: 1000 * 60 * 5, // 5 minutes
@@ -21,7 +21,6 @@ export function makeQueryClient() {
       },
     },
   });
-}
 
 let browserQueryClient: QueryClient | undefined = undefined;
 
