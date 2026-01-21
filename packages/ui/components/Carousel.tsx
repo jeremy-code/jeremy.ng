@@ -3,6 +3,7 @@
 import {
   useCallback,
   useEffect,
+  useMemo,
   type ComponentProps,
   type ComponentPropsWithRef,
   type KeyboardEventHandler,
@@ -70,15 +71,18 @@ const Carousel = ({
     : options?.axis === "y" ? "vertical"
     : undefined) ?? "horizontal";
 
+  const carouselContextValue = useMemo(
+    () => ({
+      carouselRef,
+      scrollPrev,
+      scrollNext,
+      ...carouselState,
+    }),
+    [carouselRef, scrollPrev, scrollNext, carouselState],
+  );
+
   return (
-    <CarouselContext
-      value={{
-        carouselRef,
-        scrollPrev,
-        scrollNext,
-        ...carouselState,
-      }}
-    >
+    <CarouselContext value={carouselContextValue}>
       <div
         onKeyDownCapture={handleKeyDown}
         className={cn(
