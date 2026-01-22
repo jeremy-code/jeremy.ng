@@ -16,14 +16,13 @@ const HorizontalListItem = ({
   return (
     <li
       /**
-       * The following comment is a minor fix for a bug in Tailwind CSS's CSS
-       * generation when using escaped characters.
+       * Since JSX strips backslashes in HTML, `String.raw` is necessary for
+       * correct CSS output
        *
-       * @see {@link https://github.com/tailwindlabs/tailwindcss/issues/19589 }
+       * @see {@link https://tailwindcss.com/docs/adding-custom-styles#handling-whitespace}
        */
-      // className="not-last:after:content-['\a0_·_']"
       className={cn(
-        "inline not-last:after:font-black not-last:after:content-['\\a0_·_']",
+        String.raw`inline not-last:after:font-black not-last:after:content-['\a0_·_']`,
         className,
       )}
       {...props}
