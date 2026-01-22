@@ -1,13 +1,24 @@
 import type { ComponentPropsWithRef } from "react";
 
-const HorizontalList = (props: ComponentPropsWithRef<"ul">) => {
-  return <ul className="inline-block list-none" {...props} />;
+import { cn } from "tailwind-variants";
+
+const HorizontalList = ({
+  className,
+  ...props
+}: ComponentPropsWithRef<"ul">) => {
+  return <ul className={cn("inline-block list-none", className)} {...props} />;
 };
 
-const HorizontalListItem = (props: ComponentPropsWithRef<"li">) => {
+const HorizontalListItem = ({
+  className,
+  ...props
+}: ComponentPropsWithRef<"li">) => {
   return (
     <li
-      className="inline not-last:after:font-black not-last:after:content-['\a0_·_']"
+      className={cn(
+        "inline not-last:after:font-black not-last:after:content-['\\a0_·_']",
+        className,
+      )}
       {...props}
     />
   );

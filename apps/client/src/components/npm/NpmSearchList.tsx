@@ -28,7 +28,7 @@ export const NpmSearchList = () => {
   }
 
   return (
-    <Carousel>
+    <Carousel options={{ align: "start" }}>
       <CarouselControls />
       <CarouselContent>
         {npmQuery.data?.objects
@@ -37,7 +37,7 @@ export const NpmSearchList = () => {
           )
           .map((npmSearchObject) => (
             <CarouselItem
-              className="h-64 basis-full md:basis-1/2 lg:basis-1/3"
+              className="h-64 basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
               key={npmSearchObject.package.name}
             >
               <NpmSearchObjectCard npmSearchObject={npmSearchObject} />

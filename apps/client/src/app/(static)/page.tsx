@@ -3,12 +3,14 @@ import { Heading } from "@jeremyng/ui/components/Heading";
 
 const Home = () => {
   return (
-    <>
-      <Heading as="h1" size="2xl" className="mb-4">
-        NPM Libraries
-      </Heading>
-      <NpmSearchList />
-    </>
+    <div className="flex flex-col gap-8">
+      <section>
+        <Heading as="h1" size="2xl" className="mb-4">
+          NPM Libraries
+        </Heading>
+        <NpmSearchList />
+      </section>
+    </div>
   );
 };
 

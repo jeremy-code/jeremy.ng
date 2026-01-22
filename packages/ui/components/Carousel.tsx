@@ -25,6 +25,10 @@ import { useSyncCarouselState } from "../hooks/useSyncCarouselState";
 
 type CarouselProps = ComponentPropsWithRef<"div"> & CarouselPrimitiveProps;
 
+/**
+ * Set Carousel.options.align to "start"; otherwise, selection breaks with even
+ * number of cards.
+ */
 const Carousel = ({
   options,
   plugins,
