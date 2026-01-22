@@ -1,3 +1,4 @@
+import { GithubPinnedList } from "#components/github/GithubPinnedList";
 import { NpmSearchList } from "#components/npm/NpmSearchList";
 import { Heading } from "@jeremyng/ui/components/Heading";
 
@@ -9,6 +10,12 @@ const Home = () => {
           NPM Libraries
         </Heading>
         <NpmSearchList />
+      </section>
+      <section>
+        <Heading as="h1" size="2xl" className="mb-4">
+          GitHub Repositories
+        </Heading>
+        <GithubPinnedList />
       </section>
     </div>
   );
