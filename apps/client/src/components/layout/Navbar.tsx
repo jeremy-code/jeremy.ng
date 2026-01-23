@@ -3,6 +3,7 @@ import type { ComponentPropsWithRef } from "react";
 import Link from "next/link";
 import { cn } from "tailwind-variants";
 
+import { Logo } from "#components/misc/Logo";
 import { ThemeToggle } from "#components/misc/ThemeToggle";
 import {
   NavigationMenu,
@@ -26,6 +27,7 @@ export const Navbar = ({
     <header className={cn("border-b", className)} {...props}>
       <div className="container flex items-center justify-between py-4">
         <Link className="flex items-center gap-2 font-semibold" href="/">
+          <Logo />
           Jeremy Nguyen
         </Link>
         <div className="flex items-center gap-2">
