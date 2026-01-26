@@ -1,4 +1,4 @@
-import * as React from "react";
+import { type ReactNode } from "react";
 
 import { Slot } from "radix-ui";
 import type { PrimitivePropsWithRef } from "radix-ui/internal";
@@ -57,11 +57,11 @@ function Card({
   children,
   ...props
 }: CardProps & {
-  title?: React.ReactNode;
-  description?: React.ReactNode;
-  footer?: React.ReactNode;
-  header?: React.ReactNode;
-  body?: React.ReactNode;
+  title?: ReactNode;
+  description?: ReactNode;
+  footer?: ReactNode;
+  header?: ReactNode;
+  body?: ReactNode;
 }) {
   const Comp = asChild ? Slot.Root : "div";
   const cardStyles = cardVariants({

@@ -79,6 +79,7 @@
     var(--color-gray-100),
     var(--color-gray-950)
   );
+  --color-destructive: light-dark(var(--color-red-500), var(--color-red-600));
 }
 
 @layer base {
