@@ -19,7 +19,7 @@ const textareaVariants = tv({
     },
   },
   defaultVariants: {
-    size: "xs",
+    size: "sm",
   },
 });
 
