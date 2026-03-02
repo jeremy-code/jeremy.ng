@@ -7,9 +7,6 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 const nextConfig = {
   poweredByHeader: false,
-  compiler: {
-    removeConsole: { exclude: ["error"] },
-  },
   reactCompiler: true,
   experimental: {
     viewTransition: true,
