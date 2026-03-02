@@ -2,25 +2,43 @@
 
 import { type ComponentPropsWithRef } from "react";
 
+import { Captcha } from "#components/form/Captcha";
 import { useAppForm } from "#hooks/useAppForm";
+import { mapTurnstileClientError } from "#lib/cloudflare/mapTurnstileClientError";
+import { useTRPCClient } from "#lib/trpc/client";
+import { Token } from "#schemas/cloudflare/turnstile";
 import { ContactFormSchema } from "#schemas/contact/contactForm";
+import { isObject } from "#utils/isObject";
 import { Form } from "@jeremyng/ui/components/Form";
 import { Separator } from "@jeremyng/ui/components/Separator";
 
 type ContactFormProps = ComponentPropsWithRef<typeof Form>;
 
 const ContactForm = (props: ContactFormProps) => {
+  const trpcClient = useTRPCClient();
   const form = useAppForm({
     defaultValues: {
       name: "",
       email: "",
       message: "",
+      token: "",
     },
     validators: {
-      onSubmit: ContactFormSchema,
+      onSubmit: ContactFormSchema.extend({ token: Token }),
     },
     onSubmit: async ({ value }) => {
       console.log(value);
+      const verifyTokenRes = await trpcClient.cloudflare.verifyToken.query(
+        value.token,
+      );
+      // TODO: Replace `alert` with toasts
+      if (verifyTokenRes.success) {
+        alert("Captcha verification passed.");
+      } else {
+        alert(
+          `Captcha verification failed with error codes ${verifyTokenRes["error-codes"].join(", ")}. Please try again.`,
+        );
+      }
     },
   });
 
@@ -76,7 +94,52 @@ const ContactForm = (props: ContactFormProps) => {
             />
           )}
         />
-        <Separator className="my-4" />
+        <form.AppField
+          name="token"
+          children={(field) => (
+            <>
+              <Captcha
+                className="my-2"
+                onSuccess={(token) => {
+                  field.handleChange(token);
+                }}
+                onError={(error) => {
+                  const errorMessage = mapTurnstileClientError(error);
+                  console.error(
+                    `[Cloudflare Turnstile] Error ${error}: ${errorMessage}.`,
+                  );
+                  field.setErrorMap({
+                    onSubmit: (field.state.meta.errorMap.onSubmit ?? []).concat(
+                      { message: errorMessage, path: [field.name] },
+                    ),
+                  });
+                }}
+                {...(field.state.meta.errors.length !== 0 ?
+                  {
+                    "aria-invalid": true,
+                    "aria-errormessage": field.state.meta.errors
+                      .map((_, index) => `captcha-error-${index}`)
+                      .join(" "),
+                  }
+                : {})}
+              />
+              {field.state.meta.errors.length !== 0 ?
+                <ul className="mt-1 list-inside list-disc">
+                  {field.state.meta.errors.map((error, index) => (
+                    <li
+                      key={`${error?.message}-${error?.path?.map?.((keyOrPathSegment) => (isObject(keyOrPathSegment) && "key" in keyOrPathSegment ? keyOrPathSegment.key : keyOrPathSegment)).join?.() ?? ""}`}
+                      id={`captcha-error-${index}`}
+                      className="text-sm text-destructive"
+                    >
+                      {error?.message}
+                    </li>
+                  ))}
+                </ul>
+              : null}
+            </>
+          )}
+        />
+        <Separator className="mt-5 mb-4" />
         <div className="flex items-center justify-end gap-2.5">
           <form.SubmitButton className="max-sm:w-full" />
         </div>

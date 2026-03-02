@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@jeremyng/ui": "workspace:*",
+    "@marsidev/react-turnstile": "^1.4.2",
     "@next/bundle-analyzer": "^16.1.6",
     "@next/env": "^16.1.6",
     "@octokit/graphql": "^9.0.3",
