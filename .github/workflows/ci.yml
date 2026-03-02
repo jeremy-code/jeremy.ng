@@ -56,3 +56,5 @@ jobs:
           NEXT_PUBLIC_NPM_REGISTRY_USERNAME: ${{ vars.NEXT_PUBLIC_NPM_REGISTRY_USERNAME }}
           CF_TURNSTILE_SECRET_KEY: ${{ secrets.CF_TURNSTILE_SECRET_KEY }}
           GITHUB_TOKEN: ${{ secrets._GITHUB_TOKEN }}
+          MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
+          MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}

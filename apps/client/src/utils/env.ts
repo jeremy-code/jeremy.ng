@@ -7,6 +7,8 @@ const env = createEnv({
   server: {
     CF_TURNSTILE_SECRET_KEY: SecretKey,
     GITHUB_TOKEN: z.string().min(1),
+    MAILGUN_API_KEY: z.string().min(1),
+    MAILGUN_DOMAIN: z.hostname().min(1),
   },
   client: {
     NEXT_PUBLIC_CF_TURNSTILE_SITE_KEY: SiteKey,
