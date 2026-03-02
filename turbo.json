@@ -5,7 +5,12 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "env": ["ANALYZE"],
+      "env": [
+        "ANALYZE",
+        "CF_TURNSTILE_SECRET_KEY",
+        "MAILGUN_API_KEY",
+        "MAILGUN_DOMAIN"
+      ],
       "inputs": ["$TURBO_DEFAULT$", ".env*", "!.env.example"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
