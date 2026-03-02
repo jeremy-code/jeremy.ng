@@ -18,4 +18,4 @@ const Label = ({ className, ...props }: LabelProps) => (
   <LabelPrimitive.Root className={labelVariants({ className })} {...props} />
 );
 
-export { labelVariants, type LabelProps, Label };
+export { labelVariants, Label, type LabelProps };

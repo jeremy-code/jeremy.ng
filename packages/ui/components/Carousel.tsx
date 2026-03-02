@@ -227,8 +227,8 @@ const CarouselControls = ({
 };
 
 export {
-  type CarouselProps,
   Carousel,
+  type CarouselProps,
   CarouselContent,
   CarouselItem,
   CarouselPrevious,

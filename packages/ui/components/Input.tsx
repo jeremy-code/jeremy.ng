@@ -30,4 +30,4 @@ const Input = ({ className, size, ...props }: InputProps) => {
   return <input className={inputVariants({ className, size })} {...props} />;
 };
 
-export { inputVariants, type InputProps, Input };
+export { inputVariants, Input, type InputProps };

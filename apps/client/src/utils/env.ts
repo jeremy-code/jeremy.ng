@@ -1,7 +1,7 @@
 import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
-export const env = createEnv({
+const env = createEnv({
   server: {
     GITHUB_TOKEN: z.string().min(1),
   },
@@ -21,3 +21,5 @@ export const env = createEnv({
     NEXT_PUBLIC_GITHUB_USERNAME: process.env.NEXT_PUBLIC_GITHUB_USERNAME,
   },
 });
+
+export { env };

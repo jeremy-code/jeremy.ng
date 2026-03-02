@@ -17,7 +17,7 @@ const graphqlWithAuth = graphql.defaults({
 });
 
 // https://github.com/npm/registry/blob/main/docs/REGISTRY-API.md#get-v1search
-export const githubRouter = createTRPCRouter({
+const githubRouter = createTRPCRouter({
   /**
    * Without a count, an error of type "MISSING_PAGINATION_BOUNDARIES" and
    * message "You must provide a `first` or `last` value to properly paginate
@@ -98,3 +98,5 @@ export const githubRouter = createTRPCRouter({
       return response;
     }),
 });
+
+export { githubRouter };

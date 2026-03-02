@@ -12,7 +12,7 @@ const npmRegistryApi = ky.extend({
 });
 
 // https://github.com/npm/registry/blob/main/docs/REGISTRY-API.md#get-v1search
-export const npmRouter = createTRPCRouter({
+const npmRouter = createTRPCRouter({
   search: baseProcedure
     .input(NpmSearchParamsSchema)
     .output(NpmSearchResponseSchema)
@@ -26,3 +26,5 @@ export const npmRouter = createTRPCRouter({
       return response;
     }),
 });
+
+export { npmRouter };

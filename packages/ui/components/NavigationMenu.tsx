@@ -165,8 +165,8 @@ const NavigationMenuViewport = ({
 
 export {
   NavigationMenuItem,
-  type NavigationMenuProps,
   NavigationMenu,
+  type NavigationMenuProps,
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuLink,

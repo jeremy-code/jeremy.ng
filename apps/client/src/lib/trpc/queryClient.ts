@@ -4,7 +4,7 @@ import {
 } from "@tanstack/react-query";
 import { serialize, deserialize } from "superjson";
 
-export const makeQueryClient = () =>
+const makeQueryClient = () =>
   new QueryClient({
     defaultOptions: {
       queries: {
@@ -28,7 +28,9 @@ let browserQueryClient: QueryClient | undefined = undefined;
  * Creates a new {@link QueryClient} on the server or reuses a singleton on the
  * client.
  */
-export const getQueryClient = () =>
+const getQueryClient = () =>
   typeof window === "undefined" ? makeQueryClient() : (
     (browserQueryClient ??= makeQueryClient())
   );
+
+export { makeQueryClient, getQueryClient };

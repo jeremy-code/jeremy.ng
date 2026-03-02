@@ -32,4 +32,4 @@ const Textarea = ({ className, size, ...props }: TextareaProps) => {
   );
 };
 
-export { textareaVariants, type TextareaProps, Textarea };
+export { textareaVariants, Textarea, type TextareaProps };

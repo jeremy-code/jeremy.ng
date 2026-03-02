@@ -13,7 +13,7 @@ import { TRPC_ENDPOINT } from "./constants";
 import { getQueryClient } from "./queryClient";
 import type { AppRouter } from "./routers/_app";
 
-export const { TRPCProvider, useTRPC } = createTRPCContext<AppRouter>();
+const { TRPCProvider, useTRPC, useTRPCClient } = createTRPCContext<AppRouter>();
 
 const links = [
   httpBatchLink({
@@ -22,9 +22,7 @@ const links = [
   }),
 ] satisfies TRPCLink<AppRouter>[];
 
-export const TrpcReactProvider = ({
-  children,
-}: Readonly<{ children: ReactNode }>) => {
+const TrpcReactProvider = ({ children }: Readonly<{ children: ReactNode }>) => {
   const queryClient = getQueryClient();
   const [trpcClient] = useState(() => createTRPCClient<AppRouter>({ links }));
 
@@ -36,3 +34,5 @@ export const TrpcReactProvider = ({
     </QueryClientProvider>
   );
 };
+
+export { TRPCProvider, useTRPC, useTRPCClient, TrpcReactProvider };

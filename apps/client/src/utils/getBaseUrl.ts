@@ -1,4 +1,4 @@
-export const getBaseUrl = () => {
+const getBaseUrl = () => {
   if (typeof window !== "undefined") {
     // Unnecessary on the client side because window.origin can be used
     return "";
@@ -12,3 +12,5 @@ export const getBaseUrl = () => {
   // Assume localhost
   return `http://localhost:${process.env.PORT ?? 3000}`;
 };
+
+export { getBaseUrl };

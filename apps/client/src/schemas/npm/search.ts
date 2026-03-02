@@ -78,14 +78,14 @@ const NpmSearchObjectSchema = z.strictObject({
 export type NpmSearchObjectSchema = z.infer<typeof NpmSearchObjectSchema>;
 
 // https://github.com/npm/registry/blob/main/docs/REGISTRY-API.md#get-v1search
-export const NpmSearchResponseSchema = z.strictObject({
+const NpmSearchResponseSchema = z.strictObject({
   objects: z.array(NpmSearchObjectSchema),
   total: z.int().min(0),
   time: z.iso.datetime(),
 });
-export type NpmSearchResponseSchema = z.infer<typeof NpmSearchResponseSchema>;
+type NpmSearchResponseSchema = z.infer<typeof NpmSearchResponseSchema>;
 
-export const NpmSearchParamsSchema = z.strictObject({
+const NpmSearchParamsSchema = z.strictObject({
   text: z.string().optional(),
   size: z.int().max(250).optional(), // defaults to 20
   from: z.int().optional(),
@@ -93,3 +93,5 @@ export const NpmSearchParamsSchema = z.strictObject({
   popularity: z.number().min(0).max(1).optional(),
   maintenance: z.number().min(0).max(1).optional(),
 });
+
+export { NpmSearchResponseSchema, NpmSearchParamsSchema };

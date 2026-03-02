@@ -8,8 +8,10 @@ const t = initTRPC.create({
   transformer: superjson,
 });
 
-export const {
+const {
   router: createTRPCRouter,
   createCallerFactory,
   procedure: baseProcedure,
 } = t;
+
+export { createTRPCRouter, createCallerFactory, baseProcedure };
