@@ -9,6 +9,7 @@ import { useTRPCClient } from "#lib/trpc/client";
 import { Token } from "#schemas/cloudflare/turnstile";
 import { ContactFormSchema } from "#schemas/contact/contactForm";
 import { isObject } from "#utils/isObject";
+import { mapStatusCode } from "#utils/mapStatusCode";
 import { Form } from "@jeremyng/ui/components/Form";
 import { Separator } from "@jeremyng/ui/components/Separator";
 
@@ -33,7 +34,19 @@ const ContactForm = (props: ContactFormProps) => {
       );
       // TODO: Replace `alert` with toasts
       if (verifyTokenRes.success) {
-        alert("Captcha verification passed.");
+        const sendMessageRes = await trpcClient.contact.sendMessage.query({
+          name: value.name,
+          email: value.email,
+          message: value.message,
+        });
+        const sendMessageStatus = mapStatusCode(sendMessageRes.status);
+        if (sendMessageStatus.ok) {
+          alert("Message sent successfully.");
+        } else {
+          alert(
+            `Message sent unsuccessfully with status ${sendMessageStatus.status}: ${sendMessageStatus.statusText}${sendMessageRes.message !== undefined ? `and message ${sendMessageRes.message}` : ""}.`,
+          );
+        }
       } else {
         alert(
           `Captcha verification failed with error codes ${verifyTokenRes["error-codes"].join(", ")}. Please try again.`,
