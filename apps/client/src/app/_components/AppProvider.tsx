@@ -18,7 +18,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   return (
     <ThemeProvider>
       <TrpcReactProvider>
-        {children} <Devtools />
+        {children}
+        <Devtools />
       </TrpcReactProvider>
     </ThemeProvider>
   );
