@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { ThemeProvider } from "next-themes";
 
 import { TrpcReactProvider } from "#lib/trpc/client";
+import { Toaster } from "@jeremyng/ui/components/Toaster";
 
 const Devtools =
   process.env.NODE_ENV === "development" ?
@@ -20,6 +21,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       <TrpcReactProvider>
         {children}
         <Devtools />
+        <Toaster />
       </TrpcReactProvider>
     </ThemeProvider>
   );

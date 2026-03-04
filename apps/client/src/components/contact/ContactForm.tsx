@@ -12,6 +12,7 @@ import { isObject } from "#utils/isObject";
 import { mapStatusCode } from "#utils/mapStatusCode";
 import { Form } from "@jeremyng/ui/components/Form";
 import { Separator } from "@jeremyng/ui/components/Separator";
+import { toast } from "@jeremyng/ui/hooks/useToast";
 
 type ContactFormProps = ComponentPropsWithRef<typeof Form>;
 
@@ -41,16 +42,22 @@ const ContactForm = (props: ContactFormProps) => {
         });
         const sendMessageStatus = mapStatusCode(sendMessageRes.status);
         if (sendMessageStatus.ok) {
+          toast({
+            title: "Message sent successfully",
+          });
           alert("Message sent successfully.");
         } else {
-          alert(
-            `Message sent unsuccessfully with status ${sendMessageStatus.status}: ${sendMessageStatus.statusText}${sendMessageRes.message !== undefined ? `and message ${sendMessageRes.message}` : ""}.`,
-          );
+          toast({
+            title: "Message sent failed",
+            description: sendMessageRes.message ?? null,
+            variant: "destructive",
+          });
         }
       } else {
-        alert(
-          `Captcha verification failed with error codes ${verifyTokenRes["error-codes"].join(", ")}. Please try again.`,
-        );
+        toast({
+          title: "Captcha verification failed",
+          variant: "destructive",
+        });
       }
     },
   });

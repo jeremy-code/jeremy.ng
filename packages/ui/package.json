@@ -14,10 +14,12 @@
   "dependencies": {
     "embla-carousel-react": "^8.6.0",
     "lucide-react": "^0.576.0",
+    "nanoid": "^5.1.6",
     "postcss": "^8.5.8",
     "radix-ui": "^1.4.3",
     "tailwind-merge": "^3.5.0",
-    "tailwind-variants": "^3.2.2"
+    "tailwind-variants": "^3.2.2",
+    "zustand": "^5.0.11"
   },
   "devDependencies": {
     "@jeremyng/eslint-config": "workspace:*",
