@@ -198,6 +198,7 @@ function CarouselNext({ className, ...props }: ButtonProps) {
 }
 
 const CarouselControls = ({
+  color = "default",
   variant = "outline",
   size = "icon",
   ...props
@@ -211,7 +212,12 @@ const CarouselControls = ({
           "group-data-[orientation=vertical]/carousel:row-1 group-data-[orientation=vertical]/carousel:justify-center",
         )}
       >
-        <CarouselPrevious variant={variant} size={size} {...props} />
+        <CarouselPrevious
+          color={color}
+          variant={variant}
+          size={size}
+          {...props}
+        />
       </div>
       <div
         className={cn(
@@ -220,7 +226,7 @@ const CarouselControls = ({
           "group-data-[orientation=vertical]/carousel:row-3 group-data-[orientation=vertical]/carousel:justify-center",
         )}
       >
-        <CarouselNext variant={variant} size={size} {...props} />
+        <CarouselNext color={color} variant={variant} size={size} {...props} />
       </div>
     </>
   );

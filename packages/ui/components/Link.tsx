@@ -6,6 +6,17 @@ import { tv, type VariantProps } from "tailwind-variants";
 const linkVariants = tv({
   base: "inline-flex items-center gap-1 decoration-from-font underline-offset-1 transition-colors transition-discrete",
   variants: {
+    variant: {
+      anchor: [
+        "inline",
+        // `margin-top` values will depend on font and `line-height`
+        "after:absolute after:mt-[.35em] after:text-[.75em] after:text-muted-foreground",
+        "before:absolute before:mt-[.35em] before:text-[.75em] before:text-muted-foreground",
+        "md:before:ml-[-.8em] md:before:pr-[.8em] md:before:content-['#']",
+        "max-md:pr-[1.1ch] max-md:after:ml-[.25em] max-md:after:content-['#']",
+        "not-[:hover,:focus]:before:invisible not-[:hover,:focus]:after:invisible",
+      ],
+    },
     color: {
       /**
        * Styling colors based on system colors (LinkText, VisitedText). This
@@ -51,6 +62,7 @@ const Link = ({
   className,
   isExternal,
   children,
+  variant,
   color,
   underline,
   ...props
@@ -59,7 +71,7 @@ const Link = ({
 
   return (
     <Comp
-      className={linkVariants({ color, className, underline })}
+      className={linkVariants({ className, variant, color, underline })}
       // target="_blank" implies rel="noopener": https://caniuse.com/mdn-html_elements_a_implicit_noopener
       {...(isExternal && { target: "_blank" })}
       {...props}

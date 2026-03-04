@@ -12,7 +12,7 @@ const badgeVariants = tv({
       primary: "bg-primary-subtle text-primary-foreground",
     },
     size: {
-      xs: "min-h-4 px-1 text-[0.625rem]/3",
+      xs: "min-h-4 px-1 text-xxs/3",
       sm: "min-h-5 px-1.5 text-xs/4",
       md: "min-h-6 px-2 text-sm/5",
       lg: "min-h-7 px-2.5 text-sm/5",

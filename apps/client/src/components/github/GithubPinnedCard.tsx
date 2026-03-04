@@ -79,7 +79,9 @@ const GithubPinnedCard = ({
         })}
       >
         <Link href={pinnedItemNode.url}>
-          <Button variant="outline">GitHub</Button>
+          <Button color="default" variant="outline">
+            GitHub
+          </Button>
         </Link>
       </div>
     </div>

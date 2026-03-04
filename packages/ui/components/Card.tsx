@@ -7,34 +7,18 @@ import { cn, tv, type VariantProps } from "tailwind-variants";
 const cardVariants = tv({
   slots: {
     base: "relative flex min-w-0 flex-col overflow-hidden rounded-md border bg-surface wrap-break-word", // div
-    body: "flex flex-1 flex-col gap-2 p-[--card-padding]", // div
-    header: "flex flex-col gap-1.5", // div
-    footer: "flex items-center justify-end gap-2", // div
+    body: "flex flex-1 flex-col gap-2 p-(--card-padding)", // div
+    header: "flex flex-col gap-1.5 px-(--card-padding) pt-(--card-padding)", // div
+    footer:
+      "flex items-center justify-end gap-2 px-(--card-padding) pb-(--card-padding)", // div
     title: "text-lg/7 font-semibold", // h2
     description: "text-sm", // p
   },
   variants: {
     size: {
-      custom: {
-        body: "p-[--card-padding]",
-        header: "px-[--card-padding] pt-[--card-padding]",
-        footer: "px-[--card-padding] pb-[--card-padding]",
-      },
-      sm: {
-        body: "p-4",
-        header: "px-4 pt-4",
-        footer: "px-4 pb-4",
-      },
-      md: {
-        body: "p-6",
-        header: "px-6 pt-6",
-        footer: "px-6 pb-6",
-      },
-      lg: {
-        body: "p-7",
-        header: "px-7 pt-7",
-        footer: "px-7 pb-7",
-      },
+      sm: { base: "[--card-padding:--spacing(4)]" },
+      md: { base: "[--card-padding:--spacing(6)]" },
+      lg: { base: "[--card-padding:--spacing(7)]" },
     },
   },
   defaultVariants: {

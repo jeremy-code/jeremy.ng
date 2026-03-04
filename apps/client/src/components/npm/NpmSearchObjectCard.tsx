@@ -60,7 +60,9 @@ const NpmSearchObjectCard = ({
               "git+".length, // Remove "git+" prefix
             )}
           >
-            <Button variant="outline">GitHub</Button>
+            <Button color="default" variant="outline">
+              GitHub
+            </Button>
           </a>
         )}
 

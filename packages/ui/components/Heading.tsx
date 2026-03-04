@@ -26,14 +26,14 @@ const headingVariants = tv({
       xs: "text-xs/4",
       sm: "text-sm/5",
       md: "text-base/6",
-      lg: "text-lg/[1.6875rem]",
-      xl: "text-xl/[1.875rem]",
+      lg: "text-lg/6.75",
+      xl: "text-xl/7.5",
       "2xl": "text-2xl/9",
-      "3xl": "text-3xl/[2.8125rem]",
-      "4xl": "text-4xl/[3.375rem]",
-      "5xl": "text-5xl/[4.5rem]",
-      "6xl": "text-6xl/[5.625rem]",
-      "7xl": "text-7xl/[6.75rem]",
+      "3xl": "text-3xl/11.25",
+      "4xl": "text-4xl/13.5",
+      "5xl": "text-5xl/18",
+      "6xl": "text-6xl/22.5",
+      "7xl": "text-7xl/27",
       "8xl": "text-8xl/36",
       "9xl": "text-9xl/48",
     },
@@ -59,10 +59,9 @@ const Heading = ({
   return (
     <Comp
       className={twMerge(headingVariants({ className, size, fontWeight }))}
-      {...(asChild && {
-        role: "heading",
-        "aria-level": as === undefined ? 1 : Number(as[1]),
-      })}
+      {...(asChild ?
+        { role: "heading", "aria-level": as === undefined ? 1 : Number(as[1]) }
+      : {})}
       {...props}
     />
   );

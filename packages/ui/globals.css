@@ -5,7 +5,7 @@
 
 @utility container {
   margin-inline: auto;
-  padding-inline: calc(var(--spacing) * 8) /* 2rem = 32px */;
+  padding-inline: --spacing(8); /* 2rem = 32px */
 }
 
 @theme {
@@ -37,6 +37,9 @@
   --color-gray-800: oklch(27.9% 0.041 260.031);
   --color-gray-900: oklch(20.8% 0.042 265.755);
   --color-gray-950: oklch(12.9% 0.042 264.695);
+
+  --text-xxs: 0.625rem;
+  --text-xxs--line-height: calc(0.75 / 0.625);
 }
 
 /* https://tailwindcss.com/docs/theme#referencing-other-variables */
@@ -45,7 +48,6 @@
     var(--color-primary-700),
     var(--color-primary-300)
   );
-  --color-primary-solid-foreground: var(--color-white);
   --color-primary-muted: light-dark(
     var(--color-primary-200),
     var(--color-primary-800)
@@ -62,10 +64,8 @@
     var(--color-primary-300),
     var(--color-primary-700)
   );
-  --color-primary-solid: light-dark(
-    var(--color-primary-600),
-    var(--color-primary-600)
-  );
+  --color-primary-solid: var(--color-primary-600);
+  --color-primary-solid-foreground: var(--color-primary-50);
   --color-input: light-dark(var(--color-white), var(--color-gray-900));
   --color-background: light-dark(var(--color-gray-50), var(--color-gray-950));
   --color-foreground: light-dark(var(--color-gray-950), var(--color-gray-50));
@@ -87,7 +87,8 @@
     var(--color-gray-100),
     var(--color-gray-950)
   );
-  --color-destructive: light-dark(var(--color-red-500), var(--color-red-600));
+  --color-destructive: var(--color-red-600);
+  --color-destructive-foreground: var(--color-red-50);
 }
 
 @layer base {
@@ -133,9 +134,10 @@
 
   @media (prefers-reduced-motion: no-preference) {
     :has(:target) {
-      @apply scroll-pt-12 scroll-smooth;
+      @apply scroll-smooth;
     }
   }
 }
 
+/* https://tailwindcss.com/docs/dark-mode#using-a-data-attribute */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
