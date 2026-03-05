@@ -1,8 +1,8 @@
-import { type ReactNode } from "react";
+import { type ReactElement } from "react";
 
 import { Slot } from "radix-ui";
 import type { PrimitivePropsWithRef } from "radix-ui/internal";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { tv, type VariantProps } from "tailwind-variants";
 
 const cardVariants = tv({
   slots: {
@@ -26,12 +26,18 @@ const cardVariants = tv({
   },
 });
 
-type CardProps = PrimitivePropsWithRef<"div"> &
+type CardProps = {
+  title?: ReactElement;
+  description?: ReactElement;
+  footer?: ReactElement;
+  header?: ReactElement;
+  body?: ReactElement;
+} & PrimitivePropsWithRef<"div"> &
   VariantProps<typeof cardVariants>;
 
 function Card({
-  className,
   asChild,
+  className,
   size,
   title,
   description,
@@ -40,33 +46,28 @@ function Card({
   body,
   children,
   ...props
-}: CardProps & {
-  title?: ReactNode;
-  description?: ReactNode;
-  footer?: ReactNode;
-  header?: ReactNode;
-  body?: ReactNode;
-}) {
+}: CardProps) {
   const Comp = asChild ? Slot.Root : "div";
-  const cardStyles = cardVariants({
-    className,
-    size,
-  });
+  const cardStyles = cardVariants({ className, size });
 
   return (
-    <Comp className={cn(className, cardStyles.base())} {...props}>
+    <Comp className={cardStyles.base()} {...props}>
       <div className={cardStyles.header()}>
-        {!!title && <h2 className={cardStyles.title()}>{title}</h2>}
+        {!!title && (
+          <Slot.Root className={cardStyles.title()}>{title}</Slot.Root>
+        )}
         {!!description && (
-          <h2 className={cardStyles.description()}>{description}</h2>
+          <Slot.Root className={cardStyles.description()}>
+            {description}
+          </Slot.Root>
         )}
         {header}
       </div>
-      <div className={cardStyles.body()}>
-        {body}
-        {children}
-      </div>
-      {!!footer && <div className={cardStyles.footer()}>{footer}</div>}
+      <Slot.Root className={cardStyles.body()}>{body}</Slot.Root>
+      <Slot.Slottable>{children}</Slot.Slottable>
+      {!!footer && (
+        <Slot.Root className={cardStyles.footer()}>{footer}</Slot.Root>
+      )}
     </Comp>
   );
 }
