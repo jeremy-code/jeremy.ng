@@ -2,13 +2,14 @@
 
 import { type ComponentPropsWithRef } from "react";
 
+import { getDotPath } from "@standard-schema/utils";
+
 import { Captcha } from "#components/form/Captcha";
 import { useAppForm } from "#hooks/useAppForm";
 import { mapTurnstileClientError } from "#lib/cloudflare/mapTurnstileClientError";
 import { useTRPCClient } from "#lib/trpc/client";
 import { Token } from "#schemas/cloudflare/turnstile";
 import { ContactFormSchema } from "#schemas/contact/contactForm";
-import { isObject } from "#utils/isObject";
 import { mapStatusCode } from "#utils/mapStatusCode";
 import { Form } from "@jeremyng/ui/components/Form";
 import { Separator } from "@jeremyng/ui/components/Separator";
@@ -145,15 +146,17 @@ const ContactForm = (props: ContactFormProps) => {
               />
               {field.state.meta.errors.length !== 0 ?
                 <ul className="mt-1 list-inside list-disc">
-                  {field.state.meta.errors.map((error, index) => (
-                    <li
-                      key={`${error?.message}-${error?.path?.map?.((keyOrPathSegment) => (isObject(keyOrPathSegment) && "key" in keyOrPathSegment ? keyOrPathSegment.key : keyOrPathSegment)).join?.() ?? ""}`}
-                      id={`captcha-error-${index}`}
-                      className="text-sm text-destructive"
-                    >
-                      {error?.message}
-                    </li>
-                  ))}
+                  {field.state.meta.errors.map((error, index) =>
+                    error !== undefined ?
+                      <li
+                        key={`${error.message}-${getDotPath(error)}`}
+                        id={`captcha-error-${index}`}
+                        className="text-sm text-destructive"
+                      >
+                        {error.message}
+                      </li>
+                    : null,
+                  )}
                 </ul>
               : null}
             </>

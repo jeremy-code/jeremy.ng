@@ -21,6 +21,8 @@
     "@next/bundle-analyzer": "^16.1.6",
     "@next/env": "^16.1.6",
     "@octokit/graphql": "^9.0.3",
+    "@standard-schema/spec": "^1.1.0",
+    "@standard-schema/utils": "^0.3.0",
     "@t3-oss/env-nextjs": "^0.13.10",
     "@tanstack/react-form": "^1.28.3",
     "@tanstack/react-query": "^5.90.21",

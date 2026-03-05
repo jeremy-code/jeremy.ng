@@ -1,25 +1,29 @@
 import { STATUS_CODES } from "node:http";
 
-const STATUS_CLASS_MAP = {
-  1: "INFORMATIONAL",
-  2: "SUCCESSFUL",
-  3: "REDIRECTION",
-  4: "CLIENT_ERROR",
-  5: "SERVER_ERROR",
-} as const;
+import { assertNever } from "./assertNever";
 
-type HttpResponseClass =
-  (typeof STATUS_CLASS_MAP)[keyof typeof STATUS_CLASS_MAP];
+// https://httpwg.org/specs/rfc9110.html#status.codes
+type StatusClass =
+  | "INFORMATIONAL"
+  | "SUCCESSFUL"
+  | "REDIRECTION"
+  | "CLIENT_ERROR"
+  | "SERVER_ERROR";
 
+/**
+ * `ok`, `status`, and `statusText` properties are based on {@link Response} API
+ */
 type Status = {
   ok: boolean;
   /** {@link Status.status} is between 100 and 599, inclusive */
   status: number;
   statusText: string | undefined;
-  statusClass: HttpResponseClass;
+  statusClass: StatusClass;
 };
 
 /**
+ * Given a status code, map it to a {@link Status} object.
+ *
  * @see https://httpwg.org/specs/rfc9110.html#status.codes
  * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
  */
@@ -32,13 +36,17 @@ const mapStatusCode = (input: keyof typeof STATUS_CODES): Status => {
     return {
       ok: false,
       status: 500,
-      statusText: STATUS_CODES[500], // 'Internal Server Error'
+      statusText: STATUS_CODES[500], // "Internal Server Error"
       statusClass: "SERVER_ERROR",
     };
   }
-
-  const firstDigit = Math.floor(status / 100) as keyof typeof STATUS_CLASS_MAP;
-  const statusClass = STATUS_CLASS_MAP[firstDigit] ?? "SERVER_ERROR";
+  const statusClass: StatusClass =
+    status >= 100 && status < 200 ? "INFORMATIONAL"
+    : status >= 200 && status < 300 ? "SUCCESSFUL"
+    : status >= 300 && status < 400 ? "REDIRECTION"
+    : status >= 400 && status < 500 ? "CLIENT_ERROR"
+    : status >= 400 && status < 600 ? "SERVER_ERROR"
+    : assertNever(status as never);
 
   return {
     ok: statusClass === "SUCCESSFUL",

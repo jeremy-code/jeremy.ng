@@ -8,8 +8,8 @@
   "files.associations": {
     "*.css": "tailwindcss" // @see {@link https://github.com/tailwindlabs/tailwindcss-intellisense#filesassociations}
   },
-  "typescript.enablePromptUseWorkspaceTsdk": true, // Use the workspace TypeScript version (useful for Next.js)
-  "typescript.tsdk": "./node_modules/typescript/lib",
+  "js/ts.tsdk.path": "./node_modules/typescript/lib",
+  "js/ts.tsdk.promptToUseWorkspaceVersion": true, // Use the workspace TypeScript version (useful for Next.js)
 
   "tailwindCSS.classFunctions": ["cx", "cn", "cnMerge", "tv", "twMerge"]
 }
