@@ -5,11 +5,11 @@ import { use } from "react";
 import type { UserPinnedItemsNodesResponse } from "#lib/github/interfaces";
 import {
   Carousel,
+  type CarouselProps,
   CarouselContent,
   CarouselControls,
   CarouselItem,
 } from "@jeremyng/ui/components/Carousel";
-import type { CarouselProps } from "@jeremyng/ui/hooks/useCarousel";
 
 import { GithubPinnedCard } from "./GithubPinnedCard";
 
@@ -18,8 +18,8 @@ type GithubPinnedListProps = {
 } & CarouselProps;
 
 const GithubPinnedList = ({
-  options,
   pinnedItemsNodesPromise,
+  options,
   ...props
 }: GithubPinnedListProps) => {
   const pinnedItemsNodes = use(pinnedItemsNodesPromise).user.pinnedItems.nodes;

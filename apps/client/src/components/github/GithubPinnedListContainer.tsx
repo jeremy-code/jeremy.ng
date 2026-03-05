@@ -1,5 +1,8 @@
 import { Suspense } from "react";
 
+import { TriangleAlert } from "lucide-react";
+import { ErrorBoundary } from "react-error-boundary";
+
 import { graphqlWithAuth } from "#lib/github/graphql";
 import type { UserPinnedItemsNodesResponse } from "#lib/github/interfaces";
 import {
@@ -7,6 +10,13 @@ import {
   userPinnedItemsTotalCountQuery,
 } from "#lib/github/queries";
 import { env } from "#utils/env";
+import {
+  Alert,
+  AlertContent,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
+} from "@jeremyng/ui/components/Alert";
 import { Skeleton } from "@jeremyng/ui/components/Skeleton";
 
 import {
@@ -32,9 +42,29 @@ type GithubPinnedListContainerProps = Omit<
 
 const GithubPinnedListContainer = (props: GithubPinnedListContainerProps) => {
   return (
-    <Suspense fallback={<Skeleton className="h-64" />}>
-      <GithubPinnedList pinnedItemsNodesPromise={pinnedItemsNodes} {...props} />
-    </Suspense>
+    <ErrorBoundary
+      fallback={
+        <Alert color="destructive">
+          <AlertIcon>
+            <TriangleAlert />
+          </AlertIcon>
+          <AlertContent>
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>
+              An error occurred while fetching from GitHub. Please try again
+              later.
+            </AlertDescription>
+          </AlertContent>
+        </Alert>
+      }
+    >
+      <Suspense fallback={<Skeleton className="h-64" />}>
+        <GithubPinnedList
+          pinnedItemsNodesPromise={pinnedItemsNodes}
+          {...props}
+        />
+      </Suspense>
+    </ErrorBoundary>
   );
 };
 
