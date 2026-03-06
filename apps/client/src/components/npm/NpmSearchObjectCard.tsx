@@ -3,8 +3,8 @@ import {
   carouselCardVariants,
   type CarouselCardProps,
 } from "#components/misc/CarouselCard";
-import type { NpmSearchObjectSchema } from "#schemas/npm/search";
 import { dayjs } from "#utils/date";
+import type { NpmSearchObjectSchema } from "@jeremyng/api/schemas/npm/search";
 import { Badge } from "@jeremyng/ui/components/Badge";
 import { Button } from "@jeremyng/ui/components/Button";
 import {

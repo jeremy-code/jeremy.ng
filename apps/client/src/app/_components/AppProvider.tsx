@@ -5,10 +5,11 @@ import type { ReactNode } from "react";
 import { ThemeProvider } from "next-themes";
 
 import { TrpcReactProvider } from "#lib/trpc/client";
+import { env } from "#utils/env";
 import { Toaster } from "@jeremyng/ui/components/Toaster";
 
 const Devtools =
-  process.env.NODE_ENV === "development" ?
+  env.NODE_ENV === "development" ?
     await import("./Devtools").then((mod) => mod.Devtools)
   : () => null;
 

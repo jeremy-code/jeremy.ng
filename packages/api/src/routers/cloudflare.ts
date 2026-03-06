@@ -4,10 +4,9 @@ import {
   Token,
   ValidationRequestParams,
   ValidationResponse,
-} from "#schemas/cloudflare/turnstile";
-import { env } from "#utils/env";
-
-import { baseProcedure, createTRPCRouter } from "../init";
+} from "../schemas/cloudflare/turnstile";
+import { baseProcedure, createTRPCRouter } from "../trpc";
+import { env } from "../utils/env";
 
 const cloudflareTurnstileApi = ky.extend({
   prefixUrl: "https://challenges.cloudflare.com/turnstile/v0/",

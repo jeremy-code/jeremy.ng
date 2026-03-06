@@ -5,10 +5,9 @@ import type { MailgunMessageData } from "mailgun.js/definitions";
 import {
   MessagesSendRequest,
   MessagesSendResult,
-} from "#schemas/mailgun/messages";
-import { env } from "#utils/env";
-
-import { baseProcedure, createTRPCRouter } from "../init";
+} from "../schemas/mailgun/messages";
+import { baseProcedure, createTRPCRouter } from "../trpc";
+import { env } from "../utils/env";
 
 const mailgun = new Mailgun(FormData);
 const mailgunClient = mailgun.client({

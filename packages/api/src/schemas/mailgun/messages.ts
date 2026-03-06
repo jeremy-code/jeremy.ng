@@ -1,10 +1,9 @@
 import type { MailgunMessageContent as IMailgunMessageContent } from "mailgun.js/definitions";
 import { z } from "zod";
 
-import { Arrayable } from "#schemas/common/Arrayable";
-import { Booleanish } from "#schemas/common/Booleanish";
-import { JsonObject } from "#schemas/common/JsonObject";
-import { isObject } from "#utils/isObject";
+import { Arrayable } from "../common/Arrayable";
+import { Booleanish } from "../common/Booleanish";
+import { JsonObject } from "../common/JsonObject";
 
 const MimeMessage = z.union([
   z.string(),
@@ -41,7 +40,8 @@ const FormDataInputValue = z.union([
 const isMailgunMessageContent = (
   content: unknown,
 ): content is IMailgunMessageContent =>
-  isObject(content) &&
+  content !== null &&
+  typeof content === "object" &&
   ("text" in content ||
     "html" in content ||
     "message" in content ||

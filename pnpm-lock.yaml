@@ -34,6 +34,9 @@ importers:
 
   apps/client:
     dependencies:
+      "@jeremyng/api":
+        specifier: workspace:*
+        version: link:../../packages/api
       "@jeremyng/ui":
         specifier: workspace:*
         version: link:../../packages/ui
@@ -67,12 +70,6 @@ importers:
       "@trpc/client":
         specifier: ^11.11.0
         version: 11.11.0(@trpc/server@11.11.0(typescript@5.9.3))(typescript@5.9.3)
-      "@trpc/next":
-        specifier: ^11.11.0
-        version: 11.11.0(@tanstack/react-query@5.90.21(react@19.2.4))(@trpc/client@11.11.0(@trpc/server@11.11.0(typescript@5.9.3))(typescript@5.9.3))(@trpc/react-query@11.11.0(@tanstack/react-query@5.90.21(react@19.2.4))(@trpc/client@11.11.0(@trpc/server@11.11.0(typescript@5.9.3))(typescript@5.9.3))(@trpc/server@11.11.0(typescript@5.9.3))(react@19.2.4)(typescript@5.9.3))(@trpc/server@11.11.0(typescript@5.9.3))(next@16.1.6(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
-      "@trpc/react-query":
-        specifier: ^11.11.0
-        version: 11.11.0(@tanstack/react-query@5.90.21(react@19.2.4))(@trpc/client@11.11.0(@trpc/server@11.11.0(typescript@5.9.3))(typescript@5.9.3))(@trpc/server@11.11.0(typescript@5.9.3))(react@19.2.4)(typescript@5.9.3)
       "@trpc/server":
         specifier: ^11.11.0
         version: 11.11.0(typescript@5.9.3)
@@ -82,18 +79,9 @@ importers:
       dayjs:
         specifier: ^1.11.19
         version: 1.11.19
-      form-data:
-        specifier: ^4.0.5
-        version: 4.0.5
-      ky:
-        specifier: ^1.14.3
-        version: 1.14.3
       lucide-react:
         specifier: ^0.576.0
         version: 0.576.0(react@19.2.4)
-      mailgun.js:
-        specifier: ^12.7.0
-        version: 12.7.0
       next:
         specifier: ^16.1.6
         version: 16.1.6(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -161,6 +149,43 @@ importers:
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
+
+  packages/api:
+    dependencies:
+      "@t3-oss/env-core":
+        specifier: ^0.13.10
+        version: 0.13.10(typescript@5.9.3)(zod@4.3.6)
+      "@trpc/server":
+        specifier: ^11.11.0
+        version: 11.11.0(typescript@5.9.3)
+      form-data:
+        specifier: ^4.0.5
+        version: 4.0.5
+      ky:
+        specifier: ^1.14.3
+        version: 1.14.3
+      mailgun.js:
+        specifier: ^12.7.0
+        version: 12.7.0
+      superjson:
+        specifier: ^2.2.6
+        version: 2.2.6
+      zod:
+        specifier: ^4.3.6
+        version: 4.3.6
+    devDependencies:
+      "@jeremyng/eslint-config":
+        specifier: workspace:*
+        version: link:../eslint-config
+      "@jeremyng/tsconfig":
+        specifier: workspace:*
+        version: link:../tsconfig
+      "@types/node":
+        specifier: ^24.10.1
+        version: 24.10.1
+      eslint:
+        specifier: ^9.39.2
+        version: 9.39.2(jiti@2.6.1)
 
   packages/eslint-config:
     dependencies:
@@ -2451,38 +2476,6 @@ packages:
       }
     peerDependencies:
       "@trpc/server": 11.11.0
-      typescript: ">=5.7.2"
-
-  "@trpc/next@11.11.0":
-    resolution:
-      {
-        integrity: sha512-9FGIj5iTMG3Mldk4tVdONp6Si0IptyQqAFQdGuIu7Z5Y0z8ygRSmlf5XxD4c/qlntYRPjbwaAD70JmTvXAR6aQ==,
-      }
-    peerDependencies:
-      "@tanstack/react-query": ^5.59.15
-      "@trpc/client": 11.11.0
-      "@trpc/react-query": 11.11.0
-      "@trpc/server": 11.11.0
-      next: "*"
-      react: ">=16.8.0"
-      react-dom: ">=16.8.0"
-      typescript: ">=5.7.2"
-    peerDependenciesMeta:
-      "@tanstack/react-query":
-        optional: true
-      "@trpc/react-query":
-        optional: true
-
-  "@trpc/react-query@11.11.0":
-    resolution:
-      {
-        integrity: sha512-zAZj4Pj6ZuMWZ2JG1nZ1GWQGH14SrkDYgIsQQH2az++Zig58bPk9E+EcAUnHL/zdYp74qDXlABQB2vMU/oDipg==,
-      }
-    peerDependencies:
-      "@tanstack/react-query": ^5.80.3
-      "@trpc/client": 11.11.0
-      "@trpc/server": 11.11.0
-      react: ">=18.2.0"
       typescript: ">=5.7.2"
 
   "@trpc/server@11.11.0":
@@ -7600,26 +7593,6 @@ snapshots:
   "@trpc/client@11.11.0(@trpc/server@11.11.0(typescript@5.9.3))(typescript@5.9.3)":
     dependencies:
       "@trpc/server": 11.11.0(typescript@5.9.3)
-      typescript: 5.9.3
-
-  "@trpc/next@11.11.0(@tanstack/react-query@5.90.21(react@19.2.4))(@trpc/client@11.11.0(@trpc/server@11.11.0(typescript@5.9.3))(typescript@5.9.3))(@trpc/react-query@11.11.0(@tanstack/react-query@5.90.21(react@19.2.4))(@trpc/client@11.11.0(@trpc/server@11.11.0(typescript@5.9.3))(typescript@5.9.3))(@trpc/server@11.11.0(typescript@5.9.3))(react@19.2.4)(typescript@5.9.3))(@trpc/server@11.11.0(typescript@5.9.3))(next@16.1.6(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)":
-    dependencies:
-      "@trpc/client": 11.11.0(@trpc/server@11.11.0(typescript@5.9.3))(typescript@5.9.3)
-      "@trpc/server": 11.11.0(typescript@5.9.3)
-      next: 16.1.6(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      react: 19.2.4
-      react-dom: 19.2.4(react@19.2.4)
-      typescript: 5.9.3
-    optionalDependencies:
-      "@tanstack/react-query": 5.90.21(react@19.2.4)
-      "@trpc/react-query": 11.11.0(@tanstack/react-query@5.90.21(react@19.2.4))(@trpc/client@11.11.0(@trpc/server@11.11.0(typescript@5.9.3))(typescript@5.9.3))(@trpc/server@11.11.0(typescript@5.9.3))(react@19.2.4)(typescript@5.9.3)
-
-  "@trpc/react-query@11.11.0(@tanstack/react-query@5.90.21(react@19.2.4))(@trpc/client@11.11.0(@trpc/server@11.11.0(typescript@5.9.3))(typescript@5.9.3))(@trpc/server@11.11.0(typescript@5.9.3))(react@19.2.4)(typescript@5.9.3)":
-    dependencies:
-      "@tanstack/react-query": 5.90.21(react@19.2.4)
-      "@trpc/client": 11.11.0(@trpc/server@11.11.0(typescript@5.9.3))(typescript@5.9.3)
-      "@trpc/server": 11.11.0(typescript@5.9.3)
-      react: 19.2.4
       typescript: 5.9.3
 
   "@trpc/server@11.11.0(typescript@5.9.3)":

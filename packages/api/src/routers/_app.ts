@@ -1,4 +1,4 @@
-import { createTRPCRouter } from "../init";
+import { createTRPCRouter } from "../trpc";
 import { cloudflareRouter } from "./cloudflare";
 import { contactRouter } from "./contact";
 import { mailgunRouter } from "./mailgun";

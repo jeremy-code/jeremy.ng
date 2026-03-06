@@ -8,10 +8,10 @@ import { createTRPCContext } from "@trpc/tanstack-react-query";
 import superjson from "superjson";
 
 import { getBaseUrl } from "#utils/getBaseUrl";
+import type { AppRouter } from "@jeremyng/api";
 
 import { TRPC_ENDPOINT } from "./constants";
 import { getQueryClient } from "./queryClient";
-import type { AppRouter } from "./routers/_app";
 
 const { TRPCProvider, useTRPC, useTRPCClient } = createTRPCContext<AppRouter>();
 

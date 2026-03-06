@@ -3,9 +3,8 @@ import ky from "ky";
 import {
   NpmSearchParamsSchema,
   NpmSearchResponseSchema,
-} from "#schemas/npm/search";
-
-import { baseProcedure, createTRPCRouter } from "../init";
+} from "../schemas/npm/search";
+import { baseProcedure, createTRPCRouter } from "../trpc";
 
 const npmRegistryApi = ky.extend({
   prefixUrl: "https://registry.npmjs.org/",

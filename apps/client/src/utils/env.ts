@@ -1,14 +1,13 @@
 import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
-import { SecretKey, SiteKey } from "#schemas/cloudflare/turnstile";
+import { SiteKey } from "@jeremyng/api/schemas/cloudflare/turnstile";
+import { env as apiEnv } from "@jeremyng/api/utils/env";
 
 const env = createEnv({
-  server: {
-    CF_TURNSTILE_SECRET_KEY: SecretKey,
-    GITHUB_TOKEN: z.string().min(1),
-    MAILGUN_API_KEY: z.string().min(1),
-    MAILGUN_DOMAIN: z.hostname().min(1),
+  extends: [apiEnv],
+  shared: {
+    NODE_ENV: z.enum(["development", "production", "test"]),
   },
   client: {
     NEXT_PUBLIC_CF_TURNSTILE_SITE_KEY: SiteKey,
@@ -24,6 +23,7 @@ const env = createEnv({
    * @see {@link https://nextjs.org/docs/app/guides/environment-variables#bundling-environment-variables-for-the-browser}
    */
   experimental__runtimeEnv: {
+    NODE_ENV: process.env.NODE_ENV,
     NEXT_PUBLIC_CF_TURNSTILE_SITE_KEY:
       process.env.NEXT_PUBLIC_CF_TURNSTILE_SITE_KEY,
     NEXT_PUBLIC_NPM_REGISTRY_USERNAME:
