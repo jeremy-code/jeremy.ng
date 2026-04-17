@@ -4,7 +4,7 @@ import {
   useCallback,
   useEffect,
   useMemo,
-  type ComponentProps,
+  type ComponentPropsWithoutRef,
   type ComponentPropsWithRef,
   type KeyboardEventHandler,
 } from "react";
@@ -36,38 +36,34 @@ const Carousel = ({
   className,
   ...props
 }: CarouselProps) => {
-  const [carouselRef, api] = useEmblaCarousel(options, plugins);
+  const [carouselRef, api] = useEmblaCarousel(
+    // Set Carousel.options.align to "start"; otherwise, selection breaks with even number of cards.
+    { align: "start", ...options },
+    plugins,
+  );
   const carouselState = useSyncCarouselState(api);
 
-  const scrollPrev = useCallback(() => {
-    api?.scrollPrev();
-  }, [api]);
-
-  const scrollNext = useCallback(() => {
-    api?.scrollNext();
-  }, [api]);
+  const scrollPrev = useCallback(() => api?.scrollPrev(), [api]);
+  const scrollNext = useCallback(() => api?.scrollNext(), [api]);
 
   const handleKeyDown = useCallback<KeyboardEventHandler<HTMLDivElement>>(
     (event) => {
       switch (event.key) {
         case "ArrowLeft":
           event.preventDefault();
-          scrollPrev();
+          api?.scrollPrev();
           break;
         case "ArrowRight":
           event.preventDefault();
-          scrollNext();
+          api?.scrollNext();
           break;
       }
     },
-    [scrollPrev, scrollNext],
+    [api],
   );
 
   useEffect(() => {
-    if (!api || !setApi) {
-      return;
-    }
-    setApi(api);
+    setApi?.(api);
   }, [api, setApi]);
 
   const orientation =
@@ -108,7 +104,10 @@ const Carousel = ({
  * If `CarouselProps.options.axis === "y"```, then <CarouselContent /> must have
  * a predetermined height as pages typically can be infinitely long.
  */
-function CarouselContent({ className, ...props }: ComponentProps<"div">) {
+const CarouselContent = ({
+  className,
+  ...props
+}: ComponentPropsWithoutRef<"div">) => {
   const { carouselRef } = useCarousel();
 
   return (
@@ -123,7 +122,7 @@ function CarouselContent({ className, ...props }: ComponentProps<"div">) {
     >
       <div
         className={cn(
-          "flex",
+          "flex [touch-action:pan-y_pinch_zoom]",
           "group-data-[orientation=horizontal]/carousel:flex-row",
           "group-data-[orientation=vertical]/carousel:flex-col",
           className,
@@ -133,13 +132,13 @@ function CarouselContent({ className, ...props }: ComponentProps<"div">) {
       />
     </div>
   );
-}
+};
 
-function CarouselItem({
+const CarouselItem = ({
   className,
   asChild,
   ...props
-}: PrimitivePropsWithRef<"div">) {
+}: PrimitivePropsWithRef<"div">) => {
   const Comp = asChild ? Slot.Root : "div";
 
   return (
@@ -154,9 +153,9 @@ function CarouselItem({
       {...props}
     />
   );
-}
+};
 
-function CarouselPrevious({ className, ...props }: ButtonProps) {
+const CarouselPrevious = ({ className, ...props }: ButtonProps) => {
   const { scrollPrev, canScrollPrev } = useCarousel();
 
   return (
@@ -174,9 +173,9 @@ function CarouselPrevious({ className, ...props }: ButtonProps) {
       </AccessibleIcon.Root>
     </Button>
   );
-}
+};
 
-function CarouselNext({ className, ...props }: ButtonProps) {
+const CarouselNext = ({ className, ...props }: ButtonProps) => {
   const { scrollNext, canScrollNext } = useCarousel();
 
   return (
@@ -195,7 +194,7 @@ function CarouselNext({ className, ...props }: ButtonProps) {
       </AccessibleIcon.Root>
     </Button>
   );
-}
+};
 
 const CarouselControls = ({
   color = "default",

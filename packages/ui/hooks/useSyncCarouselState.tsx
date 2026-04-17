@@ -12,15 +12,11 @@ type CarouselState = {
 const useSyncCarouselState = (api: UseEmblaCarouselType[1]) => {
   const subscribe = useCallback(
     (onStoreChange: () => void) => {
-      if (api === undefined) {
-        return () => {};
-      }
-
-      api.on("select", onStoreChange);
-      api.on("reInit", onStoreChange);
+      api?.on("select", onStoreChange);
+      api?.on("reInit", onStoreChange);
       return () => {
-        api.off("select", onStoreChange);
-        api.off("reInit", onStoreChange);
+        api?.off("select", onStoreChange);
+        api?.off("reInit", onStoreChange);
       };
     },
     [api],
