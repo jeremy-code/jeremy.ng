@@ -1,14 +1,14 @@
-import { defineConfig } from "@eslint/config-helpers";
 import eslintReact from "@eslint-react/eslint-plugin";
-import globals from "globals";
 import pluginQuery from "@tanstack/eslint-plugin-query";
+import { defineConfig } from "eslint/config";
 import reactCompiler from "eslint-plugin-react-compiler";
 import reactHooks from "eslint-plugin-react-hooks";
+import globals from "globals";
 
-import { baseConfig } from "./index.js";
-import disables from "./disables.js";
+import disablesConfig from "./disables.js";
+import baseConfig from "./index.js";
 
-export const reactConfig = defineConfig(
+const reactConfig = defineConfig(
   baseConfig,
   eslintReact.configs["recommended-type-checked"],
   reactCompiler.configs.recommended,
@@ -50,6 +50,7 @@ export const reactConfig = defineConfig(
       },
     },
   },
+  disablesConfig,
 );
 
-export default reactConfig.concat(disables);
+export default reactConfig;

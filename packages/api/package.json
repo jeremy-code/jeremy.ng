@@ -27,7 +27,6 @@
   "devDependencies": {
     "@jeremyng/eslint-config": "workspace:*",
     "@jeremyng/tsconfig": "workspace:*",
-    "@types/node": "^24.10.1",
-    "eslint": "^9.39.2"
+    "@types/node": "^24.10.1"
   }
 }

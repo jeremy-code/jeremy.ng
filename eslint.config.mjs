@@ -1,7 +1,12 @@
-import base from "@jeremyng/eslint-config";
-/** @import { Linter } from "eslint" */
+import { globalIgnores, defineConfig } from "eslint/config";
 
-/**
- * @satisfies {Linter.Config[]}
- */
-export default [{ ignores: ["apps/*", "packages/*"], ...base }];
+import baseConfig from "@jeremyng/eslint-config";
+
+export default defineConfig(
+  globalIgnores([
+    "apps/*",
+    "packages/*",
+    "!packages/eslint-config", // The ESLint configs themselves do not have a eslint.config.js
+  ]),
+  baseConfig,
+);

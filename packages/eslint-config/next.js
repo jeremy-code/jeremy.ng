@@ -1,12 +1,12 @@
-import { defineConfig, globalIgnores } from "@eslint/config-helpers";
+import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 
-import { reactConfig } from "./react.js";
-import disables from "./disables.js";
+import disablesConfig from "./disables.js";
+import reactConfig from "./react.js";
 
-export const nextConfig = defineConfig(
+const nextConfig = defineConfig(
   /**
-   * @see {@link https://eslint.org/docs/latest/use/configure/configuration-files#globally-ignoring-files-with-ignores}
+   * @see {@link https://eslint.org/docs/latest/use/configure/configuration-files#globally-ignore-files-with-ignores}
    */
   globalIgnores([".next"]),
   reactConfig,
@@ -22,6 +22,7 @@ export const nextConfig = defineConfig(
       "react/no-children-prop": ["error", { allowFunctions: true }],
     },
   },
+  disablesConfig,
 );
 
-export default nextConfig.concat(disables);
+export default nextConfig;

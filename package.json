@@ -7,7 +7,7 @@
     "prepare": "husky",
     "build": "turbo build",
     "dev": "turbo dev",
-    "lint": "turbo lint",
+    "lint": "eslint && turbo lint",
     "format": "prettier . --write",
     "format:check": "prettier . --check"
   },
@@ -17,6 +17,7 @@
   "devDependencies": {
     "@jeremyng/eslint-config": "workspace:*",
     "@jeremyng/tsconfig": "workspace:*",
+    "eslint": "^9.39.2",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.6",
     "prettier": "^3.8.3",
