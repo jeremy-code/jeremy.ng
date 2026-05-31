@@ -16,13 +16,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@t3-oss/env-core": "^0.13.10",
-    "@trpc/server": "^11.11.0",
+    "@t3-oss/env-core": "^0.13.11",
+    "@trpc/server": "^11.17.0",
     "form-data": "^4.0.5",
-    "ky": "^1.14.3",
-    "mailgun.js": "^12.7.0",
+    "ky": "^2.0.2",
+    "mailgun.js": "^13.1.0",
     "superjson": "^2.2.6",
-    "zod": "^4.3.6"
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@jeremyng/eslint-config": "workspace:*",

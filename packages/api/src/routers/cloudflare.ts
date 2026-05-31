@@ -9,7 +9,7 @@ import { baseProcedure, createTRPCRouter } from "../trpc";
 import { env } from "../utils/env";
 
 const cloudflareTurnstileApi = ky.extend({
-  prefixUrl: "https://challenges.cloudflare.com/turnstile/v0/",
+  baseUrl: "https://challenges.cloudflare.com/turnstile/v0/",
 });
 
 const cloudflareRouter = createTRPCRouter({

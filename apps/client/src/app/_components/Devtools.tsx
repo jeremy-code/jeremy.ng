@@ -10,7 +10,7 @@ const devtoolsPlugins = [
   {
     name: "TanStack Query",
     // https://github.com/TanStack/devtools/blob/main/packages/devtools-utils/src/react/plugin.tsx
-    render: (_el, theme) => <ReactQueryDevtoolsPanel theme={theme} />,
+    render: (_el, props) => <ReactQueryDevtoolsPanel {...props} />,
   },
   formDevtoolsPlugin(),
 ] satisfies TanStackDevtoolsReactPlugin[];

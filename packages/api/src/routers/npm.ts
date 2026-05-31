@@ -7,7 +7,7 @@ import {
 import { baseProcedure, createTRPCRouter } from "../trpc";
 
 const npmRegistryApi = ky.extend({
-  prefixUrl: "https://registry.npmjs.org/",
+  baseUrl: "https://registry.npmjs.org/",
 });
 
 // https://github.com/npm/registry/blob/main/docs/REGISTRY-API.md#get-v1search
