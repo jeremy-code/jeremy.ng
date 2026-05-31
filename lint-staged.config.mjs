@@ -10,5 +10,6 @@ export default {
    *
    * @see {@link https://turborepo.dev/docs/reference/run}
    */
-  "*.{js,jsx,ts,tsx}": "turbo run lint --",
+  "*.{js,mjs,cjs,ts,tsx,mts,cts}": ["turbo run lint --", "prettier --check"],
+  "*.{json,md,yaml,yml}": "prettier --check",
 };

@@ -5,7 +5,7 @@
  * @see {@link https://prettier.io/docs/en/configuration.html}
  * @satisfies {Config & PluginOptions}
  */
-export default {
+const prettierConfig = {
   printWidth: 80,
   tabWidth: 2,
   singleQuote: false,
@@ -15,3 +15,5 @@ export default {
   tailwindStylesheet: "./packages/ui/globals.css",
   tailwindFunctions: ["cx", "cn", "cnMerge", "tv", "twMerge"],
 };
+
+export default prettierConfig;
