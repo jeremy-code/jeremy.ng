@@ -87,8 +87,8 @@ const Carousel = ({
         onKeyDownCapture={handleKeyDown}
         className={cn(
           "group/carousel grid grid-flow-dense",
-          "data-[orientation=horizontal]:grid-cols-[auto_minmax(0,1fr)]",
-          "data-[orientation=vertical]:grid-rows-[auto_minmax(0,1fr)]",
+          "data-[orientation=horizontal]:grid-cols-[auto_minmax(0,1fr)] data-[orientation=horizontal]:items-center",
+          "data-[orientation=vertical]:grid-rows-[auto_minmax(0,1fr)] data-[orientation=vertical]:justify-items-center",
           className,
         )}
         role="region"
@@ -115,16 +115,17 @@ const CarouselContent = ({
       ref={carouselRef}
       className={cn(
         "overflow-hidden",
-        "group-data-[orientation=horizontal]/carousel:col-2",
-        "group-data-[orientation=vertical]/carousel:row-2",
+        // Clip the visibility of the padding associated with the CarouselControls
+        "group-data-[orientation=horizontal]/carousel:col-2 group-data-[orientation=horizontal]/carousel:[clip-path:inset(0_--spacing(4))]",
+        "group-data-[orientation=vertical]/carousel:row-2 group-data-[orientation=vertical]/carousel:[clip-path:inset(--spacing(4)_0)]",
       )}
-      data-slot="carousel-content"
     >
       <div
         className={cn(
-          "flex [touch-action:pan-y_pinch_zoom]",
+          "flex [touch-action:pan-y_pinch-zoom]",
           "group-data-[orientation=horizontal]/carousel:flex-row",
           "group-data-[orientation=vertical]/carousel:flex-col",
+
           className,
         )}
         role="group"
@@ -169,7 +170,7 @@ const CarouselPrevious = ({ className, ...props }: ButtonProps) => {
       {...props}
     >
       <AccessibleIcon.Root label="Previous slide">
-        <ArrowLeft />
+        <ArrowLeft className="size-4" />
       </AccessibleIcon.Root>
     </Button>
   );
@@ -190,7 +191,7 @@ const CarouselNext = ({ className, ...props }: ButtonProps) => {
       {...props}
     >
       <AccessibleIcon.Root label="Next slide">
-        <ArrowRight />
+        <ArrowRight className="size-4" />
       </AccessibleIcon.Root>
     </Button>
   );
@@ -204,29 +205,20 @@ const CarouselControls = ({
 }: ButtonProps) => {
   return (
     <>
-      <div
-        className={cn(
-          "flex",
-          "group-data-[orientation=horizontal]/carousel:col-1 group-data-[orientation=horizontal]/carousel:items-center",
-          "group-data-[orientation=vertical]/carousel:row-1 group-data-[orientation=vertical]/carousel:justify-center",
-        )}
-      >
-        <CarouselPrevious
-          color={color}
-          variant={variant}
-          size={size}
-          {...props}
-        />
-      </div>
-      <div
-        className={cn(
-          "flex",
-          "group-data-[orientation=horizontal]/carousel:col-3 group-data-[orientation=horizontal]/carousel:items-center",
-          "group-data-[orientation=vertical]/carousel:row-3 group-data-[orientation=vertical]/carousel:justify-center",
-        )}
-      >
-        <CarouselNext color={color} variant={variant} size={size} {...props} />
-      </div>
+      <CarouselPrevious
+        className="group-data-[orientation=horizontal]/carousel:col-1 group-data-[orientation=vertical]/carousel:row-1"
+        color={color}
+        variant={variant}
+        size={size}
+        {...props}
+      />
+      <CarouselNext
+        className="group-data-[orientation=horizontal]/carousel:col-3 group-data-[orientation=vertical]/carousel:row-3"
+        color={color}
+        variant={variant}
+        size={size}
+        {...props}
+      />
     </>
   );
 };
