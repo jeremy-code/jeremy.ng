@@ -50,7 +50,7 @@
     "@tanstack/react-devtools": "^0.10.5",
     "@tanstack/react-form-devtools": "^0.2.29",
     "@tanstack/react-query-devtools": "^5.100.14",
-    "@types/node": "^24.9.0",
+    "@types/node": "^24.12.4",
     "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
     "babel-plugin-react-compiler": "^1.0.0"
