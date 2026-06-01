@@ -12,7 +12,7 @@ const prettierConfig = {
   trailingComma: "all",
   experimentalTernaries: true,
   plugins: ["prettier-plugin-tailwindcss"],
-  tailwindStylesheet: "./packages/ui/globals.css",
+  tailwindStylesheet: "./packages/ui/src/globals.css",
   tailwindFunctions: ["cx", "cn", "cnMerge", "tv", "twMerge"],
 };
 

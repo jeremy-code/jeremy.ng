@@ -1,3 +1,4 @@
 {
-  "extends": "@jeremyng/tsconfig/tsconfig-react"
+  "extends": "@jeremyng/tsconfig/tsconfig-react",
+  "include": ["src"]
 }

@@ -4,8 +4,8 @@
   "private": true,
   "exports": {
     "./*": {
-      "@jeremyng/development": "./*.js",
-      "default": "./*"
+      "@jeremyng/development": "./src/*.js",
+      "default": "./src/*"
     }
   },
   "scripts": {
