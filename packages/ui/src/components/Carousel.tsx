@@ -86,7 +86,7 @@ const Carousel = ({
       <div
         onKeyDownCapture={handleKeyDown}
         className={cn(
-          "group/carousel grid grid-flow-dense",
+          "group/carousel grid grid-flow-dense gap-4",
           "data-[orientation=horizontal]:grid-cols-[auto_minmax(0,1fr)] data-[orientation=horizontal]:items-center",
           "data-[orientation=vertical]:grid-rows-[auto_minmax(0,1fr)] data-[orientation=vertical]:justify-items-center",
           className,
@@ -115,9 +115,8 @@ const CarouselContent = ({
       ref={carouselRef}
       className={cn(
         "overflow-hidden",
-        // Clip the visibility of the padding associated with the CarouselControls
-        "group-data-[orientation=horizontal]/carousel:col-2 group-data-[orientation=horizontal]/carousel:[clip-path:inset(0_--spacing(4))]",
-        "group-data-[orientation=vertical]/carousel:row-2 group-data-[orientation=vertical]/carousel:[clip-path:inset(--spacing(4)_0)]",
+        "group-data-[orientation=horizontal]/carousel:col-2",
+        "group-data-[orientation=vertical]/carousel:row-2",
       )}
     >
       <div
@@ -147,8 +146,8 @@ const CarouselItem = ({
       role="listitem"
       className={cn(
         "min-w-0 flex-[0_0_100%]",
-        "group-data-[orientation=horizontal]/carousel:px-4",
-        "group-data-[orientation=vertical]/carousel:py-4",
+        "not-last:group-data-[orientation=horizontal]/carousel:pr-4",
+        "not-last:group-data-[orientation=vertical]/carousel:pb-4",
         className,
       )}
       {...props}
