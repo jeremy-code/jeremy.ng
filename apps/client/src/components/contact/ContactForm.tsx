@@ -34,7 +34,6 @@ const ContactForm = (props: ContactFormProps) => {
       const verifyTokenRes = await trpcClient.cloudflare.verifyToken.query(
         value.token,
       );
-      // TODO: Replace `alert` with toasts
       if (verifyTokenRes.success) {
         const sendMessageRes = await trpcClient.contact.sendMessage.query({
           name: value.name,
@@ -46,7 +45,6 @@ const ContactForm = (props: ContactFormProps) => {
           toast({
             title: "Message sent successfully",
           });
-          alert("Message sent successfully.");
         } else {
           toast({
             title: "Message sent failed",
