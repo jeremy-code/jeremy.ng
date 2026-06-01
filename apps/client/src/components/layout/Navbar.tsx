@@ -42,7 +42,7 @@ export const Navbar = ({
               ))}
             </NavigationMenuList>
           </NavigationMenu>
-          <ThemeToggle color="default" variant="surface" size="icon" />
+          <ThemeToggle size="lg" />
         </div>
       </div>
     </header>
