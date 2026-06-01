@@ -33,6 +33,9 @@ const baseConfig = defineConfig(
       globals: { ...globals.node },
     },
     rules: {
+      /**
+       * @see {@link https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/newline-after-import.md}
+       */
       "import-x/newline-after-import": ["error", { considerComments: true }],
       /**
        * @see {@link https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/order.md}
@@ -48,7 +51,10 @@ const baseConfig = defineConfig(
           ],
           pathGroups: [
             { pattern: "#*", group: "internal" },
-            { pattern: "react?(-dom)", group: "builtin" },
+            {
+              pattern: "react{,-dom{,/server,/client,/static}}",
+              group: "builtin",
+            },
           ],
           pathGroupsExcludedImportTypes: ["object"],
           distinctGroup: false,
