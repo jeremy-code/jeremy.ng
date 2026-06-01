@@ -1,6 +1,6 @@
 import { type ComponentPropsWithRef } from "react";
 
-import { Form as FormPrimitives, Slot } from "radix-ui";
+import { Form as FormPrimitive, Slot } from "radix-ui";
 import type { PrimitivePropsWithRef } from "radix-ui/internal";
 import { cn, tv } from "tailwind-variants";
 
@@ -11,7 +11,7 @@ const {
   Control: FormControl,
   Submit: FormSubmit,
   ValidityState: FormValidityState,
-} = FormPrimitives;
+} = FormPrimitive;
 
 const FormHeader = ({
   asChild,
@@ -31,9 +31,9 @@ const FormHeader = ({
 const FormField = ({
   className,
   ...props
-}: ComponentPropsWithRef<typeof FormPrimitives.Field>) => {
+}: ComponentPropsWithRef<typeof FormPrimitive.Field>) => {
   return (
-    <FormPrimitives.Field className={cn("mb-2.5 grid", className)} {...props} />
+    <FormPrimitive.Field className={cn("mb-2.5 grid", className)} {...props} />
   );
 };
 
@@ -45,9 +45,9 @@ const formLabelVariants = tv({
 const FormLabel = ({
   className,
   ...props
-}: ComponentPropsWithRef<typeof FormPrimitives.Label>) => {
+}: ComponentPropsWithRef<typeof FormPrimitive.Label>) => {
   return (
-    <FormPrimitives.Label
+    <FormPrimitive.Label
       className={formLabelVariants({ className })}
       {...props}
     />
@@ -57,9 +57,9 @@ const FormLabel = ({
 const FormMessage = ({
   className,
   ...props
-}: ComponentPropsWithRef<typeof FormPrimitives.Message>) => {
+}: ComponentPropsWithRef<typeof FormPrimitive.Message>) => {
   return (
-    <FormPrimitives.Message
+    <FormPrimitive.Message
       className={cn("text-xs text-gray-300", className)}
       {...props}
     />

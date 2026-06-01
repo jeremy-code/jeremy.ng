@@ -1,19 +1,19 @@
 import type { ComponentPropsWithRef } from "react";
 
 import { X } from "lucide-react";
-import { AccessibleIcon, Toast as ToastPrimitives } from "radix-ui";
+import { AccessibleIcon, Toast as ToastPrimitive } from "radix-ui";
 import { twMerge } from "tailwind-merge";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 import { Button, type ButtonProps } from "./Button";
 
-const { Provider: ToastProvider } = ToastPrimitives;
+const { Provider: ToastProvider } = ToastPrimitive;
 
 const ToastViewport = ({
   className,
   ...props
-}: ComponentPropsWithRef<typeof ToastPrimitives.Viewport>) => (
-  <ToastPrimitives.Viewport
+}: ComponentPropsWithRef<typeof ToastPrimitive.Viewport>) => (
+  <ToastPrimitive.Viewport
     className={cn(
       "fixed right-0 bottom-0 z-[calc(infinity)] flex w-full max-w-dvw flex-col gap-2 p-6 sm:w-100",
       className,
@@ -37,12 +37,12 @@ const toastVariants = tv({
   defaultVariants: { variant: "default" },
 });
 
-type ToastProps = ComponentPropsWithRef<typeof ToastPrimitives.Root> &
+type ToastProps = ComponentPropsWithRef<typeof ToastPrimitive.Root> &
   VariantProps<typeof toastVariants>;
 
 const Toast = ({ className, variant, ...props }: ToastProps) => {
   return (
-    <ToastPrimitives.Root
+    <ToastPrimitive.Root
       className={twMerge(toastVariants({ className, variant }))}
       data-variant={variant}
       {...props}
@@ -53,8 +53,8 @@ const Toast = ({ className, variant, ...props }: ToastProps) => {
 const ToastTitle = ({
   className,
   ...props
-}: ComponentPropsWithRef<typeof ToastPrimitives.Title>) => (
-  <ToastPrimitives.Title
+}: ComponentPropsWithRef<typeof ToastPrimitive.Title>) => (
+  <ToastPrimitive.Title
     className={cn("text-sm font-medium", className)}
     {...props}
   />
@@ -63,8 +63,8 @@ const ToastTitle = ({
 const ToastDescription = ({
   className,
   ...props
-}: ComponentPropsWithRef<typeof ToastPrimitives.Description>) => (
-  <ToastPrimitives.Description
+}: ComponentPropsWithRef<typeof ToastPrimitive.Description>) => (
+  <ToastPrimitive.Description
     className={cn(
       "text-sm text-muted-foreground",
       "in-data-[variant='destructive']:text-red-50",
@@ -78,19 +78,19 @@ const ToastAction = ({
   children,
   buttonProps,
   ...props
-}: ComponentPropsWithRef<typeof ToastPrimitives.Action> & {
+}: ComponentPropsWithRef<typeof ToastPrimitive.Action> & {
   buttonProps: ButtonProps;
 }) => (
-  <ToastPrimitives.Action {...props}>
+  <ToastPrimitive.Action {...props}>
     <Button {...buttonProps}>{children}</Button>
-  </ToastPrimitives.Action>
+  </ToastPrimitive.Action>
 );
 
 const ToastClose = ({
   className,
   ...props
-}: ComponentPropsWithRef<typeof ToastPrimitives.Close>) => (
-  <ToastPrimitives.Close asChild {...props}>
+}: ComponentPropsWithRef<typeof ToastPrimitive.Close>) => (
+  <ToastPrimitive.Close asChild {...props}>
     <Button
       color="default"
       variant="surface"
@@ -104,7 +104,7 @@ const ToastClose = ({
         <X className="size-4" />
       </AccessibleIcon.Root>
     </Button>
-  </ToastPrimitives.Close>
+  </ToastPrimitive.Close>
 );
 
 export {
