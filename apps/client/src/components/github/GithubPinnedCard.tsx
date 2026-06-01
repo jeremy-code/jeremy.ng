@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 
 import { Star } from "lucide-react";
 import { AccessibleIcon } from "radix-ui";
+import { Temporal } from "temporal-polyfill";
 
 import {
   CarouselCard,
@@ -9,7 +10,6 @@ import {
   carouselCardVariants,
 } from "#components/misc/CarouselCard";
 import type { Repository } from "#lib/github/interfaces";
-import { dayjs } from "#utils/date";
 import { Badge } from "@jeremyng/ui/components/Badge";
 import { Button } from "@jeremyng/ui/components/Button";
 import {
@@ -60,7 +60,12 @@ const GithubPinnedCard = ({
             )}
             <HorizontalListItem>
               <time dateTime={pinnedItemNode.updatedAt}>
-                {dayjs(pinnedItemNode.updatedAt).fromNow()}
+                {Temporal.Instant.fromEpochMilliseconds(
+                  new Date(pinnedItemNode.updatedAt).getTime(),
+                ).toLocaleString(undefined, {
+                  dateStyle: "medium",
+                  timeStyle: undefined,
+                })}
               </time>
             </HorizontalListItem>
             <HorizontalListItem className="inline-block align-text-bottom">

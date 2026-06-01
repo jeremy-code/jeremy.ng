@@ -1,9 +1,10 @@
+import { Temporal } from "temporal-polyfill";
+
 import {
   CarouselCard,
   carouselCardVariants,
   type CarouselCardProps,
 } from "#components/misc/CarouselCard";
-import { dayjs } from "#utils/date";
 import type { NpmSearchObjectSchema } from "@jeremyng/api/schemas/npm/search";
 import { Badge } from "@jeremyng/ui/components/Badge";
 import { Button } from "@jeremyng/ui/components/Button";
@@ -43,7 +44,12 @@ const NpmSearchObjectCard = ({
             </HorizontalListItem>
             <HorizontalListItem>
               <time dateTime={npmSearchObject.package.date}>
-                {dayjs(npmSearchObject.package.date).fromNow()}
+                {Temporal.Instant.fromEpochMilliseconds(
+                  new Date(npmSearchObject.package.date).getTime(),
+                ).toLocaleString(undefined, {
+                  dateStyle: "medium",
+                  timeStyle: undefined,
+                })}
               </time>
             </HorizontalListItem>
           </HorizontalList>
