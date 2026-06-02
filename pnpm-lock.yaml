@@ -149,6 +149,9 @@ importers:
 
   packages/api:
     dependencies:
+      "@octokit/graphql":
+        specifier: ^9.0.3
+        version: 9.0.3
       "@t3-oss/env-core":
         specifier: ^0.13.11
         version: 0.13.11(typescript@5.9.3)(zod@4.4.3)

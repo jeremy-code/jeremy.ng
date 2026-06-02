@@ -9,7 +9,7 @@ import {
   type CarouselCardProps,
   carouselCardVariants,
 } from "#components/misc/CarouselCard";
-import type { Repository } from "#lib/github/interfaces";
+import type { Repository } from "@jeremyng/api/schemas/github/pinnedItems";
 import { Badge } from "@jeremyng/ui/components/Badge";
 import { Button } from "@jeremyng/ui/components/Button";
 import {

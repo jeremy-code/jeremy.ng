@@ -1,5 +1,5 @@
 import { ContactForm } from "#components/contact/ContactForm";
-import { GithubPinnedListContainer } from "#components/github/GithubPinnedListContainer";
+import { GithubPinnedList } from "#components/github/GithubPinnedList";
 import { NpmSearchList } from "#components/npm/NpmSearchList";
 import { Heading } from "@jeremyng/ui/components/Heading";
 import { Link } from "@jeremyng/ui/components/Link";
@@ -31,7 +31,7 @@ const Home = () => {
             GitHub Repositories
           </Link>
         </Heading>
-        <GithubPinnedListContainer />
+        <GithubPinnedList />
       </section>
       <section>
         <Heading id="contact" as="h1" size="2xl" className="mb-2 leading-loose">

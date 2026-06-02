@@ -1,16 +1,6 @@
 import type { Query } from "@octokit/graphql/types";
 
-const userPinnedItemsTotalCountQuery: Query = `
-  query UserPinnedItemsTotalCount($login: String!) {
-    user(login: $login) {
-      pinnedItems {
-        totalCount
-      }
-    }
-  }
-`;
-
-const userPinnedItemsNodesQuery = `
+const userPinnedItemsNodesQuery: Query = `
   query UserPinnedItemsNodes(
     $login: String!
     $first: Int = 6
@@ -50,4 +40,4 @@ const userPinnedItemsNodesQuery = `
   }
 `;
 
-export { userPinnedItemsTotalCountQuery, userPinnedItemsNodesQuery };
+export { userPinnedItemsNodesQuery };
