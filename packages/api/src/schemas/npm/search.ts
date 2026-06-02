@@ -1,6 +1,6 @@
 import { z, regexes } from "zod";
 
-const NpmSearchObjectSchema = z.strictObject({
+const NpmSearchObject = z.strictObject({
   downloads: z.strictObject({
     monthly: z.int().min(0),
     weekly: z.int().min(0),
@@ -75,17 +75,17 @@ const NpmSearchObjectSchema = z.strictObject({
     insecure: z.literal([0, 1]),
   }),
 });
-export type NpmSearchObjectSchema = z.infer<typeof NpmSearchObjectSchema>;
+type NpmSearchObject = z.infer<typeof NpmSearchObject>;
 
 // https://github.com/npm/registry/blob/main/docs/REGISTRY-API.md#get-v1search
-const NpmSearchResponseSchema = z.strictObject({
-  objects: z.array(NpmSearchObjectSchema),
+const NpmSearchResponse = z.strictObject({
+  objects: z.array(NpmSearchObject),
   total: z.int().min(0),
   time: z.iso.datetime(),
 });
-type NpmSearchResponseSchema = z.infer<typeof NpmSearchResponseSchema>;
+type NpmSearchResponse = z.infer<typeof NpmSearchResponse>;
 
-const NpmSearchParamsSchema = z.strictObject({
+const NpmSearchParams = z.strictObject({
   text: z.string().optional(),
   size: z.int().max(250).optional(), // defaults to 20
   from: z.int().optional(),
@@ -94,4 +94,4 @@ const NpmSearchParamsSchema = z.strictObject({
   maintenance: z.number().min(0).max(1).optional(),
 });
 
-export { NpmSearchResponseSchema, NpmSearchParamsSchema };
+export { NpmSearchObject, NpmSearchResponse, NpmSearchParams };

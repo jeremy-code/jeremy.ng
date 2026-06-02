@@ -1,12 +1,12 @@
 import { mailgunCaller } from "./mailgun";
 import { env } from "../config/env";
-import { ContactFormSchema } from "../schemas/contact/contactForm";
+import { ContactForm } from "../schemas/contact/contactForm";
 import { MessagesSendResult } from "../schemas/mailgun/messages";
 import { baseProcedure, createTRPCRouter } from "../trpc";
 
 const contactRouter = createTRPCRouter({
   sendMessage: baseProcedure
-    .input(ContactFormSchema)
+    .input(ContactForm)
     .output(MessagesSendResult)
     .query((opts) => {
       return mailgunCaller.sendMessage({
@@ -22,4 +22,4 @@ const contactRouter = createTRPCRouter({
     }),
 });
 
-export { ContactFormSchema, contactRouter };
+export { contactRouter };

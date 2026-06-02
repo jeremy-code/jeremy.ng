@@ -9,7 +9,7 @@ import { useAppForm } from "#hooks/useAppForm";
 import { mapTurnstileClientError } from "#lib/cloudflare/mapTurnstileClientError";
 import { useTRPCClient } from "#lib/trpc/client";
 import { Token } from "@jeremyng/api/schemas/cloudflare/turnstile";
-import { ContactFormSchema } from "@jeremyng/api/schemas/contact/contactForm";
+import { ContactForm as ContactFormSchema } from "@jeremyng/api/schemas/contact/contactForm";
 import { Form } from "@jeremyng/ui/components/Form";
 import { Separator } from "@jeremyng/ui/components/Separator";
 import { toast } from "@jeremyng/ui/hooks/useToast";

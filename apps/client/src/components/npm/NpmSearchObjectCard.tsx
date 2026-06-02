@@ -5,7 +5,7 @@ import {
   carouselCardVariants,
   type CarouselCardProps,
 } from "#components/misc/CarouselCard";
-import type { NpmSearchObjectSchema } from "@jeremyng/api/schemas/npm/search";
+import type { NpmSearchObject } from "@jeremyng/api/schemas/npm/search";
 import { Badge } from "@jeremyng/ui/components/Badge";
 import { Button } from "@jeremyng/ui/components/Button";
 import {
@@ -15,7 +15,7 @@ import {
 import { Link } from "@jeremyng/ui/components/Link";
 
 type NpmSearchObjectCardProps = {
-  npmSearchObject: NpmSearchObjectSchema;
+  npmSearchObject: NpmSearchObject;
 } & Omit<CarouselCardProps, "header" | "description" | "footer">;
 
 const NpmSearchObjectCard = ({

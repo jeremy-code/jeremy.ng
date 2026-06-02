@@ -1,9 +1,6 @@
 import ky from "ky";
 
-import {
-  NpmSearchParamsSchema,
-  NpmSearchResponseSchema,
-} from "../schemas/npm/search";
+import { NpmSearchParams, NpmSearchResponse } from "../schemas/npm/search";
 import { baseProcedure, createTRPCRouter } from "../trpc";
 
 const npmRegistryApi = ky.extend({
@@ -13,14 +10,14 @@ const npmRegistryApi = ky.extend({
 // https://github.com/npm/registry/blob/main/docs/REGISTRY-API.md#get-v1search
 const npmRouter = createTRPCRouter({
   search: baseProcedure
-    .input(NpmSearchParamsSchema)
-    .output(NpmSearchResponseSchema)
+    .input(NpmSearchParams)
+    .output(NpmSearchResponse)
     .query((opts) => {
       const response = npmRegistryApi
         .get("-/v1/search", {
           searchParams: opts.input,
         })
-        .json<NpmSearchResponseSchema>();
+        .json<NpmSearchResponse>();
 
       return response;
     }),
