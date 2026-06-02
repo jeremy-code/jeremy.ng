@@ -6,7 +6,7 @@ import { getDotPath } from "@standard-schema/utils";
 
 import { Captcha } from "#components/form/Captcha";
 import { useAppForm } from "#hooks/useAppForm";
-import { mapTurnstileClientError } from "#lib/cloudflare/mapTurnstileClientError";
+import { getTurnstileClientErrorMessage } from "#lib/cloudflare/getTurnstileClientErrorMessage";
 import { useTRPCClient } from "#lib/trpc/client";
 import { Token } from "@jeremyng/api/schemas/cloudflare/turnstile";
 import { ContactForm as ContactFormSchema } from "@jeremyng/api/schemas/contact/contactForm";
@@ -121,7 +121,7 @@ const ContactForm = (props: ContactFormProps) => {
                   field.handleChange(token);
                 }}
                 onError={(error) => {
-                  const errorMessage = mapTurnstileClientError(error);
+                  const errorMessage = getTurnstileClientErrorMessage(error);
                   console.error(
                     `[Cloudflare Turnstile] Error ${error}: ${errorMessage}.`,
                   );

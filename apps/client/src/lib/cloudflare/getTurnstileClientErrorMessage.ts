@@ -7,7 +7,7 @@ type TurnstileClientErrorMessage =
   | "Generic challenge failure"
   | "Unknown client error";
 
-const mapTurnstileClientError = (
+const getTurnstileClientErrorMessage = (
   errorString: string,
 ): TurnstileClientErrorMessage => {
   if (errorString.startsWith("300") || errorString.startsWith("600")) {
@@ -18,4 +18,4 @@ const mapTurnstileClientError = (
   return "Unknown client error";
 };
 
-export { mapTurnstileClientError };
+export { getTurnstileClientErrorMessage };
