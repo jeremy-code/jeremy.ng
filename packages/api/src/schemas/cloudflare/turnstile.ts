@@ -14,7 +14,7 @@ const SecretKey = z.union([
 const SiteKey = z.union([
   z.string().startsWith("0x").length(24),
   // Valid sitekeys for testing
-  // https://developers.cloudflare.com/turnstile/troubleshooting/testing/
+  // https://developers.cloudflare.com/turnstile/troubleshooting/testing/#test-sitekeys
   z.enum([
     "1x00000000000000000000AA",
     "2x00000000000000000000AB",
@@ -31,11 +31,11 @@ const Token = z.string().max(2048, {
 type Token = z.infer<typeof Token>;
 
 // https://developers.cloudflare.com/turnstile/get-started/server-side-validation/#request-format
-const ValidationRequestParams = z.object({
+const ValidationRequestParams = z.strictObject({
   secret: SecretKey,
   response: Token,
   remoteip: z.union([z.ipv4(), z.ipv6()]).optional(),
-  idemptotency_key: z.uuid().optional(),
+  idempotency_key: z.uuid().optional(),
 });
 type ValidationRequestParams = z.infer<typeof ValidationRequestParams>;
 
@@ -52,15 +52,21 @@ const ErrorCode = z.enum([
 
 // https://developers.cloudflare.com/turnstile/get-started/server-side-validation/#response-fields
 const ValidationResponse = z.discriminatedUnion("success", [
-  z.object({
+  z.strictObject({
     success: z.literal(true),
     challenge_ts: z.iso.datetime({ precision: 3 }),
     hostname: z.string(),
     "error-codes": z.array(ErrorCode),
     action: z.string(),
     cdata: z.string(),
+    idempotency_key: z.uuid().optional(),
+    metadata: z.strictObject({
+      // Not documented by Cloudflare, but observed in practice
+      interactive: z.boolean(),
+      ephemeral_id: z.string().optional(),
+    }),
   }),
-  z.object({
+  z.strictObject({
     success: z.literal(false),
     "error-codes": z.array(ErrorCode).nonempty(),
   }),

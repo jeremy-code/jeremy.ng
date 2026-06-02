@@ -30,7 +30,6 @@ const ContactForm = (props: ContactFormProps) => {
       onSubmit: ContactFormSchema.extend({ token: Token }),
     },
     onSubmit: async ({ value }) => {
-      console.log(value);
       const verifyTokenRes = await trpcClient.cloudflare.verifyToken.query(
         value.token,
       );

@@ -13,7 +13,7 @@ const MimeMessage = z.union([
 ]);
 const CustomFileData = z.union([...MimeMessage.options, z.instanceof(File)]);
 const CustomFile = z
-  .object({
+  .strictObject({
     data: CustomFileData,
     filename: z.string().optional(),
     contentType: z.string().optional(),
@@ -48,7 +48,7 @@ const isMailgunMessageContent = (
     "template" in content);
 
 const MailGunMessageContent = z
-  .object({
+  .strictObject({
     text: z.string().optional(),
     html: z.string().optional(),
     message: MimeMessage.optional(),
@@ -62,7 +62,7 @@ const MailGunMessageContent = z
 const MailgunMessageData = z.intersection(
   MailGunMessageContent,
   z
-    .object({
+    .strictObject({
       from: z.string().optional(),
       to: Arrayable(z.string()).optional(),
       cc: Arrayable(z.string()).optional(),
@@ -95,13 +95,13 @@ const MailgunMessageData = z.intersection(
 );
 type MailgunMessageData = z.infer<typeof MailgunMessageData>;
 
-const MessagesSendRequest = z.object({
+const MessagesSendRequest = z.strictObject({
   domain: z.string(),
   data: MailgunMessageData,
 });
 type MessagesSendRequest = z.infer<typeof MessagesSendRequest>;
 
-const MessagesSendResult = z.object({
+const MessagesSendResult = z.strictObject({
   id: z.string().optional(),
   message: z.string().optional(),
   status: z.number(),
