@@ -52,9 +52,6 @@ importers:
       "@next/env":
         specifier: ^16.2.6
         version: 16.2.6
-      "@octokit/graphql":
-        specifier: ^9.0.3
-        version: 9.0.3
       "@standard-schema/spec":
         specifier: ^1.1.0
         version: 1.1.0

@@ -28,15 +28,19 @@ type NpmSearchListProps = CarouselProps;
 
 const NpmSearchList = ({ options, ...props }: NpmSearchListProps) => {
   const trpc = useTRPC();
-  const npmSearchQuery = useQuery(
+  const {
+    isPending,
+    isError,
+    data: npmSearchQueryResult,
+  } = useQuery(
     trpc.npm.search.queryOptions({
       text: `author:${env.NEXT_PUBLIC_NPM_REGISTRY_USERNAME}`,
     }),
   );
 
-  if (npmSearchQuery.isLoading) {
+  if (isPending) {
     return <Skeleton className="h-64" />;
-  } else if (npmSearchQuery.isError) {
+  } else if (isError) {
     return (
       <Alert color="destructive">
         <AlertIcon>
@@ -56,7 +60,7 @@ const NpmSearchList = ({ options, ...props }: NpmSearchListProps) => {
     <Carousel options={{ align: "start", ...options }} {...props}>
       <CarouselControls />
       <CarouselContent>
-        {(npmSearchQuery.data?.objects ?? [])
+        {npmSearchQueryResult.objects
           .toSorted(
             (a, b) => -1 * dateCompareFn(a.package.date, b.package.date),
           )
