@@ -19,7 +19,7 @@ const mailgunRouter = createTRPCRouter({
   sendMessage: baseProcedure
     .input(MessagesSendRequest)
     .output(MessagesSendResult)
-    .query((opts) => {
+    .mutation((opts) => {
       return mailgunClient.messages.create(
         opts.input.domain,
         opts.input.data as MailgunMessageData, // Valid runtime types, TypeScript doesn't handle the intersection (&) well

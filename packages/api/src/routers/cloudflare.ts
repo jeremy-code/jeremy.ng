@@ -16,7 +16,7 @@ const cloudflareRouter = createTRPCRouter({
   verifyToken: baseProcedure
     .input(Token)
     .output(ValidationResponse)
-    .query((opts) => {
+    .mutation((opts) => {
       const params = ValidationRequestParams.parse({
         secret: env.CF_TURNSTILE_SECRET_KEY,
         response: opts.input,

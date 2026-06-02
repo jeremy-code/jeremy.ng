@@ -8,7 +8,7 @@ const contactRouter = createTRPCRouter({
   sendMessage: baseProcedure
     .input(ContactForm)
     .output(MessagesSendResult)
-    .query((opts) => {
+    .mutation((opts) => {
       return mailgunCaller.sendMessage({
         domain: env.MAILGUN_DOMAIN,
         data: {

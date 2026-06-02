@@ -29,12 +29,12 @@ const ContactForm = (props: ContactFormProps) => {
       onSubmit: ContactFormSchema.extend({ token: Token }),
     },
     onSubmit: async ({ value }) => {
-      const verifyTokenRes = await trpcClient.cloudflare.verifyToken.query(
+      const verifyTokenRes = await trpcClient.cloudflare.verifyToken.mutate(
         value.token,
       );
       if (verifyTokenRes.success) {
         try {
-          const { status } = await trpcClient.contact.sendMessage.query({
+          const { status } = await trpcClient.contact.sendMessage.mutate({
             name: value.name,
             email: value.email,
             message: value.message,
