@@ -3,13 +3,13 @@ import { Suspense } from "react";
 import { TriangleAlert } from "lucide-react";
 import { ErrorBoundary } from "react-error-boundary";
 
+import { env } from "#config/env";
 import { graphqlWithAuth } from "#lib/github/graphql";
 import type { UserPinnedItemsNodesResponse } from "#lib/github/interfaces";
 import {
   userPinnedItemsNodesQuery,
   userPinnedItemsTotalCountQuery,
 } from "#lib/github/queries";
-import { env } from "#utils/env";
 import {
   Alert,
   AlertContent,

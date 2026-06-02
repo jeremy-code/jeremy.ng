@@ -1,12 +1,12 @@
 import ky from "ky";
 
+import { env } from "../config/env";
 import {
   Token,
   ValidationRequestParams,
   ValidationResponse,
 } from "../schemas/cloudflare/turnstile";
 import { baseProcedure, createTRPCRouter } from "../trpc";
-import { env } from "../utils/env";
 
 const cloudflareTurnstileApi = ky.extend({
   baseUrl: "https://challenges.cloudflare.com/turnstile/v0/",

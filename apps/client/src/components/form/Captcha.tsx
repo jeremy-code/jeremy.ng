@@ -1,7 +1,7 @@
 import { Turnstile, type TurnstileProps } from "@marsidev/react-turnstile";
 import { cn } from "tailwind-variants";
 
-import { env } from "#utils/env";
+import { env } from "#config/env";
 import { Skeleton } from "@jeremyng/ui/components/Skeleton";
 
 type CaptchaProps = Omit<TurnstileProps, "siteKey">;

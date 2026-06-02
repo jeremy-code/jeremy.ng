@@ -1,8 +1,8 @@
 import { mailgunCaller } from "./mailgun";
+import { env } from "../config/env";
 import { ContactFormSchema } from "../schemas/contact/contactForm";
 import { MessagesSendResult } from "../schemas/mailgun/messages";
 import { baseProcedure, createTRPCRouter } from "../trpc";
-import { env } from "../utils/env";
 
 const contactRouter = createTRPCRouter({
   sendMessage: baseProcedure

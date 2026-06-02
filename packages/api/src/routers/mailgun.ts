@@ -2,12 +2,12 @@ import FormData from "form-data";
 import Mailgun from "mailgun.js";
 import type { MailgunMessageData } from "mailgun.js/definitions";
 
+import { env } from "../config/env";
 import {
   MessagesSendRequest,
   MessagesSendResult,
 } from "../schemas/mailgun/messages";
 import { baseProcedure, createTRPCRouter } from "../trpc";
-import { env } from "../utils/env";
 
 const mailgun = new Mailgun(FormData);
 const mailgunClient = mailgun.client({

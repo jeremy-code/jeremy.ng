@@ -4,8 +4,8 @@ import type { ReactNode } from "react";
 
 import { ThemeProvider } from "next-themes";
 
+import { env } from "#config/env";
 import { TrpcReactProvider } from "#lib/trpc/client";
-import { env } from "#utils/env";
 import { Toaster } from "@jeremyng/ui/components/Toaster";
 
 const Devtools =

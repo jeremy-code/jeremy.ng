@@ -1,6 +1,6 @@
 import { graphql } from "@octokit/graphql";
 
-import { env } from "#utils/env";
+import { env } from "#config/env";
 
 const graphqlWithAuth = graphql.defaults({
   headers: {

@@ -1,8 +1,8 @@
 import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
+import { env as apiEnv } from "@jeremyng/api/config/env";
 import { SiteKey } from "@jeremyng/api/schemas/cloudflare/turnstile";
-import { env as apiEnv } from "@jeremyng/api/utils/env";
 
 const env = createEnv({
   extends: [apiEnv],

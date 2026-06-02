@@ -2,7 +2,7 @@ import type { ComponentPropsWithRef } from "react";
 
 import { cn } from "tailwind-variants";
 
-import { env } from "#utils/env";
+import { env } from "#config/env";
 import {
   HorizontalList,
   HorizontalListItem,
