@@ -8,7 +8,6 @@ import { Captcha } from "#components/form/Captcha";
 import { useAppForm } from "#hooks/useAppForm";
 import { mapTurnstileClientError } from "#lib/cloudflare/mapTurnstileClientError";
 import { useTRPCClient } from "#lib/trpc/client";
-import { mapStatusCode } from "#utils/mapStatusCode";
 import { Token } from "@jeremyng/api/schemas/cloudflare/turnstile";
 import { ContactFormSchema } from "@jeremyng/api/schemas/contact/contactForm";
 import { Form } from "@jeremyng/ui/components/Form";
@@ -34,20 +33,20 @@ const ContactForm = (props: ContactFormProps) => {
         value.token,
       );
       if (verifyTokenRes.success) {
-        const sendMessageRes = await trpcClient.contact.sendMessage.query({
-          name: value.name,
-          email: value.email,
-          message: value.message,
-        });
-        const sendMessageStatus = mapStatusCode(sendMessageRes.status);
-        if (sendMessageStatus.ok) {
-          toast({
-            title: "Message sent successfully",
+        try {
+          const { status } = await trpcClient.contact.sendMessage.query({
+            name: value.name,
+            email: value.email,
+            message: value.message,
           });
-        } else {
+          toast({
+            title: `Message sent successfully with status ${status}`,
+          });
+        } catch (e) {
           toast({
             title: "Message sent failed",
-            description: sendMessageRes.message ?? null,
+            description:
+              e instanceof Error ? e.message : "An unknown error occurred.",
             variant: "destructive",
           });
         }
