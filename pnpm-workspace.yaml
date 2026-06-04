@@ -2,6 +2,13 @@ packages:
   - apps/*
   - packages/*
 
+# Dependency Resolution (https://pnpm.io/settings#dependency-resolution)
+minimumReleaseAge: 1440
+minimumReleaseAgeStrict: true
+trustPolicy: no-downgrade
+trustPolicyIgnoreAfter: 1440
+blockExoticSubdeps: true
+
 # Build settings (https://pnpm.io/settings#build-settings)
 verifyDepsBeforeRun: install
 strictDepBuilds: true
