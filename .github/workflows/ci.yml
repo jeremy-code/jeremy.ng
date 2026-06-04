@@ -13,13 +13,13 @@ jobs:
 
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Enable Corepack
         run: corepack enable
 
       - name: Set up Node.js environment
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: .node-version
           cache: pnpm
@@ -29,7 +29,7 @@ jobs:
         run: echo STORE_PATH=$(pnpm store path) >> $GITHUB_OUTPUT
 
       - name: Cache Next.js builds
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ${{ steps.pnpm-store-path.outputs.STORE_PATH }}
