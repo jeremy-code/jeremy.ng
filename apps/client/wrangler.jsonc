@@ -18,7 +18,7 @@
     "VITE_CF_TURNSTILE_SITE_KEY": "0x4AAAAAAAWC3pzq-UVjnlD2",
     "VITE_GITHUB_USERNAME": "jeremy-code",
     "VITE_NPM_REGISTRY_USERNAME": "jeremynguyen",
-    "VITE_BASE_URL": "https://jeremy-ng.jeremynguyen.workers.dev",
+    "VITE_BASE_URL": "https://jeremy.ng",
   },
   "secrets": {
     "required": [
