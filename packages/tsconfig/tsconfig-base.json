@@ -12,7 +12,8 @@
     "moduleDetection": "force",
 
     /* Modules */
-    "module": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     /**
      * By default, TypeScript will substitute `.js` for `.ts`, `.tsx`, etc. In
      * `enhanced-resolve`, if file `*.js` is not found, it then searches for

@@ -4,6 +4,9 @@
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
+    /* Language and Environment */
+    "jsx": "preserve",
+
     /* JavaScript Support */
     "allowJs": true,
 
