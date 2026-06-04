@@ -28,6 +28,44 @@ export const metadata: Metadata = {
   referrer: "origin-when-cross-origin",
   creator: "Jeremy Nguyen",
   publisher: "Jeremy Nguyen",
+  icons: [
+    {
+      rel: "icon",
+      type: "image/svg+xml",
+      url: "/favicon.svg",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "512x512",
+      url: "/favicon-512x512.png",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "192x192",
+      url: "/favicon-192x192.png",
+    },
+    {
+      rel: "apple-touch-icon",
+      sizes: "180x180",
+      url: "/apple-touch-icon.png",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "32x32",
+      url: "/favicon-32x32.png",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "16x16",
+      url: "/favicon-16x16.png",
+    },
+    { rel: "icon", url: "/favicon.ico" },
+  ],
+  manifest: "/site.webmanifest",
 };
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
