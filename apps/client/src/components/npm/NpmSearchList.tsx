@@ -1,5 +1,3 @@
-"use client";
-
 import { useQuery } from "@tanstack/react-query";
 import { TriangleAlert } from "lucide-react";
 
@@ -26,7 +24,7 @@ import { NpmSearchObjectCard } from "./NpmSearchObjectCard";
 
 type NpmSearchListProps = CarouselProps;
 
-const NpmSearchList = ({ options, ...props }: NpmSearchListProps) => {
+const NpmSearchList = (props: NpmSearchListProps) => {
   const trpc = useTRPC();
   const {
     isPending,
@@ -34,7 +32,7 @@ const NpmSearchList = ({ options, ...props }: NpmSearchListProps) => {
     data: npmSearchQueryResult,
   } = useQuery(
     trpc.npm.search.queryOptions({
-      text: `author:${env.NEXT_PUBLIC_NPM_REGISTRY_USERNAME}`,
+      text: `author:${env.VITE_NPM_REGISTRY_USERNAME}`,
     }),
   );
 
@@ -57,7 +55,7 @@ const NpmSearchList = ({ options, ...props }: NpmSearchListProps) => {
   }
 
   return (
-    <Carousel options={{ align: "start", ...options }} {...props}>
+    <Carousel {...props}>
       <CarouselControls />
       <CarouselContent>
         {npmSearchQueryResult.objects

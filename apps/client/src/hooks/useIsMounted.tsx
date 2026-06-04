@@ -1,5 +1,3 @@
-"use client";
-
 import { useSyncExternalStore } from "react";
 
 /**
@@ -15,10 +13,12 @@ const noop = () => {};
  *
  * @see {@link https://react.dev/reference/react-dom/client/hydrateRoot#handling-different-client-and-server-content}
  */
-export const useIsMounted = () => {
+const useIsMounted = () => {
   return useSyncExternalStore(
     () => noop,
     () => true,
     () => false,
   );
 };
+
+export { useIsMounted };

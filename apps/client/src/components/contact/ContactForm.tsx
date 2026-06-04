@@ -1,5 +1,3 @@
-"use client";
-
 import { type ComponentPropsWithRef } from "react";
 
 import { getDotPath } from "@standard-schema/utils";

@@ -6,10 +6,7 @@
 
     /* Language and Environment */
     "lib": ["ES2024", "DOM", "DOM.Iterable"],
-    "jsx": "preserve",
-
-    /* Modules */
-    "module": "ESNext",
-    "moduleResolution": "Bundler"
-  }
+    "jsx": "react-jsx"
+  },
+  "exclude": ["${configDir}/node_modules"]
 }

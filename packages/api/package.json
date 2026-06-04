@@ -13,13 +13,13 @@
     }
   },
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@octokit/graphql": "^9.0.3",
     "@t3-oss/env-core": "^0.13.11",
     "@trpc/server": "^11.17.0",
-    "form-data": "^4.0.5",
     "ky": "^2.0.2",
     "mailgun.js": "^13.2.0",
     "superjson": "^2.2.6",

@@ -9,10 +9,7 @@ import {
 } from "@jeremyng/ui/components/HorizontalList";
 import { Link } from "@jeremyng/ui/components/Link";
 
-export const Footer = ({
-  className,
-  ...props
-}: ComponentPropsWithRef<"footer">) => {
+const Footer = ({ className, ...props }: ComponentPropsWithRef<"footer">) => {
   return (
     <footer
       className={cn("grid place-content-center border-t", className)}
@@ -22,7 +19,7 @@ export const Footer = ({
         <HorizontalList>
           <HorizontalListItem>
             <Link
-              href={`https://github.com/${env.NEXT_PUBLIC_GITHUB_USERNAME}`}
+              href={`https://github.com/${env.VITE_GITHUB_USERNAME}`}
               underline="hover"
             >
               Jeremy Nguyen
@@ -30,7 +27,7 @@ export const Footer = ({
           </HorizontalListItem>
           <HorizontalListItem>
             <Link
-              href={`https://github.com/${env.NEXT_PUBLIC_GITHUB_USERNAME}/jeremy.ng`}
+              href={`https://github.com/${env.VITE_GITHUB_USERNAME}/jeremy.ng`}
               underline="hover"
             >
               Source code
@@ -41,3 +38,5 @@ export const Footer = ({
     </footer>
   );
 };
+
+export { Footer };

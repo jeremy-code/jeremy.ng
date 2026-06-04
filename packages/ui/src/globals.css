@@ -21,7 +21,7 @@
 }
 
 @theme {
-  --font-sans: var(--font-lexend);
+  --font-sans: "Lexend", sans-serif;
   --color-primary-50: oklch(97.048% 0.01027 247.93);
   --color-primary-100: oklch(93.192% 0.02353 250.08);
   --color-primary-200: oklch(88.234% 0.04302 249.39);

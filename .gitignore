@@ -17,8 +17,11 @@ coverage
 # Turbo
 .turbo
 
-# Vercel
-.vercel
+# TanStack
+.tanstack
+
+# Cloudflare
+.wrangler
 
 # Build Outputs
 .next/

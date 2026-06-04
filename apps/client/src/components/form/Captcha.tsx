@@ -18,7 +18,7 @@ const Captcha = ({ className, ...props }: CaptchaProps) => {
         "data-[size=compact]:h-12.5 data-[size=compact]:w-62.5",
         className,
       )}
-      siteKey={env.NEXT_PUBLIC_CF_TURNSTILE_SITE_KEY}
+      siteKey={env.VITE_CF_TURNSTILE_SITE_KEY}
       {...props}
     >
       <Skeleton className="absolute inset-0 -z-1 rounded-none" />

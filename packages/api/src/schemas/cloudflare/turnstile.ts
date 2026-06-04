@@ -68,7 +68,14 @@ const ValidationResponse = z.discriminatedUnion("success", [
   }),
   z.strictObject({
     success: z.literal(false),
+    challenge_ts: z.iso.datetime({ precision: 3 }),
+    hostname: z.string(),
     "error-codes": z.array(ErrorCode).nonempty(),
+    action: z.string(),
+    cdata: z.string(),
+    // Not documented by Cloudflare, but observed in practice
+    messages: z.array(z.string()),
+    tokenId: z.string().optional(),
   }),
 ]);
 type ValidationResponse = z.infer<typeof ValidationResponse>;
