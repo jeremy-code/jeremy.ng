@@ -1,6 +1,6 @@
 import type { ComponentPropsWithRef } from "react";
 
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { cn } from "tailwind-variants";
 
 import { Logo } from "#components/misc/Logo";
@@ -17,16 +17,13 @@ const NAVBAR_ITEMS = [
     href: "/",
     name: "Home",
   },
-];
+] as const;
 
-export const Navbar = ({
-  className,
-  ...props
-}: ComponentPropsWithRef<"header">) => {
+const Navbar = ({ className, ...props }: ComponentPropsWithRef<"header">) => {
   return (
     <header className={cn("border-b", className)} {...props}>
       <div className="container flex items-center justify-between py-4">
-        <Link className="flex items-center gap-2 font-semibold" href="/">
+        <Link className="flex items-center gap-2 font-semibold" to="/">
           <Logo />
           Jeremy Nguyen
         </Link>
@@ -36,7 +33,7 @@ export const Navbar = ({
               {NAVBAR_ITEMS.map((item) => (
                 <NavigationMenuItem key={item.href}>
                   <NavigationMenuLink asChild variant="trigger">
-                    <Link href={item.href}>{item.name}</Link>
+                    <Link to={item.href}>{item.name}</Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
               ))}
@@ -48,3 +45,5 @@ export const Navbar = ({
     </header>
   );
 };
+
+export { Navbar };

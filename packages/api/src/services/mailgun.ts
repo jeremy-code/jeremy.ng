@@ -1,4 +1,3 @@
-import FormData from "form-data";
 import Mailgun from "mailgun.js";
 import type { MailgunMessageData } from "mailgun.js/definitions";
 import { z } from "zod";

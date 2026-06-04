@@ -1,0 +1,31 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "jeremy-ng",
+  "compatibility_date": "2026-06-02",
+  "compatibility_flags": [
+    "nodejs_compat",
+    // For tRPC to work, the worker needs to be able to fetch from itself (the
+    // server to the API route), which only works if it is treated as
+    // external/public
+    "global_fetch_strictly_public",
+  ],
+  "main": "@tanstack/react-start/server-entry",
+  "observability": {
+    "enabled": true,
+  },
+  "assets": {},
+  "vars": {
+    "VITE_CF_TURNSTILE_SITE_KEY": "0x4AAAAAAAWC3pzq-UVjnlD2",
+    "VITE_GITHUB_USERNAME": "jeremy-code",
+    "VITE_NPM_REGISTRY_USERNAME": "jeremynguyen",
+    "VITE_BASE_URL": "https://jeremy-ng.jeremynguyen.workers.dev",
+  },
+  "secrets": {
+    "required": [
+      "CF_TURNSTILE_SECRET_KEY",
+      "MAILGUN_API_KEY",
+      "MAILGUN_DOMAIN",
+      "GITHUB_TOKEN",
+    ],
+  },
+}

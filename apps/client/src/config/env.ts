@@ -1,4 +1,4 @@
-import { createEnv } from "@t3-oss/env-nextjs";
+import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 
 import { env as apiEnv } from "@jeremyng/api/config/env";
@@ -6,30 +6,14 @@ import { SiteKey } from "@jeremyng/api/schemas/cloudflare/turnstile";
 
 const env = createEnv({
   extends: [apiEnv],
-  shared: {
-    NODE_ENV: z.enum(["development", "production", "test"]),
-  },
+  clientPrefix: "VITE_",
   client: {
-    NEXT_PUBLIC_CF_TURNSTILE_SITE_KEY: SiteKey,
-    NEXT_PUBLIC_GITHUB_USERNAME: z.string().min(1),
-    NEXT_PUBLIC_NPM_REGISTRY_USERNAME: z.string().min(1),
+    VITE_BASE_URL: z.url(),
+    VITE_CF_TURNSTILE_SITE_KEY: SiteKey,
+    VITE_GITHUB_USERNAME: z.string().min(1),
+    VITE_NPM_REGISTRY_USERNAME: z.string().min(1),
   },
-  /**
-   * Due to how Next.js statically analyzes environment variables on the client,
-   * to be included in the bundle, they must be manually passed to
-   * `experimental__runtimeEnv`. Destructuring from `process.env` will not work.
-   *
-   * @see {@link https://env.t3.gg/docs/nextjs#create-your-schema}
-   * @see {@link https://nextjs.org/docs/app/guides/environment-variables#bundling-environment-variables-for-the-browser}
-   */
-  experimental__runtimeEnv: {
-    NODE_ENV: process.env.NODE_ENV,
-    NEXT_PUBLIC_CF_TURNSTILE_SITE_KEY:
-      process.env.NEXT_PUBLIC_CF_TURNSTILE_SITE_KEY,
-    NEXT_PUBLIC_NPM_REGISTRY_USERNAME:
-      process.env.NEXT_PUBLIC_NPM_REGISTRY_USERNAME,
-    NEXT_PUBLIC_GITHUB_USERNAME: process.env.NEXT_PUBLIC_GITHUB_USERNAME,
-  },
+  runtimeEnv: import.meta.env,
 });
 
 export { env };

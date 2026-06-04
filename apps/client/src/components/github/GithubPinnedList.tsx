@@ -1,5 +1,3 @@
-"use client";
-
 import { useQuery } from "@tanstack/react-query";
 import { TriangleAlert } from "lucide-react";
 
@@ -33,7 +31,7 @@ const GithubPinnedList = (props: GithubPinnedListProps) => {
     data: githubPinnedItems,
   } = useQuery(
     trpc.github.getPinnedItems.queryOptions({
-      login: env.NEXT_PUBLIC_GITHUB_USERNAME,
+      login: env.VITE_GITHUB_USERNAME,
     }),
   );
 

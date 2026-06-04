@@ -1,22 +1,20 @@
-"use client";
-
 import type { ReactNode } from "react";
+import { lazy } from "react";
 
 import { ThemeProvider } from "next-themes";
 
-import { env } from "#config/env";
 import { TrpcReactProvider } from "#lib/trpc/client";
 import { Toaster } from "@jeremyng/ui/components/Toaster";
 
 const Devtools =
-  env.NODE_ENV === "development" ?
-    await import("./Devtools").then((mod) => mod.Devtools)
+  import.meta.env.DEV ?
+    lazy(() => import("./Devtools").then((mod) => ({ default: mod.Devtools })))
   : () => null;
 
 /**
  * Provides global application context.
  */
-export const AppProvider = ({ children }: { children: ReactNode }) => {
+const AppProvider = ({ children }: { children: ReactNode }) => {
   return (
     <ThemeProvider>
       <TrpcReactProvider>
@@ -27,3 +25,5 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     </ThemeProvider>
   );
 };
+
+export { AppProvider };
