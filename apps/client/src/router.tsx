@@ -6,6 +6,7 @@ import {
   type TRPCOptionsProxy,
 } from "@trpc/tanstack-react-query";
 
+import { CatchBoundary } from "#components/misc/CatchBoundary";
 import { getBaseUrl } from "#functions/getBaseUrl";
 import { getQueryClient } from "#lib/trpc/queryClient";
 import { createTrpcClient } from "#lib/trpc/shared";
@@ -32,6 +33,7 @@ const getRouter = () => {
     routeTree,
     scrollRestoration: true,
     context,
+    defaultErrorComponent: CatchBoundary,
   });
 
   setupRouterSsrQueryIntegration({ router, queryClient });

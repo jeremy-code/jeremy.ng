@@ -76,4 +76,4 @@ const Button = ({
   );
 };
 
-export { Button, type ButtonProps };
+export { Button, type ButtonProps, buttonVariants };
