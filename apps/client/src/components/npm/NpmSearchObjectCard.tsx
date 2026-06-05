@@ -1,3 +1,4 @@
+import { ClientOnly } from "@tanstack/react-router";
 import { Temporal } from "temporal-polyfill";
 
 import {
@@ -22,6 +23,10 @@ const NpmSearchObjectCard = ({
   npmSearchObject,
   ...props
 }: NpmSearchObjectCardProps) => {
+  const dateInstant = Temporal.Instant.fromEpochMilliseconds(
+    new Date(npmSearchObject.package.date).getTime(),
+  );
+
   return (
     <CarouselCard
       {...props}
@@ -44,12 +49,21 @@ const NpmSearchObjectCard = ({
             </HorizontalListItem>
             <HorizontalListItem>
               <time dateTime={npmSearchObject.package.date}>
-                {Temporal.Instant.fromEpochMilliseconds(
-                  new Date(npmSearchObject.package.date).getTime(),
-                ).toLocaleString(undefined, {
-                  dateStyle: "medium",
-                  timeStyle: undefined,
-                })}
+                <ClientOnly
+                  fallback={dateInstant
+                    .toZonedDateTimeISO("UTC")
+                    .toLocaleString(undefined, {
+                      dateStyle: "medium",
+                      timeStyle: undefined,
+                    })}
+                >
+                  {dateInstant
+                    .toZonedDateTimeISO(Temporal.Now.timeZoneId())
+                    .toLocaleString(undefined, {
+                      dateStyle: "medium",
+                      timeStyle: undefined,
+                    })}
+                </ClientOnly>
               </time>
             </HorizontalListItem>
           </HorizontalList>

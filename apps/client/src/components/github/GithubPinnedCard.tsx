@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 
+import { ClientOnly } from "@tanstack/react-router";
 import { Star } from "lucide-react";
 import { AccessibleIcon } from "radix-ui";
 import { Temporal } from "temporal-polyfill";
@@ -26,6 +27,10 @@ const GithubPinnedCard = ({
   pinnedItemNode,
   ...props
 }: GithubPinnedCardProps) => {
+  const updatedAtInstant = Temporal.Instant.fromEpochMilliseconds(
+    new Date(pinnedItemNode.updatedAt).getTime(),
+  );
+
   return (
     <CarouselCard
       {...props}
@@ -60,12 +65,21 @@ const GithubPinnedCard = ({
             )}
             <HorizontalListItem>
               <time dateTime={pinnedItemNode.updatedAt}>
-                {Temporal.Instant.fromEpochMilliseconds(
-                  new Date(pinnedItemNode.updatedAt).getTime(),
-                ).toLocaleString(undefined, {
-                  dateStyle: "medium",
-                  timeStyle: undefined,
-                })}
+                <ClientOnly
+                  fallback={updatedAtInstant
+                    .toZonedDateTimeISO("UTC")
+                    .toLocaleString(undefined, {
+                      dateStyle: "medium",
+                      timeStyle: undefined,
+                    })}
+                >
+                  {updatedAtInstant
+                    .toZonedDateTimeISO(Temporal.Now.timeZoneId())
+                    .toLocaleString(undefined, {
+                      dateStyle: "medium",
+                      timeStyle: undefined,
+                    })}
+                </ClientOnly>
               </time>
             </HorizontalListItem>
             <HorizontalListItem className="inline-block align-text-bottom">
