@@ -3,7 +3,6 @@ import type { ComponentPropsWithRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { cn } from "tailwind-variants";
 
-import { Logo } from "#components/misc/Logo";
 import { ThemeToggle } from "#components/misc/ThemeToggle";
 import {
   NavigationMenu,
@@ -12,25 +11,21 @@ import {
   NavigationMenuList,
 } from "@jeremyng/ui/components/NavigationMenu";
 
-const NAVBAR_ITEMS = [
-  {
-    href: "/",
-    name: "Home",
-  },
-] as const;
+import { MobileNav } from "./MobileNav";
+import { NAVIGATION_ITEMS } from "./constants";
 
 const Navbar = ({ className, ...props }: ComponentPropsWithRef<"header">) => {
   return (
-    <header className={cn("border-b", className)} {...props}>
+    <header className={cn("relative border-b", className)} {...props}>
       <div className="container flex items-center justify-between py-4">
         <Link className="flex items-center gap-2 font-semibold" to="/">
-          <Logo />
+          <img width="24" height="24" src="/favicon.svg" />
           Jeremy Nguyen
         </Link>
         <div className="flex items-center gap-2">
-          <NavigationMenu className="grow">
+          <NavigationMenu className="hidden grow sm:flex">
             <NavigationMenuList>
-              {NAVBAR_ITEMS.map((item) => (
+              {NAVIGATION_ITEMS.map((item) => (
                 <NavigationMenuItem key={item.href}>
                   <NavigationMenuLink asChild variant="trigger">
                     <Link to={item.href}>{item.name}</Link>
@@ -40,6 +35,7 @@ const Navbar = ({ className, ...props }: ComponentPropsWithRef<"header">) => {
             </NavigationMenuList>
           </NavigationMenu>
           <ThemeToggle size="lg" />
+          <MobileNav />
         </div>
       </div>
     </header>

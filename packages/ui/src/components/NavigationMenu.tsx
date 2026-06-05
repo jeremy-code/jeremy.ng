@@ -150,8 +150,8 @@ const NavigationMenuViewport = ({
       <NavigationMenuPrimitive.Viewport
         className={cn(
           "relative mt-2.5 origin-[top_center] overflow-hidden rounded-md bg-subtle transition-[width,height]",
-          // Using `box-shadow` to simulate border, so it lines up with <NavigationMenuIndicator />'s arrow
-          "shadow-[0_0_0_1px] shadow-border",
+          // Using ring to simulate border, so it lines up with <NavigationMenuIndicator />'s arrow
+          "ring-1 ring-border ring-offset-0",
           "h-(--radix-navigation-menu-viewport-height) w-full sm:w-(--radix-navigation-menu-viewport-width)",
           "data-[state=open]:animate-in data-[state=open]:zoom-in-90 data-[state=open]:fade-in",
           "data-[state=closed]:animate-out data-[state=closed]:zoom-out-90 data-[state=closed]:fade-out",
@@ -169,6 +169,7 @@ export {
   type NavigationMenuProps,
   NavigationMenuList,
   NavigationMenuTrigger,
+  navigationMenuTriggerVariants,
   NavigationMenuLink,
   NavigationMenuContent,
   NavigationMenuIndicator,
