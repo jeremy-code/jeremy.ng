@@ -1,12 +1,12 @@
 import js from "@eslint/js";
-import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
+import * as comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 import { defineConfig } from "eslint/config";
 import { createTypeScriptImportResolver } from "eslint-import-resolver-typescript";
 import { importX, createNodeResolver } from "eslint-plugin-import-x";
 import pluginPromise from "eslint-plugin-promise";
-import turbo from "eslint-plugin-turbo";
+import * as turbo from "eslint-plugin-turbo";
 import globals from "globals";
-import tseslint from "typescript-eslint";
+import * as tseslint from "typescript-eslint";
 
 import disablesConfig from "./disables.js";
 

@@ -2,7 +2,7 @@ import eslintReact from "@eslint-react/eslint-plugin";
 import pluginQuery from "@tanstack/eslint-plugin-query";
 import pluginRouter from "@tanstack/eslint-plugin-router";
 import { defineConfig, globalIgnores } from "eslint/config";
-import reactCompiler from "eslint-plugin-react-compiler";
+import * as reactCompiler from "eslint-plugin-react-compiler";
 import reactHooks from "eslint-plugin-react-hooks";
 import globals from "globals";
 

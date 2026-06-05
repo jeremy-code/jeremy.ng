@@ -1,6 +1,6 @@
 import eslintReact from "@eslint-react/eslint-plugin";
 import { defineConfig } from "eslint/config";
-import tseslint from "typescript-eslint";
+import * as tseslint from "typescript-eslint";
 
 const JAVASCRIPT_GLOB_PATTERNS = ["**/*.{js,cjs,jsx,mjs}"];
 
