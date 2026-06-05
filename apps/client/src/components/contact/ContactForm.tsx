@@ -114,7 +114,7 @@ const ContactForm = (props: ContactFormProps) => {
           children={(field) => (
             <>
               <Captcha
-                className="my-2"
+                className="mb-2.5"
                 onSuccess={(token) => {
                   field.handleChange(token);
                 }}
@@ -156,7 +156,7 @@ const ContactForm = (props: ContactFormProps) => {
             </>
           )}
         />
-        <Separator className="mt-5 mb-4" />
+        <Separator className="mt-2.5 mb-2.5" />
         <div className="flex items-center justify-end gap-2.5">
           <form.SubmitButton className="max-sm:w-full" />
         </div>
