@@ -34,6 +34,14 @@ const baseConfig = defineConfig(
     },
     rules: {
       /**
+       * @see {@link https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/exports-last.md}
+       */
+      "import-x/exports-last": "error",
+      /**
+       * @see {@link https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/group-exports.md}
+       */
+      "import-x/group-exports": "error",
+      /**
        * @see {@link https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/newline-after-import.md}
        */
       "import-x/newline-after-import": ["error", { considerComments: true }],
