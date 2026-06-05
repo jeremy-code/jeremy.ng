@@ -29,6 +29,7 @@ const GithubPinnedList = (props: GithubPinnedListProps) => {
     isPending,
     isError,
     data: githubPinnedItems,
+    error,
   } = useQuery(
     trpc.github.getPinnedItems.queryOptions({
       login: env.VITE_GITHUB_USERNAME,
@@ -38,6 +39,7 @@ const GithubPinnedList = (props: GithubPinnedListProps) => {
   if (isPending) {
     return <Skeleton className="h-64" />;
   } else if (isError) {
+    console.error(error);
     return (
       <Alert color="destructive">
         <AlertIcon>

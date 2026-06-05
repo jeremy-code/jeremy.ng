@@ -30,6 +30,7 @@ const NpmSearchList = (props: NpmSearchListProps) => {
     isPending,
     isError,
     data: npmSearchQueryResult,
+    error,
   } = useQuery(
     trpc.npm.search.queryOptions({
       text: `author:${env.VITE_NPM_REGISTRY_USERNAME}`,
@@ -39,6 +40,7 @@ const NpmSearchList = (props: NpmSearchListProps) => {
   if (isPending) {
     return <Skeleton className="h-64" />;
   } else if (isError) {
+    console.error(error);
     return (
       <Alert color="destructive">
         <AlertIcon>
