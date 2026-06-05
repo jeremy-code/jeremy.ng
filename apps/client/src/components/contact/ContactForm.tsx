@@ -26,11 +26,9 @@ const ContactForm = (props: ContactFormProps) => {
     validators: {
       onSubmit: ContactFormSchema.extend({ token: Token }),
     },
-    onSubmit: async ({ value }) => {
-      const verifyTokenRes = await trpcClient.cloudflare.verifyToken.mutate(
-        value.token,
-      );
-      if (verifyTokenRes.success) {
+    onSubmit: async ({ value, formApi }) => {
+      try {
+        await trpcClient.cloudflare.verifyToken.mutate(value.token);
         try {
           const { status } = await trpcClient.contact.sendMessage.mutate({
             name: value.name,
@@ -40,6 +38,7 @@ const ContactForm = (props: ContactFormProps) => {
           toast({
             title: `Message sent successfully with status ${status}`,
           });
+          formApi.reset();
         } catch (e) {
           toast({
             title: "Message sent failed",
@@ -48,9 +47,11 @@ const ContactForm = (props: ContactFormProps) => {
             variant: "destructive",
           });
         }
-      } else {
+      } catch (e) {
         toast({
           title: "Captcha verification failed",
+          description:
+            e instanceof Error ? e.message : "An unknown error occurred.",
           variant: "destructive",
         });
       }
@@ -71,7 +72,7 @@ const ContactForm = (props: ContactFormProps) => {
           name="name"
           children={(field) => (
             <field.TextField
-              label="First Name"
+              label="Name"
               inputProps={{
                 required: true,
                 type: "text",

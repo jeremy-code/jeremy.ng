@@ -49,6 +49,7 @@ const ErrorCode = z.enum([
   "timeout-or-duplicate",
   "internal-error",
 ]);
+type ErrorCode = z.infer<typeof ErrorCode>;
 
 // https://developers.cloudflare.com/turnstile/get-started/server-side-validation/#response-fields
 const ValidationResponse = z.discriminatedUnion("success", [
@@ -85,5 +86,6 @@ export {
   SiteKey,
   Token,
   ValidationRequestParams,
+  ErrorCode,
   ValidationResponse,
 };
