@@ -52,6 +52,22 @@ const reactConfig = defineConfig(
        * @see {@link https://typescript-eslint.io/rules/require-await/}
        */
       "@typescript-eslint/require-await": "off",
+      /**
+       * @see {@link https://typescript-eslint.io/rules/only-throw-error/}
+       * @see {@link https://tanstack.com/router/latest/docs/eslint/eslint-plugin-router#typescript-eslint}
+       */
+      "@typescript-eslint/only-throw-error": [
+        "error",
+        {
+          allow: [
+            {
+              from: "package",
+              package: "@tanstack/router-core",
+              name: ["Redirect", "NotFoundError"],
+            },
+          ],
+        },
+      ],
     },
     languageOptions: {
       globals: {
