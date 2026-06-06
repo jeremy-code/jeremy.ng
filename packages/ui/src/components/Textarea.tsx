@@ -6,7 +6,7 @@ const textareaVariants = tv({
   base: [
     "relative field-sizing-content w-full min-w-0 appearance-none rounded border bg-surface text-start",
     "placeholder:text-solid",
-    "disabled:cursor-not-allowed disabled:bg-input disabled:opacity-50",
+    "disabled:cursor-not-allowed disabled:opacity-50",
     "data-invalid:border-destructive",
   ],
   variants: {
