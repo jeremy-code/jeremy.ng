@@ -7,10 +7,17 @@ ignoredOptionalDependencies:
   # eslint-import-resolver-typescript has this as an optional peer dependency,
   # leading to a peer depedency issue due to not supporting ESLint v10
   - eslint-plugin-import
-minimumReleaseAge: 1440
+minimumReleaseAge: 1440 # 1 day in minutes
 minimumReleaseAgeStrict: true
 trustPolicy: no-downgrade
-trustPolicyIgnoreAfter: 1440
+trustPolicyExclude:
+  # semver began publishing packages with provenance in 7.5.1. However, their v6
+  # packages (including 6.3.1 which was published after 7.5.1) do not. Since
+  # 6.3.1 was published in 2023-07-10, and no known vulnerability has been
+  # reported, it is ignored.
+  #
+  # https://github.com/pnpm/pnpm/issues/10202
+  - semver@6.3.1
 blockExoticSubdeps: true
 
 # Build settings (https://pnpm.io/settings#build-settings)
