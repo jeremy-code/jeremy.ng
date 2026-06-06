@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 import { useQuery } from "@tanstack/react-query";
-import { TriangleAlert } from "lucide-react";
+import { Mail, TriangleAlert } from "lucide-react";
 import { AccessibleIcon } from "radix-ui";
 
 import { env } from "#config/env";
@@ -27,7 +27,7 @@ import { LinkedIn } from "@jeremyng/ui/icons/LinkedIn";
 import { Npm } from "@jeremyng/ui/icons/Npm";
 
 const SOCIAL_ACCOUNTS_PROVIDER_MAP: Record<
-  SocialAccountProvider | "GITHUB",
+  SocialAccountProvider | "GITHUB" | "EMAIL",
   ReactNode
 > = {
   GENERIC: "Generic",
@@ -43,6 +43,7 @@ const SOCIAL_ACCOUNTS_PROVIDER_MAP: Record<
   BLUESKY: "Bluesky",
   NPM: <Npm />,
   GITHUB: <GitHub />,
+  EMAIL: <Mail />,
 };
 
 const SocialAccountsList = () => {
@@ -87,6 +88,11 @@ const SocialAccountsList = () => {
             displayName: env.VITE_GITHUB_USERNAME,
             provider: "GITHUB",
             url: `https://github.com/${env.VITE_GITHUB_USERNAME}`,
+          },
+          {
+            displayName: "hi@jeremy.ng",
+            provider: "EMAIL",
+            url: "mailto:hi@jeremy.ng",
           },
         ] as const
       ).map((socialAccount) => {
