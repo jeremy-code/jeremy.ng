@@ -1,8 +1,8 @@
-import { type ComponentPropsWithRef } from "react";
+import { Suspense, type ComponentPropsWithRef } from "react";
+import { lazy } from "react";
 
 import { getDotPath } from "@standard-schema/utils";
 
-import { Captcha } from "#components/form/Captcha";
 import { useAppForm } from "#hooks/useAppForm";
 import { getTurnstileClientErrorMessage } from "#lib/cloudflare/getTurnstileClientErrorMessage";
 import { useTRPCClient } from "#lib/trpc/client";
@@ -10,9 +10,14 @@ import { Token } from "@jeremyng/api/schemas/cloudflare/turnstile";
 import { ContactForm as ContactFormSchema } from "@jeremyng/api/schemas/contact/contactForm";
 import { Form } from "@jeremyng/ui/components/Form";
 import { Separator } from "@jeremyng/ui/components/Separator";
+import { Skeleton } from "@jeremyng/ui/components/Skeleton";
 import { toast } from "@jeremyng/ui/hooks/useToast";
 
 type ContactFormProps = ComponentPropsWithRef<typeof Form>;
+
+const Captcha = lazy(() =>
+  import("#components/form/Captcha").then((mod) => ({ default: mod.Captcha })),
+);
 
 const ContactForm = (props: ContactFormProps) => {
   const trpcClient = useTRPCClient();
@@ -114,31 +119,33 @@ const ContactForm = (props: ContactFormProps) => {
           name="token"
           children={(field) => (
             <>
-              <Captcha
-                className="mb-2.5"
-                onSuccess={(token) => {
-                  field.handleChange(token);
-                }}
-                onError={(error) => {
-                  const errorMessage = getTurnstileClientErrorMessage(error);
-                  console.error(
-                    `[Cloudflare Turnstile] Error ${error}: ${errorMessage}.`,
-                  );
-                  field.setErrorMap({
-                    onSubmit: (field.state.meta.errorMap.onSubmit ?? []).concat(
-                      { message: errorMessage, path: [field.name] },
-                    ),
-                  });
-                }}
-                {...(field.state.meta.errors.length !== 0 ?
-                  {
-                    "aria-invalid": true,
-                    "aria-errormessage": field.state.meta.errors
-                      .map((_, index) => `captcha-error-${index}`)
-                      .join(" "),
-                  }
-                : {})}
-              />
+              <Suspense fallback={<Skeleton className="mb-2.5 h-16.25 w-75" />}>
+                <Captcha
+                  className="mb-2.5"
+                  onSuccess={(token) => {
+                    field.handleChange(token);
+                  }}
+                  onError={(error) => {
+                    const errorMessage = getTurnstileClientErrorMessage(error);
+                    console.error(
+                      `[Cloudflare Turnstile] Error ${error}: ${errorMessage}.`,
+                    );
+                    field.setErrorMap({
+                      onSubmit: (
+                        field.state.meta.errorMap.onSubmit ?? []
+                      ).concat({ message: errorMessage, path: [field.name] }),
+                    });
+                  }}
+                  {...(field.state.meta.errors.length !== 0 ?
+                    {
+                      "aria-invalid": true,
+                      "aria-errormessage": field.state.meta.errors
+                        .map((_, index) => `captcha-error-${index}`)
+                        .join(" "),
+                    }
+                  : {})}
+                />
+              </Suspense>
               {field.state.meta.errors.length !== 0 ?
                 <ul className="mt-1 list-inside list-disc">
                   {field.state.meta.errors.map((error, index) =>
