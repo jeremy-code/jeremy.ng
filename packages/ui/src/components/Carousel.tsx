@@ -1,9 +1,6 @@
-"use client";
-
 import {
   useCallback,
   useEffect,
-  useMemo,
   type ComponentPropsWithoutRef,
   type ComponentPropsWithRef,
   type KeyboardEventHandler,
@@ -43,46 +40,56 @@ const Carousel = ({
   );
   const carouselState = useSyncCarouselState(api);
 
+  const orientation =
+    (options?.axis === "x" ? "horizontal"
+    : options?.axis === "y" ? "vertical"
+    : undefined) ?? "horizontal";
+
   const scrollPrev = useCallback(() => api?.scrollPrev(), [api]);
   const scrollNext = useCallback(() => api?.scrollNext(), [api]);
 
   const handleKeyDown = useCallback<KeyboardEventHandler<HTMLDivElement>>(
     (event) => {
+      if (!api) {
+        return;
+      }
+
       switch (event.key) {
-        case "ArrowLeft":
+        case orientation === "horizontal" ? "ArrowLeft" : "ArrowUp":
           event.preventDefault();
-          api?.scrollPrev();
+          api.scrollPrev();
           break;
-        case "ArrowRight":
+        case orientation === "horizontal" ? "ArrowRight" : "ArrowDown":
           event.preventDefault();
-          api?.scrollNext();
+          api.scrollNext();
+          break;
+        case "Home":
+          event.preventDefault();
+          api.scrollTo(0);
+          break;
+        case "End":
+          event.preventDefault();
+          api.scrollTo(api.slideNodes().length);
           break;
       }
     },
-    [api],
+    [api, orientation],
   );
 
   useEffect(() => {
     setApi?.(api);
   }, [api, setApi]);
 
-  const orientation =
-    (options?.axis === "x" ? "horizontal"
-    : options?.axis === "y" ? "vertical"
-    : undefined) ?? "horizontal";
-
-  const carouselContextValue = useMemo(
-    () => ({
-      carouselRef,
-      scrollPrev,
-      scrollNext,
-      ...carouselState,
-    }),
-    [carouselRef, scrollPrev, scrollNext, carouselState],
-  );
-
   return (
-    <CarouselContext value={carouselContextValue}>
+    <CarouselContext
+      value={{
+        carouselRef,
+        scrollPrev,
+        scrollNext,
+        canScrollNext: carouselState.canScrollNext,
+        canScrollPrev: carouselState.canScrollPrev,
+      }}
+    >
       <div
         onKeyDownCapture={handleKeyDown}
         className={cn(
@@ -180,7 +187,6 @@ const CarouselNext = ({ className, ...props }: ButtonProps) => {
 
   return (
     <Button
-      data-slot="carousel-next"
       className={cn(
         "group-data-[orientation=vertical]/carousel:rotate-90",
         className,
