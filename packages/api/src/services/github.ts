@@ -4,10 +4,16 @@ import { z } from "zod";
 import { env } from "../config/env";
 import { userPinnedItemsNodesQuery } from "../graphql/github/userPinnedItemsNodesQuery";
 import { userPinnedItemsTotalCountQuery } from "../graphql/github/userPinnedItemsTotalCountQuery";
+import { userSocialAccountsNodesQuery } from "../graphql/github/userSocialAccountsNodesQuery";
+import { userSocialAccountsTotalCountQuery } from "../graphql/github/userSocialAccountsTotalCountQuery";
 import {
   UserPinnedItemsNodesResponse,
   UserPinnedItemsTotalCountResponse,
 } from "../schemas/github/pinnedItems";
+import {
+  UserSocialAccountsNodesResponse,
+  UserSocialAccountsTotalCountResponse,
+} from "../schemas/github/socialAccounts";
 
 const graphqlWithAuth = graphql.defaults({
   headers: {
@@ -39,4 +45,33 @@ const getPinnedItemsNodes = z
     ),
   );
 
-export { getPinnedItemsTotalCount, getPinnedItemsNodes };
+const getSocialAccountsTotalCount = z
+  .function({
+    input: [z.strictObject({ login: z.string() })],
+    output: UserSocialAccountsTotalCountResponse,
+  })
+  .implementAsync((input) =>
+    graphqlWithAuth<UserSocialAccountsTotalCountResponse>(
+      userSocialAccountsTotalCountQuery,
+      input,
+    ),
+  );
+
+const getSocialAccountsNodes = z
+  .function({
+    input: [z.strictObject({ login: z.string(), first: z.int32().optional() })],
+    output: UserSocialAccountsNodesResponse,
+  })
+  .implementAsync((input) =>
+    graphqlWithAuth<UserSocialAccountsNodesResponse>(
+      userSocialAccountsNodesQuery,
+      input,
+    ),
+  );
+
+export {
+  getPinnedItemsTotalCount,
+  getPinnedItemsNodes,
+  getSocialAccountsTotalCount,
+  getSocialAccountsNodes,
+};

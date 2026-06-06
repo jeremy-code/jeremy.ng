@@ -2,6 +2,7 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { ContactForm } from "#components/contact/ContactForm";
+import { SocialAccountsList } from "#components/contact/SocialAccountsList";
 import { GithubPinnedList } from "#components/github/GithubPinnedList.jsx";
 import { Footer } from "#components/layout/Footer";
 import { Navbar } from "#components/layout/Navbar";
@@ -17,7 +18,7 @@ const HomeComponent = () => {
     <HydrationBoundary state={loaderData?.dehydratedState}>
       <Navbar />
       <main className="container py-4">
-        <div className="flex flex-col gap-8">
+        <div className="mb-8 flex flex-col gap-8">
           <section>
             <Heading
               id="npm-libraries"
@@ -55,7 +56,7 @@ const HomeComponent = () => {
                 Contact
               </Link>
             </Heading>
-            <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               <article>
                 <Heading
                   id="message"
@@ -68,6 +69,19 @@ const HomeComponent = () => {
                   </Link>
                 </Heading>
                 <ContactForm />
+              </article>
+              <article>
+                <Heading
+                  id="social-accounts"
+                  as="h2"
+                  size="xl"
+                  className="mb-2 leading-loose"
+                >
+                  <Link variant="anchor" href="#social-accounts">
+                    Social accounts
+                  </Link>
+                </Heading>
+                <SocialAccountsList />
               </article>
             </div>
           </section>
@@ -83,17 +97,21 @@ const Route = createFileRoute("/")({
   loader: async ({ context }) => {
     // Prehydrate queries for SEO
     const queriesOptions = [
+      context.trpc.npm.search.queryOptions({
+        text: `author:${env.VITE_NPM_REGISTRY_USERNAME}`,
+      }),
       context.trpc.github.getPinnedItems.queryOptions({
         login: env.VITE_GITHUB_USERNAME,
       }),
-      context.trpc.npm.search.queryOptions({
-        text: `author:${env.VITE_NPM_REGISTRY_USERNAME}`,
+      context.trpc.github.getSocialAccounts.queryOptions({
+        login: env.VITE_GITHUB_USERNAME,
       }),
     ] as const;
 
     await Promise.all([
       context.queryClient.prefetchQuery(queriesOptions[0]),
       context.queryClient.prefetchQuery(queriesOptions[1]),
+      context.queryClient.prefetchQuery(queriesOptions[2]),
     ]);
 
     return { dehydratedState: dehydrate(context.queryClient) };
