@@ -1,5 +1,8 @@
+import type { ReactNode } from "react";
+
 import { useQuery } from "@tanstack/react-query";
 import { TriangleAlert } from "lucide-react";
+import { AccessibleIcon } from "radix-ui";
 
 import { env } from "#config/env";
 import { useTRPC } from "#lib/trpc/client";
@@ -19,20 +22,27 @@ import {
 } from "@jeremyng/ui/components/DataList";
 import { Link } from "@jeremyng/ui/components/Link";
 import { Skeleton } from "@jeremyng/ui/components/Skeleton";
+import { GitHub } from "@jeremyng/ui/icons/GitHub";
+import { LinkedIn } from "@jeremyng/ui/icons/LinkedIn";
+import { Npm } from "@jeremyng/ui/icons/Npm";
 
-const SOCIAL_ACCOUNTS_PROVIDER_MAP: Record<SocialAccountProvider, string> = {
+const SOCIAL_ACCOUNTS_PROVIDER_MAP: Record<
+  SocialAccountProvider | "GITHUB",
+  ReactNode
+> = {
   GENERIC: "Generic",
   FACEBOOK: "Facebook",
   HOMETOWN: "Hometown",
   INSTAGRAM: "Instagram",
-  LINKEDIN: "LinkedIn",
+  LINKEDIN: <LinkedIn />,
   MASTODON: "Mastodon",
   REDDIT: "Reddit",
   TWITCH: "Twitch",
   TWITTER: "Twitter",
   YOUTUBE: "YouTube",
   BLUESKY: "Bluesky",
-  NPM: "NPM",
+  NPM: <Npm />,
+  GITHUB: <GitHub />,
 };
 
 const SocialAccountsList = () => {
@@ -49,7 +59,7 @@ const SocialAccountsList = () => {
   );
 
   if (isPending) {
-    return <Skeleton className="h-23" />;
+    return <Skeleton className="h-26" />;
   } else if (isError) {
     console.error(error);
     return (
@@ -70,30 +80,36 @@ const SocialAccountsList = () => {
 
   return (
     <DataList>
-      {githubSocialAccounts.map((socialAccount) => (
-        <DataListItem key={socialAccount.url}>
-          <DataListItemLabel>
-            {SOCIAL_ACCOUNTS_PROVIDER_MAP[socialAccount.provider]}
-          </DataListItemLabel>
-          <DataListItemValue>
-            <Link color="link" underline="hover" href={socialAccount.url}>
-              {socialAccount.displayName}
-            </Link>
-          </DataListItemValue>
-        </DataListItem>
-      ))}
-      <DataListItem>
-        <DataListItemLabel>GitHub</DataListItemLabel>
-        <DataListItemValue>
-          <Link
-            color="link"
-            underline="hover"
-            href={`https://github.com/${env.VITE_GITHUB_USERNAME}`}
-          >
-            {env.VITE_GITHUB_USERNAME}
-          </Link>
-        </DataListItemValue>
-      </DataListItem>
+      {(
+        [
+          ...githubSocialAccounts,
+          {
+            displayName: env.VITE_GITHUB_USERNAME,
+            provider: "GITHUB",
+            url: `https://github.com/${env.VITE_GITHUB_USERNAME}`,
+          },
+        ] as const
+      ).map((socialAccount) => {
+        const label = SOCIAL_ACCOUNTS_PROVIDER_MAP[socialAccount.provider];
+
+        return (
+          <DataListItem className="items-center" key={socialAccount.url}>
+            <DataListItemLabel>
+              {typeof label === "string" ?
+                label
+              : <AccessibleIcon.Root label={socialAccount.provider}>
+                  {label}
+                </AccessibleIcon.Root>
+              }
+            </DataListItemLabel>
+            <DataListItemValue>
+              <Link color="link" underline="hover" href={socialAccount.url}>
+                {socialAccount.displayName}
+              </Link>
+            </DataListItemValue>
+          </DataListItem>
+        );
+      })}
     </DataList>
   );
 };
