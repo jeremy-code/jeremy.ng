@@ -8,6 +8,8 @@ import {
   useLocation,
 } from "@tanstack/react-router";
 
+import { Footer } from "#components/layout/Footer";
+import { Navbar } from "#components/layout/Navbar";
 import { env } from "#config/env";
 import type { RouterContext } from "#router";
 import { seo } from "#utils/seo";
@@ -47,7 +49,9 @@ const RootComponent = () => {
   return (
     <AppProvider>
       <RootDocument>
+        <Navbar />
         <Outlet />
+        <Footer />
       </RootDocument>
     </AppProvider>
   );

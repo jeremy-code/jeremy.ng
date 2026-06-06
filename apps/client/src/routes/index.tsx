@@ -4,8 +4,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ContactForm } from "#components/contact/ContactForm";
 import { SocialAccountsList } from "#components/contact/SocialAccountsList";
 import { GithubPinnedList } from "#components/github/GithubPinnedList.jsx";
-import { Footer } from "#components/layout/Footer";
-import { Navbar } from "#components/layout/Navbar";
 import { NpmSearchList } from "#components/npm/NpmSearchList";
 import { env } from "#config/env";
 import { Heading } from "@jeremyng/ui/components/Heading";
@@ -16,7 +14,6 @@ const HomeComponent = () => {
 
   return (
     <HydrationBoundary state={loaderData?.dehydratedState}>
-      <Navbar />
       <main className="container py-4">
         <div className="mb-8 flex flex-col gap-8">
           <section>
@@ -87,7 +84,6 @@ const HomeComponent = () => {
           </section>
         </div>
       </main>
-      <Footer />
     </HydrationBoundary>
   );
 };
