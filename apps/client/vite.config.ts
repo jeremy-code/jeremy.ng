@@ -20,6 +20,12 @@ const viteConfig = defineConfig({
         enabled: true,
         host: "https://jeremy.ng",
       },
+      importProtection: {
+        enabled: true,
+        client: {
+          specifiers: ["@jeremyng/api"],
+        },
+      },
     }),
     react(),
     babel({ presets: [reactCompilerPreset()] }),
