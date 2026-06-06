@@ -8,7 +8,7 @@ import {
   ToastTitle,
   ToastViewport,
 } from "./Toast";
-import { useToastStore } from "../hooks/useToast";
+import { useToastStore } from "../stores/toastStore";
 
 type ToasterProps = ComponentPropsWithRef<typeof ToastProvider>;
 

@@ -21,6 +21,7 @@ type ToasterToast = {
 
 type ToastState = {
   toasts: ToasterToast[];
+  toastTimeouts: Map<string, ReturnType<typeof setTimeout>>;
   addToast: (toast: ToasterToast) => void;
   updateToast: (
     toast: Partial<ToasterToast> & Pick<ToasterToast, "id">,
@@ -37,14 +38,13 @@ type ToastState = {
   removeToast: (toastId?: ToasterToast["id"]) => void;
 };
 
-const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
-
 /**
  * Zustand store of type {@link ToastState} manages toasts in a stack of length
  * up to {@link MAX_NUMBER_OF_TOASTS}.
  */
 const useToastStore = create<ToastState>((set) => ({
   toasts: [],
+  toastTimeouts: new Map(),
   addToast: (toast) =>
     set((state) => ({
       toasts: [toast, ...state.toasts].slice(0, MAX_NUMBER_OF_TOASTS),
@@ -63,13 +63,13 @@ const useToastStore = create<ToastState>((set) => ({
         : state.toasts.map((toast) => toast.id);
 
       toastIdsToDismiss.forEach((toastId) => {
-        if (!toastTimeouts.has(toastId)) {
+        if (!state.toastTimeouts.has(toastId)) {
           const timeout = setTimeout(() => {
-            toastTimeouts.delete(toastId);
+            state.toastTimeouts.delete(toastId);
             state.removeToast(toastId);
           }, TOAST_DISMISS_DELAY_IN_MS);
 
-          toastTimeouts.set(toastId, timeout);
+          state.toastTimeouts.set(toastId, timeout);
         }
       });
 

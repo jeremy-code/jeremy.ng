@@ -11,7 +11,7 @@ import { ContactForm as ContactFormSchema } from "@jeremyng/api/schemas/contact/
 import { Form } from "@jeremyng/ui/components/Form";
 import { Separator } from "@jeremyng/ui/components/Separator";
 import { Skeleton } from "@jeremyng/ui/components/Skeleton";
-import { toast } from "@jeremyng/ui/hooks/useToast";
+import { toast } from "@jeremyng/ui/stores/toastStore";
 
 type ContactFormProps = ComponentPropsWithRef<typeof Form>;
 
