@@ -34,6 +34,23 @@ const baseConfig = defineConfig(
     },
     rules: {
       /**
+       * Emulates the TypeScript style of exempting names starting with "_"
+       *
+       * @see {@link https://typescript-eslint.io/rules/no-unused-vars/}
+       */
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          args: "all",
+          argsIgnorePattern: "^_",
+          caughtErrors: "all",
+          caughtErrorsIgnorePattern: "^_",
+          destructuredArrayIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          ignoreRestSiblings: true,
+        },
+      ],
+      /**
        * @see {@link https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/exports-last.md}
        */
       "import-x/exports-last": "error",
