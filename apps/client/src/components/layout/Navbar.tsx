@@ -16,7 +16,13 @@ import { NAVIGATION_ITEMS } from "./constants";
 
 const Navbar = ({ className, ...props }: ComponentPropsWithRef<"header">) => {
   return (
-    <header className={cn("relative border-b", className)} {...props}>
+    <header
+      className={cn(
+        "sticky inset-x-0 top-0 z-60 h-(--navbar-height) border-b bg-background [--navbar-height:--spacing(20)]",
+        className,
+      )}
+      {...props}
+    >
       <div className="container flex items-center justify-between py-4">
         <Link className="flex items-center gap-2 font-semibold" to="/">
           <img width="24" height="24" alt="Jeremy Nguyen" src="/favicon.svg" />

@@ -5,13 +5,12 @@ import { VisuallyHidden } from "radix-ui";
 import { cn } from "tailwind-variants";
 
 import { Button, type ButtonProps } from "@jeremyng/ui/components/Button";
-import { navigationMenuTriggerVariants } from "@jeremyng/ui/components/NavigationMenu";
 import {
-  Popover,
-  PopoverAnchor,
-  PopoverContent,
-  PopoverTrigger,
-} from "@jeremyng/ui/components/Popover";
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@jeremyng/ui/components/Collapsible";
+import { navigationMenuTriggerVariants } from "@jeremyng/ui/components/NavigationMenu";
 
 import { NAVIGATION_ITEMS } from "./constants";
 
@@ -67,36 +66,20 @@ const MobileNavButton = ({ className, ...props }: ButtonProps) => {
   );
 };
 
-type MobileNavProps = ComponentPropsWithRef<typeof Popover>;
+type MobileNavProps = ComponentPropsWithRef<typeof Collapsible>;
 
-/**
- * While <Popover> is not the ideal component for a mobile navigation menu,
- * using the <NavigationMenu> component would require significant changes (e.g.
- * the default behavior is opening the menu on hover, close on `mouseleave`,
- * etc.). In regards to accessibility, <Popover> does initially trap focus
- * inside <PopoverContent>.
- */
-const MobileNav = (props: MobileNavProps) => {
+const MobileNav = ({ className, ...props }: MobileNavProps) => {
   return (
-    <Popover {...props}>
-      <nav className="sm:hidden">
-        <PopoverTrigger asChild>
-          <MobileNavButton />
-        </PopoverTrigger>
-
-        <PopoverAnchor asChild>
-          {/* Anchor is set to element that is size of <Navbar /> */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0"
-          />
-        </PopoverAnchor>
-        <PopoverContent
-          hideWhenDetached={true} // If window size changes, hide content
-          onInteractOutside={(e) => e.preventDefault()}
-          className="w-(--radix-popover-content-available-width) rounded-t-none bg-background"
-        >
-          <ul className="space-y-0.5">
+    <Collapsible className={cn("sm:hidden", className)} {...props}>
+      <CollapsibleTrigger asChild>
+        <MobileNavButton />
+      </CollapsibleTrigger>
+      <CollapsibleContent
+        asChild
+        className="absolute inset-x-0 top-full border-b bg-background"
+      >
+        <nav>
+          <ul className="space-y-0.5 px-4 pb-4">
             {NAVIGATION_ITEMS.map((item) => (
               <li key={item.href}>
                 <RouterLink
@@ -112,9 +95,9 @@ const MobileNav = (props: MobileNavProps) => {
               </li>
             ))}
           </ul>
-        </PopoverContent>
-      </nav>
-    </Popover>
+        </nav>
+      </CollapsibleContent>
+    </Collapsible>
   );
 };
 
