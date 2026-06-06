@@ -17,7 +17,7 @@ const carouselCardVariants = tv({
     base: "h-full",
     footer: "border-t bg-surface-darker pt-4",
     title: "truncate",
-    description: "line-clamp-3",
+    description: null,
   },
 });
 
