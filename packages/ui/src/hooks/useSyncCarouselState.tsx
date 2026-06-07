@@ -10,8 +10,19 @@ type CarouselState = {
 };
 
 const useSyncCarouselState = (api: UseEmblaCarouselType[1]) => {
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
+  const [canScrollPrev, setCanScrollPrev] = useState(() =>
+    api?.canScrollPrev(),
+  );
+  const [canScrollNext, setCanScrollNext] = useState(() =>
+    api?.canScrollPrev(),
+  );
+
+  const [prevApi, setPrevApi] = useState(api);
+  if (api !== prevApi) {
+    setPrevApi(api);
+    setCanScrollNext(api?.canScrollNext());
+    setCanScrollPrev(api?.canScrollPrev());
+  }
 
   const handler = useEffectEvent(
     (emblaApi: Exclude<UseEmblaCarouselType[1], undefined>) => {
@@ -25,20 +36,18 @@ const useSyncCarouselState = (api: UseEmblaCarouselType[1]) => {
       return;
     }
 
-    api.on("init", handler);
     api.on("select", handler);
     api.on("reInit", handler);
 
     return () => {
-      api.off("init", handler);
       api.off("select", handler);
       api.off("reInit", handler);
     };
   }, [api]);
 
   return {
-    canScrollPrev,
-    canScrollNext,
+    canScrollPrev: canScrollPrev ?? false,
+    canScrollNext: canScrollNext ?? false,
   };
 };
 
