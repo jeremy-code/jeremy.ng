@@ -18,7 +18,8 @@ const MobileNavButton = ({ className, ...props }: ButtonProps) => {
   return (
     <Button
       className={cn("group/navbar", className)}
-      variant="outline"
+      variant="ghost"
+      color="default"
       size="icon"
       {...props}
     >

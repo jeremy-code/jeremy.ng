@@ -10,7 +10,7 @@ const buttonVariants = tv({
   ],
   variants: {
     color: { primary: null, default: null, destructive: null },
-    variant: { surface: "border", solid: null, outline: "border" },
+    variant: { surface: "border", solid: null, outline: "border", ghost: null },
     size: {
       xs: "h-8 min-w-8 gap-1 px-2.5 text-xs/4",
       sm: "h-9 min-w-9 gap-2 px-3.5 text-sm/5",
@@ -47,6 +47,11 @@ const buttonVariants = tv({
       color: "default",
       variant: "outline",
       className: "border-border bg-background text-foreground hover:bg-subtle",
+    },
+    {
+      color: "default",
+      variant: "ghost",
+      className: "bg-transparent text-foreground hover:bg-muted",
     },
   ],
   defaultVariants: {
