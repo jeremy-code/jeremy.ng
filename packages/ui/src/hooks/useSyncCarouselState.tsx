@@ -1,15 +1,13 @@
-"use client";
-
 import { useEffect, useEffectEvent, useState } from "react";
 
-import { type UseEmblaCarouselType } from "embla-carousel-react";
+import type { EmblaCarouselType } from "embla-carousel";
 
 type CarouselState = {
   canScrollPrev: boolean;
   canScrollNext: boolean;
 };
 
-const useSyncCarouselState = (api: UseEmblaCarouselType[1]) => {
+const useSyncCarouselState = (api: EmblaCarouselType | undefined) => {
   const [canScrollPrev, setCanScrollPrev] = useState(() =>
     api?.canScrollPrev(),
   );
@@ -24,12 +22,10 @@ const useSyncCarouselState = (api: UseEmblaCarouselType[1]) => {
     setCanScrollPrev(api?.canScrollPrev());
   }
 
-  const handler = useEffectEvent(
-    (emblaApi: Exclude<UseEmblaCarouselType[1], undefined>) => {
-      setCanScrollPrev(emblaApi.canScrollPrev());
-      setCanScrollNext(emblaApi.canScrollNext());
-    },
-  );
+  const handler = useEffectEvent((emblaApi: EmblaCarouselType) => {
+    setCanScrollPrev(emblaApi.canScrollPrev());
+    setCanScrollNext(emblaApi.canScrollNext());
+  });
 
   useEffect(() => {
     if (api === undefined) {

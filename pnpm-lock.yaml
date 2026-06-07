@@ -255,6 +255,9 @@ importers:
 
   packages/ui:
     dependencies:
+      embla-carousel:
+        specifier: ^8.6.0
+        version: 8.6.0
       embla-carousel-react:
         specifier: ^8.6.0
         version: 8.6.0(react@19.2.7)

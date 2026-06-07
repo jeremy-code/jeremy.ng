@@ -1,23 +1,22 @@
-"use client";
-
 import { createContext, use } from "react";
 
-import useEmblaCarousel, {
-  type UseEmblaCarouselType,
-} from "embla-carousel-react";
+import type {
+  EmblaCarouselType,
+  EmblaOptionsType,
+  EmblaPluginType,
+} from "embla-carousel";
+import type { EmblaViewportRefType } from "embla-carousel-react";
 
 import type { CarouselState } from "./useSyncCarouselState";
 
-type UseEmblaCarouselParameters = Parameters<typeof useEmblaCarousel>;
-
 type CarouselProps = {
-  options?: UseEmblaCarouselParameters[0];
-  plugins?: UseEmblaCarouselParameters[1];
-  setApi?: (api: UseEmblaCarouselType[1]) => void;
+  options?: EmblaOptionsType;
+  plugins?: EmblaPluginType[];
+  setApi?: (api: EmblaCarouselType | undefined) => void;
 };
 
 type CarouselContext = {
-  carouselRef: UseEmblaCarouselType[0];
+  carouselRef: EmblaViewportRefType;
   scrollPrev: () => void;
   scrollNext: () => void;
 } & CarouselState;
