@@ -14,6 +14,8 @@ import {
   HorizontalListItem,
 } from "@jeremyng/ui/components/HorizontalList";
 import { Link } from "@jeremyng/ui/components/Link";
+import { GitHub } from "@jeremyng/ui/icons/GitHub";
+import { Npm } from "@jeremyng/ui/icons/Npm";
 
 type NpmSearchObjectCardProps = {
   npmSearchObject: NpmSearchObject;
@@ -79,13 +81,15 @@ const NpmSearchObjectCard = ({
               )}
             >
               <Button color="default" variant="outline">
+                <GitHub className="size-4" aria-hidden />
                 GitHub
               </Button>
             </a>
           )}
 
           <a href={npmSearchObject.package.links.npm}>
-            <Button className="border-[#f87171] bg-transparent text-[#991919] hover:bg-[#fee2e2] dark:text-[#fca5a5] dark:hover:bg-[#300c0c]">
+            <Button color="default" variant="outline">
+              <Npm className="size-4 text-[#cb3837]" aria-hidden />
               npm
             </Button>
           </a>

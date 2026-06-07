@@ -18,6 +18,7 @@ import {
   HorizontalListItem,
 } from "@jeremyng/ui/components/HorizontalList";
 import { Link } from "@jeremyng/ui/components/Link";
+import { GitHub } from "@jeremyng/ui/icons/GitHub";
 
 type GithubPinnedCardProps = {
   pinnedItemNode: Repository;
@@ -98,6 +99,7 @@ const GithubPinnedCard = ({
         <div>
           <Link href={pinnedItemNode.url}>
             <Button color="default" variant="outline">
+              <GitHub className="size-4" aria-hidden />
               GitHub
             </Button>
           </Link>

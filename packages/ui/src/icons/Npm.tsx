@@ -3,9 +3,8 @@ import type { ComponentPropsWithRef } from "react";
 type NpmProps = ComponentPropsWithRef<"svg">;
 
 /**
- * Logo downloaded from
- * https://github.com/simple-icons/simple-icons/blob/8581258020405f5837a25db5e54f180ca077b7c1/icons/npm.svg
- * and resized, arranged similar to Lucide icons
+ * Logo downloaded from https://github.com/npm/logos/tree/master and resized,
+ * arranged similar to Lucide icons
  */
 const Npm = (props: NpmProps) => {
   return (
@@ -17,7 +16,21 @@ const Npm = (props: NpmProps) => {
       fill="currentColor"
       {...props}
     >
-      <path d="M3.46917 2C2.655 2 2 2.655 2 3.46917V20.5308C2 21.345 2.655 22 3.46917 22H20.5308C21.345 22 22 21.345 22 20.5308V3.46917C22 2.655 21.345 2 20.5308 2H3.46917ZM6.275 6.43583L17.8058 6.45167L17.7983 17.9817H14.9117L14.92 9.33H12.04L12.0333 17.975H6.26083L6.275 6.43583Z" />
+      <rect
+        x="2"
+        y="2"
+        width="20"
+        height="20"
+        rx="3"
+        ry="3"
+        fill="currentColor"
+        stroke="none"
+      />
+      <path
+        d="M5.75 5.75H18.25V18.25H15.75V8.25H12V18.25H5.75V5.75Z"
+        fill="var(--color-npm-foreground, white)"
+        stroke="none"
+      />
     </svg>
   );
 };

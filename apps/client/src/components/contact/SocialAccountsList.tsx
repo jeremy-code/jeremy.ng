@@ -34,14 +34,16 @@ const SOCIAL_ACCOUNTS_PROVIDER_MAP: Record<
   FACEBOOK: "Facebook",
   HOMETOWN: "Hometown",
   INSTAGRAM: "Instagram",
-  LINKEDIN: <LinkedIn />,
+  LINKEDIN: (
+    <LinkedIn className="[--color-linkedin-foreground:var(--color-background)]" />
+  ),
   MASTODON: "Mastodon",
   REDDIT: "Reddit",
   TWITCH: "Twitch",
   TWITTER: "Twitter",
   YOUTUBE: "YouTube",
   BLUESKY: "Bluesky",
-  NPM: <Npm />,
+  NPM: <Npm className="[--color-npm-foreground:var(--color-background)]" />,
   GITHUB: <GitHub />,
   EMAIL: <Mail />,
 };
