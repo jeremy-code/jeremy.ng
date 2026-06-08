@@ -74,12 +74,10 @@ const GithubPinnedCard = ({
                       timeStyle: undefined,
                     })}
                 >
-                  {updatedAtInstant
-                    .toZonedDateTimeISO(Temporal.Now.timeZoneId())
-                    .toLocaleString(undefined, {
-                      dateStyle: "medium",
-                      timeStyle: undefined,
-                    })}
+                  {updatedAtInstant.toLocaleString(undefined, {
+                    dateStyle: "medium",
+                    timeStyle: undefined,
+                  })}
                 </ClientOnly>
               </time>
             </HorizontalListItem>

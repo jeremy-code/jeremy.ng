@@ -59,12 +59,10 @@ const NpmSearchObjectCard = ({
                       timeStyle: undefined,
                     })}
                 >
-                  {dateInstant
-                    .toZonedDateTimeISO(Temporal.Now.timeZoneId())
-                    .toLocaleString(undefined, {
-                      dateStyle: "medium",
-                      timeStyle: undefined,
-                    })}
+                  {dateInstant.toLocaleString(undefined, {
+                    dateStyle: "medium",
+                    timeStyle: undefined,
+                  })}
                 </ClientOnly>
               </time>
             </HorizontalListItem>
