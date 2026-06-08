@@ -1,15 +1,19 @@
 import { Turnstile, type TurnstileProps } from "@marsidev/react-turnstile";
+import { useTheme } from "next-themes";
 import { cn } from "tailwind-variants";
 
 import { env } from "#config/env";
+import { assertNever } from "#utils/assertNever";
 import { Skeleton } from "@jeremyng/ui/components/Skeleton";
 
 type CaptchaProps = Omit<TurnstileProps, "siteKey">;
 
-const Captcha = ({ className, ...props }: CaptchaProps) => {
+const Captcha = ({ className, options, ...props }: CaptchaProps) => {
+  const { theme } = useTheme();
+
   return (
     <Turnstile
-      data-size={props.options?.size ?? "normal"} // Defaults to "normal" size
+      data-size={options?.size ?? "normal"} // Defaults to "normal" size
       // Dimensions from https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/widget-configurations/#widget-sizes
       className={cn(
         "relative",
@@ -19,6 +23,13 @@ const Captcha = ({ className, ...props }: CaptchaProps) => {
         className,
       )}
       siteKey={env.VITE_CF_TURNSTILE_SITE_KEY}
+      options={{
+        theme:
+          theme === "system" ? "auto"
+          : theme === "dark" || theme === "light" || theme === undefined ? theme
+          : assertNever(theme as never),
+        ...options,
+      }}
       {...props}
     >
       <Skeleton className="absolute inset-0 -z-1 rounded-none" />
