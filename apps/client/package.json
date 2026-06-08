@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "imports": {
+    "#content-collections": "./.content-collections/generated/index.js",
     "#*": "./src/*.js"
   },
   "scripts": {
@@ -43,7 +44,9 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^1.40.2",
+    "@cloudflare/vite-plugin": "^1.40.0",
+    "@content-collections/core": "^0.15.1",
+    "@content-collections/vite": "^0.3.0",
     "@rolldown/plugin-babel": "^0.2.3",
     "@tailwindcss/vite": "^4.3.1",
     "@tanstack/react-devtools": "^0.10.5",

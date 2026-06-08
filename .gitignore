@@ -25,6 +25,9 @@ coverage
 # Cloudflare
 .wrangler
 
+# Content Collections
+.content-collections
+
 # graphql
 */*/src/generated/gql/*.ts
 

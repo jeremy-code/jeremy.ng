@@ -1,4 +1,5 @@
 import { cloudflare } from "@cloudflare/vite-plugin";
+import contentCollections from "@content-collections/vite";
 import babel from "@rolldown/plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
@@ -19,6 +20,7 @@ const viteConfig = defineConfig({
     cloudflare({
       viteEnvironment: { name: "ssr", childEnvironments: ["rsc"] },
     }),
+    contentCollections(),
     tanstackStart({
       rsc: {
         enabled: true,

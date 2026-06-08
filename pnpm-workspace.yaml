@@ -11,6 +11,8 @@ minimumReleaseAge: 1440 # 1 day in minutes
 minimumReleaseAgeStrict: true
 trustPolicy: no-downgrade
 trustPolicyExclude:
+  # https://github.com/paulmillr/chokidar/issues/1440#issuecomment-3610663676
+  - chokidar@4.0.3
   # semver began publishing packages with provenance in 7.5.1. However, their v6
   # packages (including 6.3.1 which was published after 7.5.1) do not. Since
   # 6.3.1 was published in 2023-07-10, and no known vulnerability has been
