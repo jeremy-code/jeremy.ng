@@ -36,16 +36,15 @@ const GithubPinnedCard = ({
     <CarouselCard
       {...props}
       header={
-        <div>
-          <Badge className="w-fit">
-            <div
-              className="size-2 rounded-full bg-(--language-color)"
-              style={
-                {
-                  "--language-color": pinnedItemNode.primaryLanguage?.color,
-                } as CSSProperties
-              }
-            />
+        <div className="items-start">
+          <Badge
+            className="before:size-2 before:rounded-full before:bg-(--language-color)"
+            style={
+              {
+                "--language-color": pinnedItemNode.primaryLanguage?.color,
+              } as CSSProperties
+            }
+          >
             {pinnedItemNode.primaryLanguage?.name}
           </Badge>
           <Link
@@ -92,15 +91,15 @@ const GithubPinnedCard = ({
           </HorizontalList>
         </div>
       }
-      description={<p>{pinnedItemNode.description}</p>}
+      description={<p className="line-clamp-3">{pinnedItemNode.description}</p>}
       footer={
         <div>
-          <Link href={pinnedItemNode.url}>
-            <Button color="default" variant="outline">
+          <Button color="default" variant="outline" asChild>
+            <Link href={pinnedItemNode.url}>
               <GitHub className="size-4" aria-hidden />
               GitHub
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
       }
     />

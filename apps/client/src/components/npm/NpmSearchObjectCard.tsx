@@ -33,8 +33,8 @@ const NpmSearchObjectCard = ({
     <CarouselCard
       {...props}
       header={
-        <div>
-          <Badge className="w-fit">{npmSearchObject.package.version}</Badge>
+        <div className="items-start">
+          <Badge>{npmSearchObject.package.version}</Badge>
           <Link
             className={carouselCardVariants({
               className: props.className,
@@ -69,28 +69,30 @@ const NpmSearchObjectCard = ({
           </HorizontalList>
         </div>
       }
-      description={<p>{npmSearchObject.package.description}</p>}
+      description={
+        <p className="line-clamp-3">{npmSearchObject.package.description}</p>
+      }
       footer={
-        <div>
+        <div className="flex-nowrap">
           {!!npmSearchObject.package.links.repository && (
-            <a
-              href={npmSearchObject.package.links.repository?.substring(
-                "git+".length, // Remove "git+" prefix
-              )}
-            >
-              <Button color="default" variant="outline">
+            <Button color="default" variant="outline" asChild>
+              <a
+                href={npmSearchObject.package.links.repository?.substring(
+                  "git+".length, // Remove "git+" prefix
+                )}
+              >
                 <GitHub className="size-4" aria-hidden />
-                GitHub
-              </Button>
-            </a>
+                <span className="max-sm:hidden">GitHub</span>
+              </a>
+            </Button>
           )}
 
-          <a href={npmSearchObject.package.links.npm}>
-            <Button color="default" variant="outline">
+          <Button color="default" variant="outline" asChild>
+            <Link href={npmSearchObject.package.links.npm}>
               <Npm className="size-4 text-[#cb3837]" aria-hidden />
-              npm
-            </Button>
-          </a>
+              <span className="max-sm:hidden">npm</span>
+            </Link>
+          </Button>
         </div>
       }
     />
