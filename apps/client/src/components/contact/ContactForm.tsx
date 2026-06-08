@@ -1,6 +1,7 @@
-import { Suspense, type ComponentPropsWithRef } from "react";
+import { Suspense, useRef, type ComponentPropsWithRef } from "react";
 import { lazy } from "react";
 
+import type { TurnstileInstance } from "@marsidev/react-turnstile";
 import { getDotPath } from "@standard-schema/utils";
 
 import { useAppForm } from "#hooks/useAppForm";
@@ -20,6 +21,7 @@ const Captcha = lazy(() =>
 );
 
 const ContactForm = (props: ContactFormProps) => {
+  const turnstileRef = useRef<TurnstileInstance>(undefined);
   const trpcClient = useTRPCClient();
   const form = useAppForm({
     defaultValues: {
@@ -53,6 +55,7 @@ const ContactForm = (props: ContactFormProps) => {
           });
         }
       } catch (e) {
+        turnstileRef.current?.reset();
         toast({
           title: "Captcha verification failed",
           description:
@@ -121,6 +124,7 @@ const ContactForm = (props: ContactFormProps) => {
             <>
               <Suspense fallback={<Skeleton className="mb-2.5 h-16.25 w-75" />}>
                 <Captcha
+                  ref={turnstileRef}
                   className="mb-2.5"
                   onSuccess={(token) => {
                     field.handleChange(token);

@@ -1,4 +1,6 @@
-import { Turnstile, type TurnstileProps } from "@marsidev/react-turnstile";
+import type { ComponentPropsWithRef } from "react";
+
+import { Turnstile } from "@marsidev/react-turnstile";
 import { useTheme } from "next-themes";
 import { cn } from "tailwind-variants";
 
@@ -6,7 +8,7 @@ import { env } from "#config/env";
 import { assertNever } from "#utils/assertNever";
 import { Skeleton } from "@jeremyng/ui/components/Skeleton";
 
-type CaptchaProps = Omit<TurnstileProps, "siteKey">;
+type CaptchaProps = Omit<ComponentPropsWithRef<typeof Turnstile>, "siteKey">;
 
 const Captcha = ({ className, options, ...props }: CaptchaProps) => {
   const { theme } = useTheme();
