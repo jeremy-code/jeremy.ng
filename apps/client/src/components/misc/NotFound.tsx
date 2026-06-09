@@ -5,7 +5,7 @@ import { Heading } from "@jeremyng/ui/components/Heading";
 
 const NotFound = (_props: NotFoundRouteProps) => {
   return (
-    <main className="container grid max-h-min grid-cols-1 items-center justify-items-center py-4 sm:grid-cols-2 sm:gap-8">
+    <main className="container grid grid-cols-1 items-center justify-items-center py-4 sm:grid-cols-2 sm:gap-8">
       <img
         alt="Illustration of a flying saucer beaming up a cyclopean alien while another alien watches from the ground."
         className="h-80 max-sm:justify-self-center sm:h-100 sm:justify-self-end md:h-110 lg:h-125"
