@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 
 import { ClientOnly } from "@tanstack/react-router";
-import { Star } from "lucide-react";
+import { LinkIcon, Star } from "lucide-react";
 import { AccessibleIcon } from "radix-ui";
 import { Temporal } from "temporal-polyfill";
 
@@ -60,7 +60,16 @@ const GithubPinnedCard = ({
           <HorizontalList className="text-xs">
             {!!pinnedItemNode.licenseInfo && (
               <HorizontalListItem>
-                {pinnedItemNode.licenseInfo?.spdxId}
+                {(
+                  pinnedItemNode.licenseInfo.url !== undefined &&
+                  pinnedItemNode.licenseInfo.spdxId !== undefined
+                ) ?
+                  <Link href={pinnedItemNode.licenseInfo.url} underline="hover">
+                    {pinnedItemNode.licenseInfo?.spdxId}
+                  </Link>
+                : pinnedItemNode.licenseInfo.spdxId !== undefined ?
+                  pinnedItemNode.licenseInfo.spdxId
+                : pinnedItemNode.licenseInfo.name}
               </HorizontalListItem>
             )}
             <HorizontalListItem>
@@ -94,6 +103,16 @@ const GithubPinnedCard = ({
       description={<p className="line-clamp-3">{pinnedItemNode.description}</p>}
       footer={
         <div>
+          {pinnedItemNode.homepageUrl !== undefined &&
+            pinnedItemNode.homepageUrl !== "" &&
+            pinnedItemNode.homepageUrl !== pinnedItemNode.url && (
+              <Button color="default" variant="outline" asChild>
+                <Link href={pinnedItemNode.homepageUrl}>
+                  <LinkIcon className="size-4" aria-hidden />
+                  URL
+                </Link>
+              </Button>
+            )}
           <Button color="default" variant="outline" asChild>
             <Link href={pinnedItemNode.url}>
               <GitHub className="size-4" aria-hidden />
