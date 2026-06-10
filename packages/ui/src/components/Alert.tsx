@@ -3,31 +3,35 @@ import type { PrimitivePropsWithRef } from "radix-ui/internal";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 const alertVariants = tv({
-  base: ["relative flex w-full items-start gap-3 rounded-md p-4 text-sm/5"],
+  base: "flex w-full items-start rounded-md",
   variants: {
     color: {
       default: "bg-muted text-foreground",
-      destructive:
-        "bg-red-300/30 text-red-800 dark:bg-red-800/30 dark:text-red-300",
+      destructive: [
+        "bg-red-300/30 text-red-800",
+        "dark:bg-red-800/30 dark:text-red-300",
+      ],
+    },
+    size: {
+      sm: "gap-2 p-3 text-xs",
+      md: "gap-3 p-4 text-sm",
+      lg: "text-md gap-3 p-4",
     },
   },
   defaultVariants: {
     color: "default",
+    size: "md",
   },
 });
 
-type AlertProps = PrimitivePropsWithRef<"div"> &
+type AlertProps = PrimitivePropsWithRef<"aside"> &
   VariantProps<typeof alertVariants>;
 
-const Alert = ({ asChild, className, color, ...props }: AlertProps) => {
-  const Comp = asChild ? Slot.Root : "div";
+const Alert = ({ asChild, className, color, size, ...props }: AlertProps) => {
+  const Comp = asChild ? Slot.Root : "aside";
 
   return (
-    <Comp
-      role="alert"
-      className={alertVariants({ color, className })}
-      {...props}
-    />
+    <Comp className={alertVariants({ color, className, size })} {...props} />
   );
 };
 
