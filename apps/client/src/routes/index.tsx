@@ -22,6 +22,7 @@ const HomeComponent = () => {
               as="h1"
               size="2xl"
               className="mb-2 leading-loose"
+              anchor
             >
               <Link variant="anchor" href="#npm-libraries">
                 NPM Libraries
@@ -35,6 +36,7 @@ const HomeComponent = () => {
               as="h1"
               size="2xl"
               className="mb-2 leading-loose"
+              anchor
             >
               <Link variant="anchor" href="#github-repositories">
                 GitHub Repositories
@@ -48,6 +50,7 @@ const HomeComponent = () => {
               as="h1"
               size="2xl"
               className="mb-2 leading-loose"
+              anchor
             >
               <Link variant="anchor" href="#contact">
                 Contact
@@ -60,6 +63,7 @@ const HomeComponent = () => {
                   as="h2"
                   size="xl"
                   className="mb-2 leading-loose"
+                  anchor
                 >
                   <Link variant="anchor" href="#message">
                     Send a message
@@ -73,6 +77,7 @@ const HomeComponent = () => {
                   as="h2"
                   size="xl"
                   className="mb-2 leading-loose"
+                  anchor
                 >
                   <Link variant="anchor" href="#social-accounts">
                     Social accounts
