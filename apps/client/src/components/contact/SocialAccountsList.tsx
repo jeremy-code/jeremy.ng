@@ -83,45 +83,43 @@ const SocialAccountsList = () => {
   }
 
   return (
-    <address>
-      <DataList>
-        {(
-          [
-            ...githubSocialAccounts,
-            {
-              displayName: env.VITE_GITHUB_USERNAME,
-              provider: "GITHUB",
-              url: `https://github.com/${env.VITE_GITHUB_USERNAME}`,
-            },
-            {
-              displayName: "hi@jeremy.ng",
-              provider: "EMAIL",
-              url: "mailto:hi@jeremy.ng",
-            },
-          ] as const
-        ).map((socialAccount) => {
-          const label = SOCIAL_ACCOUNTS_PROVIDER_MAP[socialAccount.provider];
+    <DataList>
+      {(
+        [
+          ...githubSocialAccounts,
+          {
+            displayName: env.VITE_GITHUB_USERNAME,
+            provider: "GITHUB",
+            url: `https://github.com/${env.VITE_GITHUB_USERNAME}`,
+          },
+          {
+            displayName: "hi@jeremy.ng",
+            provider: "EMAIL",
+            url: "mailto:hi@jeremy.ng",
+          },
+        ] as const
+      ).map((socialAccount) => {
+        const label = SOCIAL_ACCOUNTS_PROVIDER_MAP[socialAccount.provider];
 
-          return (
-            <DataListItem className="items-center" key={socialAccount.url}>
-              <DataListItemLabel>
-                {typeof label === "string" ?
-                  label
-                : <AccessibleIcon.Root label={socialAccount.provider}>
-                    {label}
-                  </AccessibleIcon.Root>
-                }
-              </DataListItemLabel>
-              <DataListItemValue>
-                <Link color="link" underline="hover" href={socialAccount.url}>
-                  {socialAccount.displayName}
-                </Link>
-              </DataListItemValue>
-            </DataListItem>
-          );
-        })}
-      </DataList>
-    </address>
+        return (
+          <DataListItem className="items-center" key={socialAccount.url}>
+            <DataListItemLabel>
+              {typeof label === "string" ?
+                label
+              : <AccessibleIcon.Root label={socialAccount.provider}>
+                  {label}
+                </AccessibleIcon.Root>
+              }
+            </DataListItemLabel>
+            <DataListItemValue>
+              <Link color="link" underline="hover" href={socialAccount.url}>
+                {socialAccount.displayName}
+              </Link>
+            </DataListItemValue>
+          </DataListItem>
+        );
+      })}
+    </DataList>
   );
 };
 
