@@ -1,5 +1,4 @@
 import Mailgun from "mailgun.js";
-import type { MailgunMessageData } from "mailgun.js/definitions";
 import { z } from "zod";
 
 import { env } from "../config/env";
@@ -18,10 +17,7 @@ const mailgunClient = mailgun.client({
 const sendMessage = z
   .function({ input: [MessagesSendRequest], output: MessagesSendResult })
   .implementAsync((input) =>
-    mailgunClient.messages.create(
-      input.domain,
-      input.data as MailgunMessageData, // Valid runtime types, TypeScript doesn't handle the intersection (&) well
-    ),
+    mailgunClient.messages.create(input.domain, input.data),
   );
 
 export { sendMessage };
