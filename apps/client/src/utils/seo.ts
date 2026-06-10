@@ -15,6 +15,7 @@ const seo = ({
 }: SeoOptions): ComponentPropsWithoutRef<"meta">[] => {
   const tags = [
     { title },
+    { name: "apple-mobile-web-app-title", content: title },
     { name: "description", content: description },
     ...(keywords !== undefined ?
       [{ name: "keywords", content: keywords.join(",") }]
