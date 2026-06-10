@@ -24,6 +24,7 @@ import { Link } from "@jeremyng/ui/components/Link";
 import { Skeleton } from "@jeremyng/ui/components/Skeleton";
 import { GitHub } from "@jeremyng/ui/icons/GitHub";
 import { LinkedIn } from "@jeremyng/ui/icons/LinkedIn";
+import { Mastodon } from "@jeremyng/ui/icons/Mastodon";
 import { Npm } from "@jeremyng/ui/icons/Npm";
 
 const SOCIAL_ACCOUNTS_PROVIDER_MAP: Record<
@@ -37,7 +38,7 @@ const SOCIAL_ACCOUNTS_PROVIDER_MAP: Record<
   LINKEDIN: (
     <LinkedIn className="[--color-linkedin-foreground:var(--color-background)]" />
   ),
-  MASTODON: "Mastodon",
+  MASTODON: <Mastodon />,
   REDDIT: "Reddit",
   TWITCH: "Twitch",
   TWITTER: "Twitter",
