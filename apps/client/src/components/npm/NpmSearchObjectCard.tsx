@@ -74,6 +74,12 @@ const NpmSearchObjectCard = ({
       }
       footer={
         <div className="flex-nowrap">
+          <Button color="default" variant="outline" asChild>
+            <Link href={npmSearchObject.package.links.npm}>
+              <Npm className="size-4 text-[#cb3837]" aria-hidden />
+              <span className="max-sm:hidden">npm</span>
+            </Link>
+          </Button>
           {!!npmSearchObject.package.links.repository && (
             <Button color="default" variant="outline" asChild>
               <a
@@ -86,13 +92,6 @@ const NpmSearchObjectCard = ({
               </a>
             </Button>
           )}
-
-          <Button color="default" variant="outline" asChild>
-            <Link href={npmSearchObject.package.links.npm}>
-              <Npm className="size-4 text-[#cb3837]" aria-hidden />
-              <span className="max-sm:hidden">npm</span>
-            </Link>
-          </Button>
         </div>
       }
     />
