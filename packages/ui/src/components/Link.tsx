@@ -8,13 +8,15 @@ const linkVariants = tv({
   variants: {
     variant: {
       anchor: [
-        "inline",
-        // `margin-top` values will depend on font and `line-height`
-        "after:absolute after:mt-[.35em] after:text-[.75em] after:text-muted-foreground",
-        "before:absolute before:mt-[.35em] before:text-[.75em] before:text-muted-foreground",
-        "md:before:ml-[-.8em] md:before:pr-[.8em] md:before:content-['#']",
-        "max-md:pr-[1.1ch] max-md:after:ml-[.25em] max-md:after:content-['#']",
-        "not-[:hover,:focus]:before:invisible not-[:hover,:focus]:after:invisible",
+        "relative inline",
+        "[--hash-width-in-em:0.704167em]", // 16.9 px / 24px ≈ 0.704167em
+        "[--hash-padding:--spacing(1)]",
+        "[--hash-total-width:calc(var(--hash-width-in-em)+var(--hash-padding))]",
+        "after:absolute after:bottom-0 after:left-[calc(100%+var(--hash-padding))] after:inline-flex after:h-full after:items-center after:text-muted-foreground after:content-['#']",
+        "before:absolute before:bottom-0 before:-left-(--hash-total-width) before:inline-flex before:h-full before:items-center before:text-muted-foreground before:content-['#']",
+        "max-md:mr-(--hash-total-width)",
+        "max-md:before:hidden md:after:hidden",
+        "max-md:not-[:hover,:focus]:after:hidden md:not-[:hover,:focus]:before:hidden",
       ],
     },
     color: {
