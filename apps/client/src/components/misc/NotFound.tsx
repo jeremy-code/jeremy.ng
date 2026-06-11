@@ -10,7 +10,7 @@ const NotFound = (_props: NotFoundRouteProps) => {
       <Image
         alt="Illustration of a flying saucer beaming up a cyclopean alien while another alien watches from the ground."
         className="h-80 max-sm:justify-self-center sm:h-100 sm:justify-self-end md:h-110 lg:h-125"
-        src="/not-found.webp"
+        src="/assets/not-found.webp"
         layout="fullWidth"
       />
       <div className="order-first flex flex-col items-start gap-2 justify-self-start sm:order-last">
