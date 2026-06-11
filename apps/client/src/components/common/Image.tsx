@@ -6,6 +6,8 @@ import { env } from "#config/env";
 
 type ImageProps = ComponentPropsWithRef<typeof UnpicImage>;
 
+const CLOUDFLARE_DOMAIN = new URL(env.VITE_BASE_URL).host;
+
 const Image = (props: ImageProps) => {
   return (
     <UnpicImage
@@ -22,7 +24,7 @@ const Image = (props: ImageProps) => {
         ...(import.meta.env.PROD && {
           cloudflare: {
             ...props.options?.cloudflare,
-            domain: env.VITE_BASE_URL,
+            domain: CLOUDFLARE_DOMAIN,
           },
         }),
       }}
