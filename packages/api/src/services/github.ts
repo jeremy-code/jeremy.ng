@@ -7,11 +7,15 @@ import { userPinnedItemsTotalCountQuery } from "../graphql/github/userPinnedItem
 import { userSocialAccountsNodesQuery } from "../graphql/github/userSocialAccountsNodesQuery";
 import { userSocialAccountsTotalCountQuery } from "../graphql/github/userSocialAccountsTotalCountQuery";
 import {
+  UserPinnedItemsNodesRequestParams,
   UserPinnedItemsNodesResponse,
+  UserPinnedItemsTotalCountRequestParams,
   UserPinnedItemsTotalCountResponse,
 } from "../schemas/github/pinnedItems";
 import {
+  UserSocialAccountsNodesRequestParams,
   UserSocialAccountsNodesResponse,
+  UserSocialAccountsTotalCountRequestParams,
   UserSocialAccountsTotalCountResponse,
 } from "../schemas/github/socialAccounts";
 
@@ -23,7 +27,7 @@ const graphqlWithAuth = graphql.defaults({
 
 const getPinnedItemsTotalCount = z
   .function({
-    input: [z.strictObject({ login: z.string() })],
+    input: [UserPinnedItemsTotalCountRequestParams],
     output: UserPinnedItemsTotalCountResponse,
   })
   .implementAsync((input) =>
@@ -35,7 +39,7 @@ const getPinnedItemsTotalCount = z
 
 const getPinnedItemsNodes = z
   .function({
-    input: [z.strictObject({ login: z.string(), first: z.int32().optional() })],
+    input: [UserPinnedItemsNodesRequestParams],
     output: UserPinnedItemsNodesResponse,
   })
   .implementAsync((input) =>
@@ -47,7 +51,7 @@ const getPinnedItemsNodes = z
 
 const getSocialAccountsTotalCount = z
   .function({
-    input: [z.strictObject({ login: z.string() })],
+    input: [UserSocialAccountsTotalCountRequestParams],
     output: UserSocialAccountsTotalCountResponse,
   })
   .implementAsync((input) =>
@@ -59,7 +63,7 @@ const getSocialAccountsTotalCount = z
 
 const getSocialAccountsNodes = z
   .function({
-    input: [z.strictObject({ login: z.string(), first: z.int32().optional() })],
+    input: [UserSocialAccountsNodesRequestParams],
     output: UserSocialAccountsNodesResponse,
   })
   .implementAsync((input) =>

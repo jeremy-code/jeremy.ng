@@ -22,6 +22,10 @@ const SocialAccount = z.strictObject({
   url: z.url(),
 });
 
+const UserSocialAccountsTotalCountRequestParams = z.strictObject({
+  login: z.string(),
+});
+
 const UserSocialAccountsTotalCountResponse = z.strictObject({
   user: z.strictObject({
     socialAccounts: z.strictObject({
@@ -32,6 +36,11 @@ const UserSocialAccountsTotalCountResponse = z.strictObject({
 type UserSocialAccountsTotalCountResponse = z.infer<
   typeof UserSocialAccountsTotalCountResponse
 >;
+
+const UserSocialAccountsNodesRequestParams = z.strictObject({
+  login: z.string(),
+  first: z.int32().optional(),
+});
 
 const UserSocialAccountsNodesResponse = z.strictObject({
   user: z.strictObject({
@@ -47,6 +56,8 @@ type UserSocialAccountsNodesResponse = z.infer<
 export {
   SocialAccountProvider,
   SocialAccount,
+  UserSocialAccountsTotalCountRequestParams,
   UserSocialAccountsTotalCountResponse,
+  UserSocialAccountsNodesRequestParams,
   UserSocialAccountsNodesResponse,
 };

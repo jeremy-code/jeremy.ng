@@ -1,7 +1,13 @@
 import { z } from "zod";
 
-import { Repository } from "../schemas/github/pinnedItems";
-import { SocialAccount } from "../schemas/github/socialAccounts";
+import {
+  Repository,
+  UserPinnedItemsTotalCountRequestParams,
+} from "../schemas/github/pinnedItems";
+import {
+  SocialAccount,
+  UserSocialAccountsTotalCountRequestParams,
+} from "../schemas/github/socialAccounts";
 import {
   getPinnedItemsTotalCount,
   getPinnedItemsNodes,
@@ -12,7 +18,7 @@ import { baseProcedure, createTRPCRouter } from "../trpc";
 
 const githubRouter = createTRPCRouter({
   getPinnedItems: baseProcedure
-    .input(z.strictObject({ login: z.string() }))
+    .input(UserPinnedItemsTotalCountRequestParams)
     .output(z.array(Repository))
     .query(async (opts) => {
       const { totalCount } = (await getPinnedItemsTotalCount(opts.input)).user
@@ -30,7 +36,7 @@ const githubRouter = createTRPCRouter({
       ).user.pinnedItems.nodes;
     }),
   getSocialAccounts: baseProcedure
-    .input(z.strictObject({ login: z.string() }))
+    .input(UserSocialAccountsTotalCountRequestParams)
     .output(z.array(SocialAccount))
     .query(async (opts) => {
       const { totalCount } = (await getSocialAccountsTotalCount(opts.input))

@@ -32,6 +32,10 @@ const Repository = z.strictObject({
 });
 type Repository = z.infer<typeof Repository>;
 
+const UserPinnedItemsTotalCountRequestParams = z.strictObject({
+  login: z.string(),
+});
+
 const UserPinnedItemsTotalCountResponse = z.strictObject({
   user: z.strictObject({
     pinnedItems: z.strictObject({
@@ -42,6 +46,11 @@ const UserPinnedItemsTotalCountResponse = z.strictObject({
 type UserPinnedItemsTotalCountResponse = z.infer<
   typeof UserPinnedItemsTotalCountResponse
 >;
+
+const UserPinnedItemsNodesRequestParams = z.strictObject({
+  login: z.string(),
+  first: z.int32().optional(),
+});
 
 const UserPinnedItemsNodesResponse = z.strictObject({
   user: z.strictObject({
@@ -58,6 +67,8 @@ export {
   Repository,
   Language,
   License,
+  UserPinnedItemsTotalCountRequestParams,
   UserPinnedItemsTotalCountResponse,
+  UserPinnedItemsNodesRequestParams,
   UserPinnedItemsNodesResponse,
 };
