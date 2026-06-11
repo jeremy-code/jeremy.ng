@@ -99,7 +99,7 @@ const Carousel = ({
           className,
         )}
         role="region"
-        aria-roledescription="Carousel"
+        aria-roledescription="carousel"
         data-orientation={orientation}
         {...props}
       />
@@ -134,7 +134,6 @@ const CarouselContent = ({
 
           className,
         )}
-        role="group"
         {...props}
       />
     </div>
@@ -150,7 +149,8 @@ const CarouselItem = ({
 
   return (
     <Comp
-      role="listitem"
+      role="group"
+      aria-roledescription="slide"
       className={cn(
         "min-w-0 flex-[0_0_100%]",
         "not-last:group-data-[orientation=horizontal]/carousel:pr-4",

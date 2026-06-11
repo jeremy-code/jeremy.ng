@@ -73,7 +73,7 @@ const NpmSearchObjectCard = ({
         <p className="line-clamp-3">{npmSearchObject.package.description}</p>
       }
       footer={
-        <div className="flex-nowrap">
+        <div className="flex-nowrap" role="group">
           <Button color="default" variant="outline" asChild>
             <Link href={npmSearchObject.package.links.npm}>
               <Npm className="size-4 text-[#cb3837]" aria-hidden />

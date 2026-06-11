@@ -25,7 +25,7 @@ const NotFound = (props: NotFoundRouteProps) => {
         <p className="text-fg-muted mb-4">
           The page you are looking for does not exist.
         </p>
-        <div className="flex gap-2">
+        <div role="group" className="flex gap-2">
           <Button asChild>
             <Link to="/">Go Home</Link>
           </Button>

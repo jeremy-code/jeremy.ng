@@ -102,7 +102,7 @@ const GithubPinnedCard = ({
       }
       description={<p className="line-clamp-3">{pinnedItemNode.description}</p>}
       footer={
-        <div>
+        <div role="group">
           {pinnedItemNode.homepageUrl !== undefined &&
             pinnedItemNode.homepageUrl !== "" &&
             pinnedItemNode.homepageUrl !== pinnedItemNode.url && (

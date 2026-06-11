@@ -44,7 +44,7 @@ const CatchBoundary = ({ error, reset }: ErrorComponentProps) => {
           </div>
         }
         footer={
-          <div>
+          <div role="group">
             <Button variant="surface" onClick={() => reset()}>
               Try Again
             </Button>
