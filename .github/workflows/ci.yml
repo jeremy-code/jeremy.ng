@@ -6,6 +6,9 @@ on:
   pull_request:
     types: [opened, synchronize]
 
+permissions:
+  contents: read # Access to check out code and install dependencies
+
 jobs:
   build:
     name: Build
