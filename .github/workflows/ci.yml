@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Typecheck code with TypeScript
+        run: pnpm run typecheck
+
       - name: Lint code with ESLint
         run: pnpm run lint
 

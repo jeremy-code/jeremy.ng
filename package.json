@@ -9,7 +9,8 @@
     "dev": "turbo dev",
     "lint": "eslint && turbo lint",
     "format": "prettier . --write",
-    "format:check": "prettier . --check"
+    "format:check": "prettier . --check",
+    "typecheck": "turbo typecheck"
   },
   "keywords": [],
   "author": "Jeremy Nguyen <nguyen.jeremyt@gmail.com> (https://jeremy.ng)",

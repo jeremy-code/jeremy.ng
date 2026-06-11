@@ -19,6 +19,9 @@
     "lint": {
       "dependsOn": ["^lint"]
     },
+    "typecheck": {
+      "dependsOn": ["^typecheck"]
+    },
     "dev": {
       "cache": false,
       "inputs": ["$TURBO_DEFAULT$", ".env*", "!.env.example"],
