@@ -18,7 +18,7 @@ const Navbar = ({ className, ...props }: ComponentPropsWithRef<"header">) => {
   return (
     <header
       className={cn(
-        "sticky inset-x-0 top-0 z-60 h-(--navbar-height) border-b bg-background [--navbar-height:--spacing(20)]",
+        "sticky inset-x-0 top-0 z-60 h-(--navbar-height) border-b bg-background",
         className,
       )}
       {...props}

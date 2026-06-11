@@ -97,6 +97,11 @@
     @apply antialiased [interpolate-size:allow-keywords] [text-size-adjust:none];
   }
 
+  :root {
+    @apply scroll-pt-(--navbar-height);
+    --navbar-height: --spacing(20);
+  }
+
   body {
     @apply flex min-h-svh flex-col bg-background text-foreground;
 

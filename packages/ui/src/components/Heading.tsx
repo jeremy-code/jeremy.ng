@@ -37,9 +37,6 @@ const headingVariants = tv({
       "8xl": "text-8xl/36",
       "9xl": "text-9xl/48",
     },
-    anchor: {
-      true: "scroll-mt-(--navbar-height) [--navbar-height:--spacing(20)]",
-    },
   },
   defaultVariants: { size: "md", fontWeight: "semibold" },
 });
@@ -55,16 +52,13 @@ const Heading = ({
   className,
   size,
   fontWeight,
-  anchor,
   ...props
 }: HeadingProps) => {
   const Comp = asChild ? Slot.Root : (as ?? "h1");
 
   return (
     <Comp
-      className={twMerge(
-        headingVariants({ className, size, fontWeight, anchor }),
-      )}
+      className={twMerge(headingVariants({ className, size, fontWeight }))}
       {...(asChild ?
         { role: "heading", "aria-level": as === undefined ? 1 : Number(as[1]) }
       : {})}
