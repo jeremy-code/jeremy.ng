@@ -90,7 +90,56 @@ const Route = createRootRouteWithContext<RouterContext>()({
         href: "/apple-touch-icon.png",
       },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Person",
+              "@id": `${env.VITE_BASE_URL}/#person`,
+              name: "Jeremy Nguyen",
+              url: env.VITE_BASE_URL,
+              image: "https://avatars.githubusercontent.com/u/43259194",
+              email: "hi@jeremy.ng",
+              nationality: {
+                "@type": "Country",
+                name: "United States",
+              },
+              sameAs: [
+                `https://github.com/${env.VITE_GITHUB_USERNAME}`,
+                `https://npmjs.com/~${env.VITE_NPM_REGISTRY_USERNAME}`,
+              ],
+            },
+            {
+              "@type": "WebSite",
+              "@id": `${env.VITE_BASE_URL}/#website`,
+              url: env.VITE_BASE_URL,
+              name: "Jeremy Nguyen",
+            },
+            {
+              "@type": "WebPage",
+              name: "Jeremy Nguyen",
+              url: env.VITE_BASE_URL,
+              description: "Personal website for Jeremy Nguyen",
+              inLanguage: "en-US",
+              author: {
+                "@id": `${env.VITE_BASE_URL}/#person`,
+              },
+              mainEntity: {
+                "@id": `${env.VITE_BASE_URL}/#person`,
+              },
+              isPartOf: {
+                "@id": `${env.VITE_BASE_URL}/#website`,
+              },
+            },
+          ],
+        }),
+      },
+    ],
   }),
+
   component: RootComponent,
 });
 
