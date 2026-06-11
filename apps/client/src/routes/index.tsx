@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { ContactForm } from "#components/contact/ContactForm";
 import { SocialAccountsList } from "#components/contact/SocialAccountsList";
-import { GithubPinnedList } from "#components/github/GithubPinnedList.jsx";
+import { GithubPinnedList } from "#components/github/GithubPinnedList";
 import { NpmSearchList } from "#components/npm/NpmSearchList";
 import { env } from "#config/env";
 import { Heading } from "@jeremyng/ui/components/Heading";

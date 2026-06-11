@@ -3,14 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    ".": {
-      "@jeremyng/development": "./src/index.js",
-      "default": "./src/index"
-    },
-    "./*": {
-      "@jeremyng/development": "./src/*.js",
-      "default": "./src/*"
-    }
+    ".": "./src/index.js",
+    "./*": "./src/*.js"
   },
   "scripts": {
     "lint": "eslint .",

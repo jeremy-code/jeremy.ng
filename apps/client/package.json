@@ -4,10 +4,7 @@
   "private": true,
   "type": "module",
   "imports": {
-    "#*": {
-      "@jeremyng/development": "./src/*.js",
-      "default": "./src/*"
-    }
+    "#*": "./src/*.js"
   },
   "scripts": {
     "dev": "vite dev",
