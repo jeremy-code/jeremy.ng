@@ -3,13 +3,11 @@
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
-    /* Projects */
-    "incremental": false,
-
-    /* Language and Environment */
-    "target": "ES2024",
-    "lib": ["ES2024"],
-    "moduleDetection": "force",
+    /* Type Checking */
+    "noImplicitOverride": true,
+    "noUncheckedIndexedAccess": true,
+    "strict": true,
+    "strictNullChecks": true,
 
     /* Modules */
     "module": "ESNext",
@@ -17,15 +15,17 @@
     "resolveJsonModule": true,
 
     /* Interop Constraints */
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
     "esModuleInterop": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
 
-    /* Type Checking */
-    "strict": true,
-    "strictNullChecks": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
+    /* Language and Environment */
+    "lib": ["ES2024"],
+    "moduleDetection": "force",
+    "target": "ES2024",
+
+    /* Projects */
+    "incremental": false,
 
     /* Completeness */
     "skipLibCheck": true
