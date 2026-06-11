@@ -11,7 +11,7 @@ import baseConfig from "./index.js";
 
 const reactConfig = defineConfig(
   // Ignore generated files including TanStack Router filesystem route tree
-  globalIgnores(["dist", "*/generated/"]),
+  globalIgnores(["*/generated/"]),
   baseConfig,
   eslintReact.configs["recommended-type-checked"],
   reactCompiler.configs.recommended,
