@@ -20,8 +20,6 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@jeremyng/eslint-config": "workspace:*",
-    "@jeremyng/tsconfig": "workspace:*",
     "@types/node": "^24.13.1"
   }
 }
