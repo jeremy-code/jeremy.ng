@@ -8,6 +8,7 @@
       "env": [
         "ANALYZE",
         "DEV",
+        "PROD",
         "CF_TURNSTILE_SECRET_KEY",
         "MAILGUN_API_KEY",
         "MAILGUN_DOMAIN"
