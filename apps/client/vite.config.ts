@@ -7,6 +7,11 @@ import { fontless } from "fontless";
 import { Features } from "lightningcss";
 import { defineConfig } from "vite";
 import { analyzer } from "vite-bundle-analyzer";
+import { z } from "zod";
+
+const isAnalyzerEnabled =
+  process.env.ANALYZE !== undefined &&
+  z.stringbool().parse(process.env.ANALYZE);
 
 const viteConfig = defineConfig({
   plugins: [
@@ -31,7 +36,7 @@ const viteConfig = defineConfig({
     babel({ presets: [reactCompilerPreset()] }),
     tailwindcss(),
     fontless(),
-    ...(process.env.ANALYZE ? [analyzer()] : []),
+    ...(isAnalyzerEnabled ? [analyzer()] : []),
   ],
   server: {
     port: Number(process.env.PORT) || 3000,
