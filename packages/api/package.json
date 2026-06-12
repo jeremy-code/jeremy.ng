@@ -8,18 +8,22 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "codegen:graphql": "DOTENV_CONFIG_PATH=.env.local graphql-codegen --require dotenv/config"
   },
   "dependencies": {
     "@octokit/graphql": "^9.0.3",
     "@t3-oss/env-core": "^0.13.11",
     "@trpc/server": "^11.17.0",
+    "dotenv": "^17.4.2",
+    "graphql": "^16.14.2",
     "ky": "^2.0.2",
     "mailgun.js": "^13.2.0",
     "superjson": "^2.2.6",
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@types/node": "^24.13.1"
+    "@graphql-codegen/cli": "^7.1.2",
+    "@graphql-typed-document-node/core": "^3.2.0"
   }
 }

@@ -6,6 +6,8 @@ node_modules
 .pnp.js
 
 # Local env files
+.dev.vars*
+!.dev.vars.example
 .env.local
 .env.development.local
 .env.test.local
@@ -23,8 +25,10 @@ coverage
 # Cloudflare
 .wrangler
 
+# graphql
+*/*/src/generated/gql/*.ts
+
 # Build Outputs
-.next/
 out/
 build
 dist

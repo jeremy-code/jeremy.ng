@@ -64,7 +64,10 @@ const GithubPinnedCard = ({
                   pinnedItemNode.licenseInfo.url !== undefined &&
                   pinnedItemNode.licenseInfo.spdxId !== undefined
                 ) ?
-                  <Link href={pinnedItemNode.licenseInfo.url} underline="hover">
+                  <Link
+                    href={pinnedItemNode.licenseInfo.url ?? undefined}
+                    underline="hover"
+                  >
                     {pinnedItemNode.licenseInfo?.spdxId}
                   </Link>
                 : pinnedItemNode.licenseInfo.spdxId !== undefined ?
@@ -107,7 +110,7 @@ const GithubPinnedCard = ({
             pinnedItemNode.homepageUrl !== "" &&
             pinnedItemNode.homepageUrl !== pinnedItemNode.url && (
               <Button color="default" variant="outline" asChild>
-                <Link href={pinnedItemNode.homepageUrl}>
+                <Link href={pinnedItemNode.homepageUrl ?? undefined}>
                   <LinkIcon className="size-4" aria-hidden />
                   URL
                 </Link>

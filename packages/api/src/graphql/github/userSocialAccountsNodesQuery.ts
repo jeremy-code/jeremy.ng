@@ -1,10 +1,7 @@
-import type { Query } from "@octokit/graphql/types";
+import { graphql } from "../../generated/gql";
 
-const userSocialAccountsNodesQuery: Query = `
-  query userSocialAccountsNodesQuery(
-    $login: String!
-    $first: Int = 6
-  ) {
+const userSocialAccountsNodesQuery = graphql(`
+  query userSocialAccountsNodes($login: String!, $first: Int = 6) {
     user(login: $login) {
       socialAccounts(first: $first) {
         nodes {
@@ -15,6 +12,6 @@ const userSocialAccountsNodesQuery: Query = `
       }
     }
   }
-`;
+`);
 
 export { userSocialAccountsNodesQuery };

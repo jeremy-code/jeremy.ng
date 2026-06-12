@@ -40,6 +40,7 @@ const SOCIAL_ACCOUNTS_PROVIDER_MAP: Record<
   ),
   MASTODON: <Mastodon />,
   REDDIT: "Reddit",
+  THREADS: "Threads",
   TWITCH: "Twitch",
   TWITTER: "Twitter",
   YOUTUBE: "YouTube",

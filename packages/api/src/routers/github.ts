@@ -1,13 +1,8 @@
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
-import {
-  Repository,
-  UserPinnedItemsTotalCountRequestParams,
-} from "../schemas/github/pinnedItems";
-import {
-  SocialAccount,
-  UserSocialAccountsTotalCountRequestParams,
-} from "../schemas/github/socialAccounts";
+import { Repository } from "../schemas/github/pinnedItems";
+import { SocialAccount } from "../schemas/github/socialAccounts";
 import {
   getPinnedItemsTotalCount,
   getPinnedItemsNodes,
@@ -18,40 +13,78 @@ import { baseProcedure, createTRPCRouter } from "../trpc";
 
 const githubRouter = createTRPCRouter({
   getPinnedItems: baseProcedure
-    .input(UserPinnedItemsTotalCountRequestParams)
+    .input(z.strictObject({ login: z.string() }))
     .output(z.array(Repository))
     .query(async (opts) => {
-      const { totalCount } = (await getPinnedItemsTotalCount(opts.input)).user
-        .pinnedItems;
+      const totalCountResponse = await getPinnedItemsTotalCount(opts.input);
+
+      if (totalCountResponse.user === null) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message:
+            "The user could not be found when attempting to get the total count of pinned items.",
+        });
+      }
+
+      const { totalCount } = totalCountResponse.user.pinnedItems;
 
       if (totalCount === 0) {
         return [];
       }
 
+      const pinnedItemsNodesResponse = await getPinnedItemsNodes(opts.input);
+
+      if (pinnedItemsNodesResponse.user === null) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message:
+            "The user could not be found when attempting to get the pinned items.",
+        });
+      }
+
       return (
-        await getPinnedItemsNodes({
-          ...opts.input,
-          first: totalCount,
-        })
-      ).user.pinnedItems.nodes;
+        pinnedItemsNodesResponse.user.pinnedItems.nodes?.filter(
+          (node) => node !== null && node.__typename === "Repository",
+        ) ?? []
+      );
     }),
   getSocialAccounts: baseProcedure
-    .input(UserSocialAccountsTotalCountRequestParams)
+    .input(z.strictObject({ login: z.string() }))
     .output(z.array(SocialAccount))
     .query(async (opts) => {
-      const { totalCount } = (await getSocialAccountsTotalCount(opts.input))
-        .user.socialAccounts;
+      const totalCountResponse = await getSocialAccountsTotalCount(opts.input);
+
+      if (totalCountResponse.user === null) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message:
+            "The user could not be found when attempting to get the total count of social accounts.",
+        });
+      }
+
+      const { totalCount } = totalCountResponse.user.socialAccounts;
 
       if (totalCount === 0) {
         return [];
       }
 
+      const socialAccountsNodesResponse = await getSocialAccountsNodes(
+        opts.input,
+      );
+
+      if (socialAccountsNodesResponse.user === null) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message:
+            "The user could not be found when attempting to get the social accounts.",
+        });
+      }
+
       return (
-        await getSocialAccountsNodes({
-          ...opts.input,
-          first: totalCount,
-        })
-      ).user.socialAccounts.nodes;
+        socialAccountsNodesResponse.user.socialAccounts.nodes?.filter(
+          (node) => node !== null,
+        ) ?? []
+      );
     }),
 });
 

@@ -1,0 +1,15 @@
+{
+  "$schema": "../../node_modules/turbo/schema.json",
+  "extends": ["//"],
+
+  "tasks": {
+    "codegen": {
+      "dependsOn": ["codegen:graphql"]
+    },
+    "codegen:graphql": {
+      "env": ["GITHUB_TOKEN"],
+      "outputs": ["src/generated/gql/*.ts"],
+      "inputs": ["codegen.ts", "src/graphql/*/*.ts"]
+    }
+  }
+}

@@ -1,6 +1,6 @@
-import type { Query } from "@octokit/graphql/types";
+import { graphql } from "../../generated/gql";
 
-const userPinnedItemsTotalCountQuery: Query = `
+const userPinnedItemsTotalCountQuery = graphql(`
   query UserPinnedItemsTotalCount($login: String!) {
     user(login: $login) {
       pinnedItems {
@@ -8,6 +8,6 @@ const userPinnedItemsTotalCountQuery: Query = `
       }
     }
   }
-`;
+`);
 
 export { userPinnedItemsTotalCountQuery };

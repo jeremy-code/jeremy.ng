@@ -8,6 +8,7 @@ const SocialAccountProvider = z.enum([
   "LINKEDIN",
   "MASTODON",
   "REDDIT",
+  "THREADS",
   "TWITCH",
   "TWITTER",
   "YOUTUBE",
@@ -22,42 +23,4 @@ const SocialAccount = z.strictObject({
   url: z.url(),
 });
 
-const UserSocialAccountsTotalCountRequestParams = z.strictObject({
-  login: z.string(),
-});
-
-const UserSocialAccountsTotalCountResponse = z.strictObject({
-  user: z.strictObject({
-    socialAccounts: z.strictObject({
-      totalCount: z.number(),
-    }),
-  }),
-});
-type UserSocialAccountsTotalCountResponse = z.infer<
-  typeof UserSocialAccountsTotalCountResponse
->;
-
-const UserSocialAccountsNodesRequestParams = z.strictObject({
-  login: z.string(),
-  first: z.int32().optional(),
-});
-
-const UserSocialAccountsNodesResponse = z.strictObject({
-  user: z.strictObject({
-    socialAccounts: z.strictObject({
-      nodes: z.array(SocialAccount),
-    }),
-  }),
-});
-type UserSocialAccountsNodesResponse = z.infer<
-  typeof UserSocialAccountsNodesResponse
->;
-
-export {
-  SocialAccountProvider,
-  SocialAccount,
-  UserSocialAccountsTotalCountRequestParams,
-  UserSocialAccountsTotalCountResponse,
-  UserSocialAccountsNodesRequestParams,
-  UserSocialAccountsNodesResponse,
-};
+export { SocialAccountProvider, SocialAccount };

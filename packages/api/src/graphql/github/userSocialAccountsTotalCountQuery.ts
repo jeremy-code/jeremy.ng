@@ -1,13 +1,13 @@
-import type { Query } from "@octokit/graphql/types";
+import { graphql } from "../../generated/gql";
 
-const userSocialAccountsTotalCountQuery: Query = `
-  query userSocialAccountsTotalCountQuery($login: String!) {
+const userSocialAccountsTotalCountQuery = graphql(`
+  query userSocialAccountsTotalCount($login: String!) {
     user(login: $login) {
       socialAccounts {
         totalCount
       }
     }
   }
-`;
+`);
 
 export { userSocialAccountsTotalCountQuery };

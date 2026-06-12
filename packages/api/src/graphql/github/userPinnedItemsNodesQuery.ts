@@ -1,15 +1,11 @@
-import type { Query } from "@octokit/graphql/types";
+import { graphql } from "../../generated/gql";
 
-const userPinnedItemsNodesQuery: Query = `
-  query UserPinnedItemsNodes(
-    $login: String!
-    $first: Int = 6
-  ) {
+const userPinnedItemsNodesQuery = graphql(`
+  query UserPinnedItemsNodes($login: String!, $first: Int = 6) {
     user(login: $login) {
-      pinnedItems(
-        first: $first
-      ) {
+      pinnedItems(first: $first) {
         nodes {
+          __typename
           ... on Repository {
             createdAt
             description
@@ -38,6 +34,6 @@ const userPinnedItemsNodesQuery: Query = `
       }
     }
   }
-`;
+`);
 
 export { userPinnedItemsNodesQuery };
