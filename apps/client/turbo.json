@@ -1,0 +1,27 @@
+{
+  "$schema": "../../node_modules/turbo/schema.json",
+  "extends": ["//"],
+
+  "tasks": {
+    "build": {
+      "env": [
+        "ANALYZE",
+        "DEV",
+        "PROD",
+        "CF_TURNSTILE_SECRET_KEY",
+        "MAILGUN_API_KEY",
+        "MAILGUN_DOMAIN",
+        "GITHUB_TOKEN"
+      ],
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "!.env.example"],
+      "outputs": ["dist/**"]
+    },
+    "codegen": {
+      "dependsOn": ["codegen:cf-types"]
+    },
+    "codegen:cf-types": {
+      "outputs": ["src/generated/worker-configuration.d.ts"],
+      "inputs": ["wrangler.jsonc"]
+    }
+  }
+}

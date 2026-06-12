@@ -12,8 +12,8 @@
     "build:analyze": "ANALYZE=1 vite build",
     "preview": "vite preview",
     "deploy": "wrangler deploy",
-    "typecheck": "tsc --noEmit",
-    "typegen": "wrangler types ./src/generated/worker-configuration.d.ts",
+    "typecheck": "pnpm codegen:cf-types --check && tsc --noEmit",
+    "codegen:cf-types": "wrangler types ./src/generated/worker-configuration.d.ts",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -49,6 +49,7 @@
     "@tanstack/react-form-devtools": "^0.2.29",
     "@tanstack/react-query-devtools": "^5.101.0",
     "@tanstack/react-start": "^1.168.25",
+    "@types/node": "^25.9.3",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.2",

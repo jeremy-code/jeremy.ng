@@ -4,28 +4,19 @@
   "ui": "tui",
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
-      "env": [
-        "ANALYZE",
-        "DEV",
-        "PROD",
-        "CF_TURNSTILE_SECRET_KEY",
-        "MAILGUN_API_KEY",
-        "MAILGUN_DOMAIN"
-      ],
-      "inputs": ["$TURBO_DEFAULT$", ".env*", "!.env.example"],
-      "outputs": ["dist/**"]
+      "dependsOn": ["^build"]
     },
     "lint": {
-      "dependsOn": ["^lint"]
+      "dependsOn": ["codegen", "^lint"]
     },
     "typecheck": {
-      "dependsOn": ["^typecheck"]
+      "dependsOn": ["codegen", "^typecheck"]
     },
     "dev": {
       "cache": false,
       "inputs": ["$TURBO_DEFAULT$", ".env*", "!.env.example"],
       "persistent": true
-    }
+    },
+    "codegen": {}
   }
 }

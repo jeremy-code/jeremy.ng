@@ -25,7 +25,8 @@
     "lint": "eslint && turbo lint",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
-    "typecheck": "turbo typecheck"
+    "typecheck": "turbo typecheck",
+    "codegen": "turbo codegen"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.0.2",
