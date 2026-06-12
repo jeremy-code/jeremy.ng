@@ -13,8 +13,6 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Check out Git repository
@@ -31,6 +29,11 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+
+      - name: Codegen
+        run: pnpm run codegen
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Typecheck code with TypeScript
         run: pnpm run typecheck
