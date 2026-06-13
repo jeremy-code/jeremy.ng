@@ -17,12 +17,7 @@
       "outputs": ["dist/**"]
     },
     "codegen": {
-      "dependsOn": ["codegen:cf-types"],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        "!src/generated/**",
-        "$TURBO_JIT$/src/generated/worker-configuration.d.ts"
-      ]
+      "dependsOn": ["codegen:cf-types"]
     },
     "codegen:cf-types": {
       "inputs": ["wrangler.jsonc"],
