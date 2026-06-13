@@ -4,15 +4,12 @@
 
   "tasks": {
     "codegen": {
-      "dependsOn": ["codegen:graphql"],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        "!src/generated/**",
-        "$TURBO_JIT$/src/generated/gql/*.ts"
-      ]
+      "dependsOn": ["codegen:graphql"]
     },
     "codegen:graphql": {
-      "env": ["GITHUB_TOKEN"],
+      // Only needed to generate the schema, the specific token is not actually
+      // relevant to the output
+      "passThroughEnv": ["GITHUB_TOKEN"],
       "inputs": ["codegen.ts", "src/graphql/*/*.ts"],
       "outputs": ["src/generated/gql/*.ts"]
     }
