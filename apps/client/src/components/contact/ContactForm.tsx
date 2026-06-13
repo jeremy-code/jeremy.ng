@@ -55,13 +55,16 @@ const ContactForm = (props: ContactFormProps) => {
           });
         }
       } catch (e) {
-        turnstileRef.current?.reset();
         toast({
           title: "Captcha verification failed",
           description:
             e instanceof Error ? e.message : "An unknown error occurred.",
           variant: "destructive",
         });
+      } finally {
+        // Reset if the token was valid (consumed, no longer usable) or if there
+        // was an error (invalid token, attempt to get a new one)
+        turnstileRef.current?.reset();
       }
     },
   });
