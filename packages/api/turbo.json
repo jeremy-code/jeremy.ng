@@ -4,12 +4,14 @@
 
   "tasks": {
     "codegen": {
-      "dependsOn": ["codegen:graphql"]
+      "dependsOn": ["codegen:graphql"],
+      "inputs": ["codegen.ts", "src/graphql/*/*.ts"],
+      "outputs": ["src/generated/gql/*.ts"]
     },
     "codegen:graphql": {
       "env": ["GITHUB_TOKEN"],
-      "outputs": ["src/generated/gql/*.ts"],
-      "inputs": ["codegen.ts", "src/graphql/*/*.ts"]
+      "inputs": ["codegen.ts", "src/graphql/*/*.ts"],
+      "outputs": ["src/generated/gql/*.ts"]
     }
   }
 }

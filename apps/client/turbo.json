@@ -17,11 +17,13 @@
       "outputs": ["dist/**"]
     },
     "codegen": {
-      "dependsOn": ["codegen:cf-types"]
+      "dependsOn": ["codegen:cf-types"],
+      "inputs": ["wrangler.jsonc"],
+      "outputs": ["src/generated/worker-configuration.d.ts"]
     },
     "codegen:cf-types": {
-      "outputs": ["src/generated/worker-configuration.d.ts"],
-      "inputs": ["wrangler.jsonc"]
+      "inputs": ["wrangler.jsonc"],
+      "outputs": ["src/generated/worker-configuration.d.ts"]
     }
   }
 }
