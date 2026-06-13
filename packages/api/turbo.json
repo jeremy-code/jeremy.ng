@@ -5,8 +5,11 @@
   "tasks": {
     "codegen": {
       "dependsOn": ["codegen:graphql"],
-      "inputs": ["codegen.ts", "src/graphql/*/*.ts"],
-      "outputs": ["src/generated/gql/*.ts"]
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!src/generated/**",
+        "$TURBO_JIT$/src/generated/gql/*.ts"
+      ]
     },
     "codegen:graphql": {
       "env": ["GITHUB_TOKEN"],
