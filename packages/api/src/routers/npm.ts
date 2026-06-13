@@ -1,10 +1,10 @@
-import ky from "ky";
+import { ofetch } from "ofetch";
 
 import { NpmSearchParams, NpmSearchResponse } from "../schemas/npm/search";
 import { baseProcedure, createTRPCRouter } from "../trpc";
 
-const npmRegistryApi = ky.extend({
-  baseUrl: "https://registry.npmjs.org/",
+const npmRegistryApi = ofetch.create({
+  baseURL: "https://registry.npmjs.org",
 });
 
 // https://github.com/npm/registry/blob/main/docs/REGISTRY-API.md#get-v1search
@@ -13,11 +13,10 @@ const npmRouter = createTRPCRouter({
     .input(NpmSearchParams)
     .output(NpmSearchResponse)
     .query((opts) => {
-      const response = npmRegistryApi
-        .get("-/v1/search", {
-          searchParams: opts.input,
-        })
-        .json<NpmSearchResponse>();
+      const response = npmRegistryApi<NpmSearchResponse>("-/v1/search", {
+        method: "GET",
+        query: opts.input,
+      });
 
       return response;
     }),

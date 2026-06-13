@@ -1,5 +1,5 @@
 import { TRPCError } from "@trpc/server";
-import ky from "ky";
+import { ofetch } from "ofetch";
 
 import { env } from "../config/env";
 import {
@@ -10,8 +10,8 @@ import {
 import { baseProcedure, createTRPCRouter } from "../trpc";
 import { cfTurnstileErrorToTrpcError } from "../utils/errorHandling";
 
-const cloudflareTurnstileApi = ky.extend({
-  baseUrl: "https://challenges.cloudflare.com/turnstile/v0/",
+const cloudflareTurnstileApi = ofetch.create({
+  baseURL: "https://challenges.cloudflare.com/turnstile/v0",
 });
 
 const cloudflareRouter = createTRPCRouter({
@@ -25,9 +25,10 @@ const cloudflareRouter = createTRPCRouter({
         idempotency_key: crypto.randomUUID(),
       });
 
-      const response = await cloudflareTurnstileApi
-        .post("siteverify", { json: params })
-        .json(ValidationResponse);
+      const response = await cloudflareTurnstileApi<ValidationResponse>(
+        "/siteverify",
+        { method: "POST", body: params },
+      );
 
       if (response.success) {
         return response;
