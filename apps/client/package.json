@@ -39,6 +39,7 @@
     "tailwind-merge": "^3.6.0",
     "tailwind-variants": "^3.2.2",
     "temporal-polyfill": "^0.3.2",
+    "unpic": "^4.2.2",
     "zod": "^4.4.3"
   },
   "devDependencies": {
