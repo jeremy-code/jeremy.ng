@@ -17,6 +17,7 @@ const NotFound = (props: NotFoundRouteProps) => {
         className="mx-auto max-w-[min(100%,var(--container-md))]"
         src="/assets/not-found.webp"
         layout="fullWidth"
+        priority
       />
       <div className="flex flex-col items-start justify-center gap-2 sm:items-center">
         <Heading as="h1" size="4xl">
