@@ -94,6 +94,9 @@ importers:
       lucide-react:
         specifier: ^1.18.0
         version: 1.18.0(react@19.2.7)
+      markdown-to-jsx:
+        specifier: ^9.8.2
+        version: 9.8.2(react@19.2.7)(solid-js@1.9.11)
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -7318,6 +7321,27 @@ packages:
       }
     engines: { node: ">=0.10.0" }
 
+  markdown-to-jsx@9.8.2:
+    resolution:
+      {
+        integrity: sha512-rWUuxKB5NsuJmSfUOuXkQ0O5qk0J/Lr3Lk6dzxKoKQI/jeHYlsVfz3zJdMLAhI46hHoXDYERWhtBOiqtWDZ4LA==,
+      }
+    engines: { node: ">= 18" }
+    peerDependencies:
+      react: ">= 16.0.0"
+      react-native: "*"
+      solid-js: ">=1.0.0"
+      vue: ">=3.0.0"
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-native:
+        optional: true
+      solid-js:
+        optional: true
+      vue:
+        optional: true
+
   math-intrinsics@1.1.0:
     resolution:
       {
@@ -14052,6 +14076,11 @@ snapshots:
       - supports-color
 
   map-cache@0.2.2: {}
+
+  markdown-to-jsx@9.8.2(react@19.2.7)(solid-js@1.9.11):
+    optionalDependencies:
+      react: 19.2.7
+      solid-js: 1.9.11
 
   math-intrinsics@1.1.0: {}
 

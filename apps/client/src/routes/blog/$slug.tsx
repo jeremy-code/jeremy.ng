@@ -17,7 +17,7 @@ import { GitHub } from "@jeremyng/ui/icons/GitHub";
 const listFormatter = new Intl.ListFormat("en", { style: "long" });
 
 const BlogPostComponent = () => {
-  const { metadata } = Route.useLoaderData();
+  const { metadata, Renderable } = Route.useLoaderData();
 
   const instant = Temporal.Instant.fromEpochMilliseconds(
     Date.parse(metadata.publishedDate),
@@ -61,6 +61,8 @@ const BlogPostComponent = () => {
             ))}
           </div>
         </header>
+
+        {Renderable}
 
         <Separator />
 
