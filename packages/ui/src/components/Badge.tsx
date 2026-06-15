@@ -27,9 +27,11 @@ const badgeVariants = tv({
 type BadgeProps = PrimitivePropsWithRef<"div"> &
   VariantProps<typeof badgeVariants>;
 
-const Badge = ({ asChild, className, color, ...props }: BadgeProps) => {
+const Badge = ({ asChild, className, color, size, ...props }: BadgeProps) => {
   const Comp = asChild ? Slot.Root : "div";
-  return <Comp className={badgeVariants({ className, color })} {...props} />;
+  return (
+    <Comp className={badgeVariants({ className, size, color })} {...props} />
+  );
 };
 
 export { Badge, type BadgeProps };
