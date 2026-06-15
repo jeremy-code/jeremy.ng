@@ -113,6 +113,10 @@ const ContactForm = (props: ContactFormProps) => {
             <field.TextareaField
               label="Message"
               textareaProps={{
+                // line height + padding-y + border (can't use content-box
+                // because then the width is too long)
+                className:
+                  "field-sizing-content min-h-[calc(var(--rows)*1lh+--spacing(4)+2px)] max-sm:[--rows:4] sm:[--rows:3]",
                 // https://www.rfc-editor.org/rfc/rfc761#section-2.10
                 placeholder:
                   "TCP implementations should follow a general principle of robustness: be conservative in what you do, be liberal in what you accept from others.",
