@@ -19,6 +19,17 @@ const viteConfig = defineConfig({
     tanstackStart({
       router: {
         generatedRouteTree: "generated/routeTree.gen.ts",
+        codeSplittingOptions: {
+          defaultBehavior: [
+            [
+              "loader",
+              "component",
+              "pendingComponent",
+              "errorComponent",
+              "notFoundComponent",
+            ],
+          ],
+        },
       },
       pages: [{ path: "/" }],
       sitemap: {
