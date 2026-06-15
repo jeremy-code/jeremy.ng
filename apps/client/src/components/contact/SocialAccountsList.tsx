@@ -51,14 +51,13 @@ const SOCIAL_ACCOUNTS_PROVIDER_MAP: Record<
 };
 
 const SocialAccountsList = () => {
-  const trpc = useTRPC();
   const {
     isPending,
     isError,
     data: githubSocialAccounts,
     error,
   } = useQuery(
-    trpc.github.getSocialAccounts.queryOptions({
+    useTRPC().github.getSocialAccounts.queryOptions({
       login: env.VITE_GITHUB_USERNAME,
     }),
   );

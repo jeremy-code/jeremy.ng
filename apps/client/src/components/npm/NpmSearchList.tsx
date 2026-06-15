@@ -25,14 +25,13 @@ import { NpmSearchObjectCard } from "./NpmSearchObjectCard";
 type NpmSearchListProps = CarouselProps;
 
 const NpmSearchList = (props: NpmSearchListProps) => {
-  const trpc = useTRPC();
   const {
     isPending,
     isError,
     data: npmSearchQueryResult,
     error,
   } = useQuery(
-    trpc.npm.search.queryOptions({
+    useTRPC().npm.search.queryOptions({
       text: `author:${env.VITE_NPM_REGISTRY_USERNAME}`,
     }),
   );

@@ -24,14 +24,13 @@ import { GithubPinnedCard } from "./GithubPinnedCard";
 type GithubPinnedListProps = CarouselProps;
 
 const GithubPinnedList = (props: GithubPinnedListProps) => {
-  const trpc = useTRPC();
   const {
     isPending,
     isError,
     data: githubPinnedItems,
     error,
   } = useQuery(
-    trpc.github.getPinnedItems.queryOptions({
+    useTRPC().github.getPinnedItems.queryOptions({
       login: env.VITE_GITHUB_USERNAME,
     }),
   );
