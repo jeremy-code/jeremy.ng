@@ -114,22 +114,6 @@
     }
   }
 
-  :where(h1, h2, h3, h4, h5, h6, dt, blockquote, figcaption) {
-    @apply max-w-[25ch] text-balance;
-  }
-
-  :where(p, dd, li, figcaption) {
-    @apply max-w-prose text-pretty;
-  }
-
-  textarea:not([rows]) {
-    @apply min-h-[10em];
-  }
-
-  :where(td, math, time[datetime*=":"]) {
-    @apply lining-nums tabular-nums;
-  }
-
   @media (prefers-reduced-motion: no-preference) {
     :has(:target) {
       @apply scroll-smooth;
