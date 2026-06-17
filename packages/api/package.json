@@ -16,7 +16,7 @@
     "@t3-oss/env-core": "^0.13.11",
     "@trpc/server": "^11.17.0",
     "dotenv": "^17.4.2",
-    "graphql": "^16.14.2",
+    "graphql": "^17.0.0",
     "mailgun.js": "^13.2.0",
     "ofetch": "^1.5.1",
     "superjson": "^2.2.6",
