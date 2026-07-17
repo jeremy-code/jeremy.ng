@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 
-import { Slot } from "radix-ui";
 import { tv } from "tailwind-variants";
 
 import { cardVariants, type CardProps } from "@jeremyng/ui/components/Card";
@@ -15,9 +14,12 @@ const carouselCardVariants = tv({
   extend: cardVariants,
   slots: {
     base: "h-full",
-    footer: "border-t bg-gray-100 pt-4 dark:bg-gray-950",
+    footer:
+      "justify-end border-t bg-gray-100 pt-4 text-[unset] dark:bg-gray-950",
     title: "self-stretch truncate",
-    description: null,
+    body: "gap-2",
+    header: "items-start",
+    description: "line-clamp-3",
   },
 });
 
@@ -33,13 +35,11 @@ const CarouselCard = ({
 
   return (
     <div className={carouselCardStyles.base()} {...props}>
-      <Slot.Root className={carouselCardStyles.header()}>{header}</Slot.Root>
+      <div className={carouselCardStyles.header()}>{header}</div>
       <div className={carouselCardStyles.body()}>
-        <Slot.Root className={carouselCardStyles.description()}>
-          {description}
-        </Slot.Root>
+        <p className={carouselCardStyles.description()}>{description}</p>
       </div>
-      <Slot.Root className={carouselCardStyles.footer()}>{footer}</Slot.Root>
+      <div className={carouselCardStyles.footer()}>{footer}</div>
     </div>
   );
 };

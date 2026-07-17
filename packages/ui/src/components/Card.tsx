@@ -1,75 +1,106 @@
-import { type ReactElement } from "react";
+import type { ComponentPropsWithRef } from "react";
 
-import { Slot } from "radix-ui";
-import type { PrimitivePropsWithRef } from "radix-ui/internal";
 import { tv, type VariantProps } from "tailwind-variants";
 
 const cardVariants = tv({
   slots: {
-    base: "relative flex min-w-0 flex-col overflow-hidden rounded-md border bg-surface wrap-break-word", // div
-    body: "flex flex-1 flex-col gap-2 p-(--card-padding)", // div
-    header: "flex flex-col gap-1.5 px-(--card-padding) pt-(--card-padding)", // div
-    footer:
-      "flex items-center justify-end gap-2 px-(--card-padding) pb-(--card-padding)", // div
-    title: "text-lg/7 font-semibold", // h2
-    description: "text-sm", // p
+    base: "relative flex min-w-0 flex-col overflow-hidden rounded-md wrap-break-word",
+    body: "flex flex-1 flex-col p-(--card-padding)",
+    header: "flex flex-col gap-1.5 px-(--card-padding) pt-(--card-padding)",
+    footer: "flex items-center gap-2 px-(--card-padding) pb-(--card-padding)",
+    title: "text-(size:--card-title-font-size)/6 font-semibold",
+    description: "text-sm text-muted-foreground",
   },
   variants: {
     size: {
-      sm: { base: "[--card-padding:--spacing(4)]" },
-      md: { base: "[--card-padding:--spacing(6)]" },
-      lg: { base: "[--card-padding:--spacing(7)]" },
+      sm: {
+        base: "[--card-padding:--spacing(4)] [--card-title-font-size:var(--text-md)]",
+      },
+      md: {
+        base: "[--card-padding:--spacing(6)] [--card-title-font-size:var(--text-lg)]",
+      },
+      lg: {
+        base: "[--card-padding:--spacing(7)] [--card-title-font-size:var(--text-lg)]",
+      },
+    },
+    variant: {
+      elevated: {
+        base: "bg-surface shadow-md",
+      },
+      outline: {
+        base: "border bg-surface",
+      },
+      subtle: {
+        base: "bg-muted",
+      },
     },
   },
   defaultVariants: {
     size: "sm",
+    variant: "outline",
   },
 });
 
-type CardProps = {
-  title?: ReactElement;
-  description?: ReactElement;
-  footer?: ReactElement;
-  header?: ReactElement;
-  body?: ReactElement;
-} & PrimitivePropsWithRef<"div"> &
+type CardProps = ComponentPropsWithRef<"div"> &
   VariantProps<typeof cardVariants>;
 
-function Card({
-  asChild,
-  className,
-  size,
-  title,
-  description,
-  footer,
-  header,
-  body,
-  children,
-  ...props
-}: CardProps) {
-  const Comp = asChild ? Slot.Root : "div";
-  const cardStyles = cardVariants({ className, size });
-
+const Card = ({ className, size, variant, ...props }: CardProps) => {
   return (
-    <Comp className={cardStyles.base()} {...props}>
-      <div className={cardStyles.header()}>
-        {!!title && (
-          <Slot.Root className={cardStyles.title()}>{title}</Slot.Root>
-        )}
-        {!!description && (
-          <Slot.Root className={cardStyles.description()}>
-            {description}
-          </Slot.Root>
-        )}
-        {header}
-      </div>
-      <Slot.Root className={cardStyles.body()}>{body}</Slot.Root>
-      <Slot.Slottable>{children}</Slot.Slottable>
-      {!!footer && (
-        <Slot.Root className={cardStyles.footer()}>{footer}</Slot.Root>
-      )}
-    </Comp>
+    <div
+      className={cardVariants().base({ size, variant, className })}
+      {...props}
+    ></div>
   );
-}
+};
 
-export { cardVariants, Card, type CardProps };
+type CardBodyProps = ComponentPropsWithRef<"div">;
+
+const CardBody = ({ className, ...props }: CardBodyProps) => {
+  return <div className={cardVariants().body({ className })} {...props}></div>;
+};
+
+type CardHeaderProps = ComponentPropsWithRef<"div">;
+
+const CardHeader = ({ className, ...props }: CardHeaderProps) => {
+  return (
+    <div className={cardVariants().header({ className })} {...props}></div>
+  );
+};
+
+type CardFooterProps = ComponentPropsWithRef<"div">;
+
+const CardFooter = ({ className, ...props }: CardFooterProps) => {
+  return (
+    <div className={cardVariants().footer({ className })} {...props}></div>
+  );
+};
+
+type CardTitleProps = ComponentPropsWithRef<"div">;
+
+const CardTitle = ({ className, ...props }: CardTitleProps) => {
+  return <h2 className={cardVariants().title({ className })} {...props}></h2>;
+};
+
+type CardDescriptionProps = ComponentPropsWithRef<"p">;
+
+const CardDescription = ({ className, ...props }: CardDescriptionProps) => {
+  return (
+    <p className={cardVariants().description({ className })} {...props}></p>
+  );
+};
+
+export {
+  Card,
+  type CardProps,
+  cardVariants,
+  CardBody,
+  type CardBodyProps,
+  CardHeader,
+  type CardHeaderProps,
+  CardFooter,
+  type CardFooterProps,
+  CardTitle,
+  type CardTitleProps,
+  CardDescription,
+  type CardDescriptionProps,
+};

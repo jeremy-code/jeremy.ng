@@ -1,106 +1,110 @@
 import type { ComponentPropsWithRef } from "react";
 
-import { Switch as SwitchPrimitive } from "radix-ui";
+import { Switch as SwitchPrimitive } from "@base-ui/react/switch";
 import { tv, type VariantProps } from "tailwind-variants";
 
-const switchRootVariants = tv({
-  base: [
-    "group/switch",
-    "relative inline-flex shrink-0 cursor-pointer justify-start gap-2 rounded-full ring-1 transition-[background-color,box-shadow,opacity] ring-inset",
-    "disabled:cursor-not-allowed disabled:opacity-50",
-    "h-(--switch-height) w-(--switch-width)",
-  ],
+import { composeRenderProps } from "../utils/composeRenderProps";
+
+const switchVariants = tv({
+  slots: {
+    root: "box-content inline-flex shrink-0 justify-start gap-0.5 rounded-full border transition-colors",
+    thumb: [
+      "flex shrink-0 scale-[0.8] items-center justify-center rounded-[inherit] transition-[translate,background-color]",
+      "data-checked:translate-x-full data-unchecked:translate-x-0",
+    ],
+  },
   variants: {
-    size: {
-      xs: "[--switch-height:--spacing(3)] [--switch-width:--spacing(6)]",
-      sm: "[--switch-height:--spacing(4)] [--switch-width:--spacing(8)]",
-      md: "[--switch-height:--spacing(5)] [--switch-width:--spacing(10)]",
-      lg: "[--switch-height:--spacing(7)] [--switch-width:--spacing(12)]",
-    },
     color: {
-      gray: "bg-muted ring-border hover:ring-subtle-foreground/80",
-      primary: [
-        "data-[state=unchecked]:bg-muted data-[state=unchecked]:ring-border hover:data-[state=unchecked]:ring-subtle-foreground/80",
-        "data-[state=checked]:bg-primary-solid data-[state=checked]:ring-primary-solid",
-      ],
+      blue: {
+        root: [
+          "data-unchecked:border-border data-unchecked:bg-gray-200 data-unchecked:hover:border-subtle-foreground data-unchecked:dark:bg-gray-800",
+          "data-checked:border-blue-600 data-checked:bg-blue-600 data-checked:hover:border-blue-700",
+        ],
+        thumb: "data-checked:bg-blue-50 data-unchecked:bg-gray-50",
+      },
+      gray: {
+        root: "border-border bg-gray-200 hover:border-subtle-foreground dark:bg-gray-800",
+        thumb: "bg-gray-50",
+      },
+    },
+    size: {
+      sm: {
+        root: "h-3 w-6",
+        thumb: "size-3",
+      },
+      md: {
+        root: "h-4 w-8",
+        thumb: "size-4",
+      },
+      lg: {
+        root: "h-5 w-10",
+        thumb: "size-5",
+      },
+      xl: {
+        root: "h-6 w-12",
+        thumb: "size-6",
+      },
     },
   },
-  defaultVariants: { size: "md", color: "gray" },
+  defaultVariants: {
+    size: "md",
+    color: "gray",
+  },
 });
 
 type SwitchRootProps = ComponentPropsWithRef<typeof SwitchPrimitive.Root> &
-  VariantProps<typeof switchRootVariants>;
+  VariantProps<typeof switchVariants>;
 
-const SwitchRoot = ({ className, size, color, ...props }: SwitchRootProps) => (
-  <SwitchPrimitive.Root
-    className={switchRootVariants({ className, size, color })}
-    {...props}
-  />
-);
-
-const switchThumbVariants = tv({
-  base: [
-    "flex items-center justify-center rounded-[inherit] text-solid shadow-sm transition-[translate]",
-    "shrink-0",
-    "size-(--switch-height) scale-[0.8]",
-    "data-[state=checked]:translate-x-[calc(var(--switch-width)-var(--switch-height))]",
-  ],
-  variants: {
-    size: {
-      xs: "text-xs",
-      sm: "text-md",
-      md: "text-md",
-      lg: "text-lg",
-    },
-    color: {
-      gray: "bg-gray-50",
-      primary:
-        "data-[state=checked]:bg-primary-solid-foreground data-[state=unchecked]:bg-gray-50",
-    },
-  },
-  defaultVariants: { size: "md", color: "gray" },
-});
+const SwitchRoot = ({ size, color, ...props }: SwitchRootProps) => {
+  return (
+    <SwitchPrimitive.Root
+      {...props}
+      className={composeRenderProps(props.className, (className) =>
+        switchVariants().root({ className, size, color }),
+      )}
+    />
+  );
+};
 
 type SwitchThumbProps = ComponentPropsWithRef<typeof SwitchPrimitive.Thumb> &
-  VariantProps<typeof switchThumbVariants>;
+  VariantProps<typeof switchVariants>;
 
-const SwitchThumb = ({
-  className,
-  size,
-  color,
-  ...props
-}: SwitchThumbProps) => (
-  <SwitchPrimitive.Thumb
-    className={switchThumbVariants({ className, size, color })}
-    {...props}
-  />
-);
+const SwitchThumb = ({ size, color, ...props }: SwitchThumbProps) => {
+  return (
+    <SwitchPrimitive.Thumb
+      {...props}
+      className={composeRenderProps(props.className, (className) =>
+        switchVariants().thumb({ className, size, color }),
+      )}
+    />
+  );
+};
 
 type SwitchProps = {
-  switchThumbProps?: Omit<SwitchThumbProps, "children">;
+  switchThumbProps?: SwitchThumbProps;
 } & SwitchRootProps;
 
 const Switch = ({
-  children,
-  size,
-  color,
   switchThumbProps,
+  size,
+  children,
+  color,
   ...props
-}: SwitchProps) => (
-  <SwitchRoot size={size} color={color} {...props}>
-    <SwitchThumb size={size} color={color} {...switchThumbProps}>
+}: SwitchProps) => {
+  return (
+    <SwitchRoot size={size} color={color} {...props}>
+      <SwitchThumb size={size} color={color} {...switchThumbProps} />
       {children}
-    </SwitchThumb>
-  </SwitchRoot>
-);
+    </SwitchRoot>
+  );
+};
 
 export {
   Switch,
   type SwitchProps,
+  switchVariants,
   SwitchRoot,
   type SwitchRootProps,
-  switchRootVariants,
   SwitchThumb,
   type SwitchThumbProps,
-  switchThumbVariants,
 };

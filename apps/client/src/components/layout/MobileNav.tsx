@@ -1,7 +1,6 @@
 import type { ComponentPropsWithRef } from "react";
 
 import { Link as RouterLink } from "@tanstack/react-router";
-import { VisuallyHidden } from "radix-ui";
 import { cn } from "tailwind-variants";
 
 import { Button, type ButtonProps } from "@jeremyng/ui/components/Button";
@@ -19,16 +18,16 @@ const MobileNavButton = ({ className, ...props }: ButtonProps) => {
     <Button
       className={cn("group/navbar", className)}
       variant="ghost"
-      color="default"
+      color="gray"
       size="icon"
       {...props}
     >
-      <VisuallyHidden.Root className="group-data-[state=open]/navbar:hidden">
+      <div className="sr-only group-data-[state=open]/navbar:hidden">
         Open menu
-      </VisuallyHidden.Root>
-      <VisuallyHidden.Root className="group-data-[state=closed]/navbar:hidden">
+      </div>
+      <div className="sr-only group-data-[state=closed]/navbar:hidden">
         Close menu
-      </VisuallyHidden.Root>
+      </div>
       <svg
         aria-hidden="true"
         viewBox="0 0 24 24"
@@ -72,31 +71,25 @@ type MobileNavProps = ComponentPropsWithRef<typeof Collapsible>;
 const MobileNav = ({ className, ...props }: MobileNavProps) => {
   return (
     <Collapsible className={cn("sm:hidden", className)} {...props}>
-      <CollapsibleTrigger asChild>
-        <MobileNavButton />
-      </CollapsibleTrigger>
+      <CollapsibleTrigger render={<MobileNavButton />} />
       <CollapsibleContent
-        asChild
+        render={<nav />}
         className="absolute inset-x-0 top-full border-b bg-background"
       >
-        <nav>
-          <ul className="space-y-0.5 px-4 pb-4">
-            {NAVIGATION_ITEMS.map((item) => (
-              <li key={item.href}>
-                <RouterLink
-                  to={item.href}
-                  // Using <NavigationMenuLink> would error due to not being in
-                  // a <NavigationMenu>
-                  className={navigationMenuTriggerVariants({
-                    variant: "link",
-                  })}
-                >
-                  {item.name}
-                </RouterLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <ul className="space-y-0.5 px-4 pb-4">
+          {NAVIGATION_ITEMS.map((item) => (
+            <li key={item.href}>
+              <RouterLink
+                to={item.href}
+                // Using <NavigationMenuLink> would error due to not being in
+                // a <NavigationMenu>
+                className={navigationMenuTriggerVariants({ variant: "link" })}
+              >
+                {item.name}
+              </RouterLink>
+            </li>
+          ))}
+        </ul>
       </CollapsibleContent>
     </Collapsible>
   );

@@ -1,78 +1,23 @@
-import { type ComponentPropsWithRef } from "react";
+import type { ComponentPropsWithRef } from "react";
 
-import { Form as FormPrimitive, Slot } from "radix-ui";
-import type { PrimitivePropsWithRef } from "radix-ui/internal";
-import { cn, tv } from "tailwind-variants";
+import { Form as FormPrimitive } from "@base-ui/react/form";
+import { tv } from "tailwind-variants";
 
-import { labelVariants } from "./Label";
+import { composeRenderProps } from "../utils/composeRenderProps";
 
-const {
-  Root: Form,
-  Control: FormControl,
-  Submit: FormSubmit,
-  ValidityState: FormValidityState,
-} = FormPrimitive;
+const formVariants = tv({ base: "flex w-full flex-col gap-4" });
 
-const FormHeader = ({
-  asChild,
-  className,
-  ...props
-}: PrimitivePropsWithRef<"div">) => {
-  const Comp = asChild ? Slot.Root : "div";
+type FormProps = ComponentPropsWithRef<typeof FormPrimitive>;
 
+const Form = (props: FormProps) => {
   return (
-    <Comp
-      className={cn("flex items-baseline justify-between", className)}
+    <FormPrimitive
       {...props}
+      className={composeRenderProps(props.className, (className) =>
+        formVariants({ className }),
+      )}
     />
   );
 };
 
-const FormField = ({
-  className,
-  ...props
-}: ComponentPropsWithRef<typeof FormPrimitive.Field>) => {
-  return (
-    <FormPrimitive.Field className={cn("mb-2.5 grid", className)} {...props} />
-  );
-};
-
-const formLabelVariants = tv({
-  extend: labelVariants,
-  base: "data-invalid:text-destructive",
-});
-
-const FormLabel = ({
-  className,
-  ...props
-}: ComponentPropsWithRef<typeof FormPrimitive.Label>) => {
-  return (
-    <FormPrimitive.Label
-      className={formLabelVariants({ className })}
-      {...props}
-    />
-  );
-};
-
-const FormMessage = ({
-  className,
-  ...props
-}: ComponentPropsWithRef<typeof FormPrimitive.Message>) => {
-  return (
-    <FormPrimitive.Message
-      className={cn("text-xs text-gray-300", className)}
-      {...props}
-    />
-  );
-};
-
-export {
-  Form,
-  FormControl,
-  FormHeader,
-  FormField,
-  FormLabel,
-  FormMessage,
-  FormValidityState,
-  FormSubmit,
-};
+export { Form, type FormProps, formVariants };

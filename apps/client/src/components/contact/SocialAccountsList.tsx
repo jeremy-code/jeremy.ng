@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 
 import { useQuery } from "@tanstack/react-query";
 import { Mail, TriangleAlert } from "lucide-react";
-import { AccessibleIcon } from "radix-ui";
 
 import { env } from "#config/env";
 import { useTRPC } from "#lib/trpc/client";
@@ -103,13 +102,8 @@ const SocialAccountsList = () => {
 
         return (
           <DataListItem className="items-center" key={socialAccount.url}>
-            <DataListItemLabel>
-              {typeof label === "string" ?
-                label
-              : <AccessibleIcon.Root label={socialAccount.provider}>
-                  {label}
-                </AccessibleIcon.Root>
-              }
+            <DataListItemLabel aria-label={socialAccount.provider}>
+              {label}
             </DataListItemLabel>
             <DataListItemValue>
               <Link color="link" underline="hover" href={socialAccount.url}>

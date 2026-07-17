@@ -1,10 +1,13 @@
 import type { ComponentPropsWithRef } from "react";
 
+import { Input as InputPrimitive } from "@base-ui/react/input";
 import { tv, type VariantProps } from "tailwind-variants";
+
+import { composeRenderProps } from "../utils/composeRenderProps";
 
 const inputVariants = tv({
   base: [
-    "flex h-9 w-full appearance-none rounded border bg-surface px-3 py-1 text-start text-sm transition-opacity",
+    "flex h-9 w-full appearance-none rounded border bg-surface py-1 text-start motion-safe:transition-opacity",
     "file:border-0 file:bg-transparent file:text-sm file:font-medium",
     "placeholder:text-solid",
     "disabled:cursor-not-allowed disabled:bg-muted disabled:opacity-50",
@@ -23,11 +26,18 @@ const inputVariants = tv({
   },
 });
 
-type InputProps = ComponentPropsWithRef<"input"> &
+type InputProps = ComponentPropsWithRef<typeof InputPrimitive> &
   VariantProps<typeof inputVariants>;
 
-const Input = ({ className, size, ...props }: InputProps) => {
-  return <input className={inputVariants({ className, size })} {...props} />;
+const Input = ({ size, ...props }: InputProps) => {
+  return (
+    <InputPrimitive
+      {...props}
+      className={composeRenderProps(props.className, (className) =>
+        inputVariants({ size, className }),
+      )}
+    />
+  );
 };
 
-export { inputVariants, Input, type InputProps };
+export { Input, type InputProps, inputVariants };

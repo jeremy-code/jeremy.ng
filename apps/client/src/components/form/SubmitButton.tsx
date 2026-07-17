@@ -1,6 +1,5 @@
 import { useFormContext } from "#hooks/useAppForm";
 import { Button, type ButtonProps } from "@jeremyng/ui/components/Button";
-import { FormSubmit } from "@jeremyng/ui/components/Form";
 import { Spinner } from "@jeremyng/ui/components/Spinner";
 
 /**
@@ -12,17 +11,15 @@ const SubmitButton = (props: ButtonProps) => {
   return (
     <form.Subscribe selector={(state) => state.isSubmitting}>
       {(isSubmitting) => (
-        <FormSubmit asChild>
-          <Button disabled={isSubmitting} {...props}>
-            {isSubmitting && <Spinner className="absolute" />}
-            <span
-              className="data-[pending=true]:invisible"
-              data-pending={isSubmitting}
-            >
-              Submit
-            </span>
-          </Button>
-        </FormSubmit>
+        <Button type="submit" disabled={isSubmitting} {...props}>
+          {isSubmitting && <Spinner className="absolute" />}
+          <span
+            className="data-[pending=true]:invisible"
+            data-pending={isSubmitting}
+          >
+            Submit
+          </span>
+        </Button>
       )}
     </form.Subscribe>
   );

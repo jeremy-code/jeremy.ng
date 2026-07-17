@@ -1,7 +1,5 @@
-import type { HTMLElementType } from "react";
+import type { ComponentPropsWithRef, HTMLElementType } from "react";
 
-import { Slot } from "radix-ui";
-import type { PrimitivePropsWithRef } from "radix-ui/internal";
 import { twMerge } from "tailwind-merge";
 import { tv, type VariantProps } from "tailwind-variants";
 
@@ -43,25 +41,21 @@ const headingVariants = tv({
 
 type HeadingProps = {
   as?: HTMLHeadingElementType;
-} & PrimitivePropsWithRef<HTMLHeadingElementType> &
+} & ComponentPropsWithRef<HTMLHeadingElementType> &
   VariantProps<typeof headingVariants>;
 
 const Heading = ({
   as,
-  asChild,
   className,
   size,
   fontWeight,
   ...props
 }: HeadingProps) => {
-  const Comp = asChild ? Slot.Root : (as ?? "h1");
+  const Comp = as ?? "h1";
 
   return (
     <Comp
       className={twMerge(headingVariants({ className, size, fontWeight }))}
-      {...(asChild ?
-        { role: "heading", "aria-level": as === undefined ? 1 : Number(as[1]) }
-      : {})}
       {...props}
     />
   );

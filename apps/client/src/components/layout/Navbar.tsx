@@ -33,14 +33,15 @@ const Navbar = ({ className, ...props }: ComponentPropsWithRef<"header">) => {
             <NavigationMenuList>
               {NAVIGATION_ITEMS.map((item) => (
                 <NavigationMenuItem key={item.href}>
-                  <NavigationMenuLink asChild variant="trigger">
-                    <Link to={item.href}>{item.name}</Link>
-                  </NavigationMenuLink>
+                  <NavigationMenuLink
+                    variant="trigger"
+                    render={<Link to={item.href}>{item.name}</Link>}
+                  />
                 </NavigationMenuItem>
               ))}
             </NavigationMenuList>
           </NavigationMenu>
-          <ThemeToggle size="lg" />
+          <ThemeToggle size="xl" />
           <MobileNav />
         </div>
       </div>

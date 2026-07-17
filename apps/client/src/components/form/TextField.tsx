@@ -1,13 +1,5 @@
-import { useStore } from "@tanstack/react-form";
-
 import { useFieldContext } from "#hooks/useAppForm";
-import {
-  FormControl,
-  FormField,
-  FormHeader,
-  FormLabel,
-  FormMessage,
-} from "@jeremyng/ui/components/Form";
+import { Field, FieldError, FieldLabel } from "@jeremyng/ui/components/Field";
 import { Input, type InputProps } from "@jeremyng/ui/components/Input";
 
 type TextFieldProps = {
@@ -15,29 +7,29 @@ type TextFieldProps = {
   inputProps?: InputProps;
 };
 
-export function TextField({ label, inputProps }: TextFieldProps) {
+const TextField = ({ label, inputProps }: TextFieldProps) => {
   const field = useFieldContext<string>();
-  const isValid = useStore(field.store, (state) => state.meta.isValid);
 
   return (
-    <FormField name={field.name} serverInvalid={!isValid}>
-      <FormHeader>
-        <FormLabel>{label}</FormLabel>
-        <FormMessage match="valueMissing">
-          Please enter your {field.name}.
-        </FormMessage>
-        <FormMessage match="typeMismatch" forceMatch={!isValid}>
-          Please enter a valid {field.name}.
-        </FormMessage>
-      </FormHeader>
-      <FormControl asChild>
-        <Input
-          value={field.state.value}
-          onChange={(e) => field.handleChange(e.target.value)}
-          onBlur={field.handleBlur}
-          {...inputProps}
-        />
-      </FormControl>
-    </FormField>
+    <Field
+      name={field.name}
+      invalid={!field.state.meta.isValid}
+      dirty={field.state.meta.isDirty}
+      touched={field.state.meta.isTouched}
+    >
+      <FieldLabel>{label}</FieldLabel>
+      <Input
+        value={field.state.value}
+        onChange={(e) => field.handleChange(e.target.value)}
+        onBlur={field.handleBlur}
+        {...inputProps}
+      />
+      <FieldError match="valueMissing">Please enter a {field.name}.</FieldError>
+      <FieldError match={!field.state.meta.isValid}>
+        Please enter a valid {field.name}.
+      </FieldError>
+    </Field>
   );
-}
+};
+
+export { TextField, type TextFieldProps };

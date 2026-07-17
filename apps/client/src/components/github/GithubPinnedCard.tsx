@@ -2,7 +2,6 @@ import type { CSSProperties } from "react";
 
 import { ClientOnly } from "@tanstack/react-router";
 import { LinkIcon, Star } from "lucide-react";
-import { AccessibleIcon } from "radix-ui";
 import { Temporal } from "temporal-polyfill";
 
 import {
@@ -12,7 +11,7 @@ import {
 } from "#components/misc/CarouselCard";
 import type { Repository } from "@jeremyng/api/schemas/github/pinnedItems";
 import { Badge } from "@jeremyng/ui/components/Badge";
-import { Button } from "@jeremyng/ui/components/Button";
+import { buttonVariants } from "@jeremyng/ui/components/Button";
 import {
   HorizontalList,
   HorizontalListItem,
@@ -36,7 +35,7 @@ const GithubPinnedCard = ({
     <CarouselCard
       {...props}
       header={
-        <div className="items-start">
+        <>
           <Badge
             className="before:size-2 before:rounded-full before:bg-(--language-color)"
             style={
@@ -93,36 +92,45 @@ const GithubPinnedCard = ({
               </time>
             </HorizontalListItem>
             <HorizontalListItem className="inline-block align-text-bottom">
-              <span className="flex h-3.75 items-center gap-0.5">
-                <AccessibleIcon.Root label="Stars">
-                  <Star size={15} />
-                </AccessibleIcon.Root>
+              <span
+                className="flex h-3.75 items-center gap-0.5"
+                aria-label="Stars"
+              >
+                <Star size={15} aria-disabled />
                 {pinnedItemNode.stargazerCount}
               </span>
             </HorizontalListItem>
           </HorizontalList>
-        </div>
+        </>
       }
-      description={<p className="line-clamp-3">{pinnedItemNode.description}</p>}
+      description={pinnedItemNode.description}
       footer={
-        <div role="group">
-          {pinnedItemNode.homepageUrl !== undefined &&
+        <>
+          {pinnedItemNode.homepageUrl !== null &&
             pinnedItemNode.homepageUrl !== "" &&
             pinnedItemNode.homepageUrl !== pinnedItemNode.url && (
-              <Button color="default" variant="outline" asChild>
-                <Link href={pinnedItemNode.homepageUrl ?? undefined}>
-                  <LinkIcon className="size-4" aria-hidden />
-                  URL
-                </Link>
-              </Button>
+              <Link
+                className={buttonVariants({
+                  color: "gray",
+                  variant: "outline",
+                })}
+                href={pinnedItemNode.homepageUrl}
+              >
+                <LinkIcon className="size-4" aria-hidden />
+                URL
+              </Link>
             )}
-          <Button color="default" variant="outline" asChild>
-            <Link href={pinnedItemNode.url}>
-              <GitHub className="size-4" aria-hidden />
-              GitHub
-            </Link>
-          </Button>
-        </div>
+          <Link
+            className={buttonVariants({
+              color: "gray",
+              variant: "outline",
+            })}
+            href={pinnedItemNode.url}
+          >
+            <GitHub className="size-4" aria-hidden />
+            GitHub
+          </Link>
+        </>
       }
     />
   );

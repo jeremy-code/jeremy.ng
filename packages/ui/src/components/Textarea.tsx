@@ -1,6 +1,9 @@
 import type { ComponentPropsWithRef } from "react";
 
+import { Field as FieldPrimitive } from "@base-ui/react/field";
 import { tv, type VariantProps } from "tailwind-variants";
+
+import { composeRenderProps } from "../utils/composeRenderProps";
 
 const textareaVariants = tv({
   base: [
@@ -23,12 +26,18 @@ const textareaVariants = tv({
   },
 });
 
-type TextareaProps = ComponentPropsWithRef<"textarea"> &
+type TextareaProps = ComponentPropsWithRef<typeof FieldPrimitive.Control> &
   VariantProps<typeof textareaVariants>;
 
-const Textarea = ({ className, size, ...props }: TextareaProps) => {
+const Textarea = ({ size, ...props }: TextareaProps) => {
   return (
-    <textarea className={textareaVariants({ className, size })} {...props} />
+    <FieldPrimitive.Control
+      render={<textarea />}
+      {...props}
+      className={composeRenderProps(props.className, (className) =>
+        textareaVariants({ className, size }),
+      )}
+    />
   );
 };
 

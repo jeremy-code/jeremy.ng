@@ -8,8 +8,6 @@ import {
 
 import useEmblaCarousel from "embla-carousel-react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { AccessibleIcon, Slot } from "radix-ui";
-import type { PrimitivePropsWithRef } from "radix-ui/internal";
 import { cn } from "tailwind-variants";
 
 import { Button, type ButtonProps } from "./Button";
@@ -142,13 +140,10 @@ const CarouselContent = ({
 
 const CarouselItem = ({
   className,
-  asChild,
   ...props
-}: PrimitivePropsWithRef<"div">) => {
-  const Comp = asChild ? Slot.Root : "div";
-
+}: ComponentPropsWithRef<"div">) => {
   return (
-    <Comp
+    <div
       role="group"
       aria-roledescription="slide"
       className={cn(
@@ -173,11 +168,10 @@ const CarouselPrevious = ({ className, ...props }: ButtonProps) => {
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
+      aria-label="Previous slide"
       {...props}
     >
-      <AccessibleIcon.Root label="Previous slide">
-        <ArrowLeft className="size-4" />
-      </AccessibleIcon.Root>
+      <ArrowLeft className="size-4" aria-disabled />
     </Button>
   );
 };
@@ -193,17 +187,16 @@ const CarouselNext = ({ className, ...props }: ButtonProps) => {
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}
+      aria-label="Next slide"
       {...props}
     >
-      <AccessibleIcon.Root label="Next slide">
-        <ArrowRight className="size-4" />
-      </AccessibleIcon.Root>
+      <ArrowRight className="size-4" aria-disabled />
     </Button>
   );
 };
 
 const CarouselControls = ({
-  color = "default",
+  color = "gray",
   variant = "outline",
   size = "icon",
   ...props

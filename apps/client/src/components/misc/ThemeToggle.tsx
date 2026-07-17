@@ -17,10 +17,10 @@ const ThemeToggle = (props: SwitchProps) => {
     return (
       <Skeleton
         className={cn("rounded-full", {
-          "h-3 w-6": props.size === "xs",
-          "h-4 w-8": props.size === "sm",
-          "h-5 w-10": (props.size ?? "md") === "md",
-          "h-7 w-12": props.size === "lg",
+          "h-3 w-6": props.size === "sm",
+          "h-4 w-8": (props.size ?? "md") === "md",
+          "h-5 w-10": props.size === "lg",
+          "h-6 w-12": props.size === "xl",
         })}
       />
     );
@@ -34,15 +34,14 @@ const ThemeToggle = (props: SwitchProps) => {
       title={title}
       switchThumbProps={{
         className: "bg-background text-solid dark:text-foreground",
+        children: <ThemeIcon className="size-4" aria-disabled />,
       }}
       checked={isDark}
       onCheckedChange={(checked) => {
         setTheme(checked ? "dark" : "light");
       }}
       {...props}
-    >
-      <ThemeIcon className="size-4" aria-disabled />
-    </Switch>
+    />
   );
 };
 
