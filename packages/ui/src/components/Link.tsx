@@ -1,6 +1,6 @@
+import type { ComponentPropsWithRef } from "react";
+
 import { ExternalLink } from "lucide-react";
-import { Slot } from "radix-ui";
-import { type PrimitivePropsWithRef } from "radix-ui/internal";
 import { tv, type VariantProps } from "tailwind-variants";
 
 const linkVariants = tv({
@@ -56,11 +56,10 @@ type LinkProps = {
    * Opens link in new tab and adds an {@link ExternalLink} icon.
    */
   isExternal?: boolean;
-} & PrimitivePropsWithRef<"a"> &
+} & ComponentPropsWithRef<"a"> &
   VariantProps<typeof linkVariants>;
 
 const Link = ({
-  asChild,
   className,
   isExternal,
   children,
@@ -69,18 +68,16 @@ const Link = ({
   underline,
   ...props
 }: LinkProps) => {
-  const Comp = asChild ? Slot.Root : "a";
-
   return (
-    <Comp
+    <a
       className={linkVariants({ className, variant, color, underline })}
       // target="_blank" implies rel="noopener": https://caniuse.com/mdn-html_elements_a_implicit_noopener
       {...(isExternal && { target: "_blank" })}
       {...props}
     >
-      <Slot.Slottable>{children}</Slot.Slottable>
+      {children}
       {isExternal && <ExternalLink className="size-[1em] flex-none" />}
-    </Comp>
+    </a>
   );
 };
 

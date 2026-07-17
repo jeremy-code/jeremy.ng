@@ -8,7 +8,7 @@ import {
 } from "#components/misc/CarouselCard";
 import type { NpmSearchObject } from "@jeremyng/api/schemas/npm/search";
 import { Badge } from "@jeremyng/ui/components/Badge";
-import { Button } from "@jeremyng/ui/components/Button";
+import { buttonVariants } from "@jeremyng/ui/components/Button";
 import {
   HorizontalList,
   HorizontalListItem,
@@ -33,7 +33,7 @@ const NpmSearchObjectCard = ({
     <CarouselCard
       {...props}
       header={
-        <div className="items-start">
+        <>
           <Badge>{npmSearchObject.package.version}</Badge>
           <Link
             className={carouselCardVariants({
@@ -67,32 +67,33 @@ const NpmSearchObjectCard = ({
               </time>
             </HorizontalListItem>
           </HorizontalList>
-        </div>
+        </>
       }
-      description={
-        <p className="line-clamp-3">{npmSearchObject.package.description}</p>
-      }
+      description={npmSearchObject.package.description}
       footer={
-        <div className="flex-nowrap" role="group">
-          <Button color="default" variant="outline" asChild>
-            <Link href={npmSearchObject.package.links.npm}>
-              <Npm className="size-4 text-[#cb3837]" aria-hidden />
-              <span className="max-sm:hidden">npm</span>
-            </Link>
-          </Button>
+        <>
+          <Link
+            className={buttonVariants({ color: "gray", variant: "outline" })}
+            href={npmSearchObject.package.links.npm}
+          >
+            <Npm className="size-4 text-[#cb3837]" aria-hidden />
+            <span className="max-sm:sr-only">npm</span>
+          </Link>
           {!!npmSearchObject.package.links.repository && (
-            <Button color="default" variant="outline" asChild>
-              <a
-                href={npmSearchObject.package.links.repository?.substring(
-                  "git+".length, // Remove "git+" prefix
-                )}
-              >
-                <GitHub className="size-4" aria-hidden />
-                <span className="max-sm:hidden">GitHub</span>
-              </a>
-            </Button>
+            <a
+              className={buttonVariants({
+                color: "gray",
+                variant: "outline",
+              })}
+              href={npmSearchObject.package.links.repository?.substring(
+                "git+".length, // Remove "git+" prefix
+              )}
+            >
+              <GitHub className="size-4" aria-hidden />
+              <span className="max-sm:sr-only">GitHub</span>
+            </a>
           )}
-        </div>
+        </>
       }
     />
   );

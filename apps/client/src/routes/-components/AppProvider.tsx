@@ -4,7 +4,7 @@ import { lazy } from "react";
 import { ThemeProvider } from "next-themes";
 
 import { TrpcReactProvider } from "#lib/trpc/client";
-import { Toaster } from "@jeremyng/ui/components/Toaster";
+import { ToastProvider } from "@jeremyng/ui/components/Toast";
 
 const Devtools =
   import.meta.env.DEV ?
@@ -17,11 +17,12 @@ const Devtools =
 const AppProvider = ({ children }: { children: ReactNode }) => {
   return (
     <ThemeProvider>
-      <TrpcReactProvider>
-        {children}
-        <Devtools />
-        <Toaster />
-      </TrpcReactProvider>
+      <ToastProvider>
+        <TrpcReactProvider>
+          {children}
+          <Devtools />
+        </TrpcReactProvider>
+      </ToastProvider>
     </ThemeProvider>
   );
 };

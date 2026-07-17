@@ -1,5 +1,5 @@
-import { Slot } from "radix-ui";
-import type { PrimitivePropsWithRef } from "radix-ui/internal";
+import type { ComponentPropsWithRef } from "react";
+
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 const alertVariants = tv({
@@ -24,26 +24,18 @@ const alertVariants = tv({
   },
 });
 
-type AlertProps = PrimitivePropsWithRef<"aside"> &
+type AlertProps = ComponentPropsWithRef<"aside"> &
   VariantProps<typeof alertVariants>;
 
-const Alert = ({ asChild, className, color, size, ...props }: AlertProps) => {
-  const Comp = asChild ? Slot.Root : "aside";
-
+const Alert = ({ className, color, size, ...props }: AlertProps) => {
   return (
-    <Comp className={alertVariants({ color, className, size })} {...props} />
+    <aside className={alertVariants({ color, className, size })} {...props} />
   );
 };
 
-const AlertIcon = ({
-  asChild,
-  className,
-  ...props
-}: PrimitivePropsWithRef<"span">) => {
-  const Comp = asChild ? Slot.Root : "span";
-
+const AlertIcon = ({ className, ...props }: ComponentPropsWithRef<"span">) => {
   return (
-    <Comp
+    <span
       className={cn(
         "inline-flex size-[1em] shrink-0 items-center justify-center text-xl/7.5",
         className,
@@ -54,35 +46,23 @@ const AlertIcon = ({
 };
 
 const AlertContent = ({
-  asChild,
   className,
   ...props
-}: PrimitivePropsWithRef<"div">) => {
-  const Comp = asChild ? Slot.Root : "div";
-
+}: ComponentPropsWithRef<"div">) => {
   return (
-    <Comp className={cn("flex flex-1 flex-col gap-1", className)} {...props} />
+    <div className={cn("flex flex-1 flex-col gap-1", className)} {...props} />
   );
 };
 
-const AlertTitle = ({
-  asChild,
-  className,
-  ...props
-}: PrimitivePropsWithRef<"div">) => {
-  const Comp = asChild ? Slot.Root : "div";
-
-  return <Comp className={cn("font-medium", className)} {...props} />;
+const AlertTitle = ({ className, ...props }: ComponentPropsWithRef<"div">) => {
+  return <div className={cn("font-medium", className)} {...props} />;
 };
 
 const AlertDescription = ({
-  asChild,
   className,
   ...props
-}: PrimitivePropsWithRef<"div">) => {
-  const Comp = asChild ? Slot.Root : "div";
-
-  return <Comp className={cn("inline", className)} {...props} />;
+}: ComponentPropsWithRef<"div">) => {
+  return <div className={cn("inline", className)} {...props} />;
 };
 
 export {

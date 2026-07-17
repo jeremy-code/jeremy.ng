@@ -2,7 +2,7 @@ import { Link, type NotFoundRouteProps } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 
 import { Image } from "#components/common/Image";
-import { Button } from "@jeremyng/ui/components/Button";
+import { Button, buttonVariants } from "@jeremyng/ui/components/Button";
 import { Heading } from "@jeremyng/ui/components/Heading";
 
 const NotFound = (props: NotFoundRouteProps) => {
@@ -27,9 +27,9 @@ const NotFound = (props: NotFoundRouteProps) => {
           The page you are looking for does not exist.
         </p>
         <div role="group" className="flex gap-2">
-          <Button asChild>
-            <Link to="/">Go Home</Link>
-          </Button>
+          <Link className={buttonVariants()} to="/">
+            Go Home
+          </Link>
           <Button variant="solid" onClick={() => window.history.back()}>
             <ChevronLeft size={16} />
             Go Back

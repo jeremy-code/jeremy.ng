@@ -12,7 +12,7 @@ import { ContactForm as ContactFormSchema } from "@jeremyng/api/schemas/contact/
 import { Form } from "@jeremyng/ui/components/Form";
 import { Separator } from "@jeremyng/ui/components/Separator";
 import { Skeleton } from "@jeremyng/ui/components/Skeleton";
-import { toast } from "@jeremyng/ui/stores/toastStore";
+import { useToastManager } from "@jeremyng/ui/components/Toast";
 
 type ContactFormProps = ComponentPropsWithRef<typeof Form>;
 
@@ -21,6 +21,7 @@ const Captcha = lazy(() =>
 );
 
 const ContactForm = (props: ContactFormProps) => {
+  const toastManager = useToastManager();
   const turnstileRef = useRef<TurnstileInstance>(undefined);
   const trpcClient = useTRPCClient();
   const form = useAppForm({
@@ -42,24 +43,27 @@ const ContactForm = (props: ContactFormProps) => {
             email: value.email,
             message: value.message,
           });
-          toast({
-            title: `Message sent successfully with status ${status}`,
+          toastManager.add({
+            type: "success",
+            title: "Message sent successfully",
+            description: `Message sent successfully with status ${status}.`,
           });
+
           formApi.reset();
         } catch (e) {
-          toast({
+          toastManager.add({
+            type: "error",
             title: "Message sent failed",
             description:
               e instanceof Error ? e.message : "An unknown error occurred.",
-            variant: "destructive",
           });
         }
       } catch (e) {
-        toast({
+        toastManager.add({
+          type: "error",
           title: "Captcha verification failed",
           description:
             e instanceof Error ? e.message : "An unknown error occurred.",
-          variant: "destructive",
         });
       } finally {
         // Reset if the token was valid (consumed, no longer usable) or if there

@@ -1,22 +1,39 @@
-import { Collapsible as CollapsiblePrimitive } from "radix-ui";
+import type { ComponentPropsWithRef } from "react";
+
+import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
 import { cn } from "tailwind-variants";
+
+import { composeRenderProps } from "../utils/composeRenderProps";
 
 const { Root: Collapsible, Trigger: CollapsibleTrigger } = CollapsiblePrimitive;
 
-const CollapsibleContent = ({
-  ...props
-}: React.ComponentProps<typeof CollapsiblePrimitive.CollapsibleContent>) => {
+type CollapsibleProps = ComponentPropsWithRef<typeof Collapsible>;
+
+type CollapsibleTriggerProps = ComponentPropsWithRef<typeof CollapsibleTrigger>;
+
+type CollapsibleContentProps = ComponentPropsWithRef<
+  typeof CollapsiblePrimitive.Panel
+>;
+
+const CollapsibleContent = (props: CollapsibleContentProps) => {
   return (
-    <CollapsiblePrimitive.CollapsibleContent
+    <CollapsiblePrimitive.Panel
       {...props}
-      className={cn(
-        "overflow-hidden",
-        "data-[state=open]:animate-collapsible-down",
-        "data-[state=closed]:animate-collapsible-up",
-        props.className,
+      className={composeRenderProps(props.className, (className) =>
+        cn(
+          "h-(--collapsible-panel-height) overflow-y-hidden ease-out data-ending-style:h-0 data-starting-style:h-0 motion-safe:transition-[height]",
+          className,
+        ),
       )}
     />
   );
 };
 
-export { Collapsible, CollapsibleTrigger, CollapsibleContent };
+export {
+  Collapsible,
+  type CollapsibleProps,
+  CollapsibleTrigger,
+  type CollapsibleTriggerProps,
+  CollapsibleContent,
+  type CollapsibleContentProps,
+};

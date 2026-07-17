@@ -40,29 +40,6 @@
 
 /* https://tailwindcss.com/docs/theme#referencing-other-variables */
 @theme inline {
-  --color-primary-foreground: light-dark(
-    var(--color-primary-700),
-    var(--color-primary-300)
-  );
-  --color-primary-muted: light-dark(
-    var(--color-primary-200),
-    var(--color-primary-800)
-  );
-  --color-primary-subtle: light-dark(
-    var(--color-primary-100),
-    var(--color-primary-900)
-  );
-  --color-primary-border: light-dark(
-    var(--color-primary-500),
-    var(--color-primary-400)
-  );
-  --color-primary-emphasized: light-dark(
-    var(--color-primary-300),
-    var(--color-primary-700)
-  );
-  --color-primary-solid: var(--color-primary-600);
-  --color-primary-solid-foreground: var(--color-primary-50);
-
   --color-background: light-dark(var(--color-gray-50), var(--color-gray-950));
   --color-foreground: light-dark(var(--color-gray-950), var(--color-gray-50));
   --color-muted: light-dark(var(--color-gray-200), var(--color-gray-800));
@@ -80,8 +57,7 @@
 
   --color-surface: light-dark(var(--color-gray-50), var(--color-gray-900));
 
-  --color-destructive: var(--color-red-600);
-  --color-destructive-foreground: var(--color-red-50);
+  --color-destructive: light-dark(var(--color-red-700), var(--color-red-400));
 }
 
 @layer base {
@@ -103,7 +79,8 @@
   }
 
   body {
-    @apply flex min-h-svh flex-col bg-background text-foreground;
+    /* https://base-ui.com/react/overview/quick-start#ios-26-safari */
+    @apply relative flex min-h-svh flex-col bg-background text-foreground;
 
     & > :is(main, aside) {
       @apply flex-[1_0_auto];
