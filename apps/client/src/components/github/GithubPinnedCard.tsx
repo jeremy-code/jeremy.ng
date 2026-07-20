@@ -1,9 +1,9 @@
 import type { CSSProperties } from "react";
 
-import { ClientOnly } from "@tanstack/react-router";
 import { LinkIcon, Star } from "lucide-react";
 import { Temporal } from "temporal-polyfill";
 
+import { SsrDate } from "#components/common/SsrDate";
 import {
   CarouselCard,
   type CarouselCardProps,
@@ -76,19 +76,10 @@ const GithubPinnedCard = ({
             )}
             <HorizontalListItem>
               <time dateTime={pinnedItemNode.updatedAt}>
-                <ClientOnly
-                  fallback={updatedAtInstant
-                    .toZonedDateTimeISO("UTC")
-                    .toLocaleString(undefined, {
-                      dateStyle: "medium",
-                      timeStyle: undefined,
-                    })}
-                >
-                  {updatedAtInstant.toLocaleString(undefined, {
-                    dateStyle: "medium",
-                    timeStyle: undefined,
-                  })}
-                </ClientOnly>
+                <SsrDate
+                  dateTime={updatedAtInstant}
+                  options={{ dateStyle: "medium", timeStyle: undefined }}
+                />
               </time>
             </HorizontalListItem>
             <HorizontalListItem className="inline-block align-text-bottom">

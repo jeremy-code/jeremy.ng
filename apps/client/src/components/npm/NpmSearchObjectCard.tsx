@@ -1,6 +1,6 @@
-import { ClientOnly } from "@tanstack/react-router";
 import { Temporal } from "temporal-polyfill";
 
+import { SsrDate } from "#components/common/SsrDate";
 import {
   CarouselCard,
   carouselCardVariants,
@@ -51,19 +51,10 @@ const NpmSearchObjectCard = ({
             </HorizontalListItem>
             <HorizontalListItem>
               <time dateTime={npmSearchObject.package.date}>
-                <ClientOnly
-                  fallback={dateInstant
-                    .toZonedDateTimeISO("UTC")
-                    .toLocaleString(undefined, {
-                      dateStyle: "medium",
-                      timeStyle: undefined,
-                    })}
-                >
-                  {dateInstant.toLocaleString(undefined, {
-                    dateStyle: "medium",
-                    timeStyle: undefined,
-                  })}
-                </ClientOnly>
+                <SsrDate
+                  dateTime={dateInstant}
+                  options={{ dateStyle: "medium", timeStyle: undefined }}
+                />
               </time>
             </HorizontalListItem>
           </HorizontalList>
