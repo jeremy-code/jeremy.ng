@@ -36,10 +36,10 @@ const linkVariants = tv({
       ],
     },
     underline: {
-      true: "underline decoration-[hsl(from_currentcolor_h_s_l/50%)] hover:decoration-[hsl(from_currentcolor_h_s_l/80%)]",
+      true: "underline decoration-current/50 hover:decoration-current/80",
       false: "no-underline",
       hover:
-        "decoration-transparent hover:underline hover:decoration-[hsl(from_currentcolor_h_s_l/80%)]",
+        "decoration-transparent hover:underline hover:decoration-current/80",
     },
   },
   /**
