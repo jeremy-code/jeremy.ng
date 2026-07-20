@@ -21,30 +21,6 @@ const reactConfig = defineConfig(
   {
     name: "@jeremyng/eslint-config/react.js",
     rules: {
-      "@typescript-eslint/no-misused-promises": [
-        "error",
-        {
-          checksVoidReturn: {
-            /**
-             * Server actions must be async functions and may be passed to
-             * `action` and `onSubmit` props, which return `void` and not
-             * `Promise<void>`. This triggers `no-misused-promises`. However,
-             * making it a synchronous function throws error "Functions cannot
-             * be directly passed unless explicitly exposed with 'use server'".
-             *
-             * @see {@link https://typescript-eslint.io/rules/no-misused-promises/#checksvoidreturn}
-             * @see {@link https://react.dev/reference/rsc/server-actions}
-             */
-            attributes: false,
-          },
-        },
-      ],
-      /**
-       * Server actions must be async functions, even if they don't use `await`.
-       *
-       * @see {@link https://typescript-eslint.io/rules/require-await/}
-       */
-      "@typescript-eslint/require-await": "off",
       /**
        * @see {@link https://typescript-eslint.io/rules/only-throw-error/}
        * @see {@link https://tanstack.com/router/latest/docs/eslint/eslint-plugin-router#typescript-eslint}
