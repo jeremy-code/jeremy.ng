@@ -32,7 +32,7 @@ const NpmSearchList = (props: NpmSearchListProps) => {
     error,
   } = useQuery(
     useTRPC().npm.search.queryOptions({
-      text: `author:${env.VITE_NPM_REGISTRY_USERNAME}`,
+      text: `maintainer:${env.VITE_NPM_REGISTRY_USERNAME}`,
     }),
   );
 

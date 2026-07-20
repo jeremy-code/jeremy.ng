@@ -94,7 +94,7 @@ const Route = createFileRoute("/")({
     // Prehydrate queries for SEO
     const queriesOptions = [
       context.trpc.npm.search.queryOptions({
-        text: `author:${env.VITE_NPM_REGISTRY_USERNAME}`,
+        text: `maintainer:${env.VITE_NPM_REGISTRY_USERNAME}`,
       }),
       context.trpc.github.getPinnedItems.queryOptions({
         login: env.VITE_GITHUB_USERNAME,
