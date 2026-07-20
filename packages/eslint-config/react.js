@@ -21,13 +21,6 @@ const reactConfig = defineConfig(
   {
     name: "@jeremyng/eslint-config/react.js",
     rules: {
-      /**
-       * `@tanstack/react-form` uses children render props for `<Field />`
-       *
-       * @see {@link https://eslint-react.xyz/docs/rules/jsx-no-children-prop}
-       * @see {@link https://tanstack.com/form/latest/docs/framework/react/guides/basic-concepts#field}
-       */
-      "@eslint-react/jsx-no-children-prop": "off",
       "@typescript-eslint/no-misused-promises": [
         "error",
         {

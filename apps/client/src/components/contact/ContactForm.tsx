@@ -83,9 +83,8 @@ const ContactForm = (props: ContactFormProps) => {
         }}
         {...props}
       >
-        <form.AppField
-          name="name"
-          children={(field) => (
+        <form.AppField name="name">
+          {(field) => (
             <field.TextField
               label="Name"
               inputProps={{
@@ -96,10 +95,9 @@ const ContactForm = (props: ContactFormProps) => {
               }}
             />
           )}
-        />
-        <form.AppField
-          name="email"
-          children={(field) => (
+        </form.AppField>
+        <form.AppField name="email">
+          {(field) => (
             <field.TextField
               label="Email Address"
               inputProps={{
@@ -110,10 +108,9 @@ const ContactForm = (props: ContactFormProps) => {
               }}
             />
           )}
-        />
-        <form.AppField
-          name="message"
-          children={(field) => (
+        </form.AppField>
+        <form.AppField name="message">
+          {(field) => (
             <field.TextareaField
               label="Message"
               textareaProps={{
@@ -128,10 +125,9 @@ const ContactForm = (props: ContactFormProps) => {
               }}
             />
           )}
-        />
-        <form.AppField
-          name="token"
-          children={(field) => (
+        </form.AppField>
+        <form.AppField name="token">
+          {(field) => (
             <>
               <Suspense fallback={<Skeleton className="mb-2.5 h-16.25 w-75" />}>
                 <Captcha
@@ -178,7 +174,7 @@ const ContactForm = (props: ContactFormProps) => {
               : null}
             </>
           )}
-        />
+        </form.AppField>
         <Separator className="mt-2.5 mb-2.5" />
         <div className="flex items-center justify-end gap-2.5">
           <form.SubmitButton className="max-sm:w-full" />
