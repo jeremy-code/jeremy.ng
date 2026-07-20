@@ -36,10 +36,7 @@ const NpmSearchObjectCard = ({
         <>
           <Badge>{npmSearchObject.package.version}</Badge>
           <Link
-            className={carouselCardVariants({
-              className: props.className,
-              size: props.size,
-            }).title()}
+            className={carouselCardVariants({ size: props.size }).title()}
             href={npmSearchObject.package.links.npm}
             underline="hover"
           >
@@ -72,10 +69,7 @@ const NpmSearchObjectCard = ({
           </Link>
           {!!npmSearchObject.package.links.repository && (
             <a
-              className={buttonVariants({
-                color: "gray",
-                variant: "outline",
-              })}
+              className={buttonVariants({ color: "gray", variant: "outline" })}
               href={npmSearchObject.package.links.repository?.substring(
                 "git+".length, // Remove "git+" prefix
               )}

@@ -47,10 +47,7 @@ const GithubPinnedCard = ({
             {pinnedItemNode.primaryLanguage?.name}
           </Badge>
           <Link
-            className={carouselCardVariants({
-              className: props.className,
-              size: props.size,
-            }).title()}
+            className={carouselCardVariants({ size: props.size }).title()}
             href={pinnedItemNode.url}
             underline="hover"
           >
@@ -112,10 +109,7 @@ const GithubPinnedCard = ({
               </Link>
             )}
           <Link
-            className={buttonVariants({
-              color: "gray",
-              variant: "outline",
-            })}
+            className={buttonVariants({ color: "gray", variant: "outline" })}
             href={pinnedItemNode.url}
           >
             <GitHub className="size-4" aria-hidden />
