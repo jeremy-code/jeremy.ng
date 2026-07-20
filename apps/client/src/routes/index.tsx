@@ -4,6 +4,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ContactForm } from "#components/contact/ContactForm";
 import { SocialAccountsList } from "#components/contact/SocialAccountsList";
 import { GithubPinnedList } from "#components/github/GithubPinnedList";
+import { Hero } from "#components/layout/Hero";
 import { NpmSearchList } from "#components/npm/NpmSearchList";
 import { env } from "#config/env";
 import { Heading } from "@jeremyng/ui/components/Heading";
@@ -16,6 +17,7 @@ const HomeComponent = () => {
     <HydrationBoundary state={loaderData?.dehydratedState}>
       <main className="container py-4">
         <div className="mb-8 flex flex-col gap-8">
+          <Hero />
           <section>
             <Heading
               id="npm-libraries"
@@ -93,6 +95,9 @@ const Route = createFileRoute("/")({
   loader: async ({ context }) => {
     // Prehydrate queries for SEO
     const queriesOptions = [
+      context.trpc.github.getBio.queryOptions({
+        login: env.VITE_GITHUB_USERNAME,
+      }),
       context.trpc.npm.search.queryOptions({
         text: `maintainer:${env.VITE_NPM_REGISTRY_USERNAME}`,
       }),
