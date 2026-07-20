@@ -5,8 +5,7 @@
   "private": true,
   "exports": {
     ".": "./index.js",
-    "./disables.js": "./disables.js",
-    "./react.js": "./react.js"
+    "./*": "./*.js"
   },
   "devDependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "^4.7.2",

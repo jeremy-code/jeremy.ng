@@ -1,1 +1,1 @@
-export { default } from "@jeremyng/eslint-config/react.js";
+export { default } from "@jeremyng/eslint-config/react";
