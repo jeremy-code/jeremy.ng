@@ -1,6 +1,7 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
+import { Bio } from "../schemas/github/bio";
 import { Repository } from "../schemas/github/pinnedItems";
 import { SocialAccount } from "../schemas/github/socialAccounts";
 import {
@@ -8,6 +9,7 @@ import {
   getPinnedItemsNodes,
   getSocialAccountsTotalCount,
   getSocialAccountsNodes,
+  getBio,
 } from "../services/github";
 import { baseProcedure, createTRPCRouter } from "../trpc";
 
@@ -85,6 +87,22 @@ const githubRouter = createTRPCRouter({
           (node) => node !== null,
         ) ?? []
       );
+    }),
+  getBio: baseProcedure
+    .input(z.strictObject({ login: z.string() }))
+    .output(Bio.nullable())
+    .query(async (opts) => {
+      const bioResponse = await getBio(opts.input);
+
+      if (bioResponse.user === null) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message:
+            "The user could not be found when attempting to get the bio.",
+        });
+      }
+
+      return bioResponse.user.bio;
     }),
 });
 

@@ -4,11 +4,13 @@ import type { RequestParameters } from "@octokit/graphql/types";
 import { env } from "../config/env";
 import type {
   TypedDocumentString,
+  UserBioQueryVariables,
   UserPinnedItemsNodesQueryVariables,
   UserPinnedItemsTotalCountQueryVariables,
   UserSocialAccountsNodesQueryVariables,
   UserSocialAccountsTotalCountQueryVariables,
 } from "../generated/gql/graphql";
+import { userBioQuery } from "../graphql/github/userBioQuery";
 import { userPinnedItemsNodesQuery } from "../graphql/github/userPinnedItemsNodesQuery";
 import { userPinnedItemsTotalCountQuery } from "../graphql/github/userPinnedItemsTotalCountQuery";
 import { userSocialAccountsNodesQuery } from "../graphql/github/userSocialAccountsNodesQuery";
@@ -39,9 +41,13 @@ const getSocialAccountsTotalCount = (
 const getSocialAccountsNodes = (input: UserSocialAccountsNodesQueryVariables) =>
   octokitGraphql(userSocialAccountsNodesQuery, input);
 
+const getBio = (input: UserBioQueryVariables) =>
+  octokitGraphql(userBioQuery, input);
+
 export {
   getPinnedItemsTotalCount,
   getPinnedItemsNodes,
   getSocialAccountsTotalCount,
   getSocialAccountsNodes,
+  getBio,
 };
