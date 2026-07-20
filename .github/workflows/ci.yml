@@ -6,12 +6,13 @@ on:
   pull_request:
     types: [opened, synchronize]
 
-permissions:
-  contents: read # Access to check out code and install dependencies
+permissions: {} # Each job defines its own permissions explicitly
 
 jobs:
   build:
     name: Build
+    permissions:
+      contents: read # Access to check out code and install dependencies
     runs-on: ubuntu-latest
 
     steps:
