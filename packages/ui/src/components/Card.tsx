@@ -28,7 +28,7 @@ const cardVariants = tv({
         base: "bg-surface shadow-md",
       },
       outline: {
-        base: "border bg-surface",
+        base: "border border-border bg-surface",
       },
       subtle: {
         base: "bg-muted",

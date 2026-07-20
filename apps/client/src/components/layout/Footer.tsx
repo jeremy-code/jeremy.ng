@@ -12,7 +12,10 @@ import { Link } from "@jeremyng/ui/components/Link";
 const Footer = ({ className, ...props }: ComponentPropsWithRef<"footer">) => {
   return (
     <footer
-      className={cn("grid place-content-center border-t", className)}
+      className={cn(
+        "grid place-content-center border-t border-t-border",
+        className,
+      )}
       {...props}
     >
       <div className="container py-4">

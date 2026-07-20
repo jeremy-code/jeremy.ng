@@ -129,7 +129,7 @@ const NavigationMenuArrow = ({
         "data-[side=left]:-right-2.25 data-[side=left]:rotate-90",
         "data-[side=right]:-left-2.25 data-[side=right]:-rotate-90",
         // arrow indicator pseudo-element
-        "after:absolute after:bottom-0 after:left-1/2 after:size-[calc(6px*sqrt(2))] after:-translate-x-1/2 after:translate-y-1/2 after:rotate-45 after:rounded-tl-sm after:border after:bg-subtle",
+        "after:absolute after:bottom-0 after:left-1/2 after:size-[calc(6px*sqrt(2))] after:-translate-x-1/2 after:translate-y-1/2 after:rotate-45 after:rounded-tl-sm after:border after:border-border after:bg-subtle",
         className,
       )}
       {...props}

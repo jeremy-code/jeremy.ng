@@ -6,7 +6,7 @@ import { tv, type VariantProps } from "tailwind-variants";
 import { composeRenderProps } from "../utils/composeRenderProps";
 
 const separatorVariants = tv({
-  base: "border-muted!",
+  base: "border-muted",
   variants: {
     variant: {
       solid: "border-solid",

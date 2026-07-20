@@ -7,7 +7,7 @@ import { composeRenderProps } from "../utils/composeRenderProps";
 
 const inputVariants = tv({
   base: [
-    "flex h-9 w-full appearance-none rounded border bg-surface py-1 text-start motion-safe:transition-opacity",
+    "flex h-9 w-full appearance-none rounded border border-border bg-surface py-1 text-start motion-safe:transition-opacity",
     "file:border-0 file:bg-transparent file:text-sm file:font-medium",
     "placeholder:text-solid",
     "disabled:cursor-not-allowed disabled:bg-muted disabled:opacity-50",

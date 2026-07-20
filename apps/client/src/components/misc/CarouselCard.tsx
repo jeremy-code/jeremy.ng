@@ -15,7 +15,7 @@ const carouselCardVariants = tv({
   slots: {
     base: "h-full",
     footer:
-      "justify-end border-t bg-gray-100 pt-4 text-[unset] dark:bg-gray-950",
+      "justify-end border-t border-t-border bg-gray-100 pt-4 text-[unset] dark:bg-gray-950",
     title: "self-stretch truncate",
     body: "gap-2",
     header: "items-start",

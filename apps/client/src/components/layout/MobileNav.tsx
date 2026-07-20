@@ -74,7 +74,7 @@ const MobileNav = ({ className, ...props }: MobileNavProps) => {
       <CollapsibleTrigger render={<MobileNavButton />} />
       <CollapsibleContent
         render={<nav />}
-        className="absolute inset-x-0 top-full border-b bg-background"
+        className="absolute inset-x-0 top-full border-b border-b-border bg-background"
       >
         <ul className="space-y-0.5 px-4 pb-4">
           {NAVIGATION_ITEMS.map((item) => (

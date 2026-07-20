@@ -61,14 +61,6 @@
 }
 
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-border, currentColor);
-  }
-
   html {
     @apply antialiased [interpolate-size:allow-keywords] [text-size-adjust:none];
   }
