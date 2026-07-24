@@ -94,25 +94,27 @@ const Route = createFileRoute("/")({
   component: HomeComponent,
   loader: async ({ context }) => {
     // Prehydrate queries for SEO
-    const queriesOptions = [
-      context.trpc.github.getBio.queryOptions({
-        login: env.VITE_GITHUB_USERNAME,
-      }),
-      context.trpc.npm.search.queryOptions({
-        text: `maintainer:${env.VITE_NPM_REGISTRY_USERNAME}`,
-      }),
-      context.trpc.github.getPinnedItems.queryOptions({
-        login: env.VITE_GITHUB_USERNAME,
-      }),
-      context.trpc.github.getSocialAccounts.queryOptions({
-        login: env.VITE_GITHUB_USERNAME,
-      }),
-    ] as const;
-
     await Promise.all([
-      context.queryClient.prefetchQuery(queriesOptions[0]),
-      context.queryClient.prefetchQuery(queriesOptions[1]),
-      context.queryClient.prefetchQuery(queriesOptions[2]),
+      context.queryClient.prefetchQuery(
+        context.trpc.github.getBio.queryOptions({
+          login: env.VITE_GITHUB_USERNAME,
+        }),
+      ),
+      context.queryClient.prefetchQuery(
+        context.trpc.npm.search.queryOptions({
+          text: `maintainer:${env.VITE_NPM_REGISTRY_USERNAME}`,
+        }),
+      ),
+      context.queryClient.prefetchQuery(
+        context.trpc.github.getPinnedItems.queryOptions({
+          login: env.VITE_GITHUB_USERNAME,
+        }),
+      ),
+      context.queryClient.prefetchQuery(
+        context.trpc.github.getSocialAccounts.queryOptions({
+          login: env.VITE_GITHUB_USERNAME,
+        }),
+      ),
     ]);
 
     return { dehydratedState: dehydrate(context.queryClient) };
