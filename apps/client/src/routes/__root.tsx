@@ -74,6 +74,11 @@ const Route = createRootRouteWithContext<RouterContext>()({
           "personal-portfolio",
         ],
       }),
+      { property: "og:image", content: `${env.VITE_BASE_URL}/og-image.jpg` },
+      { property: "og:image:type", content: "image/jpeg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "600" },
+      { property: "og:image:alt", content: "Jeremy Nguyen" },
     ],
     links: [
       { rel: "stylesheet", href: uiCss },
