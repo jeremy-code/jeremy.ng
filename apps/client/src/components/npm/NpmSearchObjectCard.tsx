@@ -64,7 +64,14 @@ const NpmSearchObjectCard = ({
             className={buttonVariants({ color: "gray", variant: "outline" })}
             href={npmSearchObject.package.links.npm}
           >
-            <Npm className="size-4 text-[#cb3837]" aria-hidden />
+            <svg
+              className="size-4 text-[#cb3837]"
+              viewBox="0 0 24 24"
+              aria-hidden
+            >
+              <rect width="12.5" height="12.5" x="5.75" y="5.75" fill="white" />
+              <Npm />
+            </svg>
             <span className="max-sm:sr-only">npm</span>
           </Link>
           {!!npmSearchObject.package.links.repository && (

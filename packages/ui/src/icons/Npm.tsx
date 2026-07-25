@@ -16,20 +16,10 @@ const Npm = (props: NpmProps) => {
       fill="currentColor"
       {...props}
     >
-      <rect
-        x="2"
-        y="2"
-        width="20"
-        height="20"
-        rx="3"
-        ry="3"
-        fill="currentColor"
-        stroke="none"
-      />
       <path
-        d="M5.75 5.75H18.25V18.25H15.75V8.25H12V18.25H5.75V5.75Z"
-        fill="var(--color-npm-foreground, white)"
-        stroke="none"
+        fill-rule="evenodd"
+        fill="currentColor"
+        d="M 5,2 H 19 A 3,3 0 0 1 22,5 V 19 A 3,3 0 0 1 19,22 H 5 A 3,3 0 0 1 2,19 V 5 A 3,3 0 0 1 5,2 Z M5.75 5.75H18.25V18.25H15.75V8.25H12V18.25H5.75V5.75Z"
       />
     </svg>
   );

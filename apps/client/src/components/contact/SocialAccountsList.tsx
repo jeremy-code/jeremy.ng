@@ -34,9 +34,7 @@ const SOCIAL_ACCOUNTS_PROVIDER_MAP: Record<
   FACEBOOK: "Facebook",
   HOMETOWN: "Hometown",
   INSTAGRAM: "Instagram",
-  LINKEDIN: (
-    <LinkedIn className="[--color-linkedin-foreground:var(--color-background)]" />
-  ),
+  LINKEDIN: <LinkedIn />,
   MASTODON: <Mastodon />,
   REDDIT: "Reddit",
   THREADS: "Threads",
@@ -44,7 +42,7 @@ const SOCIAL_ACCOUNTS_PROVIDER_MAP: Record<
   TWITTER: "Twitter",
   YOUTUBE: "YouTube",
   BLUESKY: "Bluesky",
-  NPM: <Npm className="[--color-npm-foreground:var(--color-background)]" />,
+  NPM: <Npm />,
   GITHUB: <GitHub />,
   EMAIL: <Mail />,
 };
