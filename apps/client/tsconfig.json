@@ -4,7 +4,8 @@
     "types": [
       "./src/generated/worker-configuration.d.ts",
       "node",
-      "vite/client"
+      "vite/client",
+      "@tanstack/react-start"
     ]
   }
 }
