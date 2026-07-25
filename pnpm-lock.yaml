@@ -7990,9 +7990,6 @@ packages:
         integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==,
       }
 
-ignoredOptionalDependencies:
-  - eslint-plugin-import
-
 snapshots:
   "@ardatan/relay-compiler@13.0.1(graphql@16.14.2)":
     dependencies:

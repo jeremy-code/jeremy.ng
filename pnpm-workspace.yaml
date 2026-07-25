@@ -3,10 +3,6 @@ packages:
   - packages/*
 
 # Dependency Resolution (https://pnpm.io/settings#dependency-resolution)
-ignoredOptionalDependencies:
-  # eslint-import-resolver-typescript has this as an optional peer dependency,
-  # leading to a peer depedency issue due to not supporting ESLint v10
-  - eslint-plugin-import
 minimumReleaseAge: 1440 # 1 day in minutes
 minimumReleaseAgeStrict: true
 trustPolicy: no-downgrade
