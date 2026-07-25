@@ -9,6 +9,12 @@ const NpmPackage = z.strictObject({
   sanitized_name: z.string(),
   publisher: z.strictObject({
     email: z.email(),
+    approver: z
+      .strictObject({
+        name: z.string(),
+        email: z.email(),
+      })
+      .optional(),
     actor: z
       .strictObject({
         name: z.string(),
