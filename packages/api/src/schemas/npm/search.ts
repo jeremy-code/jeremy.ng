@@ -1,5 +1,61 @@
 import { z, regexes } from "zod";
 
+const NpmPackage = z.strictObject({
+  name: z.string(),
+  scope: z.string().optional(),
+  keywords: z.array(z.string()),
+  version: z.string(),
+  description: z.string().optional(),
+  sanitized_name: z.string(),
+  publisher: z.strictObject({
+    email: z.email(),
+    actor: z
+      .strictObject({
+        name: z.string(),
+        type: z.literal("user"),
+        email: z.email(),
+      })
+      .optional(),
+    trustedPublisher: z
+      .strictObject({
+        oidcConfigId: z
+          .string()
+          .startsWith("oidc:")
+          .superRefine((val, ctx) => {
+            if (!regexes.uuid4.test(val.substring("oidc:".length))) {
+              ctx.addIssue({
+                origin: "string",
+                code: "invalid_format",
+                format: "uuid",
+                pattern: regexes.uuid4.toString(),
+                message: "Invalid UUID",
+              });
+            }
+          }),
+        id: z.literal("github"),
+      })
+      .optional(),
+    username: z.string(),
+  }),
+  maintainers: z.array(
+    z.strictObject({
+      email: z.email(),
+      username: z.string(),
+    }),
+  ),
+  license: z.string().optional(),
+  date: z.iso.datetime(),
+  links: z.strictObject({
+    homepage: z.url().optional(),
+    repository: z.url().optional(),
+    bugs: z.url().optional(),
+    npm: z.url({
+      protocol: /^https$/,
+      hostname: /^www.npmjs.com$/,
+    }),
+  }),
+});
+
 const NpmSearchObject = z.strictObject({
   downloads: z.strictObject({
     monthly: z.int().min(0),
@@ -8,61 +64,7 @@ const NpmSearchObject = z.strictObject({
   dependents: z.coerce.number(),
   updated: z.iso.datetime(),
   searchScore: z.number().min(0),
-  package: z.strictObject({
-    name: z.string(),
-    scope: z.string().optional(),
-    keywords: z.array(z.string()),
-    version: z.string(),
-    description: z.string().optional(),
-    sanitized_name: z.string(),
-    publisher: z.strictObject({
-      email: z.email(),
-      actor: z
-        .strictObject({
-          name: z.string(),
-          type: z.literal("user"),
-          email: z.email(),
-        })
-        .optional(),
-      trustedPublisher: z
-        .strictObject({
-          oidcConfigId: z
-            .string()
-            .startsWith("oidc:")
-            .superRefine((val, ctx) => {
-              if (!regexes.uuid4.test(val.substring("oidc:".length))) {
-                ctx.addIssue({
-                  origin: "string",
-                  code: "invalid_format",
-                  format: "uuid",
-                  pattern: regexes.uuid4.toString(),
-                  message: "Invalid UUID",
-                });
-              }
-            }),
-          id: z.literal("github"),
-        })
-        .optional(),
-      username: z.string(),
-    }),
-    maintainers: z.array(
-      z.strictObject({
-        email: z.email(),
-        username: z.string(),
-      }),
-    ),
-    license: z.string().optional(),
-    date: z.iso.datetime(),
-    links: z.strictObject({
-      homepage: z.url().optional(),
-      repository: z.url().optional(),
-      bugs: z.url().optional(),
-      npm: z.url({
-        protocol: /^https$/,
-        hostname: /^www.npmjs.com$/,
-      }),
-    }),
-  }),
+  package: NpmPackage,
   score: z.strictObject({
     final: z.number().min(0),
     detail: z.strictObject({
