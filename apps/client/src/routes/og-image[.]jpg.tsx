@@ -2,8 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { googleFonts } from "takumi-js/helpers";
 import { ImageResponse } from "takumi-js/response";
 
-// eslint-disable-next-line import-x/no-unresolved -- Resolving from public folder using Vite
-import favicon from "/favicon.svg";
+import { env } from "#config/env";
 
 const Route = createFileRoute("/og-image.jpg")({
   server: {
@@ -12,7 +11,12 @@ const Route = createFileRoute("/og-image.jpg")({
         const imageResponse = new ImageResponse(
           <div tw="size-full flex justify-center items-center gap-8 bg-white">
             {/* Margin 0, since Tailwind CSS reset is not loaded */}
-            <img tw="m-0" width="150" height="150" src={favicon} />
+            <img
+              tw="m-0"
+              width="150"
+              height="150"
+              src={`${env.VITE_BASE_URL}/favicon.svg`}
+            />
             <p tw="m-0 font-medium text-8xl text-slate-950 tracking-tight">
               Jeremy Nguyen
             </p>
