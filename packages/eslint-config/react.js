@@ -1,7 +1,7 @@
 import eslintReact from "@eslint-react/eslint-plugin";
 import pluginQuery from "@tanstack/eslint-plugin-query";
 import pluginRouter from "@tanstack/eslint-plugin-router";
-import { defineConfig, globalIgnores } from "eslint/config";
+import { defineConfig } from "eslint/config";
 import * as reactCompiler from "eslint-plugin-react-compiler";
 import reactHooks from "eslint-plugin-react-hooks";
 import globals from "globals";
@@ -10,8 +10,6 @@ import disablesConfig from "./disables.js";
 import baseConfig from "./index.js";
 
 const reactConfig = defineConfig(
-  // Ignore generated files including TanStack Router filesystem route tree
-  globalIgnores(["*/generated/"]),
   baseConfig,
   eslintReact.configs["recommended-type-checked"],
   reactCompiler.configs.recommended,

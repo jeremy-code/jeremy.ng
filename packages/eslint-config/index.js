@@ -2,7 +2,7 @@ import { fileURLToPath } from "node:url";
 
 import js from "@eslint/js";
 import * as comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
-import { defineConfig, includeIgnoreFile } from "eslint/config";
+import { defineConfig, includeIgnoreFile, globalIgnores } from "eslint/config";
 import { createTypeScriptImportResolver } from "eslint-import-resolver-typescript";
 import { importX, createNodeResolver } from "eslint-plugin-import-x";
 import pluginPromise from "eslint-plugin-promise";
@@ -18,6 +18,8 @@ const gitignorePath = fileURLToPath(
 
 const baseConfig = defineConfig(
   includeIgnoreFile(gitignorePath, { gitignoreResolution: true }),
+  // Ignore generated files including TanStack Router filesystem route tree
+  globalIgnores(["*/generated/"]),
   js.configs.recommended,
   tseslint.configs.recommendedTypeChecked,
   comments.recommended,
