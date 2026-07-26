@@ -14,6 +14,7 @@ const prettierConfig = {
   plugins: ["prettier-plugin-tailwindcss"],
   tailwindStylesheet: "./packages/ui/src/globals.css",
   tailwindFunctions: ["cx", "cn", "cnMerge", "tv", "twMerge"],
+  tailwindAttributes: ["tw"],
 };
 
 export default prettierConfig;
