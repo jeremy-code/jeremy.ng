@@ -7,6 +7,8 @@
   "files.associations": {
     "*.css": "tailwindcss" // @see {@link https://github.com/tailwindlabs/tailwindcss-intellisense#filesassociations}
   },
+  // Otherwise, TypeScript imports from "node:test" instead of "vitest"
+  "js/ts.preferences.autoImportSpecifierExcludeRegexes": ["^node:test$"],
   "js/ts.tsdk.path": "./node_modules/typescript/lib",
   "js/ts.tsdk.promptToUseWorkspaceVersion": true, // Use the workspace TypeScript version
 
