@@ -11,6 +11,7 @@ import globals from "globals";
 import * as tseslint from "typescript-eslint";
 
 import disablesConfig from "./disables.js";
+import testConfig from "./test.js";
 
 const gitignorePath = fileURLToPath(
   new URL("../../.gitignore", import.meta.url),
@@ -112,6 +113,7 @@ const baseConfig = defineConfig(
     },
   },
   disablesConfig,
+  testConfig,
 );
 
 export default baseConfig;
