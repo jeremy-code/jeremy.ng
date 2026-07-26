@@ -26,7 +26,8 @@
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "typecheck": "turbo typecheck",
-    "codegen": "turbo codegen"
+    "codegen": "turbo codegen",
+    "test": "turbo test"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.1",
