@@ -25,8 +25,9 @@ coverage
 # Cloudflare
 .wrangler
 
-# graphql
+# Generated files
 */*/src/generated/gql/*.ts
+*/*/src/generated/worker-configuration.d.ts
 
 # Build Outputs
 out/
