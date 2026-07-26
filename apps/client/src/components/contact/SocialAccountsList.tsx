@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 import { useQuery } from "@tanstack/react-query";
-import { Mail, TriangleAlert } from "lucide-react";
+import { TriangleAlert } from "lucide-react";
 
 import { env } from "#config/env";
 import { useTRPC } from "#lib/trpc/client";
@@ -23,6 +23,7 @@ import { Link } from "@jeremyng/ui/components/Link";
 import { Skeleton } from "@jeremyng/ui/components/Skeleton";
 import { GitHub } from "@jeremyng/ui/icons/GitHub";
 import { LinkedIn } from "@jeremyng/ui/icons/LinkedIn";
+import { Mail } from "@jeremyng/ui/icons/Mail";
 import { Mastodon } from "@jeremyng/ui/icons/Mastodon";
 import { Npm } from "@jeremyng/ui/icons/Npm";
 
