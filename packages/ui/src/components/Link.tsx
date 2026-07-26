@@ -81,4 +81,4 @@ const Link = ({
   );
 };
 
-export { Link, type LinkProps };
+export { Link, type LinkProps, linkVariants };

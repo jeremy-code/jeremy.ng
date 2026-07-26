@@ -7,7 +7,9 @@ type CarouselState = {
   canScrollNext: boolean;
 };
 
-const useSyncCarouselState = (api: EmblaCarouselType | undefined) => {
+const useSyncCarouselState = (
+  api: EmblaCarouselType | undefined,
+): CarouselState => {
   const [canScrollPrev, setCanScrollPrev] = useState(() =>
     api?.canScrollPrev(),
   );

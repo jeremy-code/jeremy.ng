@@ -61,4 +61,4 @@ const Heading = ({
   );
 };
 
-export { Heading, type HeadingProps };
+export { Heading, type HeadingProps, headingVariants };

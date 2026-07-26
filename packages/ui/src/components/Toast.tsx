@@ -31,6 +31,8 @@ const isToastType = (value: unknown) =>
 
 type ToastData = Record<PropertyKey, unknown>;
 
+// Necessary since need to override ToastObject.type from `string | undefined`
+// to ToastType
 const useToastManager = () => {
   const toastManager = ToastPrimitive.useToastManager<ToastData>();
 

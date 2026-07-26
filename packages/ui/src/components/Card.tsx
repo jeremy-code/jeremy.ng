@@ -2,6 +2,8 @@ import type { ComponentPropsWithRef } from "react";
 
 import { tv, type VariantProps } from "tailwind-variants";
 
+// Context is not used as the only styles that change with the different
+// variants are the base styles
 const cardVariants = tv({
   slots: {
     base: "relative flex min-w-0 flex-col overflow-hidden rounded-md wrap-break-word",

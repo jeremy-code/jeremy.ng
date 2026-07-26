@@ -14,7 +14,7 @@ const fieldVariants = tv({
     ],
     // No field control, use Input, Textarea
     control: null,
-    error: "inline-flex items-center gap-1 text-xs/[1rem] text-destructive",
+    error: "inline-flex items-center gap-1 text-xs/4 text-destructive",
     description: "text-xs text-muted-foreground",
   },
 });

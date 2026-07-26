@@ -6,6 +6,11 @@ import {
   type KeyboardEventHandler,
 } from "react";
 
+import type {
+  EmblaCarouselType,
+  EmblaOptionsType,
+  EmblaPluginType,
+} from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "tailwind-variants";
@@ -13,17 +18,16 @@ import { cn } from "tailwind-variants";
 import { Button, type ButtonProps } from "./Button";
 import {
   CarouselContext,
-  useCarousel,
-  type CarouselProps as CarouselPrimitiveProps,
-} from "../hooks/useCarousel";
+  useCarouselContext,
+} from "../hooks/useCarouselContext";
 import { useSyncCarouselState } from "../hooks/useSyncCarouselState";
 
-type CarouselProps = ComponentPropsWithRef<"div"> & CarouselPrimitiveProps;
+type CarouselProps = {
+  options?: EmblaOptionsType;
+  plugins?: EmblaPluginType[];
+  setApi?: (api: EmblaCarouselType | undefined) => void;
+} & ComponentPropsWithRef<"div">;
 
-/**
- * Set Carousel.options.align to "start"; otherwise, selection breaks with even
- * number of cards.
- */
 const Carousel = ({
   options,
   plugins,
@@ -48,7 +52,7 @@ const Carousel = ({
 
   const handleKeyDown = useCallback<KeyboardEventHandler<HTMLDivElement>>(
     (event) => {
-      if (!api) {
+      if (api === undefined) {
         return;
       }
 
@@ -113,7 +117,7 @@ const CarouselContent = ({
   className,
   ...props
 }: ComponentPropsWithoutRef<"div">) => {
-  const { carouselRef } = useCarousel();
+  const { carouselRef } = useCarouselContext();
 
   return (
     <div
@@ -158,7 +162,7 @@ const CarouselItem = ({
 };
 
 const CarouselPrevious = ({ className, ...props }: ButtonProps) => {
-  const { scrollPrev, canScrollPrev } = useCarousel();
+  const { scrollPrev, canScrollPrev } = useCarouselContext();
 
   return (
     <Button
@@ -177,7 +181,7 @@ const CarouselPrevious = ({ className, ...props }: ButtonProps) => {
 };
 
 const CarouselNext = ({ className, ...props }: ButtonProps) => {
-  const { scrollNext, canScrollNext } = useCarousel();
+  const { scrollNext, canScrollNext } = useCarouselContext();
 
   return (
     <Button
@@ -196,6 +200,7 @@ const CarouselNext = ({ className, ...props }: ButtonProps) => {
 };
 
 const CarouselControls = ({
+  className,
   color = "gray",
   variant = "outline",
   size = "icon",
@@ -204,14 +209,20 @@ const CarouselControls = ({
   return (
     <>
       <CarouselPrevious
-        className="group-data-[orientation=horizontal]/carousel:col-1 group-data-[orientation=vertical]/carousel:row-1"
+        className={cn(
+          "group-data-[orientation=horizontal]/carousel:col-1 group-data-[orientation=vertical]/carousel:row-1",
+          className,
+        )}
         color={color}
         variant={variant}
         size={size}
         {...props}
       />
       <CarouselNext
-        className="group-data-[orientation=horizontal]/carousel:col-3 group-data-[orientation=vertical]/carousel:row-3"
+        className={cn(
+          "group-data-[orientation=horizontal]/carousel:col-3 group-data-[orientation=vertical]/carousel:row-3",
+          className,
+        )}
         color={color}
         variant={variant}
         size={size}

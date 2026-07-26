@@ -9,7 +9,6 @@ const badgeVariants = tv({
   variants: {
     color: {
       gray: "bg-muted text-foreground",
-      primary: "bg-primary-subtle text-primary-foreground",
     },
     size: {
       xs: "min-h-4 px-1 text-xxs/3",
@@ -28,4 +27,4 @@ const Badge = ({ className, color, ...props }: BadgeProps) => {
   return <div className={badgeVariants({ className, color })} {...props} />;
 };
 
-export { Badge, type BadgeProps };
+export { Badge, type BadgeProps, badgeVariants };
