@@ -45,5 +45,10 @@ jobs:
       - name: Check code formatting with Prettier
         run: pnpm run format:check
 
+      - name: Run tests
+        run: |
+          pnpm --filter @jeremyng/client exec playwright install --with-deps chromium
+          pnpm run test
+
       - name: Build
         run: pnpm run build

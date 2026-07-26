@@ -12,6 +12,10 @@
     "typecheck": {
       "dependsOn": ["codegen", "^typecheck"]
     },
+    "test": {
+      "cache": false,
+      "persistent": true
+    },
     "dev": {
       "cache": false,
       "inputs": ["$TURBO_DEFAULT$", ".env*", "!.env.example"],
