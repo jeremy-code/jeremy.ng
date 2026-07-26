@@ -35,17 +35,17 @@ const SOCIAL_ACCOUNTS_PROVIDER_MAP: Record<
   FACEBOOK: "Facebook",
   HOMETOWN: "Hometown",
   INSTAGRAM: "Instagram",
-  LINKEDIN: <LinkedIn />,
-  MASTODON: <Mastodon />,
+  LINKEDIN: <LinkedIn aria-hidden />,
+  MASTODON: <Mastodon aria-hidden />,
   REDDIT: "Reddit",
   THREADS: "Threads",
   TWITCH: "Twitch",
   TWITTER: "Twitter",
   YOUTUBE: "YouTube",
   BLUESKY: "Bluesky",
-  NPM: <Npm />,
-  GITHUB: <GitHub />,
-  EMAIL: <Mail />,
+  NPM: <Npm aria-hidden />,
+  GITHUB: <GitHub aria-hidden />,
+  EMAIL: <Mail aria-hidden />,
 };
 
 const SocialAccountsList = () => {
