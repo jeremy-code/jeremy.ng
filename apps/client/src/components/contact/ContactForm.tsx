@@ -38,7 +38,7 @@ const ContactForm = (props: ContactFormProps) => {
       try {
         await trpcClient.cloudflare.verifyToken.mutate(value.token);
         try {
-          const { status } = await trpcClient.contact.sendMessage.mutate({
+          const response = await trpcClient.contact.sendMessage.mutate({
             name: value.name,
             email: value.email,
             message: value.message,
@@ -46,9 +46,8 @@ const ContactForm = (props: ContactFormProps) => {
           toastManager.add({
             type: "success",
             title: "Message sent successfully",
-            description: `Message sent successfully with status ${status}.`,
+            description: response.message,
           });
-
           formApi.reset();
         } catch (e) {
           toastManager.add({
