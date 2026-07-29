@@ -14,7 +14,7 @@ const Devtools =
 /**
  * Provides global application context.
  */
-const AppProvider = ({ children }: { children: ReactNode }) => {
+const AppProvider = ({ children }: Readonly<{ children: ReactNode }>) => {
   return (
     <ThemeProvider>
       <ToastProvider>

@@ -15,7 +15,7 @@ import type { RouterContext } from "#router";
 import { seo } from "#utils/seo";
 import uiCss from "@jeremyng/ui/globals.css?url";
 
-import { AppProvider } from "./-components/AppProvider";
+import { AppProvider } from "../components/misc/AppProvider";
 
 const RootDocument = ({ children }: Readonly<{ children: ReactNode }>) => {
   const pathname = useLocation({ select: (location) => location.pathname });
