@@ -40,11 +40,13 @@ const GithubPinnedCard = ({
             className="before:size-2 before:rounded-full before:bg-(--language-color)"
             style={
               {
-                "--language-color": pinnedItemNode.primaryLanguage?.color,
+                "--language-color":
+                  pinnedItemNode.primaryLanguage?.color ??
+                  "var(--color-gray-600)",
               } as CSSProperties
             }
           >
-            {pinnedItemNode.primaryLanguage?.name}
+            {pinnedItemNode.primaryLanguage?.name ?? "Unknown"}
           </Badge>
           <Link
             className={carouselCardVariants({ size: props.size }).title()}
@@ -54,19 +56,16 @@ const GithubPinnedCard = ({
             {pinnedItemNode.name}
           </Link>
           <HorizontalList className="text-xs">
-            {!!pinnedItemNode.licenseInfo && (
+            {pinnedItemNode.licenseInfo !== null && (
               <HorizontalListItem>
                 {(
-                  pinnedItemNode.licenseInfo.url !== undefined &&
-                  pinnedItemNode.licenseInfo.spdxId !== undefined
+                  pinnedItemNode.licenseInfo.url !== null &&
+                  pinnedItemNode.licenseInfo.spdxId !== null
                 ) ?
-                  <Link
-                    href={pinnedItemNode.licenseInfo.url ?? undefined}
-                    underline="hover"
-                  >
-                    {pinnedItemNode.licenseInfo?.spdxId}
+                  <Link href={pinnedItemNode.licenseInfo.url} underline="hover">
+                    {pinnedItemNode.licenseInfo.spdxId}
                   </Link>
-                : pinnedItemNode.licenseInfo.spdxId !== undefined ?
+                : pinnedItemNode.licenseInfo.spdxId !== null ?
                   pinnedItemNode.licenseInfo.spdxId
                 : pinnedItemNode.licenseInfo.name}
               </HorizontalListItem>
@@ -91,7 +90,7 @@ const GithubPinnedCard = ({
           </HorizontalList>
         </>
       }
-      description={pinnedItemNode.description}
+      description={pinnedItemNode.description ?? "Description was not found"}
       footer={
         <>
           {pinnedItemNode.homepageUrl !== null &&

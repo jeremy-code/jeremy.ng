@@ -43,9 +43,11 @@ const NpmSearchObjectCard = ({
             {npmSearchObject.package.sanitized_name}
           </Link>
           <HorizontalList className="text-xs">
-            <HorizontalListItem>
-              {npmSearchObject.package.license}
-            </HorizontalListItem>
+            {npmSearchObject.package.license !== undefined && (
+              <HorizontalListItem>
+                {npmSearchObject.package.license}
+              </HorizontalListItem>
+            )}
             <HorizontalListItem>
               <time dateTime={npmSearchObject.package.date}>
                 <SsrDate
@@ -57,7 +59,9 @@ const NpmSearchObjectCard = ({
           </HorizontalList>
         </>
       }
-      description={npmSearchObject.package.description}
+      description={
+        npmSearchObject.package.description ?? "Description was not found"
+      }
       footer={
         <>
           <Link
@@ -74,10 +78,10 @@ const NpmSearchObjectCard = ({
             </svg>
             <span className="max-sm:sr-only">npm</span>
           </Link>
-          {!!npmSearchObject.package.links.repository && (
+          {npmSearchObject.package.links.repository !== undefined && (
             <a
               className={buttonVariants({ color: "gray", variant: "outline" })}
-              href={npmSearchObject.package.links.repository?.substring(
+              href={npmSearchObject.package.links.repository.substring(
                 "git+".length, // Remove "git+" prefix
               )}
             >
