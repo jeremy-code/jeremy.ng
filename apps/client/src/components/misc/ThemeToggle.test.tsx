@@ -24,9 +24,8 @@ describe("ThemeToggle", () => {
     const screen = await render(<ThemeToggle data-testid="theme-toggle" />);
 
     expect(screen.getByTitle("Switch to dark theme")).toBeInTheDocument();
-    expect(screen.getByTestId("theme-toggle")).not.toHaveAttribute(
-      "aria-checked",
-      "true",
+    expect(screen.getByTestId("theme-toggle")).toHaveAttribute(
+      "data-unchecked",
     );
   });
 
@@ -36,10 +35,7 @@ describe("ThemeToggle", () => {
     const screen = await render(<ThemeToggle data-testid="theme-toggle" />);
 
     expect(screen.getByTitle("Switch to light theme")).toBeInTheDocument();
-    expect(screen.getByTestId("theme-toggle")).toHaveAttribute(
-      "aria-checked",
-      "true",
-    );
+    expect(screen.getByTestId("theme-toggle")).toHaveAttribute("data-checked");
   });
 
   test("switches to dark theme when clicked in light theme", async () => {
