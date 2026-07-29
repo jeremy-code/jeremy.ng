@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { googleFonts } from "takumi-js/helpers";
 import { ImageResponse } from "takumi-js/response";
 
-import { env } from "#config/env";
+import { env } from "#utils/env";
 
 const googleFontsCache = new Map<string, Promise<string>>();
 const fetchCache = new Map<string, Promise<ArrayBuffer>>();

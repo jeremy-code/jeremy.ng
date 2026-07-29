@@ -1,13 +1,13 @@
 import { TRPCError } from "@trpc/server";
 import { ofetch } from "ofetch";
 
-import { env } from "../config/env";
 import {
   Token,
   ValidationRequestParams,
   ValidationResponse,
 } from "../schemas/cloudflare/turnstile";
 import { baseProcedure, createTRPCRouter } from "../trpc";
+import { env } from "../utils/env";
 import { cfTurnstileErrorToTrpcError } from "../utils/errorHandling";
 
 const cloudflareTurnstileApi = ofetch.create({

@@ -10,8 +10,8 @@ import {
 
 import { Footer } from "#components/layout/Footer";
 import { Navbar } from "#components/layout/Navbar";
-import { env } from "#config/env";
 import type { RouterContext } from "#router";
+import { env } from "#utils/env";
 import { seo } from "#utils/seo";
 import uiCss from "@jeremyng/ui/globals.css?url";
 

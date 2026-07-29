@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { TriangleAlert } from "lucide-react";
 
-import { env } from "#config/env";
 import { useTRPC } from "#lib/trpc/client";
+import { env } from "#utils/env";
 import {
   Alert,
   AlertIcon,

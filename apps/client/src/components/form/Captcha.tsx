@@ -4,8 +4,8 @@ import { Turnstile } from "@marsidev/react-turnstile";
 import { useTheme } from "next-themes";
 import { cn } from "tailwind-variants";
 
-import { env } from "#config/env";
 import { assertNever } from "#utils/assertNever";
+import { env } from "#utils/env";
 import { Skeleton } from "@jeremyng/ui/components/Skeleton";
 
 type CaptchaProps = Omit<ComponentPropsWithRef<typeof Turnstile>, "siteKey">;

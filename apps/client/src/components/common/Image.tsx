@@ -8,7 +8,7 @@ import {
   type CloudflareOptions,
 } from "unpic/providers/cloudflare";
 
-import { env } from "#config/env";
+import { env } from "#utils/env";
 
 // https://github.com/microsoft/TypeScript/issues/46361
 type DistributedOmit<T, K extends PropertyKey> =

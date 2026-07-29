@@ -1,7 +1,6 @@
 import { graphql } from "@octokit/graphql";
 import type { RequestParameters } from "@octokit/graphql/types";
 
-import { env } from "../config/env";
 import type {
   TypedDocumentString,
   UserBioQueryVariables,
@@ -15,6 +14,7 @@ import { userPinnedItemsNodesQuery } from "../graphql/github/userPinnedItemsNode
 import { userPinnedItemsTotalCountQuery } from "../graphql/github/userPinnedItemsTotalCountQuery";
 import { userSocialAccountsNodesQuery } from "../graphql/github/userSocialAccountsNodesQuery";
 import { userSocialAccountsTotalCountQuery } from "../graphql/github/userSocialAccountsTotalCountQuery";
+import { env } from "../utils/env";
 
 const octokitGraphql = <TResult, TVariables extends RequestParameters>(
   query: TypedDocumentString<TResult, TVariables>,

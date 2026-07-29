@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { TriangleAlert } from "lucide-react";
 
-import { env } from "#config/env";
 import { useTRPC } from "#lib/trpc/client";
+import { env } from "#utils/env";
 import { SocialAccountProvider } from "@jeremyng/api/schemas/github/socialAccounts";
 import {
   Alert,

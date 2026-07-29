@@ -3,8 +3,8 @@ import type { ComponentPropsWithRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { cn } from "tailwind-variants";
 
-import { env } from "#config/env";
 import { useTRPC } from "#lib/trpc/client";
+import { env } from "#utils/env";
 import { buttonVariants } from "@jeremyng/ui/components/Button";
 import { Skeleton } from "@jeremyng/ui/components/Skeleton";
 

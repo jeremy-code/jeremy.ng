@@ -1,6 +1,6 @@
 import { createIsomorphicFn } from "@tanstack/react-start";
 
-import { env } from "#config/env";
+import { env } from "#utils/env";
 
 const getBaseUrl = createIsomorphicFn()
   .client(() => "")

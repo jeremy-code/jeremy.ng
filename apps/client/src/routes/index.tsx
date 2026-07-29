@@ -6,7 +6,7 @@ import { SocialAccountsList } from "#components/contact/SocialAccountsList";
 import { GithubPinnedList } from "#components/github/GithubPinnedList";
 import { Hero } from "#components/layout/Hero";
 import { NpmSearchList } from "#components/npm/NpmSearchList";
-import { env } from "#config/env";
+import { env } from "#utils/env";
 import { Heading } from "@jeremyng/ui/components/Heading";
 import { Link } from "@jeremyng/ui/components/Link";
 
