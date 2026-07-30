@@ -7,7 +7,6 @@ import { getDotPath } from "@standard-schema/utils";
 import { useAppForm } from "#hooks/useAppForm";
 import { getTurnstileClientErrorMessage } from "#lib/cloudflare/getTurnstileClientErrorMessage";
 import { useTRPCClient } from "#lib/trpc/client";
-import { tokenSchema } from "@jeremyng/api/schemas/cloudflare/turnstile";
 import { contactFormSchema } from "@jeremyng/api/schemas/contact/contactForm";
 import { Form } from "@jeremyng/ui/components/Form";
 import { Separator } from "@jeremyng/ui/components/Separator";
@@ -32,35 +31,26 @@ const ContactForm = (props: ContactFormProps) => {
       token: "",
     },
     validators: {
-      onSubmit: contactFormSchema.extend({ token: tokenSchema }),
+      onSubmit: contactFormSchema,
     },
     onSubmit: async ({ value, formApi }) => {
       try {
-        await trpcClient.cloudflare.verifyToken.mutate(value.token);
-        try {
-          const response = await trpcClient.contact.sendMessage.mutate({
-            name: value.name,
-            email: value.email,
-            message: value.message,
-          });
-          toastManager.add({
-            type: "success",
-            title: "Message sent successfully",
-            description: response.message,
-          });
-          formApi.reset();
-        } catch (e) {
-          toastManager.add({
-            type: "error",
-            title: "Message sent failed",
-            description:
-              e instanceof Error ? e.message : "An unknown error occurred.",
-          });
-        }
+        const response = await trpcClient.contact.sendMessage.mutate({
+          name: value.name,
+          email: value.email,
+          message: value.message,
+          token: value.token,
+        });
+        toastManager.add({
+          type: "success",
+          title: "Message sent successfully",
+          description: response.message,
+        });
+        formApi.reset();
       } catch (e) {
         toastManager.add({
           type: "error",
-          title: "Captcha verification failed",
+          title: "Message sent failed",
           description:
             e instanceof Error ? e.message : "An unknown error occurred.",
         });
