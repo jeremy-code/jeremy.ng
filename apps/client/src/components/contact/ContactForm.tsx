@@ -7,8 +7,8 @@ import { getDotPath } from "@standard-schema/utils";
 import { useAppForm } from "#hooks/useAppForm";
 import { getTurnstileClientErrorMessage } from "#lib/cloudflare/getTurnstileClientErrorMessage";
 import { useTRPCClient } from "#lib/trpc/client";
-import { Token } from "@jeremyng/api/schemas/cloudflare/turnstile";
-import { ContactForm as ContactFormSchema } from "@jeremyng/api/schemas/contact/contactForm";
+import { tokenSchema } from "@jeremyng/api/schemas/cloudflare/turnstile";
+import { contactFormSchema } from "@jeremyng/api/schemas/contact/contactForm";
 import { Form } from "@jeremyng/ui/components/Form";
 import { Separator } from "@jeremyng/ui/components/Separator";
 import { Skeleton } from "@jeremyng/ui/components/Skeleton";
@@ -32,7 +32,7 @@ const ContactForm = (props: ContactFormProps) => {
       token: "",
     },
     validators: {
-      onSubmit: ContactFormSchema.extend({ token: Token }),
+      onSubmit: contactFormSchema.extend({ token: tokenSchema }),
     },
     onSubmit: async ({ value, formApi }) => {
       try {

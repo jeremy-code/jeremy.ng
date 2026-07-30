@@ -1,10 +1,10 @@
 import { TRPCError } from "@trpc/server";
 import { RequestError } from "octokit";
-import { z } from "zod";
+import * as z from "zod";
 
-import { Repository } from "../schemas/github/pinnedItems";
-import { SocialAccount } from "../schemas/github/socialAccounts";
-import { GithubUser } from "../schemas/github/user";
+import { repositorySchema } from "../schemas/github/pinnedItems";
+import { socialAccountSchema } from "../schemas/github/socialAccounts";
+import { githubUserSchema } from "../schemas/github/user";
 import {
   getPinnedItemsTotalCount,
   getPinnedItemsNodes,
@@ -18,7 +18,7 @@ const githubRouter = createTRPCRouter({
   // https://docs.github.com/en/rest/users/users?apiVersion=2026-03-10#get-a-user
   getUser: baseProcedure
     .input(z.strictObject({ username: z.string() }))
-    .output(GithubUser)
+    .output(githubUserSchema)
     .query(async (opts) => {
       try {
         const response = await getUser(opts.input);
@@ -37,7 +37,7 @@ const githubRouter = createTRPCRouter({
     }),
   getPinnedItems: baseProcedure
     .input(z.strictObject({ login: z.string() }))
-    .output(z.array(Repository))
+    .output(z.array(repositorySchema))
     .query(async (opts) => {
       const totalCountResponse = await getPinnedItemsTotalCount(opts.input);
 
@@ -73,7 +73,7 @@ const githubRouter = createTRPCRouter({
     }),
   getSocialAccounts: baseProcedure
     .input(z.strictObject({ login: z.string() }))
-    .output(z.array(SocialAccount))
+    .output(z.array(socialAccountSchema))
     .query(async (opts) => {
       const totalCountResponse = await getSocialAccountsTotalCount(opts.input);
 

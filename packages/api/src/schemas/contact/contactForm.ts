@@ -1,11 +1,11 @@
-import { z } from "zod";
+import * as z from "zod";
 
-const ContactForm = z.strictObject({
+const contactFormSchema = z.strictObject({
   name: z.string().min(1),
   email: z.email(),
   message: z.string().min(1),
 });
 
-type ContactForm = z.infer<typeof ContactForm>;
+type ContactForm = z.infer<typeof contactFormSchema>;
 
-export { ContactForm };
+export { contactFormSchema, type ContactForm };

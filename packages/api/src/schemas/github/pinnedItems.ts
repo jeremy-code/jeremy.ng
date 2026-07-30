@@ -1,22 +1,22 @@
-import { z } from "zod";
+import * as z from "zod";
 
-const Language = z.strictObject({
+const languageSchema = z.strictObject({
   color: z.string().nullable(),
   id: z.string(),
   name: z.string(),
 });
-type Language = z.infer<typeof Language>;
+type Language = z.infer<typeof languageSchema>;
 
-const License = z.strictObject({
+const licenseSchema = z.strictObject({
   id: z.string(),
   key: z.string(),
   name: z.string(),
   spdxId: z.string().nullable(),
   url: z.url().nullable(),
 });
-type License = z.infer<typeof License>;
+type License = z.infer<typeof licenseSchema>;
 
-const Repository = z.strictObject({
+const repositorySchema = z.strictObject({
   __typename: z.literal("Repository"),
   createdAt: z.iso.datetime(),
   id: z.string(),
@@ -27,10 +27,17 @@ const Repository = z.strictObject({
   url: z.url(),
   description: z.string().nullable(),
   homepageUrl: z.string().nullable(),
-  licenseInfo: License.nullable(),
-  primaryLanguage: Language.nullable(),
+  licenseInfo: licenseSchema.nullable(),
+  primaryLanguage: languageSchema.nullable(),
   pushedAt: z.iso.datetime().nullable(),
 });
-type Repository = z.infer<typeof Repository>;
+type Repository = z.infer<typeof repositorySchema>;
 
-export { Repository, Language, License };
+export {
+  repositorySchema,
+  type Repository,
+  languageSchema,
+  type Language,
+  licenseSchema,
+  type License,
+};

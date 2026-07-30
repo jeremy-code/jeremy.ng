@@ -1,9 +1,9 @@
 import Mailgun from "mailgun.js";
-import { z } from "zod";
+import * as z from "zod";
 
 import {
-  MessagesSendRequestParams,
-  MessagesSendResponse,
+  messagesCreateRequestParamsSchema,
+  messagesCreateResponseSchema,
 } from "../schemas/mailgun/messages";
 import { env } from "../utils/env";
 
@@ -15,8 +15,8 @@ const mailgunClient = mailgun.client({
 });
 
 const createMessageSchema = z.function({
-  input: [MessagesSendRequestParams],
-  output: MessagesSendResponse,
+  input: [messagesCreateRequestParamsSchema],
+  output: messagesCreateResponseSchema,
 });
 
 const createMessage = createMessageSchema.implementAsync((input) =>

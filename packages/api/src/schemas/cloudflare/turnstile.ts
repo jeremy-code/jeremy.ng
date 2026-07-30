@@ -1,6 +1,6 @@
-import { z } from "zod";
+import * as z from "zod";
 
-const SecretKey = z.union([
+const secretKeySchema = z.union([
   z.string().startsWith("0x").length(35),
   // Valid secret keys for testing
   // https://developers.cloudflare.com/turnstile/troubleshooting/testing/#test-secret-keys
@@ -11,7 +11,7 @@ const SecretKey = z.union([
   ]),
 ]);
 
-const SiteKey = z.union([
+const siteKeySchema = z.union([
   z.string().startsWith("0x").length(24),
   // Valid sitekeys for testing
   // https://developers.cloudflare.com/turnstile/troubleshooting/testing/#test-sitekeys
@@ -24,23 +24,23 @@ const SiteKey = z.union([
   ]),
 ]);
 
-const Token = z.string().max(2048, {
+const tokenSchema = z.string().max(2048, {
   error:
     "Too big: expected Cloudflare Turnstile token to have <=2048 characters",
 });
-type Token = z.infer<typeof Token>;
+type Token = z.infer<typeof tokenSchema>;
 
 // https://developers.cloudflare.com/turnstile/get-started/server-side-validation/#request-format
-const ValidationRequestParams = z.strictObject({
-  secret: SecretKey,
-  response: Token,
+const validationRequestParamsSchema = z.strictObject({
+  secret: secretKeySchema,
+  response: tokenSchema,
   remoteip: z.union([z.ipv4(), z.ipv6()]).optional(),
   idempotency_key: z.uuid().optional(),
 });
-type ValidationRequestParams = z.infer<typeof ValidationRequestParams>;
+type ValidationRequestParams = z.infer<typeof validationRequestParamsSchema>;
 
 // https://developers.cloudflare.com/turnstile/get-started/server-side-validation/#error-codes-reference
-const ErrorCode = z.enum([
+const errorCodeSchema = z.enum([
   "missing-input-secret",
   "invalid-input-secret",
   "missing-input-response",
@@ -49,15 +49,15 @@ const ErrorCode = z.enum([
   "timeout-or-duplicate",
   "internal-error",
 ]);
-type ErrorCode = z.infer<typeof ErrorCode>;
+type ErrorCode = z.infer<typeof errorCodeSchema>;
 
 // https://developers.cloudflare.com/turnstile/get-started/server-side-validation/#response-fields
-const ValidationResponse = z.discriminatedUnion("success", [
+const validationResponseSchema = z.discriminatedUnion("success", [
   z.strictObject({
     success: z.literal(true),
     challenge_ts: z.iso.datetime({ precision: 3 }),
     hostname: z.string(),
-    "error-codes": z.array(ErrorCode),
+    "error-codes": z.array(errorCodeSchema),
     action: z.string(),
     cdata: z.string(),
     idempotency_key: z.uuid().optional(),
@@ -71,7 +71,7 @@ const ValidationResponse = z.discriminatedUnion("success", [
     success: z.literal(false),
     challenge_ts: z.iso.datetime({ precision: 3 }),
     hostname: z.string(),
-    "error-codes": z.array(ErrorCode).nonempty(),
+    "error-codes": z.array(errorCodeSchema).nonempty(),
     action: z.string(),
     cdata: z.string(),
     // Not documented by Cloudflare, but observed in practice
@@ -79,13 +79,17 @@ const ValidationResponse = z.discriminatedUnion("success", [
     tokenId: z.string().optional(),
   }),
 ]);
-type ValidationResponse = z.infer<typeof ValidationResponse>;
+type ValidationResponse = z.infer<typeof validationResponseSchema>;
 
 export {
-  SecretKey,
-  SiteKey,
-  Token,
-  ValidationRequestParams,
-  ErrorCode,
-  ValidationResponse,
+  secretKeySchema,
+  siteKeySchema,
+  tokenSchema,
+  type Token,
+  validationRequestParamsSchema,
+  type ValidationRequestParams,
+  errorCodeSchema,
+  type ErrorCode,
+  validationResponseSchema,
+  type ValidationResponse,
 };

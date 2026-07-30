@@ -5,7 +5,7 @@ import { TriangleAlert } from "lucide-react";
 
 import { useTRPC } from "#lib/trpc/client";
 import { env } from "#utils/env";
-import { SocialAccountProvider } from "@jeremyng/api/schemas/github/socialAccounts";
+import type { SocialAccountProvider } from "@jeremyng/api/schemas/github/socialAccounts";
 import {
   Alert,
   AlertIcon,

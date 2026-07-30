@@ -8,7 +8,7 @@ import { fontless } from "fontless";
 import { Features } from "lightningcss";
 import { defineConfig } from "vite";
 import { analyzer } from "vite-bundle-analyzer";
-import { z } from "zod";
+import * as z from "zod";
 
 const isAnalyzerEnabled =
   process.env.ANALYZE !== undefined &&

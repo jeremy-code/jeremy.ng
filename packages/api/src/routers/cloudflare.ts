@@ -2,9 +2,10 @@ import { TRPCError } from "@trpc/server";
 import { ofetch } from "ofetch";
 
 import {
-  Token,
-  ValidationRequestParams,
-  ValidationResponse,
+  tokenSchema,
+  validationRequestParamsSchema,
+  validationResponseSchema,
+  type ValidationResponse,
 } from "../schemas/cloudflare/turnstile";
 import { baseProcedure, createTRPCRouter } from "../trpc";
 import { env } from "../utils/env";
@@ -16,10 +17,10 @@ const cloudflareTurnstileApi = ofetch.create({
 
 const cloudflareRouter = createTRPCRouter({
   verifyToken: baseProcedure
-    .input(Token)
-    .output(ValidationResponse.options[0])
+    .input(tokenSchema)
+    .output(validationResponseSchema.options[0])
     .mutation(async (opts) => {
-      const params = ValidationRequestParams.parse({
+      const params = validationRequestParamsSchema.parse({
         secret: env.CF_TURNSTILE_SECRET_KEY,
         response: opts.input,
         idempotency_key: crypto.randomUUID(),

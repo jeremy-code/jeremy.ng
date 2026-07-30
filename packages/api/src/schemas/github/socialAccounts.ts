@@ -1,6 +1,6 @@
-import { z } from "zod";
+import * as z from "zod";
 
-const SocialAccountProvider = z.enum([
+const socialAccountProviderSchema = z.enum([
   "GENERIC",
   "FACEBOOK",
   "HOMETOWN",
@@ -15,12 +15,16 @@ const SocialAccountProvider = z.enum([
   "BLUESKY",
   "NPM",
 ]);
-type SocialAccountProvider = z.infer<typeof SocialAccountProvider>;
+type SocialAccountProvider = z.infer<typeof socialAccountProviderSchema>;
 
-const SocialAccount = z.strictObject({
+const socialAccountSchema = z.strictObject({
   displayName: z.string().min(1),
-  provider: SocialAccountProvider,
+  provider: socialAccountProviderSchema,
   url: z.url(),
 });
 
-export { SocialAccountProvider, SocialAccount };
+export {
+  socialAccountProviderSchema,
+  type SocialAccountProvider,
+  socialAccountSchema,
+};

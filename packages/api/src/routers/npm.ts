@@ -1,8 +1,9 @@
 import { ofetch } from "ofetch";
 
 import {
-  NpmSearchRequestParams,
-  NpmSearchResponse,
+  npmSearchRequestParamsSchema,
+  npmSearchResponseSchema,
+  type NpmSearchResponse,
 } from "../schemas/npm/search";
 import { baseProcedure, createTRPCRouter } from "../trpc";
 
@@ -13,8 +14,8 @@ const npmRegistryApi = ofetch.create({
 // https://github.com/npm/registry/blob/main/docs/REGISTRY-API.md#get-v1search
 const npmRouter = createTRPCRouter({
   search: baseProcedure
-    .input(NpmSearchRequestParams)
-    .output(NpmSearchResponse)
+    .input(npmSearchRequestParamsSchema)
+    .output(npmSearchResponseSchema)
     .query((opts) => {
       const response = npmRegistryApi<NpmSearchResponse>("-/v1/search", {
         method: "GET",

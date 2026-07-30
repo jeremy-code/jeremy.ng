@@ -1,11 +1,11 @@
 import { createEnv } from "@t3-oss/env-core";
-import { z } from "zod";
+import * as z from "zod";
 
-import { SecretKey } from "../schemas/cloudflare/turnstile";
+import { secretKeySchema } from "../schemas/cloudflare/turnstile";
 
 const env = createEnv({
   server: {
-    CF_TURNSTILE_SECRET_KEY: SecretKey,
+    CF_TURNSTILE_SECRET_KEY: secretKeySchema,
     GITHUB_TOKEN: z.string().min(1),
     MAILGUN_API_KEY: z.string().min(1),
     MAILGUN_DOMAIN: z.hostname().min(1),

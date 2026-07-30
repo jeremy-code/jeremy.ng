@@ -1,13 +1,13 @@
-import { z } from "zod";
+import * as z from "zod";
 
-const Plan = z.strictObject({
+const planSchema = z.strictObject({
   collaborators: z.int(),
   name: z.string(),
   space: z.int(),
   private_repos: z.int(),
 });
 
-const PrivateUser = z.strictObject({
+const privateUserSchema = z.strictObject({
   login: z.string(),
   id: z.int(),
   user_view_type: z.string().optional(),
@@ -48,12 +48,12 @@ const PrivateUser = z.strictObject({
   disk_usage: z.int(),
   collaborators: z.int(),
   two_factor_authentication: z.boolean(),
-  plan: Plan.optional(),
+  plan: planSchema.optional(),
   business_plus: z.boolean().optional(),
   ldap_dn: z.string().optional(),
 });
 
-const PublicUser = z.strictObject({
+const publicUserSchema = z.strictObject({
   login: z.string(),
   id: z.int(),
   user_view_type: z.string().optional(),
@@ -88,7 +88,7 @@ const PublicUser = z.strictObject({
   following: z.int(),
   created_at: z.iso.datetime(),
   updated_at: z.iso.datetime(),
-  plan: Plan.optional(),
+  plan: planSchema.optional(),
   private_gists: z.int().optional(),
   total_private_repos: z.int().optional(),
   owned_private_repos: z.int().optional(),
@@ -96,7 +96,7 @@ const PublicUser = z.strictObject({
   collaborators: z.int().optional(),
 });
 
-const GithubUser = z.union([PrivateUser, PublicUser]);
-type GithubUser = z.infer<typeof GithubUser>;
+const githubUserSchema = z.union([privateUserSchema, publicUserSchema]);
+type GithubUser = z.infer<typeof githubUserSchema>;
 
-export { GithubUser };
+export { githubUserSchema, type GithubUser };

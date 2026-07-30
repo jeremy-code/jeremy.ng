@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-const NpmPublisher = z.strictObject({
+const npmPublisherSchema = z.strictObject({
   email: z.email(),
   approver: z
     .strictObject({
@@ -37,14 +37,14 @@ const NpmPublisher = z.strictObject({
   username: z.string(),
 });
 
-const NpmPackage = z.strictObject({
+const npmPackageSchema = z.strictObject({
   name: z.string(),
   scope: z.string().optional(),
   keywords: z.array(z.string()),
   version: z.string(),
   description: z.string().optional(),
   sanitized_name: z.string(),
-  publisher: NpmPublisher,
+  publisher: npmPublisherSchema,
   maintainers: z.array(
     z.strictObject({
       email: z.email(),
@@ -64,7 +64,7 @@ const NpmPackage = z.strictObject({
   }),
 });
 
-const NpmSearchObject = z.strictObject({
+const npmSearchObjectSchema = z.strictObject({
   downloads: z.strictObject({
     monthly: z.int().min(0),
     weekly: z.int().min(0),
@@ -72,7 +72,7 @@ const NpmSearchObject = z.strictObject({
   dependents: z.coerce.number(),
   updated: z.iso.datetime(),
   searchScore: z.number().min(0),
-  package: NpmPackage,
+  package: npmPackageSchema,
   score: z.strictObject({
     final: z.number().min(0),
     detail: z.strictObject({
@@ -85,17 +85,17 @@ const NpmSearchObject = z.strictObject({
     insecure: z.literal([0, 1]),
   }),
 });
-type NpmSearchObject = z.infer<typeof NpmSearchObject>;
+type NpmSearchObject = z.infer<typeof npmSearchObjectSchema>;
 
 // https://github.com/npm/registry/blob/main/docs/REGISTRY-API.md#get-v1search
-const NpmSearchResponse = z.strictObject({
-  objects: z.array(NpmSearchObject),
+const npmSearchResponseSchema = z.strictObject({
+  objects: z.array(npmSearchObjectSchema),
   total: z.int().min(0),
   time: z.iso.datetime(),
 });
-type NpmSearchResponse = z.infer<typeof NpmSearchResponse>;
+type NpmSearchResponse = z.infer<typeof npmSearchResponseSchema>;
 
-const NpmSearchRequestParams = z.strictObject({
+const npmSearchRequestParamsSchema = z.strictObject({
   text: z.string().optional(),
   size: z.int().max(250).optional(), // defaults to 20
   from: z.int().optional(),
@@ -104,4 +104,10 @@ const NpmSearchRequestParams = z.strictObject({
   maintenance: z.number().min(0).max(1).optional(),
 });
 
-export { NpmSearchObject, NpmSearchResponse, NpmSearchRequestParams };
+export {
+  npmSearchObjectSchema,
+  type NpmSearchObject,
+  npmSearchResponseSchema,
+  type NpmSearchResponse,
+  npmSearchRequestParamsSchema,
+};
