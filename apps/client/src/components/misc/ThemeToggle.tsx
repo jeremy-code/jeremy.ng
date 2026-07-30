@@ -16,7 +16,7 @@ const ThemeToggle = (props: SwitchProps) => {
     // `localStorage`
     return (
       <Skeleton
-        className={cn("rounded-full", {
+        className={cn("box-content rounded-full border border-muted", {
           "h-3 w-6": props.size === "sm",
           "h-4 w-8": (props.size ?? "md") === "md",
           "h-5 w-10": props.size === "lg",

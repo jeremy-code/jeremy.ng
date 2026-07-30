@@ -61,7 +61,7 @@ const SocialAccountsList = () => {
   );
 
   if (isPending) {
-    return <Skeleton className="h-26" />;
+    return <Skeleton className="h-46" />;
   } else if (isError) {
     console.error(error);
     return (
