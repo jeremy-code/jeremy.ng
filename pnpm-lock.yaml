@@ -268,6 +268,9 @@ importers:
       eslint-plugin-turbo:
         specifier: ^2.10.7
         version: 2.10.7(eslint@10.8.0(jiti@2.7.0)(supports-color@10.2.2))(turbo@2.10.7)
+      eslint-plugin-zod:
+        specifier: ^4.9.0
+        version: 4.9.0(eslint@10.8.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)(zod@4.4.3)
       globals:
         specifier: ^17.8.0
         version: 17.8.0
@@ -1421,6 +1424,13 @@ packages:
     peerDependencies:
       eslint: "*"
       typescript: "*"
+
+  "@eslint-zod/utils@2.5.0":
+    resolution:
+      {
+        integrity: sha512-8cWwRFB0hS06mW3avcsAEqxbGJ371S00OVDTaTMyCaGefRZWNo1ONQMstexhjrSPsJYJnBft6zwsmDVzfCO5Dg==,
+      }
+    engines: { node: ^20 || ^22 || >=24 }
 
   "@eslint/config-array@0.23.5":
     resolution:
@@ -5124,6 +5134,24 @@ packages:
     peerDependencies:
       eslint: ">6.6.0"
       turbo: ">2.0.0"
+
+  eslint-plugin-zod@4.9.0:
+    resolution:
+      {
+        integrity: sha512-jWUbyQITQEsJxXfMtSw7HcD08Au9kJ6fatm3QrYPePfxJDbf6mbJ/lxdm5dIsyMbuO9A79jLnJjwDmjW2G8Asw==,
+      }
+    engines: { node: ^20 || ^22 || >=24 }
+    peerDependencies:
+      eslint: ^9 || ^10
+      oxlint: ^1.59.0
+      zod: ^4
+    peerDependenciesMeta:
+      eslint:
+        optional: true
+      oxlint:
+        optional: true
+      zod:
+        optional: true
 
   eslint-scope@9.1.2:
     resolution:
@@ -8977,6 +9005,15 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  "@eslint-zod/utils@2.5.0(eslint@10.8.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)":
+    dependencies:
+      "@typescript-eslint/utils": 8.65.0(eslint@10.8.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
+      esquery: 1.7.0
+    transitivePeerDependencies:
+      - eslint
+      - supports-color
+      - typescript
+
   "@eslint/config-array@0.23.5(supports-color@10.2.2)":
     dependencies:
       "@eslint/object-schema": 3.0.5
@@ -11668,6 +11705,17 @@ snapshots:
       dotenv: 16.0.3
       eslint: 10.8.0(jiti@2.7.0)(supports-color@10.2.2)
       turbo: 2.10.7
+
+  eslint-plugin-zod@4.9.0(eslint@10.8.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)(zod@4.4.3):
+    dependencies:
+      "@eslint-zod/utils": 2.5.0(eslint@10.8.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
+      "@typescript-eslint/utils": 8.65.0(eslint@10.8.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
+    optionalDependencies:
+      eslint: 10.8.0(jiti@2.7.0)(supports-color@10.2.2)
+      zod: 4.4.3
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
 
   eslint-scope@9.1.2:
     dependencies:

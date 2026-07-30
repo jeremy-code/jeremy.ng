@@ -7,6 +7,7 @@ import { createTypeScriptImportResolver } from "eslint-import-resolver-typescrip
 import { importX, createNodeResolver } from "eslint-plugin-import-x";
 import pluginPromise from "eslint-plugin-promise";
 import * as turbo from "eslint-plugin-turbo";
+import pluginZod from "eslint-plugin-zod";
 import globals from "globals";
 import * as tseslint from "typescript-eslint";
 
@@ -28,6 +29,7 @@ const baseConfig = defineConfig(
   importX.flatConfigs.typescript,
   pluginPromise.configs["flat/recommended"],
   turbo.configs["flat/recommended"],
+  pluginZod.configs.recommended,
   {
     name: "@jeremyng/eslint-config/index.js",
     languageOptions: {
@@ -97,6 +99,10 @@ const baseConfig = defineConfig(
           alphabetize: { order: "asc" },
         },
       ],
+      /**
+       * @see {@link https://github.com/marcalexiei/eslint-zod/blob/HEAD/plugins/eslint-plugin-zod/docs/rules/prefer-string-schema-with-trim.md}
+       */
+      "zod/prefer-string-schema-with-trim": "off",
     },
     settings: {
       /**
