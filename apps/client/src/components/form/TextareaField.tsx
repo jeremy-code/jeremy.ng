@@ -24,7 +24,6 @@ const TextareaField = ({ label, textareaProps }: TextareaFieldProps) => {
         onBlur={field.handleBlur}
         {...textareaProps}
       />
-      <FieldError match="valueMissing">Please enter a {field.name}.</FieldError>
       <FieldError match={!field.state.meta.isValid}>
         Please enter a valid {field.name}.
       </FieldError>
