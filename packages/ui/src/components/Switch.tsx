@@ -9,7 +9,7 @@ const switchVariants = tv({
   slots: {
     root: "box-content inline-flex shrink-0 justify-start gap-0.5 rounded-full border border-border transition-colors",
     thumb: [
-      "flex shrink-0 scale-[0.8] items-center justify-center rounded-[inherit] transition-[translate,background-color]",
+      "flex shrink-0 scale-80 items-center justify-center rounded-[inherit] transition-[translate,background-color]",
       "data-checked:translate-x-full data-unchecked:translate-x-0",
     ],
   },

@@ -28,7 +28,7 @@ const CatchBoundary = ({ error, reset }: ErrorComponentProps) => {
     <div className="container my-auto">
       <Card>
         <CardHeader>
-          <div className="bg-bg-muted grid size-13 place-content-center rounded-lg border border-border">
+          <div className="grid size-13 place-content-center rounded-lg border border-border bg-muted">
             <TriangleAlert className="size-8" />
           </div>
           <Heading as="h1" size="2xl">

@@ -103,7 +103,7 @@ const NavigationMenuContent = ({
   return (
     <NavigationMenuPrimitive.Content
       className={cn(
-        "h-full w-full transition-[opacity,transform] sm:w-max",
+        "size-full transition-[opacity,transform] sm:w-max",
         "data-ending-style:opacity-0 data-starting-style:opacity-0",
         "data-starting-style:data-[activation-direction=left]:-translate-x-52",
         "data-starting-style:data-[activation-direction=right]:translate-x-52",
@@ -158,7 +158,7 @@ const NavigationMenuViewport = ({
         >
           <NavigationMenuArrow />
           <NavigationMenuPrimitive.Viewport
-            className={cn("relative h-full w-full overflow-hidden", className)}
+            className={cn("relative size-full overflow-hidden", className)}
             {...props}
           />
         </NavigationMenuPrimitive.Popup>

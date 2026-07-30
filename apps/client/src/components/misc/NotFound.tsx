@@ -23,7 +23,7 @@ const NotFound = (props: NotFoundRouteProps) => {
         <Heading as="h1" size="4xl">
           Not Found
         </Heading>
-        <p className="text-fg-muted mb-4">
+        <p className="mb-4 text-muted-foreground">
           The page you are looking for does not exist.
         </p>
         <div role="group" className="flex gap-2">

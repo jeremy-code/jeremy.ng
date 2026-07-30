@@ -15,7 +15,7 @@ const alertVariants = tv({
     size: {
       sm: "gap-2 p-3 text-xs",
       md: "gap-3 p-4 text-sm",
-      lg: "text-md gap-3 p-4",
+      lg: "gap-3 p-4 text-base",
     },
   },
   defaultVariants: {

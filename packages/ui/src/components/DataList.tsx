@@ -6,8 +6,8 @@ const dataListVariants = tv({
   slots: {
     base: "group/data-list wrap-anywhere",
     item: null,
-    itemLabel: "text-fg-muted flex items-start",
-    itemValue: "text-fg flex min-w-0 flex-1",
+    itemLabel: "flex items-start text-muted-foreground",
+    itemValue: "flex min-w-0 flex-1 text-foreground",
   },
   variants: {
     orientation: {
@@ -31,7 +31,7 @@ const dataListVariants = tv({
       },
       lg: {
         base: "gap-5",
-        item: "text-md/6",
+        item: "text-base/6",
       },
     },
     variant: {

@@ -164,7 +164,7 @@ const ContactForm = (props: ContactFormProps) => {
             </>
           )}
         </form.AppField>
-        <Separator className="mt-2.5 mb-2.5" />
+        <Separator className="my-2.5" />
         <div className="flex items-center justify-end gap-2.5">
           <form.SubmitButton className="max-sm:w-full" />
         </div>

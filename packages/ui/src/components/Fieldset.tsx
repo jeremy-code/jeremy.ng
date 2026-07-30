@@ -22,7 +22,7 @@ const fieldsetVariants = tv({
       },
       lg: {
         root: "gap-6",
-        legend: "text-md",
+        legend: "text-base",
       },
     },
   },
