@@ -14,11 +14,11 @@ const Hero = ({ className, ...props }: HeroProps) => {
   const {
     isPending,
     isError,
-    data: githubUser,
+    data: bio,
     error,
   } = useQuery(
-    useTRPC().github.getUser.queryOptions({
-      username: env.VITE_GITHUB_USERNAME,
+    useTRPC().github.getBio.queryOptions({
+      login: env.VITE_GITHUB_USERNAME,
     }),
   );
 
@@ -36,7 +36,7 @@ const Hero = ({ className, ...props }: HeroProps) => {
       : <h1 className="text-center text-4xl font-semibold tracking-tight text-balance">
           {isError ?
             "An error occurred while fetching from GitHub"
-          : (githubUser.bio ?? "No bio was found")}
+          : (bio ?? "No bio was found")}
         </h1>
       }
       <div className="flex gap-2" role="group">

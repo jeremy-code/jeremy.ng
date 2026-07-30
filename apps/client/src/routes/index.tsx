@@ -96,8 +96,8 @@ const Route = createFileRoute("/")({
     // Prehydrate queries for SEO
     await Promise.all([
       context.queryClient.prefetchQuery(
-        context.trpc.github.getUser.queryOptions({
-          username: env.VITE_GITHUB_USERNAME,
+        context.trpc.github.getBio.queryOptions({
+          login: env.VITE_GITHUB_USERNAME,
         }),
       ),
       context.queryClient.prefetchQuery(

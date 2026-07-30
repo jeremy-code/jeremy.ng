@@ -1,40 +1,19 @@
 import { TRPCError } from "@trpc/server";
-import { RequestError } from "octokit";
 import * as z from "zod";
 
+import { bioSchema } from "../schemas/github/bio";
 import { repositorySchema } from "../schemas/github/pinnedItems";
 import { socialAccountSchema } from "../schemas/github/socialAccounts";
-import { githubUserSchema } from "../schemas/github/user";
 import {
   getPinnedItemsTotalCount,
   getPinnedItemsNodes,
   getSocialAccountsTotalCount,
   getSocialAccountsNodes,
-  getUser,
+  getBio,
 } from "../services/github";
 import { baseProcedure, createTRPCRouter } from "../trpc";
 
 const githubRouter = createTRPCRouter({
-  // https://docs.github.com/en/rest/users/users?apiVersion=2026-03-10#get-a-user
-  getUser: baseProcedure
-    .input(z.strictObject({ username: z.string() }))
-    .output(githubUserSchema)
-    .query(async (opts) => {
-      try {
-        const response = await getUser(opts.input);
-        return response.data;
-      } catch (error) {
-        if (error instanceof RequestError && error.status === 404) {
-          throw new TRPCError({
-            code: "NOT_FOUND",
-            message: "The user could not be found.",
-            cause: error,
-          });
-        } else {
-          throw error;
-        }
-      }
-    }),
   getPinnedItems: baseProcedure
     .input(z.strictObject({ login: z.string() }))
     .output(z.array(repositorySchema))
@@ -108,6 +87,22 @@ const githubRouter = createTRPCRouter({
           (node) => node !== null,
         ) ?? []
       );
+    }),
+  getBio: baseProcedure
+    .input(z.strictObject({ login: z.string() }))
+    .output(bioSchema.nullable())
+    .query(async (opts) => {
+      const bioResponse = await getBio(opts.input);
+
+      if (bioResponse.user === null) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message:
+            "The user could not be found when attempting to get the bio.",
+        });
+      }
+
+      return bioResponse.user.bio;
     }),
 });
 
