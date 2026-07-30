@@ -18,6 +18,7 @@
     "dotenv": "^17.4.2",
     "graphql": "^16.14.1",
     "mailgun.js": "^13.3.0",
+    "octokit": "^5.0.5",
     "ofetch": "^1.5.1",
     "superjson": "^2.2.6",
     "zod": "^4.4.3"

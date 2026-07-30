@@ -1,5 +1,5 @@
-import { graphql } from "@octokit/graphql";
 import type { RequestParameters } from "@octokit/graphql/types";
+import { Octokit } from "octokit";
 
 import type {
   TypedDocumentString,
@@ -16,16 +16,12 @@ import { userSocialAccountsNodesQuery } from "../graphql/github/userSocialAccoun
 import { userSocialAccountsTotalCountQuery } from "../graphql/github/userSocialAccountsTotalCountQuery";
 import { env } from "../utils/env";
 
+const octokit = new Octokit({ auth: env.GITHUB_TOKEN });
+
 const octokitGraphql = <TResult, TVariables extends RequestParameters>(
   query: TypedDocumentString<TResult, TVariables>,
   variables: TVariables,
-) =>
-  graphql<TResult>(query.toString(), {
-    ...variables,
-    headers: {
-      authorization: `token ${env.GITHUB_TOKEN}`,
-    },
-  });
+) => octokit.graphql<TResult>(query.toString(), variables);
 
 const getPinnedItemsTotalCount = (
   input: UserPinnedItemsTotalCountQueryVariables,
