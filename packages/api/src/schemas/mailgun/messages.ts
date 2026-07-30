@@ -116,18 +116,18 @@ const MailgunMessageData = z.intersection(
 ) as z.ZodType<IMailgunMessageData>;
 type MailgunMessageData = z.infer<typeof MailgunMessageData>;
 
-const MessagesSendRequest = z.strictObject({
+const MessagesSendRequestParams = z.strictObject({
   domain: z.string(),
   data: MailgunMessageData,
 });
-type MessagesSendRequest = z.infer<typeof MessagesSendRequest>;
+type MessagesSendRequestParams = z.infer<typeof MessagesSendRequestParams>;
 
-const MessagesSendResult = z.strictObject({
+const MessagesSendResponse = z.strictObject({
   id: z.string().optional(),
   message: z.string().optional(),
   status: z.number(),
   details: z.string().optional(),
 }) satisfies z.ZodType<IMessagesSendResult>;
-type MessagesSendResult = z.infer<typeof MessagesSendResult>;
+type MessagesSendResponse = z.infer<typeof MessagesSendResponse>;
 
-export { MailgunMessageData, MessagesSendRequest, MessagesSendResult };
+export { MailgunMessageData, MessagesSendRequestParams, MessagesSendResponse };

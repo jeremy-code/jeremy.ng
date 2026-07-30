@@ -1,4 +1,4 @@
-import { z, regexes } from "zod";
+import * as z from "zod";
 
 const NpmPublisher = z.strictObject({
   email: z.email(),
@@ -21,12 +21,12 @@ const NpmPublisher = z.strictObject({
         .string()
         .startsWith("oidc:")
         .superRefine((val, ctx) => {
-          if (!regexes.uuid4.test(val.substring("oidc:".length))) {
+          if (!z.regexes.uuid4.test(val.substring("oidc:".length))) {
             ctx.addIssue({
               origin: "string",
               code: "invalid_format",
               format: "uuid",
-              pattern: regexes.uuid4.toString(),
+              pattern: z.regexes.uuid4.toString(),
               message: "Invalid UUID",
             });
           }
@@ -95,7 +95,7 @@ const NpmSearchResponse = z.strictObject({
 });
 type NpmSearchResponse = z.infer<typeof NpmSearchResponse>;
 
-const NpmSearchParams = z.strictObject({
+const NpmSearchRequestParams = z.strictObject({
   text: z.string().optional(),
   size: z.int().max(250).optional(), // defaults to 20
   from: z.int().optional(),
@@ -104,4 +104,4 @@ const NpmSearchParams = z.strictObject({
   maintenance: z.number().min(0).max(1).optional(),
 });
 
-export { NpmSearchObject, NpmSearchResponse, NpmSearchParams };
+export { NpmSearchObject, NpmSearchResponse, NpmSearchRequestParams };

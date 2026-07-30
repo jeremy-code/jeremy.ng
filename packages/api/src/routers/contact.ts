@@ -1,15 +1,15 @@
 import { ContactForm } from "../schemas/contact/contactForm";
-import { MessagesSendResult } from "../schemas/mailgun/messages";
-import { sendMessage } from "../services/mailgun";
+import { MessagesSendResponse } from "../schemas/mailgun/messages";
+import { createMessage } from "../services/mailgun";
 import { baseProcedure, createTRPCRouter } from "../trpc";
 import { env } from "../utils/env";
 
 const contactRouter = createTRPCRouter({
   sendMessage: baseProcedure
     .input(ContactForm)
-    .output(MessagesSendResult)
+    .output(MessagesSendResponse)
     .mutation((opts) => {
-      return sendMessage({
+      return createMessage({
         domain: env.MAILGUN_DOMAIN,
         data: {
           from: `Jeremy <hi@${env.MAILGUN_DOMAIN}>`,
