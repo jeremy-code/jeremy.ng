@@ -12,6 +12,12 @@
   "js/ts.tsdk.path": "./node_modules/typescript/lib",
   "js/ts.tsdk.promptToUseWorkspaceVersion": true, // Use the workspace TypeScript version
 
-  "tailwindCSS.classFunctions": ["cx", "cn", "cnMerge", "tv", "twMerge"],
-  "tailwindCSS.classAttributes": ["tw"]
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass",
+    "class:list",
+    "tw"
+  ],
+  "tailwindCSS.classFunctions": ["cx", "cn", "cnMerge", "tv", "twMerge"]
 }
