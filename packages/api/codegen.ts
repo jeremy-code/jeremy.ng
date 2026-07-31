@@ -2,13 +2,15 @@ import type { CodegenConfig } from "@graphql-codegen/cli";
 
 const codegenConfig = {
   schema: {
+    // https://docs.github.com/en/graphql/guides/forming-calls-with-graphql#the-graphql-endpoint
     "https://api.github.com/graphql": {
       headers: {
         Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
       },
+      method: "POST",
     },
   },
-  documents: ["src/graphql/*/*.ts"],
+  documents: "src/graphql/*/*.ts",
   generates: {
     "./src/generated/gql/": {
       preset: "client",
