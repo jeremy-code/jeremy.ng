@@ -14,10 +14,11 @@ const NotFound = (props: NotFoundRouteProps) => {
     <main className="container flex flex-col justify-center gap-8 py-4">
       <Image
         alt="Illustration of a flying saucer beaming up a cyclopean alien while another alien watches from the ground."
-        className="mx-auto max-w-[min(100%,40svh)]"
+        className="mx-auto aspect-[auto_17/20] max-w-[min(100%,36svh)]"
         src="/static/not-found.webp"
         layout="fullWidth"
         priority
+        fetchpriority="high"
       />
       <div className="flex flex-col items-start justify-center gap-2 sm:items-center">
         <Heading as="h1" size="4xl">
