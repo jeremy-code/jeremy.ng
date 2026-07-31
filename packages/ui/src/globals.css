@@ -22,17 +22,17 @@
 
 @theme {
   --font-sans: "Lexend", sans-serif;
-  --color-primary-50: oklch(97.048% 0.01027 247.93);
-  --color-primary-100: oklch(93.192% 0.02353 250.08);
-  --color-primary-200: oklch(88.234% 0.04302 249.39);
-  --color-primary-300: oklch(84.019% 0.07156 246.18);
-  --color-primary-400: oklch(71.374% 0.10848 250.29);
-  --color-primary-500: oklch(62.308% 0.14073 256.32);
-  --color-primary-600: oklch(54.615% 0.16326 261.07);
-  --color-primary-700: oklch(40.799% 0.16047 263.62);
-  --color-primary-800: oklch(34.88% 0.13695 265.08);
-  --color-primary-900: oklch(25.996% 0.10298 264.11);
-  --color-primary-950: oklch(20.033% 0.06451 266.7);
+  --color-primary-50: oklch(97% 0.01 247.9);
+  --color-primary-100: oklch(93.2% 0.024 250.1);
+  --color-primary-200: oklch(88.2% 0.043 249.4);
+  --color-primary-300: oklch(84% 0.072 246.2);
+  --color-primary-400: oklch(71.4% 0.108 250.3);
+  --color-primary-500: oklch(62.3% 0.141 256.3);
+  --color-primary-600: oklch(54.6% 0.163 261.1);
+  --color-primary-700: oklch(40.8% 0.16 263.6);
+  --color-primary-800: oklch(34.9% 0.137 265.1);
+  --color-primary-900: oklch(26% 0.103 264.1);
+  --color-primary-950: oklch(20% 0.065 266.7);
 
   --text-xxs: 0.625rem;
   --text-xxs--line-height: calc(0.75 / 0.625);
