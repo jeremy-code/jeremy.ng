@@ -15,7 +15,7 @@ const NotFound = (props: NotFoundRouteProps) => {
       <Image
         alt="Illustration of a flying saucer beaming up a cyclopean alien while another alien watches from the ground."
         className="mx-auto max-w-[min(100%,40svh)]"
-        src="/assets/not-found.webp"
+        src="/static/not-found.webp"
         layout="fullWidth"
         priority
       />
