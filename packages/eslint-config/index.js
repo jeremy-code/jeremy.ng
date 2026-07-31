@@ -6,6 +6,7 @@ import { defineConfig, includeIgnoreFile, globalIgnores } from "eslint/config";
 import { createTypeScriptImportResolver } from "eslint-import-resolver-typescript";
 import { importX, createNodeResolver } from "eslint-plugin-import-x";
 import pluginPromise from "eslint-plugin-promise";
+import * as pluginRegexp from "eslint-plugin-regexp";
 import * as turbo from "eslint-plugin-turbo";
 import pluginZod from "eslint-plugin-zod";
 import globals from "globals";
@@ -30,6 +31,7 @@ const baseConfig = defineConfig(
   pluginPromise.configs["flat/recommended"],
   turbo.configs["flat/recommended"],
   pluginZod.configs.recommended,
+  pluginRegexp.configs.recommended,
   {
     name: "@jeremyng/eslint-config/index.js",
     languageOptions: {
