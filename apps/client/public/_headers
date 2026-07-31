@@ -1,3 +1,10 @@
+# Prevent workers.dev URLs from being indexed
+https://:worker.:subdomain.workers.dev/*
+	X-Robots-Tag: noindex
+
+https://:version.:worker.:subdomain.workers.dev/*
+	X-Robots-Tag: noindex
+
 # Vite emits fingerprinted files under /assets, so they can be cached until
 # the filename changes on a later build
 /assets/*
