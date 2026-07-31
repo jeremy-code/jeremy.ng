@@ -15,7 +15,7 @@ const handler = ({ request }: { request: Request }) => {
       type === "query" && errors.length === 0 ?
         {
           headers: {
-            "Cache-Control": `s-maxage=1, stale-while-revalidate=${ONE_DAY_IN_SECONDS}`,
+            "Cache-Control": `public, maxage=1, stale-while-revalidate=${ONE_DAY_IN_SECONDS}`,
           },
         }
       : {},
