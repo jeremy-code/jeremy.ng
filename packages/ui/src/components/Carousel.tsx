@@ -131,9 +131,8 @@ const CarouselContent = ({
       <div
         className={cn(
           "flex [touch-action:pan-y_pinch-zoom]",
-          "group-data-[orientation=horizontal]/carousel:flex-row",
-          "group-data-[orientation=vertical]/carousel:flex-col",
-
+          "group-data-[orientation=horizontal]/carousel:-ml-4 group-data-[orientation=horizontal]/carousel:flex-row",
+          "group-data-[orientation=vertical]/carousel:-mt-4 group-data-[orientation=vertical]/carousel:flex-col",
           className,
         )}
         {...props}
@@ -152,8 +151,8 @@ const CarouselItem = ({
       aria-roledescription="slide"
       className={cn(
         "min-w-0 flex-[0_0_100%]",
-        "not-last:group-data-[orientation=horizontal]/carousel:pr-4",
-        "not-last:group-data-[orientation=vertical]/carousel:pb-4",
+        "group-data-[orientation=horizontal]/carousel:pl-4",
+        "group-data-[orientation=vertical]/carousel:pt-4",
         className,
       )}
       {...props}
