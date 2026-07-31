@@ -1,0 +1,4 @@
+# Vite emits fingerprinted files under /assets, so they can be cached until
+# the filename changes on a later build
+/assets/*
+  Cache-Control: public, max-age=31556952, immutable
