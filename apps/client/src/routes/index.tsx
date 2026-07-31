@@ -122,7 +122,7 @@ const Route = createFileRoute("/")({
   headers: () => ({
     "Cache-Control": "public, max-age=3600",
     // https://developers.cloudflare.com/cache/concepts/cdn-cache-control/
-    "CDN-Cache-Control": "public, max-age=7200",
+    "CDN-Cache-Control": "public, max-age=7200, stale-while-revalidate=3600",
   }),
   head: () => ({
     scripts: [
