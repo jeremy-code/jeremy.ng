@@ -57,13 +57,17 @@ const viteConfig = defineConfig({
     babel({ presets: [reactCompilerPreset()] }),
     tailwindcss(),
     fontless(),
-    viteStaticCopy({ targets: [{ src: "blog/assets", dest: "." }] }),
+    viteStaticCopy({
+      targets: [{ src: "blog/assets", dest: "." }],
+      environment: "client",
+    }),
     ...(isAnalyzerEnabled ? [analyzer()] : []),
   ],
   server: {
     port: Number(process.env.PORT) || 3000,
   },
   build: {
+    minify: "oxc",
     cssMinify: "lightningcss",
   },
   css: {
