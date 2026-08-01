@@ -34,7 +34,7 @@ const RootDocument = ({ children }: Readonly<{ children: ReactNode }>) => {
       <head>
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="twitter:url" content={canonicalUrl} />
+        <meta property="og:locale" content="en_US" />
         <HeadContent />
       </head>
       <body>

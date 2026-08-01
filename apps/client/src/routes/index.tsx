@@ -125,6 +125,10 @@ const Route = createFileRoute("/")({
     "CDN-Cache-Control": "public, max-age=7200, stale-while-revalidate=3600",
   }),
   head: () => ({
+    meta: [
+      { property: "profile:first_name", content: "Jeremy" },
+      { property: "profile:last_name", content: "Nguyen" },
+    ],
     scripts: [
       {
         type: "application/ld+json",
