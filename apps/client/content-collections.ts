@@ -33,7 +33,10 @@ const posts = defineCollection({
       data._meta.filePath,
       async (filePath) => {
         const { stdout } = await execAsync(
-          `git log --max-count-oldest=1 --format=%at -- ${join(context.collection.directory, filePath)}`,
+          // Ideally, --max-count-oldest=1 would be used, but it seems that the
+          // version of git installed in Cloudflare Workers builds does not
+          // support it
+          `git log --diff-filter=A --format=%at -- ${join(context.collection.directory, filePath)}`,
         );
         const unixTimestamp = parseInt(stdout);
         if (stdout !== "" && !Number.isNaN(unixTimestamp)) {
