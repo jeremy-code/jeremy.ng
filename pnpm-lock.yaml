@@ -197,6 +197,9 @@ importers:
       vite-bundle-analyzer:
         specifier: ^1.3.9
         version: 1.3.9
+      vite-plugin-static-copy:
+        specifier: ^4.1.1
+        version: 4.1.1(vite@8.2.0(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))
       vitest:
         specifier: ^4.1.10
         version: 4.1.10(@types/node@24.13.3)(@vitest/browser-playwright@4.1.10)(vite@8.2.0(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))
@@ -4590,6 +4593,13 @@ packages:
     engines: { node: ">=6.0.0" }
     hasBin: true
 
+  binary-extensions@2.3.0:
+    resolution:
+      {
+        integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==,
+      }
+    engines: { node: ">=8" }
+
   birecord@0.1.2:
     resolution:
       {
@@ -4726,6 +4736,13 @@ packages:
       {
         integrity: sha512-rddelWYNPRrXq6PtNEN2S3f6t9ILzvqaN5pVgi4kqt9jHQaXIial9PznB5iSPVlQSLNaaH22ItWz3EJtQ10+OA==,
       }
+
+  chokidar@3.6.0:
+    resolution:
+      {
+        integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==,
+      }
+    engines: { node: ">= 8.10.0" }
 
   chokidar@5.0.0:
     resolution:
@@ -6206,6 +6223,13 @@ packages:
       }
     engines: { node: ">= 0.4" }
 
+  is-binary-path@2.1.0:
+    resolution:
+      {
+        integrity: sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==,
+      }
+    engines: { node: ">=8" }
+
   is-boolean-object@1.2.2:
     resolution:
       {
@@ -7421,6 +7445,13 @@ packages:
       }
     engines: { node: ">=10" }
 
+  p-map@7.0.6:
+    resolution:
+      {
+        integrity: sha512-I4Prw6ivkd6p8PiYR1tXASOAOBzIJwu0TB7fqaX0c/8c3QAehNYmX57EijyGGGBt3c/BIowGwV03RVBtXvHEVg==,
+      }
+    engines: { node: ">=18" }
+
   parent-module@1.0.1:
     resolution:
       {
@@ -7690,6 +7721,13 @@ packages:
         integrity: sha512-PWaYA1L/q9u2u7xYQi+Y3L3Yfnie7XyLeaJICV1MGD6LprsBxcAqGjYyr0eY3p+QdsA+x/Irkt4Qif8D63+Sbw==,
       }
     engines: { node: ">=0.10.0" }
+
+  readdirp@3.6.0:
+    resolution:
+      {
+        integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==,
+      }
+    engines: { node: ">=8.10.0" }
 
   readdirp@5.0.0:
     resolution:
@@ -8771,6 +8809,15 @@ packages:
         integrity: sha512-hhy975B+ToseJaSJp3mURHriZUrMgaM2qx0BkP62kN6Yp46rw7EE3dl8ExFWYdn00OIwe7GbsA5PknvstNWG4Q==,
       }
     hasBin: true
+
+  vite-plugin-static-copy@4.1.1:
+    resolution:
+      {
+        integrity: sha512-GrlA8YklrAfSyxJ4M3fdQLOo9oNkp56IM9FYgX/WtEgeIFkPwhu4wzpufBCIuNKCa6Fn77FkRdYxkHqV0FwjAw==,
+      }
+    engines: { node: ^22.0.0 || >=24.0.0 }
+    peerDependencies:
+      vite: ^6.0.0 || ^7.0.0 || ^8.0.0
 
   vite@8.2.0:
     resolution:
@@ -11888,6 +11935,8 @@ snapshots:
 
   baseline-browser-mapping@2.11.8: {}
 
+  binary-extensions@2.3.0: {}
+
   birecord@0.1.2: {}
 
   blake3-wasm@2.1.5: {}
@@ -11957,6 +12006,18 @@ snapshots:
   character-reference-invalid@2.0.1: {}
 
   chardet@2.2.0: {}
+
+  chokidar@3.6.0:
+    dependencies:
+      anymatch: 3.1.3
+      braces: 3.0.3
+      glob-parent: 5.1.2
+      is-binary-path: 2.1.0
+      is-glob: 4.0.3
+      normalize-path: 3.0.0
+      readdirp: 3.6.0
+    optionalDependencies:
+      fsevents: 2.3.3
 
   chokidar@5.0.0:
     dependencies:
@@ -13114,6 +13175,10 @@ snapshots:
       has-bigints: 1.1.0
     optional: true
 
+  is-binary-path@2.1.0:
+    dependencies:
+      binary-extensions: 2.3.0
+
   is-boolean-object@1.2.2:
     dependencies:
       call-bound: 1.0.4
@@ -13894,6 +13959,8 @@ snapshots:
     dependencies:
       p-limit: 3.1.0
 
+  p-map@7.0.6: {}
+
   parent-module@1.0.1:
     dependencies:
       callsites: 3.1.0
@@ -13997,6 +14064,10 @@ snapshots:
       scheduler: 0.27.0
 
   react@19.2.8: {}
+
+  readdirp@3.6.0:
+    dependencies:
+      picomatch: 2.3.2
 
   readdirp@5.0.0: {}
 
@@ -14685,6 +14756,14 @@ snapshots:
       vfile-message: 4.0.3
 
   vite-bundle-analyzer@1.3.9: {}
+
+  vite-plugin-static-copy@4.1.1(vite@8.2.0(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)):
+    dependencies:
+      chokidar: 3.6.0
+      p-map: 7.0.6
+      picocolors: 1.1.1
+      tinyglobby: 0.2.17
+      vite: 8.2.0(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)
 
   vite@8.2.0(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0):
     dependencies:

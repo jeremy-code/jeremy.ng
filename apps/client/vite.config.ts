@@ -9,6 +9,7 @@ import { fontless } from "fontless";
 import { Features } from "lightningcss";
 import { defineConfig } from "vite";
 import { analyzer } from "vite-bundle-analyzer";
+import { viteStaticCopy } from "vite-plugin-static-copy";
 import * as z from "zod";
 
 const isAnalyzerEnabled =
@@ -56,6 +57,7 @@ const viteConfig = defineConfig({
     babel({ presets: [reactCompilerPreset()] }),
     tailwindcss(),
     fontless(),
+    viteStaticCopy({ targets: [{ src: "blog/assets", dest: "." }] }),
     ...(isAnalyzerEnabled ? [analyzer()] : []),
   ],
   server: {
