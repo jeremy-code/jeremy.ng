@@ -18,7 +18,7 @@ import { GitHub } from "@jeremyng/ui/icons/GitHub";
 const listFormatter = new Intl.ListFormat("en", { style: "long" });
 
 const BlogPostComponent = () => {
-  const { metadata } = Route.useLoaderData();
+  const { RenderableMarkdown, metadata } = Route.useLoaderData();
 
   const publishedDateInstant =
     metadata.publishedDate !== undefined ?
@@ -71,6 +71,8 @@ const BlogPostComponent = () => {
             View on GitHub
           </a>
         </div>
+
+        {RenderableMarkdown}
       </article>
     </main>
   );
@@ -79,9 +81,12 @@ const BlogPostComponent = () => {
 const Route = createFileRoute("/blog/$slug")({
   component: BlogPostComponent,
   loader: async ({ params }) => {
-    const { content, ...metadata } = await getBlogPost({ data: params.slug });
+    const { RenderableMarkdown, metadata } = await getBlogPost({
+      data: params.slug,
+    });
 
     return {
+      RenderableMarkdown,
       metadata,
     };
   },
