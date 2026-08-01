@@ -2,41 +2,34 @@ import type { ComponentProps } from "react";
 import { Fragment } from "react";
 
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
-import { useTheme } from "next-themes";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { cn } from "tailwind-variants";
 
-import { createHighlighter, type Language } from "#lib/shiki/createHighlighter";
-import { assertNever } from "#utils/assertNever";
+import {
+  bundledLanguagesKeys,
+  bundledThemesKeys,
+  createHighlighter,
+  type BundledLanguage,
+} from "#lib/shiki/createHighlighter";
 
 const highlighter = await createHighlighter({
-  langs: [
-    "css",
-    "javascript",
-    "json",
-    "jsx",
-    "python",
-    "shell",
-    "tsx",
-    "typescript",
-  ],
-  themes: ["github-dark-default", "github-light-default"],
+  langs: bundledLanguagesKeys,
+  themes: bundledThemesKeys,
 });
 
 type CodeBlockProps = {
   code: string;
-  lang: Language;
+  lang?: BundledLanguage;
 };
 
 const CodeBlock = (props: CodeBlockProps) => {
-  const { resolvedTheme } = useTheme();
   const hastTree = highlighter.codeToHast(props.code, {
-    lang: props.lang,
-    theme:
-      resolvedTheme === "light" ? "github-light-default"
-      : resolvedTheme === "dark" || resolvedTheme === undefined ?
-        "github-dark-default"
-      : assertNever(resolvedTheme as never),
+    lang:
+      props.lang !== undefined && bundledLanguagesKeys.includes(props.lang) ?
+        props.lang
+      : "text",
+    // Can't use useTheme because this is a server component, so just use the dark theme for now
+    theme: "github-dark-default",
   });
 
   return toJsxRuntime(hastTree, {

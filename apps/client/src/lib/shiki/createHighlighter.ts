@@ -1,4 +1,4 @@
-import { createBundledHighlighter } from "shiki/core";
+import { createBundledHighlighter, type SpecialLanguage } from "shiki/core";
 import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 
 const bundledLanguages = {
@@ -11,20 +11,27 @@ const bundledLanguages = {
   tsx: () => import("@shikijs/langs/tsx"),
   typescript: () => import("@shikijs/langs/typescript"),
 };
-type Language = keyof typeof bundledLanguages;
+const bundledLanguagesKeys = Object.keys(
+  bundledLanguages,
+) as (keyof typeof bundledLanguages)[];
+type BundledLanguage = keyof typeof bundledLanguages;
+type Language = BundledLanguage | SpecialLanguage;
 
 const bundledThemes = {
   "github-dark-default": () => import("@shikijs/themes/github-dark-default"),
   "github-light-default": () => import("@shikijs/themes/github-light-default"),
 };
-type Theme = keyof typeof bundledThemes;
+const bundledThemesKeys = Object.keys(
+  bundledThemes,
+) as (keyof typeof bundledThemes)[];
+type BundledTheme = keyof typeof bundledThemes;
 
 const regexCache = new Map<string, RegExp | Error>();
 
 // https://shiki.matsu.io/guide/shorthands#create-shorthands-with-fine-grained-bundles
 const createHighlighter = /* @__PURE__ */ createBundledHighlighter<
-  Language,
-  Theme
+  BundledLanguage,
+  BundledTheme
 >({
   langs: bundledLanguages,
   themes: bundledThemes,
@@ -41,4 +48,11 @@ const createHighlighter = /* @__PURE__ */ createBundledHighlighter<
     }),
 });
 
-export { createHighlighter, type Theme, type Language };
+export {
+  createHighlighter,
+  bundledThemesKeys,
+  bundledLanguagesKeys,
+  type BundledTheme,
+  type BundledLanguage,
+  type Language,
+};
