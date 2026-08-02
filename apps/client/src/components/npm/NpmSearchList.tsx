@@ -41,7 +41,7 @@ const NpmSearchList = (props: NpmSearchListProps) => {
   } else if (isError) {
     console.error(error);
     return (
-      <Alert color="destructive">
+      <Alert color="red">
         <AlertIcon>
           <TriangleAlert />
         </AlertIcon>

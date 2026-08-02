@@ -40,7 +40,7 @@ const GithubPinnedList = (props: GithubPinnedListProps) => {
   } else if (isError) {
     console.error(error);
     return (
-      <Alert color="destructive">
+      <Alert color="red">
         <AlertIcon>
           <TriangleAlert />
         </AlertIcon>
