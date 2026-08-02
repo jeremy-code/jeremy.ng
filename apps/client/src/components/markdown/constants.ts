@@ -1,6 +1,8 @@
 import type { MarkdownToJSX } from "markdown-to-jsx/react";
 
 import { MarkdownBlockquote } from "./MarkdownBlockquote";
+import { MarkdownCode } from "./MarkdownCode";
+import { MarkdownFooter } from "./MarkdownFooter";
 import {
   MarkdownH1,
   MarkdownH2,
@@ -40,6 +42,9 @@ const MARKDOWN_OVERRIDES = {
   tfoot: MarkdownTableFooter,
   tbody: MarkdownTableBody,
   td: MarkdownTableCell,
+  img: "img",
+  footer: MarkdownFooter,
+  code: MarkdownCode,
 } satisfies MarkdownToJSX.Overrides;
 
 export { MARKDOWN_OVERRIDES };

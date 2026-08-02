@@ -16,7 +16,6 @@ const Markdown = (props: MarkdownProps) => {
     <MarkdownPrimitive
       {...props}
       options={{
-        // TODO: Handle hex colors
         overrides: MARKDOWN_OVERRIDES,
         renderRule: (next, node, renderChildren, state) => {
           if (node.type === RuleType.codeBlock) {
