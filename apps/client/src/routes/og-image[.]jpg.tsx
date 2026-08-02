@@ -10,7 +10,7 @@ const fetchCache = new Map<string, Promise<ArrayBuffer>>();
 const Route = createFileRoute("/og-image.jpg")({
   server: {
     handlers: {
-      GET() {
+      async GET() {
         const imageResponse = new ImageResponse(
           <div tw="flex size-full items-center justify-center gap-8 bg-white">
             <div
@@ -55,7 +55,28 @@ const Route = createFileRoute("/og-image.jpg")({
           },
         );
 
-        return imageResponse;
+        try {
+          await imageResponse.ready;
+          const clonedImageResponse = imageResponse.clone();
+          const arrayBuffer = await clonedImageResponse.arrayBuffer();
+          /**
+           * Cloudflare Workers uses the v8 version matching Google Chrome's
+           * stable channel, so Uint8Array.toHex is avaliable
+           *
+           * @see {@link https://developers.cloudflare.com/workers/runtime-apis/web-standards/#javascript-standards}
+           */
+          const digest = new Uint8Array(
+            await crypto.subtle.digest("SHA-256", arrayBuffer),
+          ).toHex();
+
+          imageResponse.headers.set("ETag", `"${digest}"`);
+          return imageResponse;
+        } catch {
+          return new Response(
+            "Failed to generate image. Please try again later",
+            { status: 500 },
+          );
+        }
       },
     },
   },
