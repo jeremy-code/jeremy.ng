@@ -23,8 +23,10 @@ const badgeVariants = tv({
 type BadgeProps = ComponentPropsWithRef<"div"> &
   VariantProps<typeof badgeVariants>;
 
-const Badge = ({ className, color, ...props }: BadgeProps) => {
-  return <div className={badgeVariants({ className, color })} {...props} />;
+const Badge = ({ className, color, size, ...props }: BadgeProps) => {
+  return (
+    <div className={badgeVariants({ className, color, size })} {...props} />
+  );
 };
 
 export { Badge, type BadgeProps, badgeVariants };
