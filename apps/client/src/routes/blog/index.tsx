@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Temporal } from "temporal-polyfill";
 
 import { SsrDate } from "#components/common/SsrDate";
-import { allPosts } from "#content-collections";
+import { getBlogPosts } from "#functions/getBlogPosts";
 import { env } from "#utils/env";
 import { Badge } from "@jeremyng/ui/components/Badge";
 import { cardVariants } from "@jeremyng/ui/components/Card";
@@ -56,7 +56,6 @@ const BlogComponent = () => {
                     </HorizontalListItem>
                     {publishedDateInstant !== undefined ?
                       <HorizontalListItem>
-                        {" "}
                         <time dateTime={publishedDateInstant.toString()}>
                           <SsrDate
                             dateTime={publishedDateInstant}
@@ -85,13 +84,7 @@ const BlogComponent = () => {
 
 const Route = createFileRoute("/blog/")({
   component: BlogComponent,
-  loader: () => ({
-    posts: allPosts.toSorted(
-      (a, b) =>
-        (b.publishedDate !== undefined ? Date.parse(b.publishedDate) : 0) -
-        (a.publishedDate !== undefined ? Date.parse(a.publishedDate) : 0),
-    ),
-  }),
+  loader: async () => ({ posts: await getBlogPosts() }),
   head: ({ loaderData }) => ({
     scripts: [
       {

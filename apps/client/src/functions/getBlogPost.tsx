@@ -4,12 +4,14 @@ import { renderServerComponent } from "@tanstack/react-start/rsc";
 import * as z from "zod";
 
 import { Markdown } from "#components/markdown/Markdown";
-import { allPosts } from "#content-collections";
+
+import { getBlogPosts } from "./getBlogPosts";
 
 const getBlogPost = createServerFn({ method: "GET" })
   .validator(z.string())
   .handler(async ({ data }: { data: string }) => {
-    const post = allPosts.find((candidate) => candidate.slug === data);
+    const posts = await getBlogPosts();
+    const post = posts.find((candidate) => candidate.slug === data);
 
     if (!post) {
       throw notFound();
