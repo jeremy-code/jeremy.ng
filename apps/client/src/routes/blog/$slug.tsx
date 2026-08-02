@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link as RouterLink } from "@tanstack/react-router";
 import { Temporal } from "temporal-polyfill";
 
 import { SsrDate } from "#components/common/SsrDate";
@@ -26,8 +26,8 @@ const BlogPostComponent = () => {
     : undefined;
 
   return (
-    <main>
-      <article className="container flex max-w-prose flex-col gap-4 py-4">
+    <main className="py-8">
+      <article className="container flex max-w-prose flex-col gap-4">
         <header className="flex flex-col gap-4">
           <Heading as="h1" size="4xl" className="leading-tight">
             {metadata.title}
@@ -74,6 +74,44 @@ const BlogPostComponent = () => {
 
         {RenderableMarkdown}
       </article>
+      <div
+        role="group"
+        className="container mt-8 grid max-w-prose items-stretch gap-2 sm:grid-cols-2"
+      >
+        {metadata.previousPost !== undefined && (
+          <RouterLink
+            className={buttonVariants({
+              className:
+                "h-auto flex-col items-start gap-0 py-3 sm:col-start-1",
+              color: "gray",
+              variant: "outline",
+            })}
+            to="/blog/$slug"
+            params={{ slug: metadata.previousPost.slug }}
+          >
+            <span className="text-xs text-muted-foreground">Previous</span>
+            <span className="text-base font-medium">
+              {metadata.previousPost.title}
+            </span>
+          </RouterLink>
+        )}
+        {metadata.nextPost !== undefined && (
+          <RouterLink
+            className={buttonVariants({
+              className: "h-auto flex-col items-end gap-0 py-3 sm:col-start-2",
+              color: "gray",
+              variant: "outline",
+            })}
+            to="/blog/$slug"
+            params={{ slug: metadata.nextPost.slug }}
+          >
+            <span className="text-xs text-muted-foreground">Next</span>
+            <span className="text-base font-medium">
+              {metadata.nextPost.title}
+            </span>
+          </RouterLink>
+        )}
+      </div>
     </main>
   );
 };

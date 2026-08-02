@@ -7,7 +7,7 @@ type MarkdownWrapperProps = ComponentPropsWithRef<"div">;
 const MarkdownWrapper = ({ className, ...props }: MarkdownWrapperProps) => {
   return (
     <div
-      className={cn("flex flex-col items-start gap-4 pb-4", className)}
+      className={cn("flex flex-col items-start gap-4", className)}
       {...props}
     />
   );
