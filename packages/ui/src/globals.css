@@ -22,17 +22,18 @@
 
 @theme {
   --font-sans: "Lexend", sans-serif;
-  --color-primary-50: oklch(97% 0.01 247.9);
-  --color-primary-100: oklch(93.2% 0.024 250.1);
-  --color-primary-200: oklch(88.2% 0.043 249.4);
-  --color-primary-300: oklch(84% 0.072 246.2);
-  --color-primary-400: oklch(71.4% 0.108 250.3);
-  --color-primary-500: oklch(62.3% 0.141 256.3);
-  --color-primary-600: oklch(54.6% 0.163 261.1);
-  --color-primary-700: oklch(40.8% 0.16 263.6);
-  --color-primary-800: oklch(34.9% 0.137 265.1);
-  --color-primary-900: oklch(26% 0.103 264.1);
-  --color-primary-950: oklch(20% 0.065 266.7);
+  --font-mono: "Fira Mono", monospace;
+  --color-primary-50: oklch(97% 0.014 253);
+  --color-primary-100: oklch(93.183% 0.0185 253.98);
+  --color-primary-200: oklch(88.167% 0.032 252.53);
+  --color-primary-300: oklch(80.85% 0.0645 250.21);
+  --color-primary-400: oklch(70.633% 0.111 253.02);
+  --color-primary-500: oklch(62.217% 0.1465 258.21);
+  --color-primary-600: oklch(54.5% 0.164 261.28);
+  --color-primary-700: oklch(48.725% 0.18225 262.77);
+  --color-primary-800: oklch(42.35% 0.1585 264.04);
+  --color-primary-900: oklch(37.875% 0.12575 263.92);
+  --color-primary-950: oklch(28.2% 0.091 266.33);
 
   --text-xxs: 0.625rem;
   --text-xxs--line-height: calc(0.75 / 0.625);

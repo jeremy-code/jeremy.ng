@@ -17,14 +17,14 @@ const Route = createFileRoute("/og-image.jpg")({
               tw="absolute inset-0"
               style={{
                 backgroundImage:
-                  "radial-gradient(at right bottom, oklch(54.6% 0.163 261.1 / .25) 0%, transparent 50%)",
+                  "radial-gradient(at right bottom, oklch(54.5% 0.164 261.28 / .25) 0%, transparent 50%)",
               }}
             />
             <div
               tw="absolute inset-0"
               style={{
                 backgroundImage:
-                  "radial-gradient(at left top, oklch(54.6% 0.163 261.1 / .25) 0%, transparent 50%)",
+                  "radial-gradient(at left top, oklch(54.5% 0.164 261.28 / .25) 0%, transparent 50%)",
               }}
             />
             <img

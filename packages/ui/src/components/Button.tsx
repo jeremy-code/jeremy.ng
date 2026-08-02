@@ -27,7 +27,7 @@ const buttonVariants = tv({
       ],
       surface: [
         "border border-(--color-200) bg-(--color-100) text-(--color-700)",
-        "hover:bg-(--color-200) dark:border-(--color-700) dark:bg-(--color-900) dark:text-(--color-300) dark:hover:bg-(--color-800)",
+        "hover:bg-(--color-200) dark:border-(--color-800) dark:bg-(--color-950) dark:text-(--color-300) dark:hover:bg-(--color-800)",
       ],
       outline: [
         "border border-(--color-300) bg-transparent text-(--color-700) hover:bg-(--color-200)",

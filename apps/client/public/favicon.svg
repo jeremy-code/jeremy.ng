@@ -3,7 +3,7 @@
   <style>
     @media (color-gamut: p3) {
       path {
-        fill: oklch(54.6% 0.163 261.1);
+        fill: oklch(54.5% 0.164 261.28);
       }
     }
   </style>
