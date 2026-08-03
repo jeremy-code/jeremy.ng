@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { render } from "takumi-js";
 import { googleFonts } from "takumi-js/helpers";
-import { ImageResponse } from "takumi-js/response";
 
 import { env } from "#utils/env";
 
@@ -10,8 +10,8 @@ const fetchCache = new Map<string, Promise<ArrayBuffer>>();
 const Route = createFileRoute("/og-image.jpg")({
   server: {
     handlers: {
-      async GET() {
-        const imageResponse = new ImageResponse(
+      async GET({ request }) {
+        const image = (await render(
           <div tw="flex size-full items-center justify-center gap-8 bg-white">
             <div
               tw="absolute inset-0"
@@ -37,6 +37,7 @@ const Route = createFileRoute("/og-image.jpg")({
             </p>
           </div>,
           {
+            signal: request.signal,
             width: 1200,
             height: 630,
             format: "jpeg",
@@ -47,36 +48,36 @@ const Route = createFileRoute("/og-image.jpg")({
             images: {
               fetchCache,
             },
-            headers: {
-              "Cache-Control": "public, max-age=3600",
-              "CDN-Cache-Control":
-                "public, max-age=86400, stale-while-revalidate=604800",
-            },
           },
-        );
-
-        try {
-          await imageResponse.ready;
-          const clonedImageResponse = imageResponse.clone();
-          const arrayBuffer = await clonedImageResponse.arrayBuffer();
           /**
-           * Cloudflare Workers uses the v8 version matching Google Chrome's
-           * stable channel, so Uint8Array.toHex is avaliable
+           * Typecast is necessary because output of `render` is typed as
+           * `Promise<Uint8Array<ArrayBufferLike> | Buffer<ArrayBufferLike>>`,
+           * while `Response` does not permit using `SharedArrayBuffer` as a
+           * `BodyInit`
            *
-           * @see {@link https://developers.cloudflare.com/workers/runtime-apis/web-standards/#javascript-standards}
+           * @see {@link https://github.com/kane50613/takumi/issues/1060}
            */
-          const digest = new Uint8Array(
-            await crypto.subtle.digest("SHA-256", arrayBuffer),
-          ).toHex();
+        )) as Uint8Array<ArrayBuffer> | Buffer<ArrayBuffer>;
 
-          imageResponse.headers.set("ETag", `"${digest}"`);
-          return imageResponse;
-        } catch {
-          return new Response(
-            "Failed to generate image. Please try again later",
-            { status: 500 },
-          );
-        }
+        /**
+         * Cloudflare Workers uses the v8 version matching Google Chrome's
+         * stable channel, so Uint8Array.toHex is avaliable
+         *
+         * @see {@link https://developers.cloudflare.com/workers/runtime-apis/web-standards/#javascript-standards}
+         */
+        const sha256Hash = new Uint8Array(
+          await crypto.subtle.digest("SHA-256", image),
+        ).toHex();
+
+        return new Response(image, {
+          headers: {
+            "Content-Type": "image/jpeg",
+            "Cache-Control": "public, max-age=3600",
+            "CDN-Cache-Control":
+              "public, max-age=86400, stale-while-revalidate=604800",
+            ETag: `"${sha256Hash}"`,
+          },
+        });
       },
     },
   },
