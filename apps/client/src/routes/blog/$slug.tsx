@@ -6,6 +6,14 @@ import { getBlogPost } from "#functions/getBlogPost";
 import { env } from "#utils/env";
 import { seo } from "#utils/seo";
 import { Badge } from "@jeremyng/ui/components/Badge";
+import {
+  Breadcrumb,
+  BreadcrumbCurrentLink,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "@jeremyng/ui/components/Breadcrumb";
 import { buttonVariants } from "@jeremyng/ui/components/Button";
 import { Heading } from "@jeremyng/ui/components/Heading";
 import {
@@ -27,6 +35,17 @@ const BlogPostComponent = () => {
 
   return (
     <main className="py-8">
+      <Breadcrumb className="container mb-4 max-w-prose">
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink render={<RouterLink to="/blog">Blog</RouterLink>} />
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbCurrentLink>{metadata.title}</BreadcrumbCurrentLink>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
       <article className="container flex max-w-prose flex-col gap-4">
         <header className="flex flex-col gap-4">
           <Heading as="h1" size="4xl" className="leading-tight">
