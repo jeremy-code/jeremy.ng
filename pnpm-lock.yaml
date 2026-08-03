@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  "@tanstack/react-start-rsc": a8f83d602bc75091c2e0f84e9dac0ca5c1f5d3ce05aedef38fd80446669c4fe7
+
 importers:
   .:
     devDependencies:
@@ -11214,7 +11217,7 @@ snapshots:
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
 
-  "@tanstack/react-start-rsc@0.1.33(@vitejs/plugin-rsc@0.5.32(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vite@8.2.0(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)))(esbuild@0.28.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rolldown@1.2.1)(supports-color@10.2.2)(vite@8.2.0(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))":
+  "@tanstack/react-start-rsc@0.1.33(patch_hash=a8f83d602bc75091c2e0f84e9dac0ca5c1f5d3ce05aedef38fd80446669c4fe7)(@vitejs/plugin-rsc@0.5.32(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vite@8.2.0(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)))(esbuild@0.28.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rolldown@1.2.1)(supports-color@10.2.2)(vite@8.2.0(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))":
     dependencies:
       "@tanstack/react-router": 1.170.18(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       "@tanstack/router-core": 1.171.15
@@ -11257,7 +11260,7 @@ snapshots:
     dependencies:
       "@tanstack/react-router": 1.170.18(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       "@tanstack/react-start-client": 1.168.16(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      "@tanstack/react-start-rsc": 0.1.33(@vitejs/plugin-rsc@0.5.32(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vite@8.2.0(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)))(esbuild@0.28.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rolldown@1.2.1)(supports-color@10.2.2)(vite@8.2.0(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))
+      "@tanstack/react-start-rsc": 0.1.33(patch_hash=a8f83d602bc75091c2e0f84e9dac0ca5c1f5d3ce05aedef38fd80446669c4fe7)(@vitejs/plugin-rsc@0.5.32(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(vite@8.2.0(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)))(esbuild@0.28.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rolldown@1.2.1)(supports-color@10.2.2)(vite@8.2.0(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))
       "@tanstack/react-start-server": 1.167.22(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       "@tanstack/router-utils": 1.162.2(supports-color@10.2.2)
       "@tanstack/start-client-core": 1.170.14
