@@ -155,6 +155,13 @@ const Route = createFileRoute("/blog/$slug/")({
             title: loaderData.metadata.title,
             description: loaderData.metadata.lede,
             keywords: loaderData.metadata.tags,
+            image: {
+              url: `${env.VITE_BASE_URL}/${loaderData.metadata.slug}/og-image.jpg`,
+              type: "image/jpeg",
+              width: 1200,
+              height: 600,
+              alt: loaderData.metadata.title,
+            },
           }),
         },
         scripts: [
