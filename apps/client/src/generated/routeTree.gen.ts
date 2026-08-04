@@ -12,8 +12,8 @@ import { Route as rootRouteImport } from './../routes/__root'
 import { Route as IndexRouteImport } from './../routes/index'
 import { Route as OgImageDotjpgRouteImport } from './../routes/og-image[.]jpg'
 import { Route as BlogIndexRouteImport } from './../routes/blog/index'
-import { Route as BlogSlugRouteImport } from './../routes/blog/$slug'
 import { Route as ApiTrpcSplatRouteImport } from './../routes/api/trpc.$'
+import { Route as BlogSlugIndexRouteImport } from './../routes/blog/$slug/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -30,59 +30,59 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/blog/$slug',
-  path: '/blog/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ApiTrpcSplatRoute = ApiTrpcSplatRouteImport.update({
   id: '/api/trpc/$',
   path: '/api/trpc/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugIndexRoute = BlogSlugIndexRouteImport.update({
+  id: '/blog/$slug/',
+  path: '/blog/$slug/',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/og-image.jpg': typeof OgImageDotjpgRoute
-  '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
+  '/blog/$slug/': typeof BlogSlugIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/og-image.jpg': typeof OgImageDotjpgRoute
-  '/blog/$slug': typeof BlogSlugRoute
   '/blog': typeof BlogIndexRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
+  '/blog/$slug': typeof BlogSlugIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/og-image.jpg': typeof OgImageDotjpgRoute
-  '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
+  '/blog/$slug/': typeof BlogSlugIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/og-image.jpg' | '/blog/$slug' | '/blog/' | '/api/trpc/$'
+  fullPaths: '/' | '/og-image.jpg' | '/blog/' | '/api/trpc/$' | '/blog/$slug/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/og-image.jpg' | '/blog/$slug' | '/blog' | '/api/trpc/$'
+  to: '/' | '/og-image.jpg' | '/blog' | '/api/trpc/$' | '/blog/$slug'
   id:
     | '__root__'
     | '/'
     | '/og-image.jpg'
-    | '/blog/$slug'
     | '/blog/'
     | '/api/trpc/$'
+    | '/blog/$slug/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   OgImageDotjpgRoute: typeof OgImageDotjpgRoute
-  BlogSlugRoute: typeof BlogSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ApiTrpcSplatRoute: typeof ApiTrpcSplatRoute
+  BlogSlugIndexRoute: typeof BlogSlugIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -108,18 +108,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog/$slug': {
-      id: '/blog/$slug'
-      path: '/blog/$slug'
-      fullPath: '/blog/$slug'
-      preLoaderRoute: typeof BlogSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/api/trpc/$': {
       id: '/api/trpc/$'
       path: '/api/trpc/$'
       fullPath: '/api/trpc/$'
       preLoaderRoute: typeof ApiTrpcSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug/': {
+      id: '/blog/$slug/'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug/'
+      preLoaderRoute: typeof BlogSlugIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -128,9 +128,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   OgImageDotjpgRoute: OgImageDotjpgRoute,
-  BlogSlugRoute: BlogSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
   ApiTrpcSplatRoute: ApiTrpcSplatRoute,
+  BlogSlugIndexRoute: BlogSlugIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

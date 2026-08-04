@@ -135,7 +135,7 @@ const BlogPostComponent = () => {
   );
 };
 
-const Route = createFileRoute("/blog/$slug")({
+const Route = createFileRoute("/blog/$slug/")({
   component: BlogPostComponent,
   loader: async ({ params }) => {
     const { RenderableMarkdown, metadata } = await getBlogPost({
