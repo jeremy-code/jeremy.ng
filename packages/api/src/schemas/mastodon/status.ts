@@ -158,7 +158,7 @@ const accountSchema = z.object({
     z.object({
       name: z.string(),
       value: z.string(),
-      verified_at: z.iso.datetime().nullish(),
+      verified_at: z.iso.datetime({ offset: true }).nullish(),
     }),
   ),
   followers_count: z.int(),
@@ -242,17 +242,17 @@ const mediaAttachmentSchema = z.object({
  */
 const previewCardSchema = z.object({
   description: z.string(),
-  embed_url: z.url(),
+  embed_url: z.union([z.literal(""), z.url()]),
   height: z.int(),
   html: z.string(),
   provider_name: z.string(),
-  provider_url: z.url(),
+  provider_url: z.union([z.literal(""), z.url()]),
   title: z.string(),
   type: z.enum(["link", "photo", "video", "rich"]),
   url: z.url(),
   width: z.int(),
   author_name: z.string().nullish(),
-  author_url: z.url().nullish(),
+  author_url: z.union([z.literal(""), z.url()]).nullish(),
   authors: z
     .array(
       z.object({
@@ -297,7 +297,9 @@ const quoteApprovalSchema = z.object({
   automatic: z.array(
     z.enum(["public", "followers", "following", "unsupported_policy"]),
   ),
-  manual: z.enum(["public", "followers", "following", "unsupported_policy"]),
+  manual: z.array(
+    z.enum(["public", "followers", "following", "unsupported_policy"]),
+  ),
   current_user: z.enum(["automatic", "manual", "denied", "unknown"]),
 });
 
@@ -361,4 +363,24 @@ const statusSchema = z.object({
 
 type Status = z.infer<typeof statusSchema>;
 
-export { statusSchema, type Status };
+const statusWithRepliesSchema = statusSchema.extend({
+  get replies() {
+    return z.array(statusWithRepliesSchema);
+  },
+});
+type StatusWithReplies = z.infer<typeof statusWithRepliesSchema>;
+
+const contextSchema = z.object({
+  ancestors: z.array(statusSchema),
+  descendants: z.array(statusSchema),
+});
+type Context = z.infer<typeof contextSchema>;
+
+export {
+  statusSchema,
+  type Status,
+  statusWithRepliesSchema,
+  type StatusWithReplies,
+  contextSchema,
+  type Context,
+};
