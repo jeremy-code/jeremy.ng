@@ -83,7 +83,7 @@ const BlogPostComponent = () => {
 
         <div role="group">
           <a
-            href={`https://github.com/${env.VITE_GITHUB_USERNAME}/jeremy.ng/blob/main/apps/client/blog/${metadata.slug}.md`}
+            href={`https://github.com/${env.VITE_GITHUB_USERNAME}/jeremy.ng/blob/${env.WORKERS_CI_BRANCH}/apps/client/blog/${metadata.slug}.md`}
             className={buttonVariants({ color: "gray" })}
           >
             <GitHub className="size-4" />

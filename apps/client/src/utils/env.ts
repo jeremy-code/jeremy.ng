@@ -7,6 +7,9 @@ import { env as apiEnv } from "@jeremyng/api/utils/env";
 const env = createEnv({
   extends: [apiEnv],
   clientPrefix: "VITE_",
+  shared: {
+    WORKERS_CI_BRANCH: z.string().min(1),
+  },
   client: {
     VITE_BASE_URL: z.url(),
     VITE_CF_TURNSTILE_SITE_KEY: siteKeySchema,

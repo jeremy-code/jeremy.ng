@@ -63,6 +63,12 @@ const viteConfig = defineConfig({
     }),
     ...(isAnalyzerEnabled ? [analyzer()] : []),
   ],
+  define: {
+    // https://developers.cloudflare.com/workers/ci-cd/builds/configuration/#default-variables
+    "import.meta.env.WORKERS_CI_BRANCH": JSON.stringify(
+      process.env.WORKERS_CI_BRANCH ?? "main",
+    ),
+  },
   server: {
     port: Number(process.env.PORT) || 3000,
   },

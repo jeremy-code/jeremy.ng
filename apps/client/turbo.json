@@ -4,6 +4,7 @@
 
   "tasks": {
     "build": {
+      "passThroughEnv": ["WORKERS_CI_BRANCH"],
       "env": [
         "ANALYZE",
         "DEV",
