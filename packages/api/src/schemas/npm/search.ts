@@ -96,7 +96,8 @@ const npmSearchResponseSchema = z.strictObject({
 type NpmSearchResponse = z.infer<typeof npmSearchResponseSchema>;
 
 const npmSearchRequestParamsSchema = z.strictObject({
-  text: z.string().optional(),
+  // Accepting user input, trim string
+  text: z.string().trim().optional(),
   size: z.int().max(250).optional(), // defaults to 20
   from: z.int().optional(),
   quality: z.number().min(0).max(1).optional(),

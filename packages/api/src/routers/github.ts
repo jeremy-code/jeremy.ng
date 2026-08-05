@@ -15,7 +15,7 @@ import { baseProcedure, createTRPCRouter } from "../trpc";
 
 const githubRouter = createTRPCRouter({
   getPinnedItems: baseProcedure
-    .input(z.strictObject({ login: z.string() }))
+    .input(z.strictObject({ login: z.string().trim() }))
     .output(z.array(repositorySchema))
     .query(async (opts) => {
       const totalCountResponse = await getPinnedItemsTotalCount(opts.input);
@@ -51,7 +51,7 @@ const githubRouter = createTRPCRouter({
       );
     }),
   getSocialAccounts: baseProcedure
-    .input(z.strictObject({ login: z.string() }))
+    .input(z.strictObject({ login: z.string().trim() }))
     .output(z.array(socialAccountSchema))
     .query(async (opts) => {
       const totalCountResponse = await getSocialAccountsTotalCount(opts.input);
@@ -89,7 +89,7 @@ const githubRouter = createTRPCRouter({
       );
     }),
   getBio: baseProcedure
-    .input(z.strictObject({ login: z.string() }))
+    .input(z.strictObject({ login: z.string().trim() }))
     .output(bioSchema.nullable())
     .query(async (opts) => {
       const bioResponse = await getBio(opts.input);
