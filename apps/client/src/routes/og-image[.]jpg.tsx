@@ -11,7 +11,7 @@ const Route = createFileRoute("/og-image.jpg")({
   server: {
     handlers: {
       async GET({ request }) {
-        const image = (await render(
+        const image = await render(
           <div tw="flex size-full items-center justify-center gap-8 bg-white">
             <div
               tw="absolute inset-0"
@@ -49,15 +49,7 @@ const Route = createFileRoute("/og-image.jpg")({
               fetchCache,
             },
           },
-          /**
-           * Typecast is necessary because output of `render` is typed as
-           * `Promise<Uint8Array<ArrayBufferLike> | Buffer<ArrayBufferLike>>`,
-           * while `Response` does not permit using `SharedArrayBuffer` as a
-           * `BodyInit`
-           *
-           * @see {@link https://github.com/kane50613/takumi/issues/1060}
-           */
-        )) as Uint8Array<ArrayBuffer> | Buffer<ArrayBuffer>;
+        );
 
         /**
          * Cloudflare Workers uses the v8 version matching Google Chrome's
