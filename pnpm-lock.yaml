@@ -137,6 +137,9 @@ importers:
       "@cloudflare/vite-plugin":
         specifier: ^1.49.0
         version: 1.49.0(vite@8.2.0(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))(wrangler@4.116.0)
+      "@content-collections/cli":
+        specifier: ^0.1.9
+        version: 0.1.9(@content-collections/core@0.15.2(typescript@6.0.3))
       "@content-collections/core":
         specifier: ^0.15.2
         version: 0.15.2(typescript@6.0.3)
@@ -632,6 +635,48 @@ packages:
       }
     engines: { node: ">=18" }
 
+  "@clerc/core@1.3.1":
+    resolution:
+      {
+        integrity: sha512-8jowdURow2tXga2gUa4E7/j8/9tl5TLXAvtpbnsY3JK4PTcaKB3lyc6YrcfUTJfV06whBzBpPvr3jGcNja3Wtg==,
+      }
+
+  "@clerc/parser@1.3.1":
+    resolution:
+      {
+        integrity: sha512-e1rb82ENJNfZYjkf5tR7OcsmwNShINJumxfy7fS9SYypSZNRbQmzHj7k7miQ3u+Mfc08fpBtvpAGqeBWQKQxRQ==,
+      }
+
+  "@clerc/plugin-completions@1.3.1":
+    resolution:
+      {
+        integrity: sha512-zotC2qXVnDZLdwsFI6RPzhA90aNLkZSMuAeYsmrTEekknI3KMp2VFMKEBkQ+Zjsq3XCdaT8P4WEvPFkLJIMZjA==,
+      }
+    peerDependencies:
+      "@clerc/core": "*"
+
+  "@clerc/plugin-help@1.3.1":
+    resolution:
+      {
+        integrity: sha512-8cibdUMgZpUqv2kVfTK2HcbxeEz53NQnX+SR4Dh0V+oqB95MmRc0ihXUdXb2qR0J5h5zd7F9QC6yRiG9t00F/g==,
+      }
+    peerDependencies:
+      "@clerc/core": "*"
+
+  "@clerc/plugin-version@1.3.1":
+    resolution:
+      {
+        integrity: sha512-g8bn+J/oX8dwNhFCwh8E1BGka9Z9PLCjQ+dgByMc7EA7RH0agxU9bWXgHqkL4JFMPhVWFG2w6sGxL6pN6tyq4Q==,
+      }
+    peerDependencies:
+      "@clerc/core": "*"
+
+  "@clerc/utils@1.3.1":
+    resolution:
+      {
+        integrity: sha512-wkK6daYkmTQKnhSADMkunfDhNJI6rRCn2R++7cI2EoEBmOZWYqn7frkk5ac7zsxBi0Mc3UnMVaJiNFU+t6PPWQ==,
+      }
+
   "@cloudflare/kv-asset-handler@0.5.0":
     resolution:
       {
@@ -825,6 +870,15 @@ packages:
         integrity: sha512-7zVFCDB2reMvJH5dmbKnOQPjZEvjdJTH8jc0U/PIPU1r3/+vf5pD1HlfitV2MWsWXrvu7u39iY1lyLUPOaN0Gw==,
       }
     engines: { node: ">=22.12.0" }
+
+  "@content-collections/cli@0.1.9":
+    resolution:
+      {
+        integrity: sha512-KLMNihimrB/6/2AtnA775HeBeCZexZ64+JfxahqBCrGUiw3L31/DONVy+Kqb24Zr0dgVLoKHkEGtTAjdx9MYRw==,
+      }
+    hasBin: true
+    peerDependencies:
+      "@content-collections/core": 0.x
 
   "@content-collections/core@0.15.2":
     resolution:
@@ -4295,6 +4349,12 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  "@uttr/tint@0.1.3":
+    resolution:
+      {
+        integrity: sha512-nQlAxBriuQ7NPxvMlxCXdw0n4alhEAIzsjFNNyU4CR7AitUwMFp1A5e/47JYQ7NMcooaI06OEQKylYhNhbpuIA==,
+      }
+
   "@vitejs/plugin-react@6.0.5":
     resolution:
       {
@@ -6904,6 +6964,12 @@ packages:
       }
     engines: { node: ">=22.13.0" }
 
+  lite-emit@4.0.0:
+    resolution:
+      {
+        integrity: sha512-8krVeIZLS7JbkXz4R9xYziqHcxga6UgmomVWb45g21aB4M8qzDwr7FTEW3PJa80PTUASXeqbfipveKCB5YZdug==,
+      }
+
   locate-path@6.0.0:
     resolution:
       {
@@ -8406,6 +8472,12 @@ packages:
         integrity: sha512-HAixuesxFQIUaQk3ptX2jhfO/FsOkgVkDDMawvp6n/fkB1q6BKfs3lURw9I+pK/2e2e/q/vrLrxmeqauBoyGMQ==,
       }
 
+  text-table@0.2.0:
+    resolution:
+      {
+        integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==,
+      }
+
   timeout-signal@2.0.0:
     resolution:
       {
@@ -9245,14 +9317,14 @@ snapshots:
   "@babel/core@7.29.7(supports-color@10.2.2)":
     dependencies:
       "@babel/code-frame": 7.29.7
-      "@babel/generator": 7.29.7
+      "@babel/generator": 7.29.8
       "@babel/helper-compilation-targets": 7.29.7
       "@babel/helper-module-transforms": 7.29.7(@babel/core@7.29.7(supports-color@10.2.2))(supports-color@10.2.2)
       "@babel/helpers": 7.29.7
-      "@babel/parser": 7.29.7
+      "@babel/parser": 7.29.8
       "@babel/template": 7.29.7
-      "@babel/traverse": 7.29.7(supports-color@10.2.2)
-      "@babel/types": 7.29.7
+      "@babel/traverse": 7.29.8(supports-color@10.2.2)
+      "@babel/types": 7.29.8
       "@jridgewell/remapping": 2.3.5
       convert-source-map: 2.0.0
       debug: 4.4.3(supports-color@10.2.2)
@@ -9314,8 +9386,8 @@ snapshots:
 
   "@babel/helper-module-imports@7.29.7(supports-color@10.2.2)":
     dependencies:
-      "@babel/traverse": 7.29.7(supports-color@10.2.2)
-      "@babel/types": 7.29.7
+      "@babel/traverse": 7.29.8(supports-color@10.2.2)
+      "@babel/types": 7.29.8
     transitivePeerDependencies:
       - supports-color
 
@@ -9324,7 +9396,7 @@ snapshots:
       "@babel/core": 7.29.7(supports-color@10.2.2)
       "@babel/helper-module-imports": 7.29.7(supports-color@10.2.2)
       "@babel/helper-validator-identifier": 7.29.7
-      "@babel/traverse": 7.29.7(supports-color@10.2.2)
+      "@babel/traverse": 7.29.8(supports-color@10.2.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -9359,7 +9431,7 @@ snapshots:
   "@babel/helpers@7.29.7":
     dependencies:
       "@babel/template": 7.29.7
-      "@babel/types": 7.29.7
+      "@babel/types": 7.29.8
 
   "@babel/parser@7.29.7":
     dependencies:
@@ -9387,8 +9459,8 @@ snapshots:
   "@babel/template@7.29.7":
     dependencies:
       "@babel/code-frame": 7.29.7
-      "@babel/parser": 7.29.7
-      "@babel/types": 7.29.7
+      "@babel/parser": 7.29.8
+      "@babel/types": 7.29.8
 
   "@babel/traverse@7.29.7(supports-color@10.2.2)":
     dependencies:
@@ -9452,6 +9524,35 @@ snapshots:
   "@capsizecss/unpack@4.0.0":
     dependencies:
       fontkitten: 1.0.3
+
+  "@clerc/core@1.3.1":
+    dependencies:
+      "@clerc/parser": 1.3.1
+      "@clerc/utils": 1.3.1
+      lite-emit: 4.0.0
+
+  "@clerc/parser@1.3.1":
+    dependencies:
+      "@clerc/utils": 1.3.1
+
+  "@clerc/plugin-completions@1.3.1(@clerc/core@1.3.1)":
+    dependencies:
+      "@clerc/core": 1.3.1
+
+  "@clerc/plugin-help@1.3.1(@clerc/core@1.3.1)":
+    dependencies:
+      "@clerc/core": 1.3.1
+      "@clerc/utils": 1.3.1
+      "@uttr/tint": 0.1.3
+      fast-string-width: 3.0.2
+      text-table: 0.2.0
+
+  "@clerc/plugin-version@1.3.1(@clerc/core@1.3.1)":
+    dependencies:
+      "@clerc/core": 1.3.1
+      "@clerc/utils": 1.3.1
+
+  "@clerc/utils@1.3.1": {}
 
   "@cloudflare/kv-asset-handler@0.5.0": {}
 
@@ -9597,6 +9698,15 @@ snapshots:
     dependencies:
       conventional-commits-parser: 7.0.0
       picocolors: 1.1.1
+
+  "@content-collections/cli@0.1.9(@content-collections/core@0.15.2(typescript@6.0.3))":
+    dependencies:
+      "@clerc/core": 1.3.1
+      "@clerc/plugin-completions": 1.3.1(@clerc/core@1.3.1)
+      "@clerc/plugin-help": 1.3.1(@clerc/core@1.3.1)
+      "@clerc/plugin-version": 1.3.1(@clerc/core@1.3.1)
+      "@content-collections/core": 0.15.2(typescript@6.0.3)
+      "@content-collections/integrations": 0.5.0(@content-collections/core@0.15.2(typescript@6.0.3))
 
   "@content-collections/core@0.15.2(typescript@6.0.3)":
     dependencies:
@@ -11756,6 +11866,8 @@ snapshots:
   "@unrs/resolver-binding-win32-x64-msvc@1.12.2":
     optional: true
 
+  "@uttr/tint@0.1.3": {}
+
   "@vitejs/plugin-react@6.0.5(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.7(supports-color@10.2.2))(@babel/runtime@7.29.7)(rolldown@1.2.1)(vite@8.2.0(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0)))(babel-plugin-react-compiler@1.0.0)(vite@8.2.0(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))":
     dependencies:
       "@rolldown/pluginutils": 1.0.1
@@ -13573,6 +13685,8 @@ snapshots:
       rfdc: 1.4.1
       wrap-ansi: 10.0.0
 
+  lite-emit@4.0.0: {}
+
   locate-path@6.0.0:
     dependencies:
       p-locate: 5.0.0
@@ -14574,6 +14688,8 @@ snapshots:
   temporal-spec@1.0.1: {}
 
   temporal-utils@1.0.1: {}
+
+  text-table@0.2.0: {}
 
   timeout-signal@2.0.0: {}
 

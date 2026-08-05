@@ -15,6 +15,7 @@
     "deploy": "wrangler deploy",
     "typecheck": "pnpm codegen:cf-types --check && tsc --noEmit",
     "codegen:cf-types": "wrangler types ./src/generated/worker-configuration.d.ts",
+    "codegen:content-collections": "content-collections build",
     "lint": "eslint .",
     "test": "vitest --run",
     "test:watch": "vitest"
@@ -52,6 +53,7 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.49.0",
+    "@content-collections/cli": "^0.1.9",
     "@content-collections/core": "^0.15.2",
     "@content-collections/vite": "^0.3.0",
     "@rolldown/plugin-babel": "^0.2.3",
