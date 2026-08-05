@@ -1,8 +1,14 @@
-import { createBundledHighlighter, type SpecialLanguage } from "shiki/core";
+import {
+  createBundledHighlighter,
+  createSingletonShorthands,
+  type DynamicImportLanguageRegistration,
+  type DynamicImportThemeRegistration,
+} from "shiki/core";
 import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 
 const bundledLanguages = {
   css: () => import("@shikijs/langs/css"),
+  html: () => import("@shikijs/langs/html"),
   javascript: () => import("@shikijs/langs/javascript"),
   json: () => import("@shikijs/langs/json"),
   jsx: () => import("@shikijs/langs/jsx"),
@@ -10,20 +16,16 @@ const bundledLanguages = {
   shell: () => import("@shikijs/langs/shell"),
   tsx: () => import("@shikijs/langs/tsx"),
   typescript: () => import("@shikijs/langs/typescript"),
-};
-const bundledLanguagesKeys = Object.keys(
-  bundledLanguages,
-) as (keyof typeof bundledLanguages)[];
+  yaml: () => import("@shikijs/langs/yaml"),
+} satisfies Record<string, DynamicImportLanguageRegistration>;
+
 type BundledLanguage = keyof typeof bundledLanguages;
-type Language = BundledLanguage | SpecialLanguage;
 
 const bundledThemes = {
   "github-dark-default": () => import("@shikijs/themes/github-dark-default"),
   "github-light-default": () => import("@shikijs/themes/github-light-default"),
-};
-const bundledThemesKeys = Object.keys(
-  bundledThemes,
-) as (keyof typeof bundledThemes)[];
+} satisfies Record<string, DynamicImportThemeRegistration>;
+
 type BundledTheme = keyof typeof bundledThemes;
 
 const regexCache = new Map<string, RegExp | Error>();
@@ -48,11 +50,13 @@ const createHighlighter = /* @__PURE__ */ createBundledHighlighter<
     }),
 });
 
+const { codeToHast } =
+  /* @__PURE__ */ createSingletonShorthands(createHighlighter);
+
 export {
-  createHighlighter,
-  bundledThemesKeys,
-  bundledLanguagesKeys,
-  type BundledTheme,
+  codeToHast,
+  bundledLanguages,
   type BundledLanguage,
-  type Language,
+  bundledThemes,
+  type BundledTheme,
 };

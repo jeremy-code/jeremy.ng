@@ -3,29 +3,24 @@ import { Fragment } from "react";
 
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
 import { jsx, jsxs } from "react/jsx-runtime";
+import type { SpecialLanguage } from "shiki/core";
 import { cn } from "tailwind-variants";
 
 import {
-  bundledLanguagesKeys,
-  bundledThemesKeys,
-  createHighlighter,
+  codeToHast,
+  bundledLanguages,
   type BundledLanguage,
 } from "#lib/shiki/createHighlighter";
 
-const highlighter = await createHighlighter({
-  langs: bundledLanguagesKeys,
-  themes: bundledThemesKeys,
-});
-
 type CodeBlockProps = {
   code: string;
-  lang?: BundledLanguage;
+  lang?: BundledLanguage | SpecialLanguage;
 };
 
-const CodeBlock = (props: CodeBlockProps) => {
-  const hastTree = highlighter.codeToHast(props.code, {
+const CodeBlock = async (props: CodeBlockProps) => {
+  const hastTree = await codeToHast(props.code, {
     lang:
-      props.lang !== undefined && bundledLanguagesKeys.includes(props.lang) ?
+      props.lang !== undefined && props.lang in bundledLanguages ?
         props.lang
       : "text",
     themes: {
@@ -45,7 +40,7 @@ const CodeBlock = (props: CodeBlockProps) => {
           {...props}
           className={cn(
             props.className,
-            "w-full max-w-full overflow-x-auto rounded-md p-4 font-mono text-[85%]",
+            "w-full max-w-full overflow-x-auto rounded-md border border-muted p-4 font-mono text-[0.85rem]",
           )}
         />
       ),
