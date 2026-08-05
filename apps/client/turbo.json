@@ -4,6 +4,7 @@
 
   "tasks": {
     "build": {
+      "passThroughEnv": ["WORKERS_CI_BRANCH"],
       "env": [
         "ANALYZE",
         "DEV",
@@ -17,11 +18,15 @@
       "outputs": ["dist/**"]
     },
     "codegen": {
-      "dependsOn": ["codegen:cf-types"]
+      "dependsOn": ["codegen:cf-types", "codegen:content-collections"]
     },
     "codegen:cf-types": {
       "inputs": ["wrangler.jsonc"],
       "outputs": ["src/generated/worker-configuration.d.ts"]
+    },
+    "codegen:content-collections": {
+      "inputs": ["content-collections.ts", "blog/*.md"],
+      "outputs": [".content-collections/**", "!.content-collections/cache/**"]
     }
   }
 }

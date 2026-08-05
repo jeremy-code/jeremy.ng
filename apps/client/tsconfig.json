@@ -5,7 +5,8 @@
       "./src/generated/worker-configuration.d.ts",
       "node",
       "vite/client",
-      "@tanstack/react-start"
+      "@tanstack/react-start",
+      "./src/index.d.ts"
     ]
   }
 }

@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './../routes/__root'
 import { Route as IndexRouteImport } from './../routes/index'
 import { Route as OgImageDotjpgRouteImport } from './../routes/og-image[.]jpg'
+import { Route as BlogIndexRouteImport } from './../routes/blog/index'
 import { Route as ApiTrpcSplatRouteImport } from './../routes/api/trpc.$'
+import { Route as BlogSlugIndexRouteImport } from './../routes/blog/$slug/index'
+import { Route as BlogSlugOgImageDotjpgRouteImport } from './../routes/blog/$slug/og-image[.]jpg'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +26,86 @@ const OgImageDotjpgRoute = OgImageDotjpgRouteImport.update({
   path: '/og-image.jpg',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiTrpcSplatRoute = ApiTrpcSplatRouteImport.update({
   id: '/api/trpc/$',
   path: '/api/trpc/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugIndexRoute = BlogSlugIndexRouteImport.update({
+  id: '/blog/$slug/',
+  path: '/blog/$slug/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugOgImageDotjpgRoute = BlogSlugOgImageDotjpgRouteImport.update({
+  id: '/blog/$slug/og-image.jpg',
+  path: '/blog/$slug/og-image.jpg',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/og-image.jpg': typeof OgImageDotjpgRoute
+  '/blog/': typeof BlogIndexRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
+  '/blog/$slug/og-image.jpg': typeof BlogSlugOgImageDotjpgRoute
+  '/blog/$slug/': typeof BlogSlugIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/og-image.jpg': typeof OgImageDotjpgRoute
+  '/blog': typeof BlogIndexRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
+  '/blog/$slug/og-image.jpg': typeof BlogSlugOgImageDotjpgRoute
+  '/blog/$slug': typeof BlogSlugIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/og-image.jpg': typeof OgImageDotjpgRoute
+  '/blog/': typeof BlogIndexRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
+  '/blog/$slug/og-image.jpg': typeof BlogSlugOgImageDotjpgRoute
+  '/blog/$slug/': typeof BlogSlugIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/og-image.jpg' | '/api/trpc/$'
+  fullPaths:
+    | '/'
+    | '/og-image.jpg'
+    | '/blog/'
+    | '/api/trpc/$'
+    | '/blog/$slug/og-image.jpg'
+    | '/blog/$slug/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/og-image.jpg' | '/api/trpc/$'
-  id: '__root__' | '/' | '/og-image.jpg' | '/api/trpc/$'
+  to:
+    | '/'
+    | '/og-image.jpg'
+    | '/blog'
+    | '/api/trpc/$'
+    | '/blog/$slug/og-image.jpg'
+    | '/blog/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/og-image.jpg'
+    | '/blog/'
+    | '/api/trpc/$'
+    | '/blog/$slug/og-image.jpg'
+    | '/blog/$slug/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   OgImageDotjpgRoute: typeof OgImageDotjpgRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   ApiTrpcSplatRoute: typeof ApiTrpcSplatRoute
+  BlogSlugOgImageDotjpgRoute: typeof BlogSlugOgImageDotjpgRoute
+  BlogSlugIndexRoute: typeof BlogSlugIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +124,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OgImageDotjpgRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/trpc/$': {
       id: '/api/trpc/$'
       path: '/api/trpc/$'
       fullPath: '/api/trpc/$'
       preLoaderRoute: typeof ApiTrpcSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug/': {
+      id: '/blog/$slug/'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug/'
+      preLoaderRoute: typeof BlogSlugIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug/og-image.jpg': {
+      id: '/blog/$slug/og-image.jpg'
+      path: '/blog/$slug/og-image.jpg'
+      fullPath: '/blog/$slug/og-image.jpg'
+      preLoaderRoute: typeof BlogSlugOgImageDotjpgRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +158,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   OgImageDotjpgRoute: OgImageDotjpgRoute,
+  BlogIndexRoute: BlogIndexRoute,
   ApiTrpcSplatRoute: ApiTrpcSplatRoute,
+  BlogSlugOgImageDotjpgRoute: BlogSlugOgImageDotjpgRoute,
+  BlogSlugIndexRoute: BlogSlugIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

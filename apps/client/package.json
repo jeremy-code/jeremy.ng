@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "imports": {
+    "#content-collections": "./.content-collections/generated/index.js",
     "#*": "./src/*.js"
   },
   "scripts": {
@@ -14,6 +15,7 @@
     "deploy": "wrangler deploy",
     "typecheck": "pnpm codegen:cf-types --check && tsc --noEmit",
     "codegen:cf-types": "wrangler types ./src/generated/worker-configuration.d.ts",
+    "codegen:content-collections": "content-collections build",
     "lint": "eslint .",
     "test": "vitest --run",
     "test:watch": "vitest"
@@ -22,6 +24,8 @@
     "@jeremyng/api": "workspace:*",
     "@jeremyng/ui": "workspace:*",
     "@marsidev/react-turnstile": "^1.5.4",
+    "@shikijs/langs": "^4.3.1",
+    "@shikijs/themes": "^4.3.1",
     "@standard-schema/utils": "^0.3.0",
     "@t3-oss/env-core": "^0.13.11",
     "@tanstack/react-form": "^1.33.2",
@@ -32,10 +36,13 @@
     "@trpc/server": "^11.18.0",
     "@trpc/tanstack-react-query": "^11.18.0",
     "@unpic/react": "^1.0.2",
+    "hast-util-to-jsx-runtime": "^2.3.6",
     "lucide-react": "^1.28.0",
+    "markdown-to-jsx": "^9.9.0",
     "next-themes": "^0.4.6",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "shiki": "^4.3.1",
     "superjson": "^2.2.6",
     "tailwind-merge": "^3.6.0",
     "tailwind-variants": "^3.3.0",
@@ -46,12 +53,15 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.49.0",
+    "@content-collections/cli": "^0.1.9",
+    "@content-collections/core": "^0.15.2",
+    "@content-collections/vite": "^0.3.0",
     "@rolldown/plugin-babel": "^0.2.3",
     "@tailwindcss/vite": "^4.3.3",
     "@tanstack/react-devtools": "^0.10.9",
     "@tanstack/react-form-devtools": "^0.2.31",
     "@tanstack/react-query-devtools": "^5.101.4",
-    "@tanstack/react-start": "^1.168.34",
+    "@tanstack/react-start": "^1.168.35",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
@@ -64,6 +74,7 @@
     "playwright": "^1.62.1",
     "vite": "^8.2.0",
     "vite-bundle-analyzer": "^1.3.9",
+    "vite-plugin-static-copy": "^4.1.1",
     "vitest": "^4.1.10",
     "vitest-browser-react": "^2.2.0",
     "wrangler": "^4.116.0"

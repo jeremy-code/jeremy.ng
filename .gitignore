@@ -25,6 +25,9 @@ coverage
 # Cloudflare
 .wrangler
 
+# Content Collections
+.content-collections
+
 # Generated files
 */*/src/generated/gql/*.ts
 */*/src/generated/worker-configuration.d.ts

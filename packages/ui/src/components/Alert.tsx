@@ -28,6 +28,22 @@ const alertVariants = tv({
         "border border-(--color-200) bg-(--color-100) text-(--color-700)",
         "dark:border-(--color-800) dark:bg-(--color-950) dark:text-(--color-300)",
       ],
+      blue: [
+        "bg-blue-300/30 text-blue-800",
+        "dark:bg-blue-800/30 dark:text-blue-300",
+      ],
+      success: [
+        "bg-green-300/30 text-green-800",
+        "dark:bg-green-800/30 dark:text-green-300",
+      ],
+      purple: [
+        "bg-purple-300/30 text-purple-800",
+        "dark:bg-purple-800/30 dark:text-purple-300",
+      ],
+      yellow: [
+        "bg-yellow-300/30 text-yellow-800",
+        "dark:bg-yellow-800/30 dark:text-yellow-300",
+      ],
     },
     size: {
       sm: "gap-2 p-3 text-xs",
