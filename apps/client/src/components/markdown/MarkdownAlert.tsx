@@ -41,7 +41,7 @@ const MARKDOWN_ALERT_MAP = {
   TIP: {
     icon: <Lightbulb />,
     title: "Tip",
-    color: "success",
+    color: "green",
   },
   IMPORTANT: {
     icon: <MessageSquareWarning />,
@@ -56,7 +56,7 @@ const MARKDOWN_ALERT_MAP = {
   CAUTION: {
     icon: <OctagonAlert />,
     title: "Caution",
-    color: "destructive",
+    color: "red",
   },
 } as const;
 
