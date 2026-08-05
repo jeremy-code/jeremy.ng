@@ -28,8 +28,11 @@ const CodeBlock = (props: CodeBlockProps) => {
       props.lang !== undefined && bundledLanguagesKeys.includes(props.lang) ?
         props.lang
       : "text",
-    // Can't use useTheme because this is a server component, so just use the dark theme for now
-    theme: "github-dark-default",
+    themes: {
+      light: "github-light-default",
+      dark: "github-dark-default",
+    },
+    defaultColor: "light-dark()",
   });
 
   return toJsxRuntime(hastTree, {
