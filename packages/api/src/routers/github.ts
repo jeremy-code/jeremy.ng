@@ -46,7 +46,7 @@ const githubRouter = createTRPCRouter({
 
       return (
         pinnedItemsNodesResponse.user.pinnedItems.nodes?.filter(
-          (node) => node !== null && node.__typename === "Repository",
+          (node) => node?.__typename === "Repository",
         ) ?? []
       );
     }),
