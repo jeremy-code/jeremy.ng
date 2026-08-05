@@ -2,11 +2,6 @@ packages:
   - apps/*
   - packages/*
 
-patchedDependencies:
-  # https://github.com/TanStack/router/issues/7934
-  # https://github.com/TanStack/router/pull/7938
-  "@tanstack/react-start-rsc": patches/@tanstack__react-start-rsc.patch
-
 # Dependency Resolution (https://pnpm.io/settings#dependency-resolution)
 minimumReleaseAge: 1440 # 1 day in minutes
 minimumReleaseAgeStrict: true
