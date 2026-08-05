@@ -8,7 +8,7 @@ const MarkdownFooter = (props: ComponentPropsWithRef<"footer">) => {
       {...props}
       className={cn(
         props.className,
-        "block w-full border-t border-t-border p-2",
+        "block w-full border-t border-t-border py-2 wrap-anywhere",
       )}
     />
   );

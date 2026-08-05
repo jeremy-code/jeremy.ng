@@ -64,7 +64,10 @@ const BlogComponent = () => {
                         </time>
                       </HorizontalListItem>
                     : null}
-                    <HorizontalListItem role="group">
+                    <HorizontalListItem
+                      role="group"
+                      className="inline-flex gap-1"
+                    >
                       {post.tags.map((tag) => (
                         <Badge size="md" key={tag}>
                           {tag}
