@@ -6,7 +6,7 @@ authors:
 tags:
   - react
   - react-query
-mastodonId: "117041195387227039"
+mastodonId: "117046429322147190"
 ---
 
 <!-- Originally posted on https://gist.github.com/jeremy-code/8ca2001db0b30c5935fa303727c06fe5 -->
