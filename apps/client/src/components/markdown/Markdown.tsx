@@ -1,6 +1,7 @@
 import { type ComponentPropsWithRef } from "react";
 
 import { Markdown as MarkdownPrimitive, RuleType } from "markdown-to-jsx/react";
+import slugify from "slugify";
 
 import { CodeBlock } from "#components/common/CodeBlock";
 import type { BundledLanguage } from "#lib/shiki/createHighlighter";
@@ -17,6 +18,7 @@ const Markdown = (props: MarkdownProps) => {
       {...props}
       options={{
         overrides: MARKDOWN_OVERRIDES,
+        slugify: (input) => slugify(input),
         renderRule: (next, node, renderChildren, state) => {
           if (node.type === RuleType.codeBlock) {
             return (
