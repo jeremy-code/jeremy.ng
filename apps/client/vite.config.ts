@@ -1,3 +1,6 @@
+import { glob } from "node:fs/promises";
+import { parse } from "node:path";
+
 import { cloudflare } from "@cloudflare/vite-plugin";
 import contentCollections from "@content-collections/vite";
 import babel from "@rolldown/plugin-babel";
@@ -11,6 +14,12 @@ import { defineConfig } from "vite";
 import { analyzer } from "vite-bundle-analyzer";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import * as z from "zod";
+
+const posts = await Array.fromAsync(
+  glob("./blog/*.md"),
+  // Get basename without extension
+  (path) => parse(path).name,
+);
 
 const isAnalyzerEnabled =
   process.env.ANALYZE !== undefined &&
@@ -40,7 +49,11 @@ const viteConfig = defineConfig({
           ],
         },
       },
-      pages: [{ path: "/" }],
+      pages: [
+        { path: "/" },
+        { path: "/blog" },
+        ...posts.map((post) => ({ path: `/blog/${post}` })),
+      ],
       sitemap: {
         enabled: true,
         host: "https://jeremy.ng",
