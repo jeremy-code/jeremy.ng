@@ -257,7 +257,7 @@ const previewCardSchema = z.object({
     .array(
       z.object({
         name: z.string(),
-        url: z.url(),
+        url: z.union([z.literal(""), z.url()]),
         account: accountSchema.nullish(),
       }),
     )
