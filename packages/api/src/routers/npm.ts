@@ -1,3 +1,4 @@
+import { TRPCError } from "@trpc/server";
 import { ofetch } from "ofetch";
 
 import {
@@ -11,15 +12,25 @@ const npmRegistryApi = ofetch.create({
   baseURL: "https://registry.npmjs.org",
 });
 
-// https://github.com/npm/registry/blob/main/docs/REGISTRY-API.md#get-v1search
 const npmRouter = createTRPCRouter({
+  // https://github.com/npm/registry/blob/main/docs/REGISTRY-API.md#get-v1search
+  // https://api-docs.npmjs.com/#tag/Search
   search: baseProcedure
     .input(npmSearchRequestParamsSchema)
     .output(npmSearchResponseSchema)
-    .query((opts) => {
-      const response = npmRegistryApi<NpmSearchResponse>("-/v1/search", {
+    .query(async (opts) => {
+      const response = await npmRegistryApi<NpmSearchResponse>("-/v1/search", {
         method: "GET",
         query: opts.input,
+        onResponseError: ({ response, error }) => {
+          if (response.status === 400) {
+            throw new TRPCError({
+              message: "A required parameter was missing",
+              code: "BAD_REQUEST",
+              cause: error,
+            });
+          }
+        },
       });
 
       return response;
