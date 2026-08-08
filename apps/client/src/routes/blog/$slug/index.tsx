@@ -1,6 +1,8 @@
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { createFileRoute, Link as RouterLink } from "@tanstack/react-router";
 import { Temporal } from "temporal-polyfill";
 
+import { Comments } from "#components/blog/Comments";
 import { SsrDate } from "#components/common/SsrDate";
 import { getBlogPost } from "#functions/getBlogPost";
 import { env } from "#utils/env";
@@ -20,13 +22,15 @@ import {
   HorizontalList,
   HorizontalListItem,
 } from "@jeremyng/ui/components/HorizontalList";
+import { Link } from "@jeremyng/ui/components/Link";
 import { Separator } from "@jeremyng/ui/components/Separator";
 import { GitHub } from "@jeremyng/ui/icons/GitHub";
 
 const listFormatter = new Intl.ListFormat("en", { style: "long" });
 
 const BlogPostComponent = () => {
-  const { RenderableMarkdown, metadata } = Route.useLoaderData();
+  const { RenderableMarkdown, metadata, dehydratedState } =
+    Route.useLoaderData();
 
   const publishedDateInstant =
     metadata.publishedDate !== undefined ?
@@ -131,20 +135,42 @@ const BlogPostComponent = () => {
           </RouterLink>
         )}
       </div>
+      <HydrationBoundary state={dehydratedState}>
+        <div className="container flex max-w-prose flex-col gap-4 pt-8">
+          <Separator />
+          <Heading id="comments" as="h2" size="xl" className="mb-2">
+            <Link variant="anchor" href="#comments">
+              Comments
+            </Link>
+          </Heading>
+          {metadata.mastodonId !== undefined ?
+            <Comments mastodonId={metadata.mastodonId} />
+          : "It looks like there isn't a Mastodon ID for this post, sorry."}
+        </div>
+      </HydrationBoundary>
     </main>
   );
 };
 
 const Route = createFileRoute("/blog/$slug/")({
   component: BlogPostComponent,
-  loader: async ({ params }) => {
+  loader: async ({ context, params }) => {
     const { RenderableMarkdown, metadata } = await getBlogPost({
       data: params.slug,
     });
 
+    if (metadata.mastodonId !== undefined) {
+      await context.queryClient.prefetchQuery(
+        context.trpc.mastodon.getStatus.queryOptions({
+          statusId: metadata.mastodonId,
+        }),
+      );
+    }
+
     return {
       RenderableMarkdown,
       metadata,
+      dehydratedState: dehydrate(context.queryClient),
     };
   },
   head: ({ loaderData }) =>
