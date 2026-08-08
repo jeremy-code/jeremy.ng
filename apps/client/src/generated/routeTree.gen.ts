@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './../routes/__root'
 import { Route as IndexRouteImport } from './../routes/index'
 import { Route as OgImageDotjpgRouteImport } from './../routes/og-image[.]jpg'
+import { Route as RssDotxmlRouteImport } from './../routes/rss[.]xml'
 import { Route as BlogIndexRouteImport } from './../routes/blog/index'
 import { Route as ApiTrpcSplatRouteImport } from './../routes/api/trpc.$'
 import { Route as BlogSlugIndexRouteImport } from './../routes/blog/$slug/index'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const OgImageDotjpgRoute = OgImageDotjpgRouteImport.update({
   id: '/og-image.jpg',
   path: '/og-image.jpg',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RssDotxmlRoute = RssDotxmlRouteImport.update({
+  id: '/rss.xml',
+  path: '/rss.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -50,6 +56,7 @@ const BlogSlugOgImageDotjpgRoute = BlogSlugOgImageDotjpgRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/og-image.jpg': typeof OgImageDotjpgRoute
+  '/rss.xml': typeof RssDotxmlRoute
   '/blog/': typeof BlogIndexRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
   '/blog/$slug/og-image.jpg': typeof BlogSlugOgImageDotjpgRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/og-image.jpg': typeof OgImageDotjpgRoute
+  '/rss.xml': typeof RssDotxmlRoute
   '/blog': typeof BlogIndexRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
   '/blog/$slug/og-image.jpg': typeof BlogSlugOgImageDotjpgRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/og-image.jpg': typeof OgImageDotjpgRoute
+  '/rss.xml': typeof RssDotxmlRoute
   '/blog/': typeof BlogIndexRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
   '/blog/$slug/og-image.jpg': typeof BlogSlugOgImageDotjpgRoute
@@ -77,6 +86,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/og-image.jpg'
+    | '/rss.xml'
     | '/blog/'
     | '/api/trpc/$'
     | '/blog/$slug/og-image.jpg'
@@ -85,6 +95,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/og-image.jpg'
+    | '/rss.xml'
     | '/blog'
     | '/api/trpc/$'
     | '/blog/$slug/og-image.jpg'
@@ -93,6 +104,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/og-image.jpg'
+    | '/rss.xml'
     | '/blog/'
     | '/api/trpc/$'
     | '/blog/$slug/og-image.jpg'
@@ -102,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   OgImageDotjpgRoute: typeof OgImageDotjpgRoute
+  RssDotxmlRoute: typeof RssDotxmlRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ApiTrpcSplatRoute: typeof ApiTrpcSplatRoute
   BlogSlugOgImageDotjpgRoute: typeof BlogSlugOgImageDotjpgRoute
@@ -122,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/og-image.jpg'
       fullPath: '/og-image.jpg'
       preLoaderRoute: typeof OgImageDotjpgRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rss.xml': {
+      id: '/rss.xml'
+      path: '/rss.xml'
+      fullPath: '/rss.xml'
+      preLoaderRoute: typeof RssDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -158,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   OgImageDotjpgRoute: OgImageDotjpgRoute,
+  RssDotxmlRoute: RssDotxmlRoute,
   BlogIndexRoute: BlogIndexRoute,
   ApiTrpcSplatRoute: ApiTrpcSplatRoute,
   BlogSlugOgImageDotjpgRoute: BlogSlugOgImageDotjpgRoute,

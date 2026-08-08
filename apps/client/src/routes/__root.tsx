@@ -33,6 +33,12 @@ const RootDocument = ({ children }: Readonly<{ children: ReactNode }>) => {
     <html suppressHydrationWarning lang="en">
       <head>
         <link rel="canonical" href={canonicalUrl} />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="RSS feed"
+          href={`${env.VITE_BASE_URL}/rss.xml`}
+        ></link>
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:locale" content="en_US" />
         <HeadContent />
