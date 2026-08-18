@@ -5,7 +5,6 @@ import { Marked } from "marked";
 
 import { getBlogPosts } from "#functions/getBlogPosts";
 import { env } from "#utils/env";
-import uiCss from "@jeremyng/ui/globals.css?url";
 
 const textEncoder = new TextEncoder();
 
@@ -37,28 +36,17 @@ const Route = createFileRoute("/rss.xml")({
           })),
         )) satisfies Rss.Item<Date, Rss.Person>[];
 
-        const rssFeed = generateRssFeed(
-          {
-            title: "Jeremy Nguyen",
-            link: env.VITE_BASE_URL,
-            description: "Personal website for Jeremy Nguyen",
-            language: "en-US",
-            pubDate: new Date(),
-            categories: Array.from(
-              new Set(posts.map((post) => post.tags).flat()),
-            ).map((category) => ({ name: category })),
-            items: rssItems,
-          },
-          {
-            stylesheets: [
-              {
-                type: "text/css",
-                href: uiCss,
-                alternate: false,
-              },
-            ],
-          },
-        );
+        const rssFeed = generateRssFeed({
+          title: "Jeremy Nguyen",
+          link: env.VITE_BASE_URL,
+          description: "Personal website for Jeremy Nguyen",
+          language: "en-US",
+          pubDate: new Date(),
+          categories: Array.from(
+            new Set(posts.map((post) => post.tags).flat()),
+          ).map((category) => ({ name: category })),
+          items: rssItems,
+        });
 
         const encodedRssFeed = textEncoder.encode(rssFeed);
 
