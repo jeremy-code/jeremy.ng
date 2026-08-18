@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { generateRssFeed } from "feedsmith";
-import { micromark } from "micromark";
-import { gfmHtml, gfm } from "micromark-extension-gfm";
+import type { Rss } from "feedsmith/types";
+import { Marked } from "marked";
 
 import { getBlogPosts } from "#functions/getBlogPosts";
 import { env } from "#utils/env";
@@ -9,11 +9,33 @@ import uiCss from "@jeremyng/ui/globals.css?url";
 
 const textEncoder = new TextEncoder();
 
+const marked = new Marked({
+  async: true,
+  gfm: true,
+});
+
 const Route = createFileRoute("/rss.xml")({
   server: {
     handlers: {
       async GET() {
         const posts = await getBlogPosts();
+
+        const rssItems = (await Promise.all(
+          posts.map(async (post) => ({
+            title: post.title,
+            link: `${env.VITE_BASE_URL}/blog/${post.slug}`,
+            description: post.lede,
+            authors: post.authors.map((author) => author.name),
+            categories: post.tags.map((tag) => ({ name: tag })),
+            pubDate:
+              post.publishedDate !== undefined ?
+                new Date(post.publishedDate)
+              : undefined,
+            content: {
+              encoded: await marked.parse(post.content),
+            },
+          })),
+        )) satisfies Rss.Item<Date, Rss.Person>[];
 
         const rssFeed = generateRssFeed(
           {
@@ -25,23 +47,7 @@ const Route = createFileRoute("/rss.xml")({
             categories: Array.from(
               new Set(posts.map((post) => post.tags).flat()),
             ).map((category) => ({ name: category })),
-            items: posts.map((post) => ({
-              title: post.title,
-              link: `${env.VITE_BASE_URL}/blog/${post.slug}`,
-              description: post.lede,
-              authors: post.authors.map((author) => author.name),
-              categories: post.tags.map((tag) => ({ name: tag })),
-              pubDate:
-                post.publishedDate !== undefined ?
-                  new Date(post.publishedDate)
-                : undefined,
-              content: {
-                encoded: micromark(post.content, {
-                  extensions: [gfm()],
-                  htmlExtensions: [gfmHtml()],
-                }),
-              },
-            })),
+            items: rssItems,
           },
           {
             stylesheets: [
