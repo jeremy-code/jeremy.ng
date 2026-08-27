@@ -62,7 +62,7 @@ const Comments = ({ mastodonId }: { mastodonId: string }) => {
   return (
     <div className="flex flex-col gap-4">
       {mastodonStatusResult.replies.map((reply) => (
-        <Comment key={reply.id} status={reply} depth={0} />
+        <Comment key={reply.id} status={reply} />
       ))}
       <a
         className={buttonVariants({ color: "gray", variant: "surface" })}

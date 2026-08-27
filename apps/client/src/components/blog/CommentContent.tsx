@@ -1,4 +1,4 @@
-import { Fragment, type ComponentPropsWithRef } from "react";
+import { Fragment } from "react";
 
 import { default as DOMPurify } from "dompurify";
 import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic";
@@ -25,15 +25,14 @@ const CommentContent = ({ status }: { status: Status }) => {
     jsx,
     jsxs,
     components: {
-      a: (props: ComponentPropsWithRef<"a">) => {
-        return (
-          <Link
-            {...props}
-            className={cn(props.className, "gap-0")}
-            color="link"
-          />
-        );
-      },
+      a: (props) => (
+        <Link
+          {...props}
+          className={cn(props.className, "inline")}
+          color="link"
+          rel="nofollow"
+        />
+      ),
     },
   });
 };

@@ -11,10 +11,10 @@ import { CommentContent } from "./CommentContent";
 
 type CommentProps = {
   status: StatusWithReplies;
-  depth: number;
+  depth?: number;
 };
 
-const Comment = ({ status, depth }: CommentProps) => {
+const Comment = ({ status, depth = 0 }: CommentProps) => {
   const createdAtInstant = Temporal.Instant.fromEpochMilliseconds(
     Date.parse(status.created_at),
   );
