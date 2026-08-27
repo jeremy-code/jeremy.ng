@@ -4,6 +4,7 @@ import pluginRouter from "@tanstack/eslint-plugin-router";
 import { defineConfig } from "eslint/config";
 import * as reactCompiler from "eslint-plugin-react-compiler";
 import reactHooks from "eslint-plugin-react-hooks";
+import pluginTailwindcss from "eslint-plugin-tailwindcss";
 import globals from "globals";
 
 import disablesConfig from "./disables.js";
@@ -16,6 +17,7 @@ const reactConfig = defineConfig(
   reactHooks.configs.flat["recommended-latest"],
   pluginQuery.configs["flat/recommended"],
   pluginRouter.configs["flat/recommended"],
+  pluginTailwindcss.configs["recommended"],
   {
     name: "@jeremyng/eslint-config/react.js",
     rules: {
@@ -41,6 +43,12 @@ const reactConfig = defineConfig(
         ...globals.browser,
         ...globals.node,
         ...globals.serviceworker,
+      },
+    },
+
+    settings: {
+      tailwindcss: {
+        cssConfigPath: "../../packages/ui/src/globals.css",
       },
     },
   },
