@@ -55,7 +55,7 @@ const BlogPostComponent = () => {
           <Heading as="h1" size="4xl" className="leading-tight">
             {metadata.title}
           </Heading>
-          <p className="text-md/loose">{metadata.lede}</p>
+          <p className="text-base/loose">{metadata.lede}</p>
           <HorizontalList>
             <HorizontalListItem>
               {"By "}
