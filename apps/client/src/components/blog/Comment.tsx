@@ -1,5 +1,3 @@
-import type { CSSProperties } from "react";
-
 import { Temporal } from "temporal-polyfill";
 
 import { SsrDate } from "#components/common/SsrDate";
@@ -23,7 +21,7 @@ const Comment = ({ status, depth = 0 }: CommentProps) => {
     <>
       <div
         className="ml-[calc(var(--depth)*(--spacing(4)))]"
-        style={{ "--depth": depth } as CSSProperties}
+        style={{ "--depth": depth }}
       >
         <Card>
           <CardBody>

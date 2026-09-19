@@ -1,5 +1,3 @@
-import type { CSSProperties } from "react";
-
 import { LinkIcon, Star } from "lucide-react";
 import { Temporal } from "temporal-polyfill";
 
@@ -38,13 +36,11 @@ const GithubPinnedCard = ({
         <>
           <Badge
             className="before:size-2 before:rounded-full before:bg-(--language-color)"
-            style={
-              {
-                "--language-color":
-                  pinnedItemNode.primaryLanguage?.color ??
-                  "var(--color-gray-600)",
-              } as CSSProperties
-            }
+            style={{
+              "--language-color":
+                pinnedItemNode.primaryLanguage?.color ??
+                "var(--color-gray-600)",
+            }}
           >
             {pinnedItemNode.primaryLanguage?.name ?? "Unknown"}
           </Badge>

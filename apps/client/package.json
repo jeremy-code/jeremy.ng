@@ -56,7 +56,7 @@
     "takumi-js": "^2.9.2",
     "temporal-polyfill": "^1.0.4",
     "unpic": "^4.2.2",
-    "zod": "^4.4.3"
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.52.1",
