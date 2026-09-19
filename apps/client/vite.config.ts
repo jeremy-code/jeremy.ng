@@ -3,10 +3,9 @@ import { parse } from "node:path";
 
 import { cloudflare } from "@cloudflare/vite-plugin";
 import contentCollections from "@content-collections/vite";
-import babel from "@rolldown/plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
-import react, { reactCompilerPreset } from "@vitejs/plugin-react";
+import react from "@vitejs/plugin-react";
 import rsc from "@vitejs/plugin-rsc";
 import { fontless } from "fontless";
 import { Features } from "lightningcss";
@@ -66,8 +65,7 @@ const viteConfig = defineConfig({
       },
     }),
     rsc(),
-    react(),
-    babel({ presets: [reactCompilerPreset()] }),
+    react({ compiler: true }),
     tailwindcss(),
     fontless(),
     viteStaticCopy({
