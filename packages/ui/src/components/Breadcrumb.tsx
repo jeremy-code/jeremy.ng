@@ -30,7 +30,7 @@ const breadcrumbVariants = tv({
         list: "gap-1 text-xs",
       },
       md: { list: "gap-1.5 text-sm" },
-      lg: { list: "text-md gap-2" },
+      lg: { list: "gap-2 text-base" },
     },
   },
   defaultVariants: {

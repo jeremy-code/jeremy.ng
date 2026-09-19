@@ -28,7 +28,7 @@ const tableVariants = tv({
     size: {
       sm: "text-sm/5 [--table-padding-x:--spacing(2)] [--table-padding-y:--spacing(2)]",
       md: "text-sm/5 [--table-padding-x:--spacing(3)] [--table-padding-y:--spacing(3)]",
-      lg: "text-md/6 [--table-padding-x:--spacing(4)] [--table-padding-y:--spacing(3)]",
+      lg: "text-base/6 [--table-padding-x:--spacing(4)] [--table-padding-y:--spacing(3)]",
     },
     interactive: { true: null, false: null },
     stickyHeader: {
@@ -147,7 +147,7 @@ const TableRow = ({ className, ...props }: ComponentPropsWithRef<"tr">) => {
 };
 
 const tableCaptionVariants = tv({
-  base: "table-caption, text-xs/4 font-medium",
+  base: "table-caption text-xs/4 font-medium",
   variants: {
     side: {
       top: "mb-1 caption-top",
