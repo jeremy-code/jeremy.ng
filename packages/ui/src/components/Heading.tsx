@@ -1,6 +1,5 @@
 import type { ComponentPropsWithRef, HTMLElementType } from "react";
 
-import { twMerge } from "tailwind-merge";
 import { tv, type VariantProps } from "tailwind-variants";
 
 type HTMLHeadingElementType = Extract<HTMLElementType, `h${number}`>;
@@ -55,7 +54,7 @@ const Heading = ({
 
   return (
     <Comp
-      className={twMerge(headingVariants({ className, size, fontWeight }))}
+      className={headingVariants({ className, size, fontWeight })}
       {...props}
     />
   );
