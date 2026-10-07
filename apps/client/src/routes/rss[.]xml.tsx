@@ -1,17 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { generateRssFeed } from "feedsmith";
 import type { RssFeed } from "feedsmith";
-import { Marked } from "marked";
+import { compiler } from "markdown-to-jsx/html";
+import slugify from "slugify";
 
 import { getBlogPosts } from "#functions/getBlogPosts";
 import { env } from "#utils/env";
 
 const textEncoder = new TextEncoder();
-
-const marked = new Marked({
-  async: true,
-  gfm: true,
-});
 
 const Route = createFileRoute("/rss.xml")({
   server: {
@@ -19,22 +15,22 @@ const Route = createFileRoute("/rss.xml")({
       async GET() {
         const posts = await getBlogPosts();
 
-        const rssItems = (await Promise.all(
-          posts.map(async (post) => ({
-            title: post.title,
-            link: `${env.VITE_BASE_URL}/blog/${post.slug}`,
-            description: post.lede,
-            authors: post.authors,
-            categories: post.tags.map((tag) => ({ name: tag })),
-            pubDate:
-              post.publishedDate !== undefined
-                ? new Date(post.publishedDate)
-                : undefined,
-            content: {
-              encoded: await marked.parse(post.content),
-            },
-          })),
-        )) satisfies RssFeed.Item<Date, true>[];
+        const rssFeedItems = posts.map((post) => ({
+          title: post.title,
+          link: `${env.VITE_BASE_URL}/blog/${post.slug}`,
+          description: post.lede,
+          authors: post.authors,
+          categories: post.tags.map((tag) => ({ name: tag })),
+          pubDate:
+            post.publishedDate !== undefined
+              ? new Date(post.publishedDate)
+              : undefined,
+          content: {
+            encoded: compiler(post.content, {
+              slugify: (input) => slugify(input),
+            }),
+          },
+        })) satisfies RssFeed.Item<Date, true>[];
 
         const rssFeed = generateRssFeed({
           title: "Jeremy Nguyen",
@@ -44,8 +40,9 @@ const Route = createFileRoute("/rss.xml")({
           pubDate: new Date(),
           categories: Array.from(
             new Set(posts.map((post) => post.tags).flat()),
-          ).map((category) => ({ name: category })),
-          items: rssItems,
+            (category) => ({ name: category }),
+          ),
+          items: rssFeedItems,
         });
 
         const encodedRssFeed = textEncoder.encode(rssFeed);
