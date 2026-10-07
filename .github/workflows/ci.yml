@@ -33,7 +33,7 @@ jobs:
           cache: true
           install: true
 
-      - name: Codegen
+      - name: Run codegen scripts
         run: pnpm run codegen
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -47,10 +47,25 @@ jobs:
       - name: Check code formatting with Prettier
         run: pnpm run format:check
 
-      - name: Run tests
+      - name: Get Playwright version
+        id: playwright-version
         run: |
-          pnpm --filter @jeremyng/client exec playwright install --with-deps chromium
-          pnpm run test
+          echo "PLAYWRIGHT_VERSION=$(pnpm view playwright version)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.cache/ms-playwright
+          key: |
+            ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.PLAYWRIGHT_VERSION }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Install Playwright browsers
+        run: pnpm --filter @exifi/client exec playwright install --with-deps chromium-headless-shell
+
+      - name: Run tests
+        run: pnpm run test
 
       - name: Build
         run: pnpm run build
