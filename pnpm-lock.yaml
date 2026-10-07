@@ -259,9 +259,6 @@ importers:
       feedsmith:
         specifier: ^3.0.1
         version: 3.0.1
-      hast-util-from-dom:
-        specifier: ^5.0.1
-        version: 5.0.1
       hast-util-from-html-isomorphic:
         specifier: ^2.0.0
         version: 2.0.0
