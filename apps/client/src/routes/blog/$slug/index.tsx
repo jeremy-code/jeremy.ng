@@ -180,7 +180,7 @@ const Route = createFileRoute("/blog/$slug/")({
   head: ({ loaderData }) =>
     loaderData
       ? {
-          meta: {
+          meta: [
             ...seo({
               title: loaderData.metadata.title,
               description: loaderData.metadata.lede,
@@ -193,7 +193,7 @@ const Route = createFileRoute("/blog/$slug/")({
                 alt: loaderData.metadata.title,
               },
             }),
-          },
+          ],
           scripts: [
             {
               type: "application/ld+json",
