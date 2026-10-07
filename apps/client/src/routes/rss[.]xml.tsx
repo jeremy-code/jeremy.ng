@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { generateRssFeed } from "feedsmith";
-import type { Rss } from "feedsmith/types";
+import type { RssFeed } from "feedsmith";
 import { Marked } from "marked";
 
 import { getBlogPosts } from "#functions/getBlogPosts";
@@ -24,7 +24,7 @@ const Route = createFileRoute("/rss.xml")({
             title: post.title,
             link: `${env.VITE_BASE_URL}/blog/${post.slug}`,
             description: post.lede,
-            authors: post.authors.map((author) => author.name),
+            authors: post.authors,
             categories: post.tags.map((tag) => ({ name: tag })),
             pubDate:
               post.publishedDate !== undefined
@@ -34,7 +34,7 @@ const Route = createFileRoute("/rss.xml")({
               encoded: await marked.parse(post.content),
             },
           })),
-        )) satisfies Rss.Item<Date, Rss.Person>[];
+        )) satisfies RssFeed.Item<Date, true>[];
 
         const rssFeed = generateRssFeed({
           title: "Jeremy Nguyen",
