@@ -6,6 +6,6 @@
 
     /* Language and Environment */
     "jsx": "react-jsx",
-    "lib": ["ES2024", "DOM", "ESNext.TypedArrays"]
+    "lib": ["ES2024", "DOM"]
   }
 }

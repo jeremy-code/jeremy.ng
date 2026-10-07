@@ -20,7 +20,7 @@
     "verbatimModuleSyntax": true,
 
     /* Language and Environment */
-    "lib": ["ES2024", "ESNext.TypedArrays"],
+    "lib": ["ES2024"],
     "moduleDetection": "force",
     "target": "ES2024",
 

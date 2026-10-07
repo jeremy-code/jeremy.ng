@@ -1,3 +1,5 @@
+/// <reference lib="ESNext.TypedArrays" />
+
 import { createFileRoute } from "@tanstack/react-router";
 import { generateRssFeed } from "feedsmith";
 import type { RssFeed } from "feedsmith";
