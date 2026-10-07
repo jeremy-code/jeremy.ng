@@ -6,13 +6,6 @@
 
     /* Language and Environment */
     "jsx": "react-jsx",
-    "lib": [
-      "ES2024",
-      "DOM",
-      "DOM.Iterable",
-      "ESNext.Array",
-      "ESNext.TypedArrays"
-    ]
-  },
-  "exclude": ["${configDir}/node_modules"]
+    "lib": ["ES2024", "DOM", "ESNext.TypedArrays"]
+  }
 }
