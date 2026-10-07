@@ -1,5 +1,4 @@
-import { glob } from "node:fs/promises";
-import { parse } from "node:path";
+import { basename } from "node:path";
 
 import { cloudflare } from "@cloudflare/vite-plugin";
 import contentCollections from "@content-collections/vite";
@@ -9,16 +8,13 @@ import react from "@vitejs/plugin-react";
 import rsc from "@vitejs/plugin-rsc";
 import { fontless } from "fontless";
 import { Features } from "lightningcss";
+import { glob } from "tinyglobby";
 import { defineConfig } from "vite";
 import { analyzer } from "vite-bundle-analyzer";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import * as z from "zod";
 
-const posts = await Array.fromAsync(
-  glob("./blog/*.md"),
-  // Get basename without extension
-  (path) => parse(path).name,
-);
+const posts = (await glob("./blog/*.md")).map((path) => basename(path, ".md"));
 
 const isAnalyzerEnabled =
   process.env.ANALYZE !== undefined &&
