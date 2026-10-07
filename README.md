@@ -13,7 +13,6 @@
 ```shell
 git clone https://github.com/jeremy-code/jeremy.ng.git
 cd jeremy.ng
-corepack enable
 pnpm install
 ```
 
