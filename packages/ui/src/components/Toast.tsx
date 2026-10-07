@@ -16,8 +16,8 @@ import {
 } from "lucide-react";
 import { cn, tv } from "tailwind-variants";
 
-import { buttonVariants } from "./Button";
 import { composeRenderProps } from "../utils/composeRenderProps";
+import { buttonVariants } from "./Button";
 
 type ToastType = "loading" | "success" | "error" | "info" | "warning";
 

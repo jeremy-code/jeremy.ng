@@ -11,8 +11,9 @@ import {
 import { env } from "#utils/env";
 
 // https://github.com/microsoft/TypeScript/issues/46361
-type DistributedOmit<T, K extends PropertyKey> =
-  T extends unknown ? Omit<T, K> : never;
+type DistributedOmit<T, K extends PropertyKey> = T extends unknown
+  ? Omit<T, K>
+  : never;
 
 type ImageProps = DistributedOmit<
   ComponentPropsWithRef<

@@ -25,11 +25,11 @@ const BlogComponent = () => {
       <ul className="flex flex-col gap-4">
         {posts.map((post) => {
           const publishedDateInstant =
-            post.publishedDate !== undefined ?
-              Temporal.Instant.fromEpochMilliseconds(
-                Date.parse(post.publishedDate),
-              )
-            : undefined;
+            post.publishedDate !== undefined
+              ? Temporal.Instant.fromEpochMilliseconds(
+                  Date.parse(post.publishedDate),
+                )
+              : undefined;
           const { base, title, header, body, description } = cardVariants({
             size: "md",
           });
@@ -54,7 +54,7 @@ const BlogComponent = () => {
                         post.authors.map((author) => author.name),
                       )}
                     </HorizontalListItem>
-                    {publishedDateInstant !== undefined ?
+                    {publishedDateInstant !== undefined ? (
                       <HorizontalListItem>
                         <time dateTime={publishedDateInstant.toString()}>
                           <SsrDate
@@ -63,7 +63,7 @@ const BlogComponent = () => {
                           />
                         </time>
                       </HorizontalListItem>
-                    : null}
+                    ) : null}
                     <HorizontalListItem
                       role="group"
                       className="inline-flex gap-1"

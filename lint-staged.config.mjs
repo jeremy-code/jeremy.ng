@@ -4,8 +4,8 @@
  * @satisfies {Configuration}
  */
 const lintStagedConfig = {
-  "*.{js,mjs,cjs,ts,tsx,mts,cts}": ["eslint", "prettier --check"],
-  "*.{json,md,yaml,yml}": "prettier --check",
+  "*.{js,mjs,cjs,ts,tsx,mts,cts}": ["eslint", "oxfmt --check"],
+  "*.{json,md,yaml,yml}": "oxfmt --check",
 };
 
 export default lintStagedConfig;

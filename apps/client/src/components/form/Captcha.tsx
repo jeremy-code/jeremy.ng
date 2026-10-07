@@ -27,9 +27,11 @@ const Captcha = ({ className, options, ...props }: CaptchaProps) => {
       siteKey={env.VITE_CF_TURNSTILE_SITE_KEY}
       options={{
         theme:
-          theme === "system" ? "auto"
-          : theme === "dark" || theme === "light" || theme === undefined ? theme
-          : assertNever(theme as never),
+          theme === "system"
+            ? "auto"
+            : theme === "dark" || theme === "light" || theme === undefined
+              ? theme
+              : assertNever(theme as never),
         ...options,
       }}
       {...props}

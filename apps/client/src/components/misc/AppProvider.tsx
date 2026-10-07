@@ -6,9 +6,8 @@ import { ThemeProvider } from "next-themes";
 import { TrpcReactProvider } from "#lib/trpc/client";
 import { ToastProvider } from "@jeremyng/ui/components/Toast";
 
-const Devtools =
-  import.meta.env.DEV ?
-    lazy(() => import("./Devtools").then((mod) => ({ default: mod.Devtools })))
+const Devtools = import.meta.env.DEV
+  ? lazy(() => import("./Devtools").then((mod) => ({ default: mod.Devtools })))
   : () => null;
 
 /**

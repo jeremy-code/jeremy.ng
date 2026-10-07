@@ -27,9 +27,9 @@ const Route = createFileRoute("/rss.xml")({
             authors: post.authors.map((author) => author.name),
             categories: post.tags.map((tag) => ({ name: tag })),
             pubDate:
-              post.publishedDate !== undefined ?
-                new Date(post.publishedDate)
-              : undefined,
+              post.publishedDate !== undefined
+                ? new Date(post.publishedDate)
+                : undefined,
             content: {
               encoded: await marked.parse(post.content),
             },

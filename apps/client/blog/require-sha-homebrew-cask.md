@@ -17,7 +17,7 @@ As Homebrew itself has noted, casks, which use prebuilt binaries from an upstrea
 
 The thing is: many Homebrew casks do not have a SHA-256 checksum because their download link is not versionable.[^4] The top ten casks in [`Homebrew/homebrew-cask`](https://github.com/Homebrew/homebrew-cask) that have "no_check" set for their SHA-256 according to their JSON analytics data as of August 7, 2026 are the following:[^5]
 
-<!-- prettier-ignore-start -->
+<!-- oxfmt-ignore-start -->
 | Cask | Place | Install Events (365 days) | % |
 |---|---|---|---|
 | [google-chrome](https://github.com/Homebrew/homebrew-cask/blob/aa45e6dcc972cce894dcd31b009f7f930f106676/Casks/g/google-chrome.rb#L3) | #6 | 449,427 | 1.81% |
@@ -31,7 +31,7 @@ The thing is: many Homebrew casks do not have a SHA-256 checksum because their d
 | [termius](https://github.com/Homebrew/homebrew-cask/blob/aa45e6dcc972cce894dcd31b009f7f930f106676/Casks/t/termius.rb#L5) | #233 | 15,240 | 0.06% |
 | [onyx](https://github.com/Homebrew/homebrew-cask/blob/aa45e6dcc972cce894dcd31b009f7f930f106676/Casks/o/onyx.rb#L2) | #240 | 14,807 | 0.06% |
 | [google-gemini](https://github.com/Homebrew/homebrew-cask/blob/aa45e6dcc972cce894dcd31b009f7f930f106676/Casks/g/google-gemini.rb#L3) | #276 | 11,895 | 0.05% |
-<!-- prettier-ignore-end -->
+<!-- oxfmt-ignore-end -->
 
 <!--
 The data for the table above was generated with the following script:

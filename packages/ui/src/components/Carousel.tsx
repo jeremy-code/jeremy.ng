@@ -15,12 +15,12 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "tailwind-variants";
 
-import { Button, type ButtonProps } from "./Button";
 import {
   CarouselContext,
   useCarouselContext,
 } from "../hooks/useCarouselContext";
 import { useSyncCarouselState } from "../hooks/useSyncCarouselState";
+import { Button, type ButtonProps } from "./Button";
 
 type CarouselProps = {
   options?: EmblaOptionsType;
@@ -43,9 +43,11 @@ const Carousel = ({
   const carouselState = useSyncCarouselState(api);
 
   const orientation =
-    (options?.axis === "x" ? "horizontal"
-    : options?.axis === "y" ? "vertical"
-    : undefined) ?? "horizontal";
+    (options?.axis === "x"
+      ? "horizontal"
+      : options?.axis === "y"
+        ? "vertical"
+        : undefined) ?? "horizontal";
 
   const scrollPrev = useCallback(() => api?.scrollPrev(), [api]);
   const scrollNext = useCallback(() => api?.scrollNext(), [api]);

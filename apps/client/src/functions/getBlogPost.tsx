@@ -32,21 +32,21 @@ const getBlogPost = createServerFn({ method: "GET" })
       metadata: {
         ...metadata,
         previousPost:
-          previousPost !== undefined ?
-            {
-              // For now, only these fields are needed. This prevents an
-              // unnecessary large payload since the post includes .content
-              slug: previousPost.slug,
-              title: previousPost.title,
-            }
-          : undefined,
+          previousPost !== undefined
+            ? {
+                // For now, only these fields are needed. This prevents an
+                // unnecessary large payload since the post includes .content
+                slug: previousPost.slug,
+                title: previousPost.title,
+              }
+            : undefined,
         nextPost:
-          nextPost !== undefined ?
-            {
-              slug: nextPost.slug,
-              title: nextPost.title,
-            }
-          : undefined,
+          nextPost !== undefined
+            ? {
+                slug: nextPost.slug,
+                title: nextPost.title,
+              }
+            : undefined,
       },
     };
   });

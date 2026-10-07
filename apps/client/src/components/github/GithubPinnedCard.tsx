@@ -54,16 +54,16 @@ const GithubPinnedCard = ({
           <HorizontalList className="text-xs">
             {pinnedItemNode.licenseInfo !== null && (
               <HorizontalListItem>
-                {(
-                  pinnedItemNode.licenseInfo.url !== null &&
-                  pinnedItemNode.licenseInfo.spdxId !== null
-                ) ?
+                {pinnedItemNode.licenseInfo.url !== null &&
+                pinnedItemNode.licenseInfo.spdxId !== null ? (
                   <Link href={pinnedItemNode.licenseInfo.url} underline="hover">
                     {pinnedItemNode.licenseInfo.spdxId}
                   </Link>
-                : pinnedItemNode.licenseInfo.spdxId !== null ?
+                ) : pinnedItemNode.licenseInfo.spdxId !== null ? (
                   pinnedItemNode.licenseInfo.spdxId
-                : pinnedItemNode.licenseInfo.name}
+                ) : (
+                  pinnedItemNode.licenseInfo.name
+                )}
               </HorizontalListItem>
             )}
             <HorizontalListItem>

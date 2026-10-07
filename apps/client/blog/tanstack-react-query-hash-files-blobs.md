@@ -76,9 +76,9 @@ export const useFileHash = (
   file: File | undefined | null,
 ): UseFileHashResult => {
   const [fileHashState, setFileHashState] = useState<UseFileHashResult>(() =>
-    !file ?
-      { fileHash: null, isPending: false, error: null }
-    : { fileHash: null, isPending: true, error: null },
+    !file
+      ? { fileHash: null, isPending: false, error: null }
+      : { fileHash: null, isPending: true, error: null },
   );
 
   useEffect(() => {

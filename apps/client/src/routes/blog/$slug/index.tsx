@@ -33,9 +33,11 @@ const BlogPostComponent = () => {
     Route.useLoaderData();
 
   const publishedDateInstant =
-    metadata.publishedDate !== undefined ?
-      Temporal.Instant.fromEpochMilliseconds(Date.parse(metadata.publishedDate))
-    : undefined;
+    metadata.publishedDate !== undefined
+      ? Temporal.Instant.fromEpochMilliseconds(
+          Date.parse(metadata.publishedDate),
+        )
+      : undefined;
 
   return (
     <main className="py-8">
@@ -63,7 +65,7 @@ const BlogPostComponent = () => {
                 metadata.authors.map((author) => author.name),
               )}
             </HorizontalListItem>
-            {publishedDateInstant !== undefined ?
+            {publishedDateInstant !== undefined ? (
               <HorizontalListItem>
                 <time dateTime={publishedDateInstant.toString()}>
                   <SsrDate
@@ -72,7 +74,7 @@ const BlogPostComponent = () => {
                   />
                 </time>
               </HorizontalListItem>
-            : null}
+            ) : null}
           </HorizontalList>
           <div className="flex flex-wrap gap-2" role="group">
             {metadata.tags.map((tag) => (
@@ -143,9 +145,11 @@ const BlogPostComponent = () => {
               Comments
             </Link>
           </Heading>
-          {metadata.mastodonId !== undefined ?
+          {metadata.mastodonId !== undefined ? (
             <Comments mastodonId={metadata.mastodonId} />
-          : "It looks like there isn't a Mastodon ID for this post, sorry."}
+          ) : (
+            "It looks like there isn't a Mastodon ID for this post, sorry."
+          )}
         </div>
       </HydrationBoundary>
     </main>
@@ -174,56 +178,56 @@ const Route = createFileRoute("/blog/$slug/")({
     };
   },
   head: ({ loaderData }) =>
-    loaderData ?
-      {
-        meta: {
-          ...seo({
-            title: loaderData.metadata.title,
-            description: loaderData.metadata.lede,
-            keywords: loaderData.metadata.tags,
-            image: {
-              url: `${env.VITE_BASE_URL}/blog/${loaderData.metadata.slug}/og-image.jpg`,
-              type: "image/jpeg",
-              width: 1200,
-              height: 600,
-              alt: loaderData.metadata.title,
-            },
-          }),
-        },
-        scripts: [
-          {
-            type: "application/ld+json",
-            children: JSON.stringify({
-              "@context": "https://schema.org",
-              "@graph": [
-                {
-                  "@id": `${env.VITE_BASE_URL}/blog/${loaderData.metadata.slug}#article`,
-                  "@type": "BlogPosting",
-                  datePublished: loaderData.metadata.publishedDate,
-                  dateModified: loaderData.metadata.publishedDate,
-                  inLanguage: "en-US",
-                  headline: loaderData.metadata.title,
-                  abstract: loaderData.metadata.lede,
-                  description: loaderData.metadata.lede,
-                  author: {
-                    "@id": `${env.VITE_BASE_URL}/#person`,
-                  },
-                  keywords: loaderData.metadata.tags.join(","),
-                  url: `${env.VITE_BASE_URL}/blog/${loaderData.metadata.slug}`,
-                  isPartOf: {
-                    "@id": `${env.VITE_BASE_URL}/blog#blog`,
-                  },
-                  mainEntityOfPage: {
-                    "@type": "WebPage",
-                    "@id": `${env.VITE_BASE_URL}/blog/${loaderData.metadata.slug}`,
-                  },
-                },
-              ],
+    loaderData
+      ? {
+          meta: {
+            ...seo({
+              title: loaderData.metadata.title,
+              description: loaderData.metadata.lede,
+              keywords: loaderData.metadata.tags,
+              image: {
+                url: `${env.VITE_BASE_URL}/blog/${loaderData.metadata.slug}/og-image.jpg`,
+                type: "image/jpeg",
+                width: 1200,
+                height: 600,
+                alt: loaderData.metadata.title,
+              },
             }),
           },
-        ],
-      }
-    : {},
+          scripts: [
+            {
+              type: "application/ld+json",
+              children: JSON.stringify({
+                "@context": "https://schema.org",
+                "@graph": [
+                  {
+                    "@id": `${env.VITE_BASE_URL}/blog/${loaderData.metadata.slug}#article`,
+                    "@type": "BlogPosting",
+                    datePublished: loaderData.metadata.publishedDate,
+                    dateModified: loaderData.metadata.publishedDate,
+                    inLanguage: "en-US",
+                    headline: loaderData.metadata.title,
+                    abstract: loaderData.metadata.lede,
+                    description: loaderData.metadata.lede,
+                    author: {
+                      "@id": `${env.VITE_BASE_URL}/#person`,
+                    },
+                    keywords: loaderData.metadata.tags.join(","),
+                    url: `${env.VITE_BASE_URL}/blog/${loaderData.metadata.slug}`,
+                    isPartOf: {
+                      "@id": `${env.VITE_BASE_URL}/blog#blog`,
+                    },
+                    mainEntityOfPage: {
+                      "@type": "WebPage",
+                      "@id": `${env.VITE_BASE_URL}/blog/${loaderData.metadata.slug}`,
+                    },
+                  },
+                ],
+              }),
+            },
+          ],
+        }
+      : {},
   headers: () => ({
     "Cache-Control": "public, max-age=3600",
     "CDN-Cache-Control": "public, max-age=7200, stale-while-revalidate=3600",

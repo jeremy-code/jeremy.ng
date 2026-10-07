@@ -1,14 +1,14 @@
 import { fileURLToPath } from "node:url";
 
-import js from "@eslint/js";
 import * as comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
-import { defineConfig, includeIgnoreFile, globalIgnores } from "eslint/config";
+import js from "@eslint/js";
 import { createTypeScriptImportResolver } from "eslint-import-resolver-typescript";
 import { importX, createNodeResolver } from "eslint-plugin-import-x";
 import pluginPromise from "eslint-plugin-promise";
 import * as pluginRegexp from "eslint-plugin-regexp";
 import * as turbo from "eslint-plugin-turbo";
 import pluginZod from "eslint-plugin-zod";
+import { defineConfig, includeIgnoreFile, globalIgnores } from "eslint/config";
 import globals from "globals";
 import * as tseslint from "typescript-eslint";
 
@@ -76,31 +76,6 @@ const baseConfig = defineConfig(
        * @see {@link https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/newline-after-import.md}
        */
       "import-x/newline-after-import": ["error", { considerComments: true }],
-      /**
-       * @see {@link https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/order.md}
-       */
-      "import-x/order": [
-        "error",
-        {
-          groups: [
-            "builtin",
-            "external",
-            "internal",
-            ["parent", "sibling", "index"],
-          ],
-          pathGroups: [
-            { pattern: "#*", group: "internal" },
-            {
-              pattern: "react{,-dom{,/server,/client,/static}}",
-              group: "builtin",
-            },
-          ],
-          pathGroupsExcludedImportTypes: ["object"],
-          distinctGroup: false,
-          "newlines-between": "always",
-          alphabetize: { order: "asc" },
-        },
-      ],
       /**
        * @see {@link https://github.com/marcalexiei/eslint-zod/blob/HEAD/plugins/eslint-plugin-zod/docs/rules/prefer-string-schema-with-trim.md}
        */

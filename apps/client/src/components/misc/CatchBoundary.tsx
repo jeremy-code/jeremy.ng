@@ -45,15 +45,16 @@ const CatchBoundary = ({ error, reset }: ErrorComponentProps) => {
           <Button variant="surface" onClick={() => reset()}>
             Try Again
           </Button>
-          {isRoot ?
+          {isRoot ? (
             <Link to="/" className={buttonVariants({ variant: "solid" })}>
               Home
             </Link>
-          : <Button variant="solid" onClick={() => window.history.back()}>
+          ) : (
+            <Button variant="solid" onClick={() => window.history.back()}>
               <ChevronLeft className="size-4" />
               Go Back
             </Button>
-          }
+          )}
         </CardFooter>
       </Card>
     </div>

@@ -12,13 +12,13 @@ const handler = ({ request }: { request: Request }) => {
     endpoint: TRPC_ENDPOINT,
     router: appRouter,
     responseMeta: ({ type, errors }) =>
-      type === "query" && errors.length === 0 ?
-        {
-          headers: {
-            "Cache-Control": `public, maxage=1, stale-while-revalidate=${ONE_DAY_IN_SECONDS}`,
-          },
-        }
-      : {},
+      type === "query" && errors.length === 0
+        ? {
+            headers: {
+              "Cache-Control": `public, maxage=1, stale-while-revalidate=${ONE_DAY_IN_SECONDS}`,
+            },
+          }
+        : {},
   });
 };
 

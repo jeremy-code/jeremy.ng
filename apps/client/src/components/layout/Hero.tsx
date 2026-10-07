@@ -31,14 +31,15 @@ const Hero = ({ className, ...props }: HeroProps) => {
       className={cn("flex flex-col items-center gap-8 py-20", className)}
       {...props}
     >
-      {isPending ?
+      {isPending ? (
         <Skeleton className="h-10 w-full" />
-      : <h1 className="text-center text-4xl font-semibold tracking-tight text-balance">
-          {isError ?
-            "An error occurred while fetching from GitHub"
-          : (bio ?? "No bio was found")}
+      ) : (
+        <h1 className="text-center text-4xl font-semibold tracking-tight text-balance">
+          {isError
+            ? "An error occurred while fetching from GitHub"
+            : (bio ?? "No bio was found")}
         </h1>
-      }
+      )}
       <div className="flex gap-2" role="group">
         <a
           href="/resume.pdf"

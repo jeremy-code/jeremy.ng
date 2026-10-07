@@ -36,8 +36,10 @@ export const cn = (...inputs: ClassValue[]) => {
 Suppose you had an `<Input>` component like the following (similar to shadcn/ui's [`<Input>`](https://ui.shadcn.com/docs/components/base/input) component but shortened for brevity):
 
 ```tsx
-import { Input as InputPrimitive } from "@base-ui/react/input";
 import type { ComponentProps } from "react";
+
+import { Input as InputPrimitive } from "@base-ui/react/input";
+
 import { cn } from "../utils/cn";
 
 export const Input = ({
@@ -109,8 +111,9 @@ To make a long story short, on all inputs (including the elements of arrays), `c
 While this is all fine for `shadcn/ui` users, there are other times when this type can become problematic. For example, if you use `tailwind-variants`, you'll get a TypeScript error when passing `className` directly:
 
 ```tsx
-import { Input as InputPrimitive } from "@base-ui/react/input";
 import type { ComponentProps } from "react";
+
+import { Input as InputPrimitive } from "@base-ui/react/input";
 import { tv } from "tailwind-variants";
 
 const inputVariants = tv({
@@ -168,6 +171,7 @@ Using `composeRenderProps` honestly often makes the code very verbose, but it al
 
 ```tsx
 import type { ComponentProps } from "react";
+
 import { Separator as SeparatorPrimitive } from "@base-ui/react/separator";
 import { tv } from "tailwind-variants";
 

@@ -21,9 +21,9 @@ const SsrDate = ({ dateTime, locales, options }: SsrDateProps) => {
         .toZonedDateTimeISO("UTC")
         .toLocaleString(locales, options)}
     >
-      {typeof dateTime === "string" ?
-        instant.toLocaleString(locales, options)
-      : dateTime.toLocaleString(locales, options)}
+      {typeof dateTime === "string"
+        ? instant.toLocaleString(locales, options)
+        : dateTime.toLocaleString(locales, options)}
     </ClientOnly>
   );
 };

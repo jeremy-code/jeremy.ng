@@ -136,20 +136,20 @@ const ContactForm = (props: ContactFormProps) => {
                       ).concat({ message: errorMessage, path: [field.name] }),
                     });
                   }}
-                  {...(field.state.meta.errors.length !== 0 ?
-                    {
-                      "aria-invalid": true,
-                      "aria-errormessage": field.state.meta.errors
-                        .map((_, index) => `captcha-error-${index}`)
-                        .join(" "),
-                    }
-                  : {})}
+                  {...(field.state.meta.errors.length !== 0
+                    ? {
+                        "aria-invalid": true,
+                        "aria-errormessage": field.state.meta.errors
+                          .map((_, index) => `captcha-error-${index}`)
+                          .join(" "),
+                      }
+                    : {})}
                 />
               </Suspense>
-              {field.state.meta.errors.length !== 0 ?
+              {field.state.meta.errors.length !== 0 ? (
                 <ul className="mt-1 list-inside list-disc">
                   {field.state.meta.errors.map((error, index) =>
-                    error !== undefined ?
+                    error !== undefined ? (
                       <li
                         key={`${error.message}-${getDotPath(error)}`}
                         id={`captcha-error-${index}`}
@@ -157,10 +157,10 @@ const ContactForm = (props: ContactFormProps) => {
                       >
                         {error.message}
                       </li>
-                    : null,
+                    ) : null,
                   )}
                 </ul>
-              : null}
+              ) : null}
             </>
           )}
         </form.AppField>

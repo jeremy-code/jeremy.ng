@@ -7,7 +7,7 @@
     // For tRPC to work, the worker needs to be able to fetch from itself (the
     // server to the API route), which only works if it is treated as
     // external/public
-    "global_fetch_strictly_public",
+    "global_fetch_strictly_public"
   ],
   "main": "@tanstack/react-start/server-entry",
   "observability": {
@@ -16,27 +16,27 @@
       "enabled": true,
       "head_sampling_rate": 1,
       "persist": true,
-      "invocation_logs": true,
+      "invocation_logs": true
     },
     "traces": {
       "enabled": true,
       "persist": true,
-      "head_sampling_rate": 1,
-    },
+      "head_sampling_rate": 1
+    }
   },
   "assets": {},
   "vars": {
     "VITE_CF_TURNSTILE_SITE_KEY": "0x4AAAAAAAWC3pzq-UVjnlD2",
     "VITE_GITHUB_USERNAME": "jeremy-code",
     "VITE_NPM_REGISTRY_USERNAME": "jeremynguyen",
-    "VITE_BASE_URL": "https://jeremy.ng",
+    "VITE_BASE_URL": "https://jeremy.ng"
   },
   "secrets": {
     "required": [
       "CF_TURNSTILE_SECRET_KEY",
       "MAILGUN_API_KEY",
       "MAILGUN_DOMAIN",
-      "GITHUB_TOKEN",
-    ],
-  },
+      "GITHUB_TOKEN"
+    ]
+  }
 }

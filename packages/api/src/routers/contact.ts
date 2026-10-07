@@ -20,12 +20,13 @@ const contactRouter = createTRPCRouter({
 
         // TODO: maybe use AggregateError when there are multiple errors
         throw new TRPCError(
-          errorCode !== undefined && errorCode in cfTurnstileErrorToTrpcError ?
-            cfTurnstileErrorToTrpcError[errorCode]
-          : {
-              code: "INTERNAL_SERVER_ERROR",
-              message: "Turnstile verification failed due to an unknown error.",
-            },
+          errorCode !== undefined && errorCode in cfTurnstileErrorToTrpcError
+            ? cfTurnstileErrorToTrpcError[errorCode]
+            : {
+                code: "INTERNAL_SERVER_ERROR",
+                message:
+                  "Turnstile verification failed due to an unknown error.",
+              },
         );
       }
 

@@ -60,9 +60,9 @@ const getImageObjectsInPage = async (
   const imageObjectEntries = imageIds
     .filter((imageId) => page.objs.has(imageId) || page.commonObjs.has(imageId))
     .map((imageId) =>
-      imageId.startsWith("g_") ?
-        [imageId, page.commonObjs.get(imageId)]
-      : [imageId, page.objs.get(imageId)],
+      imageId.startsWith("g_")
+        ? [imageId, page.commonObjs.get(imageId)]
+        : [imageId, page.objs.get(imageId)],
     );
 
   return Object.fromEntries(imageObjectEntries);
@@ -74,10 +74,13 @@ const convertImageObjectToSharp = (imageObject: any) => {
       width: imageObject.width,
       height: imageObject.height,
       channels:
-        imageObject.kind === ImageKind.GRAYSCALE_1BPP ? 1
-        : imageObject.kind === ImageKind.RGB_24BPP ? 3
-        : imageObject.kind === ImageKind.RGBA_32BPP ? 4
-        : 3,
+        imageObject.kind === ImageKind.GRAYSCALE_1BPP
+          ? 1
+          : imageObject.kind === ImageKind.RGB_24BPP
+            ? 3
+            : imageObject.kind === ImageKind.RGBA_32BPP
+              ? 4
+              : 3,
     },
   });
 };

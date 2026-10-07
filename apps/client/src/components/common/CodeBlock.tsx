@@ -20,9 +20,9 @@ type CodeBlockProps = {
 const CodeBlock = async (props: CodeBlockProps) => {
   const hastTree = await codeToHast(props.code, {
     lang:
-      props.lang !== undefined && props.lang in bundledLanguages ?
-        props.lang
-      : "text",
+      props.lang !== undefined && props.lang in bundledLanguages
+        ? props.lang
+        : "text",
     themes: {
       light: "github-light-default",
       dark: "github-dark-default",

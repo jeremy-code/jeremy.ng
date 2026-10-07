@@ -1,10 +1,10 @@
 import eslintReact from "@eslint-react/eslint-plugin";
 import pluginQuery from "@tanstack/eslint-plugin-query";
 import pluginRouter from "@tanstack/eslint-plugin-router";
-import { defineConfig } from "eslint/config";
 import * as reactCompiler from "eslint-plugin-react-compiler";
 import reactHooks from "eslint-plugin-react-hooks";
 import pluginTailwindcss from "eslint-plugin-tailwindcss";
+import { defineConfig } from "eslint/config";
 import globals from "globals";
 
 import disablesConfig from "./disables.js";

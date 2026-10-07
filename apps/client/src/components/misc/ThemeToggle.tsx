@@ -26,8 +26,9 @@ const ThemeToggle = (props: SwitchProps) => {
     );
   }
 
-  const [ThemeIcon, title] =
-    isDark ? [Moon, "Switch to light theme"] : [Sun, "Switch to dark theme"];
+  const [ThemeIcon, title] = isDark
+    ? [Moon, "Switch to light theme"]
+    : [Sun, "Switch to dark theme"];
 
   return (
     <Switch
