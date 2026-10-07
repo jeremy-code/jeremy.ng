@@ -8,7 +8,6 @@
     "./*": "./src/*.js"
   },
   "scripts": {
-    "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "codegen:graphql": "DOTENV_CONFIG_PATH=.env.local graphql-codegen --require dotenv/config"
   },

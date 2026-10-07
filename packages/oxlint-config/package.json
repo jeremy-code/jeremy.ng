@@ -1,0 +1,18 @@
+{
+  "name": "@jeremyng/oxlint-config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.104.1",
+    "@tanstack/eslint-plugin-router": "^1.162.0",
+    "eslint-plugin-regexp": "^3.3.1",
+    "eslint-plugin-tailwindcss": "^4.4.0",
+    "eslint-plugin-turbo": "^2.11.7",
+    "eslint-plugin-zod": "^5.0.0"
+  }
+}

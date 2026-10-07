@@ -4,7 +4,6 @@ import { Turnstile } from "@marsidev/react-turnstile";
 import { useTheme } from "next-themes";
 import { cn } from "tailwind-variants";
 
-import { assertNever } from "#utils/assertNever";
 import { env } from "#utils/env";
 import { Skeleton } from "@jeremyng/ui/components/Skeleton";
 
@@ -31,7 +30,7 @@ const Captcha = ({ className, options, ...props }: CaptchaProps) => {
             ? "auto"
             : theme === "dark" || theme === "light" || theme === undefined
               ? theme
-              : assertNever(theme as never),
+              : "auto",
         ...options,
       }}
       {...props}

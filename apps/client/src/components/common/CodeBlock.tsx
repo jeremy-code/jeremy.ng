@@ -35,11 +35,11 @@ const CodeBlock = async (props: CodeBlockProps) => {
     jsx,
     jsxs,
     components: {
-      pre: (props: ComponentProps<"pre">) => (
+      pre: (preProps: ComponentProps<"pre">) => (
         <pre
-          {...props}
+          {...preProps}
           className={cn(
-            props.className,
+            preProps.className,
             "w-full max-w-full overflow-x-auto rounded-md border border-muted p-4 font-mono text-[0.85rem]",
           )}
         />

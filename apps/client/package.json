@@ -16,7 +16,6 @@
     "typecheck": "pnpm codegen:cf-types --check && tsc --noEmit",
     "codegen:cf-types": "wrangler types ./src/generated/worker-configuration.d.ts",
     "codegen:content-collections": "content-collections build",
-    "lint": "eslint .",
     "test": "vitest --run",
     "test:watch": "vitest"
   },

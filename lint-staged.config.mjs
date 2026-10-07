@@ -4,7 +4,7 @@
  * @satisfies {Configuration}
  */
 const lintStagedConfig = {
-  "*.{js,mjs,cjs,ts,tsx,mts,cts}": ["eslint", "oxfmt --check"],
+  "*.{js,mjs,cjs,ts,tsx,mts,cts}": ["oxlint", "oxfmt --check"],
   "*.{json,md,yaml,yml}": "oxfmt --check",
 };
 

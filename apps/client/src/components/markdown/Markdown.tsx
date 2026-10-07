@@ -4,7 +4,7 @@ import { Markdown as MarkdownPrimitive, RuleType } from "markdown-to-jsx/react";
 import slugify from "slugify";
 
 import { CodeBlock } from "#components/common/CodeBlock";
-import type { BundledLanguage } from "#lib/shiki/createHighlighter";
+import { isBundledLanguage } from "#lib/shiki/createHighlighter";
 
 import { isAlertType, MarkdownAlert } from "./MarkdownAlert";
 import { MarkdownWrapper } from "./MarkdownWrapper";
@@ -21,13 +21,11 @@ const Markdown = (props: MarkdownProps) => {
         slugify: (input) => slugify(input),
         renderRule: (next, node, renderChildren, state) => {
           if (node.type === RuleType.codeBlock) {
-            return (
-              <CodeBlock
-                key={state.key}
-                code={node.text}
-                lang={(node.lang as BundledLanguage) ?? "text"}
-              />
-            );
+            const lang = node.lang ?? "text";
+
+            if (isBundledLanguage(lang)) {
+              return <CodeBlock key={state.key} code={node.text} lang={lang} />;
+            }
           }
           if (node.type === RuleType.blockQuote && isAlertType(node.alert)) {
             return (

@@ -31,7 +31,7 @@ const useSyncCarouselState = (
 
   useEffect(() => {
     if (api === undefined) {
-      return;
+      return undefined;
     }
 
     api.on("select", handler);

@@ -107,7 +107,7 @@ const mailgunMessageDataSchema = z.toZod<IMailgunMessageData>()(
         subject: z.string().optional(),
         "amp-html": z.string().optional(),
         attachment: messageAttachmentSchema.optional(),
-        // eslint-disable-next-line zod/no-any-schema -- any is the typed used by IMailgunMessageData
+        // oxlint-disable-next-line zod/no-any-schema -- any is the typed used by IMailgunMessageData
         inline: z.any().optional(),
         "t:version": z.string().optional(),
         "t:text": booleanishSchema.optional(),

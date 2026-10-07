@@ -21,6 +21,9 @@ const bundledLanguages = {
 
 type BundledLanguage = keyof typeof bundledLanguages;
 
+const isBundledLanguage = (value: unknown): value is BundledLanguage =>
+  typeof value === "string" && value in bundledLanguages;
+
 const bundledThemes = {
   "github-dark-default": () => import("@shikijs/themes/github-dark-default"),
   "github-light-default": () => import("@shikijs/themes/github-light-default"),
@@ -58,5 +61,6 @@ export {
   bundledLanguages,
   type BundledLanguage,
   bundledThemes,
+  isBundledLanguage,
   type BundledTheme,
 };

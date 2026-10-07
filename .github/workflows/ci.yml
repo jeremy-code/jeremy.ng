@@ -41,7 +41,7 @@ jobs:
       - name: Typecheck code with TypeScript
         run: pnpm run typecheck
 
-      - name: Lint code with ESLint
+      - name: Lint code with Oxlint
         run: pnpm run lint
 
       - name: Check code formatting with Oxfmt
@@ -62,7 +62,7 @@ jobs:
             ${{ runner.os }}-playwright-
 
       - name: Install Playwright browsers
-        run: pnpm --filter @exifi/client exec playwright install --with-deps chromium-headless-shell
+        run: pnpm --filter @jeremyng/client exec playwright install --with-deps chromium-headless-shell
 
       - name: Run tests
         run: pnpm run test

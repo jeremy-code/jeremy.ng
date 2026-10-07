@@ -23,7 +23,6 @@ const RootDocument = ({ children }: Readonly<{ children: ReactNode }>) => {
 
   return (
     /**
-     * @remarks
      * `suppressHydrationWarning` is necessary since `<html>` element must be
      * updated by `next-themes` for dark mode. The property only applies one
      * level deep, so hydration warnings won't be blocked on children elements.

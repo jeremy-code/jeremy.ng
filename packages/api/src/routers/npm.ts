@@ -19,21 +19,24 @@ const npmRouter = createTRPCRouter({
     .input(npmSearchRequestParamsSchema)
     .output(npmSearchResponseSchema)
     .query(async (opts) => {
-      const response = await npmRegistryApi<NpmSearchResponse>("-/v1/search", {
-        method: "GET",
-        query: opts.input,
-        onResponseError: ({ response, error }) => {
-          if (response.status === 400) {
-            throw new TRPCError({
-              message: "A required parameter was missing",
-              code: "BAD_REQUEST",
-              cause: error,
-            });
-          }
+      const searchResponse = await npmRegistryApi<NpmSearchResponse>(
+        "-/v1/search",
+        {
+          method: "GET",
+          query: opts.input,
+          onResponseError: ({ response, error }) => {
+            if (response.status === 400) {
+              throw new TRPCError({
+                message: "A required parameter was missing",
+                code: "BAD_REQUEST",
+                cause: error,
+              });
+            }
+          },
         },
-      });
+      );
 
-      return response;
+      return searchResponse;
     }),
 });
 
