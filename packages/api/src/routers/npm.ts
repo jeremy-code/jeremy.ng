@@ -36,7 +36,13 @@ const npmRouter = createTRPCRouter({
         },
       );
 
-      return searchResponse;
+      // Descending order
+      return {
+        ...searchResponse,
+        objects: searchResponse.objects.toSorted(
+          (a, b) => b.downloads.weekly - a.downloads.weekly,
+        ),
+      };
     }),
 });
 
