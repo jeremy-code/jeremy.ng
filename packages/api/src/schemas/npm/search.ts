@@ -1,22 +1,22 @@
 import * as z from "zod";
 
-const npmPublisherSchema = z.strictObject({
+const npmPublisherSchema = z.object({
   email: z.email(),
   approver: z
-    .strictObject({
+    .object({
       name: z.string(),
       email: z.email(),
     })
     .optional(),
   actor: z
-    .strictObject({
+    .object({
       name: z.string(),
       type: z.literal("user"),
       email: z.email(),
     })
     .optional(),
   trustedPublisher: z
-    .strictObject({
+    .object({
       oidcConfigId: z.string(),
       id: z.literal("github"),
     })
@@ -24,7 +24,7 @@ const npmPublisherSchema = z.strictObject({
   username: z.string(),
 });
 
-const npmPackageSchema = z.strictObject({
+const npmPackageSchema = z.object({
   name: z.string(),
   scope: z.string().optional(),
   keywords: z.array(z.string()),
@@ -33,14 +33,14 @@ const npmPackageSchema = z.strictObject({
   sanitized_name: z.string(),
   publisher: npmPublisherSchema,
   maintainers: z.array(
-    z.strictObject({
+    z.object({
       email: z.email(),
       username: z.string(),
     }),
   ),
   license: z.string().optional(),
   date: z.iso.datetime(),
-  links: z.strictObject({
+  links: z.object({
     homepage: z.url().optional(),
     repository: z.url().optional(),
     bugs: z.url().optional(),
@@ -51,8 +51,8 @@ const npmPackageSchema = z.strictObject({
   }),
 });
 
-const npmSearchObjectSchema = z.strictObject({
-  downloads: z.strictObject({
+const npmSearchObjectSchema = z.object({
+  downloads: z.object({
     monthly: z.int().min(0),
     weekly: z.int().min(0),
   }),
@@ -60,29 +60,29 @@ const npmSearchObjectSchema = z.strictObject({
   updated: z.iso.datetime(),
   searchScore: z.number().min(0),
   package: npmPackageSchema,
-  score: z.strictObject({
+  score: z.object({
     final: z.number().min(0),
-    detail: z.strictObject({
+    detail: z.object({
       quality: z.number().min(0).max(1),
       popularity: z.number().min(0).max(1),
       maintenance: z.number().min(0).max(1),
     }),
   }),
-  flags: z.strictObject({
+  flags: z.object({
     insecure: z.literal([0, 1]),
   }),
 });
 type NpmSearchObject = z.infer<typeof npmSearchObjectSchema>;
 
 // https://github.com/npm/registry/blob/main/docs/REGISTRY-API.md#get-v1search
-const npmSearchResponseSchema = z.strictObject({
+const npmSearchResponseSchema = z.object({
   objects: z.array(npmSearchObjectSchema),
   total: z.int().min(0),
   time: z.iso.datetime(),
 });
 type NpmSearchResponse = z.infer<typeof npmSearchResponseSchema>;
 
-const npmSearchRequestParamsSchema = z.strictObject({
+const npmSearchRequestParamsSchema = z.object({
   // Accepting user input, trim string
   text: z.string().trim().optional(),
   size: z.int().max(250).optional(), // defaults to 20
