@@ -1,4 +1,5 @@
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { noop } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { ContactForm } from "#components/contact/ContactForm";
@@ -94,28 +95,30 @@ const Route = createFileRoute("/")({
   component: HomeComponent,
   loader: async ({ context }) => {
     // Prehydrate queries for SEO
-    await Promise.all([
-      context.queryClient.prefetchQuery(
-        context.trpc.github.getBio.queryOptions({
-          login: env.VITE_GITHUB_USERNAME,
-        }),
-      ),
-      context.queryClient.prefetchQuery(
-        context.trpc.npm.search.queryOptions({
-          text: `maintainer:${env.VITE_NPM_REGISTRY_USERNAME}`,
-        }),
-      ),
-      context.queryClient.prefetchQuery(
-        context.trpc.github.getPinnedItems.queryOptions({
-          login: env.VITE_GITHUB_USERNAME,
-        }),
-      ),
-      context.queryClient.prefetchQuery(
-        context.trpc.github.getSocialAccounts.queryOptions({
-          login: env.VITE_GITHUB_USERNAME,
-        }),
-      ),
-    ]);
+    await Promise.all(
+      [
+        context.queryClient.query(
+          context.trpc.github.getBio.queryOptions({
+            login: env.VITE_GITHUB_USERNAME,
+          }),
+        ),
+        context.queryClient.query(
+          context.trpc.npm.search.queryOptions({
+            text: `maintainer:${env.VITE_NPM_REGISTRY_USERNAME}`,
+          }),
+        ),
+        context.queryClient.query(
+          context.trpc.github.getPinnedItems.queryOptions({
+            login: env.VITE_GITHUB_USERNAME,
+          }),
+        ),
+        context.queryClient.query(
+          context.trpc.github.getSocialAccounts.queryOptions({
+            login: env.VITE_GITHUB_USERNAME,
+          }),
+        ),
+      ].map((promise) => promise.catch(noop)),
+    );
 
     return { dehydratedState: dehydrate(context.queryClient) };
   },

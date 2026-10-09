@@ -1,4 +1,4 @@
-import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { dehydrate, HydrationBoundary, noop } from "@tanstack/react-query";
 import { createFileRoute, Link as RouterLink } from "@tanstack/react-router";
 import { Temporal } from "temporal-polyfill";
 
@@ -164,11 +164,13 @@ const Route = createFileRoute("/blog/$slug/")({
     });
 
     if (metadata.mastodonId !== undefined) {
-      await context.queryClient.prefetchQuery(
-        context.trpc.mastodon.getStatus.queryOptions({
-          statusId: metadata.mastodonId,
-        }),
-      );
+      await context.queryClient
+        .query(
+          context.trpc.mastodon.getStatus.queryOptions({
+            statusId: metadata.mastodonId,
+          }),
+        )
+        .catch(noop);
     }
 
     return {
