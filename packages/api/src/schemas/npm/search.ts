@@ -17,20 +17,7 @@ const npmPublisherSchema = z.strictObject({
     .optional(),
   trustedPublisher: z
     .strictObject({
-      oidcConfigId: z
-        .string()
-        .startsWith("oidc:")
-        .superRefine((val, ctx) => {
-          if (!z.regexes.uuid4.test(val.substring("oidc:".length))) {
-            ctx.addIssue({
-              origin: "string",
-              code: "invalid_format",
-              format: "uuid",
-              pattern: z.regexes.uuid4.toString(),
-              message: "Invalid UUID",
-            });
-          }
-        }),
+      oidcConfigId: z.string(),
       id: z.literal("github"),
     })
     .optional(),
