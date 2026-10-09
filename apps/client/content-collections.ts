@@ -67,7 +67,6 @@ const posts = defineCollection({
         const { stdout } = await execFileAsync("git", [
           "log",
           `--format=${GIT_FORMAT}`,
-          "--reverse",
           "--",
           join(context.collection.directory, filePath),
         ]);
@@ -97,7 +96,7 @@ const posts = defineCollection({
     return {
       ...data,
       // Sorted in reverse chronological order, so this is the first commit
-      publishedDate: commits[0]?.date,
+      publishedDate: commits.at(-1)?.date,
       commits,
       slug: data._meta.path,
     };
