@@ -1,17 +1,17 @@
+import { useHydrated } from "@tanstack/react-router";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "tailwind-variants";
 
-import { useIsMounted } from "#hooks/useIsMounted";
 import { Skeleton } from "@jeremyng/ui/components/Skeleton";
 import { Switch, type SwitchProps } from "@jeremyng/ui/components/Switch";
 
 const ThemeToggle = (props: SwitchProps) => {
-  const isMounted = useIsMounted();
+  const isHydrated = useHydrated();
   const { setTheme, resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
 
-  if (!isMounted) {
+  if (!isHydrated) {
     // Avoid hydration error and layout shift as theme must be resolved from
     // `localStorage`
     return (
