@@ -55,7 +55,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^1.62.5",
+    "@cloudflare/vite-plugin": "^1.63.0",
     "@content-collections/cli": "^0.1.9",
     "@content-collections/core": "^0.15.3",
     "@content-collections/vite": "^0.3.1",
@@ -68,18 +68,18 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "@vitejs/plugin-react": "^6.1.2",
-    "@vitejs/plugin-rsc": "^0.5.34",
+    "@vitejs/plugin-rsc": "^0.5.36",
     "@vitest/browser-playwright": "^5.0.3",
     "fontless": "^1.2.1",
     "lightningcss": "^1.33.0",
     "oxc-transform-react": "^0.152.0",
-    "playwright": "^1.62.1",
+    "playwright": "^1.64.0",
     "tinyglobby": "^0.2.17",
     "vite": "^8.3.2",
     "vite-bundle-analyzer": "^1.3.9",
     "vite-plugin-static-copy": "^4.1.1",
     "vitest": "^5.0.3",
     "vitest-browser-react": "^2.2.0",
-    "wrangler": "^4.147.0"
+    "wrangler": "^4.148.0"
   }
 }

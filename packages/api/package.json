@@ -15,16 +15,16 @@
     "@octokit/graphql": "^9.0.4",
     "@t3-oss/env-core": "^0.13.11",
     "@trpc/server": "^11.18.0",
-    "dotenv": "^18.0.5",
+    "dotenv": "^18.0.6",
     "graphql": "^17.0.2",
-    "mailgun.js": "^14.0.0",
+    "mailgun.js": "^14.0.2",
     "ofetch": "^1.5.1",
     "superjson": "^2.2.6",
     "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^7.4.4",
-    "@graphql-codegen/client-preset": "^6.2.1",
+    "@graphql-codegen/cli": "^7.4.5",
+    "@graphql-codegen/client-preset": "^6.2.2",
     "@graphql-typed-document-node/core": "^3.2.0"
   }
 }
