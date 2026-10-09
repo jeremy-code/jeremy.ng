@@ -1,5 +1,5 @@
 import type { UseThemeProps } from "next-themes";
-import { describe, expect, vi, test, beforeEach } from "vitest";
+import { describe, expect, vi, it } from "vitest";
 import { render } from "vitest-browser-react";
 
 import { ThemeToggle } from "./ThemeToggle";
@@ -15,11 +15,7 @@ vi.mock("next-themes", () => ({
 }));
 
 describe("ThemeToggle", () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
-  test("renders light theme correctly", async () => {
+  it("renders light theme correctly", async () => {
     mockResolvedTheme = "light";
 
     const screen = await render(<ThemeToggle data-testid="theme-toggle" />);
@@ -30,7 +26,7 @@ describe("ThemeToggle", () => {
     );
   });
 
-  test("renders dark theme correctly", async () => {
+  it("renders dark theme correctly", async () => {
     mockResolvedTheme = "dark";
 
     const screen = await render(<ThemeToggle data-testid="theme-toggle" />);
@@ -39,7 +35,7 @@ describe("ThemeToggle", () => {
     expect(screen.getByTestId("theme-toggle")).toHaveAttribute("data-checked");
   });
 
-  test("switches to dark theme when clicked in light theme", async () => {
+  it("switches to dark theme when clicked in light theme", async () => {
     mockResolvedTheme = "light";
     const screen = await render(<ThemeToggle data-testid="theme-toggle" />);
 
@@ -48,7 +44,7 @@ describe("ThemeToggle", () => {
     expect(mockSetTheme).toHaveBeenCalledExactlyOnceWith("dark");
   });
 
-  test("switches to light theme when clicked in dark theme", async () => {
+  it("switches to light theme when clicked in dark theme", async () => {
     mockResolvedTheme = "dark";
     const screen = await render(<ThemeToggle data-testid="theme-toggle" />);
 
@@ -57,7 +53,7 @@ describe("ThemeToggle", () => {
     expect(mockSetTheme).toHaveBeenCalledExactlyOnceWith("light");
   });
 
-  test("renders children", async () => {
+  it("renders children", async () => {
     mockResolvedTheme = "light";
     const screen = await render(<ThemeToggle>Theme</ThemeToggle>);
 

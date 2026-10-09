@@ -19,10 +19,7 @@ const testConfig = defineConfig({
     /**
      * @see {@link https://oxc.rs/docs/guide/usage/linter/rules/vitest/consistent-test-it}
      */
-    "vitest/consistent-test-it": [
-      "error",
-      { fn: "test", withinDescribe: "test" },
-    ],
+    "vitest/consistent-test-it": "error",
     /**
      * @see {@link https://oxc.rs/docs/guide/usage/linter/rules/vitest/consistent-vitest-vi}
      */
