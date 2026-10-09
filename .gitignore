@@ -29,8 +29,8 @@ coverage
 .content-collections
 
 # Generated files
-*/*/src/generated/gql/*.ts
-*/*/src/generated/worker-configuration.d.ts
+*/*/src/generated/**/*
+!*/*/src/generated/routeTree.gen.ts
 
 # Build Outputs
 out/
