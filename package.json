@@ -28,7 +28,8 @@
     "format:check": "oxfmt --check",
     "typecheck": "turbo typecheck",
     "codegen": "turbo codegen",
-    "test": "turbo test"
+    "test": "vitest --run",
+    "test:watch": "vitest"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.3",
@@ -42,7 +43,8 @@
     "oxlint": "^1.87.0",
     "oxlint-tsgolint": "^7.0.2003",
     "turbo": "^2.11.7",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.3"
   },
   "devEngines": {
     "packageManager": {
