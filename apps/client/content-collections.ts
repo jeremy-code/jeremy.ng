@@ -1,11 +1,11 @@
-import { exec } from "node:child_process";
+import { execFile } from "node:child_process";
 import { join } from "node:path";
 import { promisify } from "node:util";
 
 import { defineCollection, defineConfig } from "@content-collections/core";
 import * as z from "zod";
 
-const execAsync = promisify(exec);
+const execFileAsync = promisify(execFile);
 
 const postSchema = z.strictObject({
   title: z.string().min(1),
@@ -32,11 +32,18 @@ const posts = defineCollection({
     const publishedDate = await context.cache(
       data._meta.filePath,
       async (filePath) => {
-        const { stdout } = await execAsync(
+        const { stdout } = await execFileAsync(
+          "git",
           // Ideally, --max-count-oldest=1 would be used, but it seems that the
           // version of git installed in Cloudflare Workers builds does not
           // support it
-          `git log --diff-filter=A --format=%at -- ${join(context.collection.directory, filePath)}`,
+          [
+            "log",
+            "--diff-filter=A",
+            "--format=%at",
+            "--",
+            join(context.collection.directory, filePath),
+          ],
         );
         const unixTimestamp = parseInt(stdout);
         if (stdout !== "" && !Number.isNaN(unixTimestamp)) {
