@@ -1,6 +1,9 @@
 import * as z from "zod";
 
-import type { SocialAccountProvider } from "../../generated/gql/graphql";
+import type {
+  SocialAccountProvider,
+  UserSocialAccountsNodesQuery,
+} from "../../generated/gql/graphql";
 
 const socialAccountProviderSchema = z.toZod<SocialAccountProvider>()(
   z.enum([
@@ -20,11 +23,24 @@ const socialAccountProviderSchema = z.toZod<SocialAccountProvider>()(
   ]),
 );
 
-const socialAccountSchema = z.strictObject({
-  displayName: z.string().min(1),
-  provider: socialAccountProviderSchema,
-  url: z.url(),
-});
+type GqlSocialAccount = Exclude<
+  Exclude<
+    Exclude<
+      UserSocialAccountsNodesQuery["user"],
+      null
+    >["socialAccounts"]["nodes"],
+    null
+  >[number],
+  null
+>;
+
+const socialAccountSchema = z.toZod<GqlSocialAccount>()(
+  z.strictObject({
+    displayName: z.string().min(1),
+    provider: socialAccountProviderSchema,
+    url: z.url(),
+  }),
+);
 
 export {
   socialAccountProviderSchema,

@@ -1,5 +1,7 @@
 import * as z from "zod";
 
+import type { UserPinnedItemsNodesQuery } from "../../generated/gql/graphql";
+
 const languageSchema = z.strictObject({
   color: z.string().nullable(),
   id: z.string(),
@@ -16,21 +18,31 @@ const licenseSchema = z.strictObject({
 });
 type License = z.infer<typeof licenseSchema>;
 
-const repositorySchema = z.strictObject({
-  __typename: z.literal("Repository"),
-  createdAt: z.iso.datetime(),
-  id: z.string(),
-  name: z.string(),
-  nameWithOwner: z.string(),
-  stargazerCount: z.int32(),
-  updatedAt: z.iso.datetime(),
-  url: z.url(),
-  description: z.string().nullable(),
-  homepageUrl: z.string().nullable(),
-  licenseInfo: licenseSchema.nullable(),
-  primaryLanguage: languageSchema.nullable(),
-  pushedAt: z.iso.datetime().nullable(),
-});
+type GqlRepository = Extract<
+  Exclude<
+    Exclude<UserPinnedItemsNodesQuery["user"], null>["pinnedItems"]["nodes"],
+    null
+  >[number],
+  { __typename: "Repository" }
+>;
+
+const repositorySchema = z.toZod<GqlRepository>()(
+  z.strictObject({
+    __typename: z.literal("Repository"),
+    createdAt: z.iso.datetime(),
+    id: z.string(),
+    name: z.string(),
+    nameWithOwner: z.string(),
+    stargazerCount: z.int32(),
+    updatedAt: z.iso.datetime(),
+    url: z.url(),
+    description: z.string().nullable(),
+    homepageUrl: z.string().nullable(),
+    licenseInfo: licenseSchema.nullable(),
+    primaryLanguage: languageSchema.nullable(),
+    pushedAt: z.iso.datetime().nullable(),
+  }),
+);
 type Repository = z.infer<typeof repositorySchema>;
 
 export {

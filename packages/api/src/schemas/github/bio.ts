@@ -1,5 +1,9 @@
 import * as z from "zod";
 
-const bioSchema = z.string();
+import type { UserBioQuery } from "../../generated/gql/graphql";
+
+type GqlBio = Exclude<Exclude<UserBioQuery["user"], null>["bio"], null>;
+
+const bioSchema = z.toZod<GqlBio>()(z.string());
 
 export { bioSchema };
