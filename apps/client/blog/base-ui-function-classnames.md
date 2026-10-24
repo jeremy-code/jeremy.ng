@@ -6,6 +6,7 @@ authors:
 tags:
   - react
 mastodonId: "117046442680575109"
+publishedDate: "2026-08-06T03:30:50Z"
 ---
 
 A neat feature of Base UI is that you can style all components by passing a callback function to both its [`className`](https://base-ui.com/react/handbook/styling#css-classes) and [`style`](https://base-ui.com/react/handbook/styling#style-prop) props. This is usually overlooked in favor of styling with either `data-*` attributes or CSS variables. This allows you to style a component based on its specific `State`. For example, this is the `State` provided in a `<Separator>`:

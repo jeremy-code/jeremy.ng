@@ -7,6 +7,7 @@ tags:
   - gpg
   - shell
 mastodonId: "117166064396114535"
+publishedDate: "2026-08-27T06:31:44Z"
 ---
 
 <!-- Originally posted on https://gist.github.com/jeremy-code/79e1f1b58a03ae4c70be49c214eca190 -->

@@ -7,6 +7,7 @@ tags:
   - shell
   - homebrew
 mastodonId: "117054139203880820"
+publishedDate: "2026-08-07T12:07:12Z"
 ---
 
 <!-- Originally posted on https://gist.github.com/jeremy-code/4274adce9f400db8580d857472e07bbd -->

@@ -7,6 +7,7 @@ tags:
   - pdf
   - nodejs
 mastodonId: "117166051263733577"
+publishedDate: "2026-08-27T06:28:46Z"
 ---
 
 <!-- Originally posted on https://gist.github.com/jeremy-code/b46ada0c3f6e1f7e4d57fde87cde795e -->

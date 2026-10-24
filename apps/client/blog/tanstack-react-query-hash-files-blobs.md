@@ -7,6 +7,7 @@ tags:
   - react
   - react-query
 mastodonId: "117046429322147190"
+publishedDate: "2026-08-05T05:16:40Z"
 ---
 
 <!-- Originally posted on https://gist.github.com/jeremy-code/8ca2001db0b30c5935fa303727c06fe5 -->

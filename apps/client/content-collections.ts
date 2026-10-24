@@ -1,11 +1,5 @@
-import { execFile } from "node:child_process";
-import { join } from "node:path";
-import { promisify } from "node:util";
-
 import { defineCollection, defineConfig } from "@content-collections/core";
 import * as z from "zod";
-
-const execFileAsync = promisify(execFile);
 
 const postSchema = z.strictObject({
   title: z.string().min(1),
@@ -20,6 +14,7 @@ const postSchema = z.strictObject({
   // Always treat Mastodon IDs as opaque strings
   // https://docs.joinmastodon.org/api/guidelines/#id
   mastodonId: z.string().optional(),
+  publishedDate: z.iso.datetime(),
 });
 
 const posts = defineCollection({
@@ -28,39 +23,9 @@ const posts = defineCollection({
   include: "*.md",
   parser: "frontmatter",
   schema: postSchema,
-  transform: async (data, context) => {
-    const publishedDate = await context.cache(
-      data._meta.filePath,
-      async (filePath) => {
-        const { stdout } = await execFileAsync(
-          "git",
-          // Ideally, --max-count-oldest=1 would be used, but it seems that the
-          // version of git installed in Cloudflare Workers builds does not
-          // support it
-          [
-            "log",
-            "--diff-filter=A",
-            "--format=%at",
-            "--",
-            join(context.collection.directory, filePath),
-          ],
-        );
-        const unixTimestamp = parseInt(stdout);
-        if (stdout !== "" && !Number.isNaN(unixTimestamp)) {
-          return new Date(unixTimestamp * 1000).toISOString();
-        }
-        /**
-         * TypeError [ERR_INVALID_ARG_TYPE]: The "data" argument must be of type
-         * string or an instance of Buffer, TypedArray, or DataView. Received
-         * undefined
-         */
-        return "";
-      },
-    );
-
+  transform: async (data) => {
     return {
       ...data,
-      publishedDate: publishedDate !== "" ? publishedDate : undefined,
       slug: data._meta.path,
     };
   },

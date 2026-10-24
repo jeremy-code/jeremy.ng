@@ -7,6 +7,7 @@ tags:
   - unicode
   - emoji
 mastodonId: "117448512396857674"
+publishedDate: "2026-10-16T03:42:02Z"
 ---
 
 > **tl;dr**: When they were first introduced, Unicode added existing non-pictograph emojis for compatibility with Japanese carriers and unified them with pre-existing text-style counterparts, including `"Ⓜ️"`, `"ℹ️"`, `"™️"` (`"Ⓜ"`, `"ℹ"`, `"™"`). Since this changed the appearance of existing documents, they later added a presentation selector code point to differentiate between text and emoji style. Hence, after being mapped to their normalized forms, `"Ⓜ"`, `"ℹ"`, `"™"` become `"m"`, `"i"`, `"tm"`, respectively, and the emoji presentation selector is silently ignored.

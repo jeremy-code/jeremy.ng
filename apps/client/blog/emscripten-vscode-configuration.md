@@ -7,6 +7,7 @@ tags:
   - vscode
   - emscripten
 mastodonId: "117166086429105275"
+publishedDate: "2026-08-27T06:36:49Z"
 ---
 
 <!-- Originally posted on https://gist.github.com/jeremy-code/825752985d55d0b8ea86f58cd502a109/edit -->
