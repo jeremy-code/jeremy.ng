@@ -12,6 +12,7 @@ const bundledLanguages = {
   html: () => import("@shikijs/langs/html"),
   javascript: () => import("@shikijs/langs/javascript"),
   json: () => import("@shikijs/langs/json"),
+  jsonc: () => import("@shikijs/langs/jsonc"),
   jsx: () => import("@shikijs/langs/jsx"),
   python: () => import("@shikijs/langs/python"),
   shell: () => import("@shikijs/langs/shell"),
