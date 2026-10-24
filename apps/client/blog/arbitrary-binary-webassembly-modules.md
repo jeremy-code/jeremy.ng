@@ -10,21 +10,21 @@ mastodonId: "117494067461225505"
 publishedDate: "2026-10-24T04:50:03Z"
 ---
 
-Have you ever wanted to "import" a non-JavaScript/JSON file? Right now, there exists a TC39 proposal to add the ["bytes" import attribute](https://github.com/tc39/proposal-import-bytes) to ECMAScript. As of October 2026, the proposal is currently sitting in Stage 2.7. In theory, it would let you import any arbitrary bytes as a Uint8Array across all JavaScript environments.[^1] The feature is currently supported by Deno,[^20] and no one else as far as I know. Given that the similar "text" import attribute, which currently sits in Stage 3,[^2] is still unsupported by Safari,[^3] it'll be probably take some time for this to be an accessible feature for most JavaScript developers.
+Have you ever wanted to "import" a non-JavaScript/JSON file? Right now, there exists a TC39 proposal to add the ["bytes" import attribute](https://github.com/tc39/proposal-import-bytes) to ECMAScript. As of October 2026, the proposal is currently sitting in Stage 2.7. In theory, it would let you import any arbitrary bytes as a Uint8Array across all JavaScript environments.[^1] The feature is currently supported by Deno,[^2] and no one else as far as I know. Given that the similar "text" import attribute, which currently sits in Stage 3,[^3] is still unsupported by Safari,[^4] it'll be probably take some time for this to be an accessible feature for most JavaScript developers.
 
-An alternative to this would be to use a runtime API like `node:fs/promises.readFile` or fetch (note that in Node.js, the fetch API does not work with file URLs)[^4]. The former is not ideal for bundlers since you can't statically analyze code that requires runtime checks; it also makes portability and isomorphic code signficantly more difficult.
+An alternative to this would be to use a runtime API like `node:fs/promises.readFile` or fetch (note that in Node.js, the fetch API does not work with file URLs)[^5]. The former is not ideal for bundlers since you can't statically analyze code that requires runtime checks; it also makes portability and isomorphic code signficantly more difficult.
 
-Another alternative is to simply encode the binary as Base64, which also has its own set of complications. Base64 encoding by itself already increases file size by a factor of 4/3. Compression after the fact is also difficult because compressing already Base64-encoded text also tends to yield poor results.[^12] Thirdly, using a string as an intermediary has dubious semantics in JavaScript. Since most runtimes (v8,[^13] SpiderMonkey,[^14] JavaScriptCore[^15]) optimize ASCII-only strings, the typical runtime cost of storing two bytes per character in UTF-16 is usually not a concern. Still, the way engines like v8 optimize strings is a complicated subject.[^17][^18] A `TypedArray` is well-optimized by JavaScript engines[^16] and is a more meaningful representation of binary data, so this would be preferred over a string intermediary.
+Another alternative is to simply encode the binary as Base64, which also has its own set of complications. Base64 encoding by itself already increases file size by a factor of 4/3. Compression after the fact is also difficult because compressing already Base64-encoded text also tends to yield poor results.[^6] Thirdly, using a string as an intermediary has dubious semantics in JavaScript. Since most runtimes (v8,[^7] SpiderMonkey,[^8] JavaScriptCore[^9]) optimize ASCII-only strings, the typical runtime cost of storing two bytes per character in UTF-16 is usually not a concern. Still, the way engines like v8 optimize strings is a complicated subject.[^10][^11] A `TypedArray` is well-optimized by JavaScript engines[^12] and is a more meaningful representation of binary data, so this would be preferred over a string intermediary.
 
 ## WebAssembly modules
 
-[Source phase imports](https://github.com/tc39/proposal-source-phase-imports) is a proposal, currently at stage 3, that would allow you to import a `.wasm` file as a [`WebAssembly.Module`](https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/Module) using the syntax `import source`.[^5] It honestly doesn't have great support in browsers, being only supported on a opt-in basis on Firefox,[^6][^24] but it is supported as of Node.js v24.0.0.[^7] It also, unfortunately, isn't supported by TypeScript either.[^8] It does have Babel support.[^23] However, this may not be an awful fix for our problem. After all, WebAssembly modules are already natively stored as binary data.[^19] `import source` being also being a static import declaration means that it should be easy for bundlers to handle, though I do not know yet of any bundlers that can handle this syntax.
+[Source phase imports](https://github.com/tc39/proposal-source-phase-imports) is a proposal, currently at stage 3, that would allow you to import a `.wasm` file as a [`WebAssembly.Module`](https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/Module) using the syntax `import source`.[^13] It honestly doesn't have great support in browsers, being only supported on a opt-in basis on Firefox,[^14][^15] but it is supported as of Node.js v24.0.0.[^16] It also, unfortunately, isn't supported by TypeScript either.[^17] It does have Babel support.[^18] However, this may not be an awful fix for our problem. After all, WebAssembly modules are already natively stored as binary data.[^19] `import source` being also being a static import declaration means that it should be easy for bundlers to handle, though I do not know yet of any bundlers that can handle this syntax.
 
 The very first problem is to somehow geti binary data out of a WebAssembly module. My initial idea was very silly and relied on manipulating the bytes of a pointer in runtime with an exported function. This clearly would not work in practice since it would include much overhead and be very annoying to use.
 
-In the WebAssembly binary specification, there includes a section for arbitrary data ("custom sections").[^9] The most common use for this is for a custom "name section" to provide names for all the functions, locals, and parameters.[^10] The most important part is that the bytes are left uninterpreted.[^9] Furthermore, we can read this custom section in a WebAssembly.Module using [`WebAssembly.Module.customSections`](https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/Module/customSections_static), which has surprisingly excellent support being baseline October 2017.[^11] The length of a WebAssembly section is stored as `uint32`,[^22] which means our file can be a maximum of 2^32-1 bytes (about 4.000 GiB).
+In the WebAssembly binary specification, there includes a section for arbitrary data ("custom sections").[^20] The most common use for this is for a custom "name section" to provide names for all the functions, locals, and parameters.[^21] The most important part is that the bytes are left uninterpreted.[^20] Furthermore, we can read this custom section in a WebAssembly.Module using [`WebAssembly.Module.customSections`](https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/Module/customSections_static), which has surprisingly excellent support being baseline October 2017.[^22] The length of a WebAssembly section is stored as `uint32`,[^23] which means our file can be a maximum of 2^32-1 bytes (about 4.000 GiB).
 
-Unfortunately, since the WebAssembly text format doesn't currently have a syntax for adding custom sections,[^11] we will have to generate this programmatically with a script. While a direct implementation would actually be relatively straightforward—the most complicated part being the [LEB128](https://en.wikipedia.org/wiki/LEB128) encoding—to simplify generation, let's instead just use the npm library [binaryen.js](https://github.com/AssemblyScript/binaryen.js/) by AssemblyScript. Let's call the custom section "dat" as a nod to [.dat files](https://www.adobe.com/uk/acrobat/resources/document-files/data-files/dat.html) and because the name length does matter in terms of bytes.
+Unfortunately, since the WebAssembly text format doesn't currently have a syntax for adding custom sections,[^22] we will have to generate this programmatically with a script. While a direct implementation would actually be relatively straightforward—the most complicated part being the [LEB128](https://en.wikipedia.org/wiki/LEB128) encoding—to simplify generation, let's instead just use the npm library [binaryen.js](https://github.com/AssemblyScript/binaryen.js/) by AssemblyScript. Let's call the custom section "dat" as a nod to [.dat files](https://www.adobe.com/uk/acrobat/resources/document-files/data-files/dat.html) and because the name length does matter in terms of bytes.
 
 ```typescript
 import { readFile, writeFile } from "node:fs/promises";
@@ -95,46 +95,46 @@ Clearly, given the last of general support for source path imports, this techniq
 
 [^1]: https://github.com/tc39/proposal-import-bytes
 
-[^20]: https://docs.deno.com/examples/importing_bytes/
+[^2]: https://docs.deno.com/examples/importing_bytes/
 
-[^2]: https://github.com/tc39/proposal-import-text
+[^3]: https://github.com/tc39/proposal-import-text
 
-[^3]: https://caniuse.com/wf-text-modules
+[^4]: https://caniuse.com/wf-text-modules
 
-[^4]: https://github.com/nodejs/undici/issues/2751
+[^5]: https://github.com/nodejs/undici/issues/2751
 
-[^12]: https://peterchng.com/blog/2023/10/28/compression-of-base64/
+[^6]: https://peterchng.com/blog/2023/10/28/compression-of-base64/
 
-[^13]: https://iliazeus.lol/articles/js-string-optimizations-en/
+[^7]: https://iliazeus.lol/articles/js-string-optimizations-en/
 
-[^14]: https://firefox-source-docs.mozilla.org/xpcom/stringguide.html
+[^8]: https://firefox-source-docs.mozilla.org/xpcom/stringguide.html
 
-[^15]: https://trac.webkit.org/wiki/EfficientStrings
+[^9]: https://trac.webkit.org/wiki/EfficientStrings
 
-[^17]: https://iliazeus.lol/articles/js-string-optimizations-en/
+[^10]: https://iliazeus.lol/articles/js-string-optimizations-en/
 
-[^18]: In practice, I noticed that Base64-encoded strings are represented as `InternalizedOneByteString` in v8. For more information on v8 strings, see https://blog.frontend-almanac.com/v8-strings.
+[^11]: In practice, I noticed that Base64-encoded strings are represented as `InternalizedOneByteString` in v8. For more information on v8 strings, see https://blog.frontend-almanac.com/v8-strings.
 
-[^16]: https://web.dev/articles/webgl-typed-arrays#design_considerations
+[^12]: https://web.dev/articles/webgl-typed-arrays#design_considerations
 
-[^5]: https://github.com/tc39/proposal-source-phase-imports
+[^13]: https://github.com/tc39/proposal-source-phase-imports
 
-[^6]: https://caniuse.com/mdn-javascript_statements_import_import_source_import_wasm_modules
+[^14]: https://caniuse.com/mdn-javascript_statements_import_import_source_import_wasm_modules
 
-[^7]: https://nodejs.org/en/blog/release/v24.0.0#semver-minor-commits
+[^15]: https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/153#javascript
 
-[^8]: https://github.com/microsoft/TypeScript/issues/61216
+[^16]: https://nodejs.org/en/blog/release/v24.0.0#semver-minor-commits
+
+[^17]: https://github.com/microsoft/TypeScript/issues/61216
+
+[^18]: https://babeljs.io/docs/babel-plugin-proposal-import-wasm-source
 
 [^19]: https://webassembly.github.io/spec/core/binary/modules.html
 
-[^9]: https://webassembly.github.io/spec/core/binary/modules.html#custom-section
+[^20]: https://webassembly.github.io/spec/core/binary/modules.html#custom-section
 
-[^10]: https://webassembly.github.io/spec/core/appendix/custom.html#name-section
+[^21]: https://webassembly.github.io/spec/core/appendix/custom.html
 
-[^11]: https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/Module/customSections_static
+[^22]: https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/Module/customSections_static
 
-[^22]: https://webassembly.github.io/spec/core/binary/modules.html#sections
-
-[^23]: https://babeljs.io/docs/babel-plugin-proposal-import-wasm-source
-
-[^24]: https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/153#javascript
+[^23]: https://webassembly.github.io/spec/core/binary/modules.html#sections
