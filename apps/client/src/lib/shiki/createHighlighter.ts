@@ -3,6 +3,7 @@ import {
   createSingletonShorthands,
   type DynamicImportLanguageRegistration,
   type DynamicImportThemeRegistration,
+  type SpecialLanguage,
 } from "shiki/core";
 import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 
@@ -23,6 +24,10 @@ type BundledLanguage = keyof typeof bundledLanguages;
 
 const isBundledLanguage = (value: unknown): value is BundledLanguage =>
   typeof value === "string" && value in bundledLanguages;
+
+const isSpecialLanguage = (value: unknown): value is SpecialLanguage =>
+  typeof value === "string" &&
+  ["text", "plaintext", "txt", "plain", "ansi"].includes(value);
 
 const bundledThemes = {
   "github-dark-default": () => import("@shikijs/themes/github-dark-default"),
@@ -62,5 +67,6 @@ export {
   type BundledLanguage,
   bundledThemes,
   isBundledLanguage,
+  isSpecialLanguage,
   type BundledTheme,
 };
