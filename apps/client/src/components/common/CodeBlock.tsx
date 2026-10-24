@@ -6,11 +6,7 @@ import { jsx, jsxs } from "react/jsx-runtime";
 import type { SpecialLanguage } from "shiki/core";
 import { cn } from "tailwind-variants";
 
-import {
-  codeToHast,
-  bundledLanguages,
-  type BundledLanguage,
-} from "#lib/shiki/createHighlighter";
+import { codeToHast, type BundledLanguage } from "#lib/shiki/createHighlighter";
 
 type CodeBlockProps = {
   code: string;
@@ -19,10 +15,7 @@ type CodeBlockProps = {
 
 const CodeBlock = async (props: CodeBlockProps) => {
   const hastTree = await codeToHast(props.code, {
-    lang:
-      props.lang !== undefined && props.lang in bundledLanguages
-        ? props.lang
-        : "text",
+    lang: props.lang ?? "text",
     themes: {
       light: "github-light-default",
       dark: "github-dark-default",
