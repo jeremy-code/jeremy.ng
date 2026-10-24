@@ -28,7 +28,7 @@ Punycode is a way to encode Unicode text into ASCII characters intended for use 
 
 The goal is simple: use the [emoji](https://pypi.org/project/emoji/) package from PyPI to brute force a solution by iterating through all possible emojis. This way, we can find any emojis that don't encode into punycode (i.e., do not start with `"xn--"`) and are instead encoded into only ASCII characters. Fortunately, Python provides a codec for IDNA 2003 by default.[^6]
 
-```py
+```python
 from emoji import EMOJI_DATA
 import json
 
