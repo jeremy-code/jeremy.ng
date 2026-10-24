@@ -4,8 +4,8 @@ lede: Using source phase imports to load arbitrary binary data with WebAssembly 
 authors:
   - name: Jeremy Nguyen
 tags:
-  - WebAssembly
-  - JavaScript
+  - webassembly
+  - javascript
 mastodonId: "117494067461225505"
 publishedDate: "2026-10-24T04:50:03Z"
 ---
