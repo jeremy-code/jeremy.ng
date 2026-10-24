@@ -130,7 +130,7 @@ Again, the aforementioned `\ufe0f` emoji variation selector appears, though this
 
 Furthermore, using one of these Japanese character emojis, we can verify our theory using a Japanese domain. `.jp` domains can use the Kanji, Hiragana, and/or Katakana character sets.[^13] The website for the Kokuzōsan Daimanji Temple (虚空蔵山　大満寺) in Sendai, Japan is located at http://虚空蔵尊.jp and contains the kanji "空" (empty/vacant). Hence, a URL like http://虚🈳蔵尊.jp should correctly route to its intended destination. And indeed, it does.
 
-However, this does raise another question, and that is, what makes _these_ emoji in particular special?
+However, this does raise another question, and that is, what makes _these_ emojis in particular special?
 
 ## Compatibility and Unicode
 
