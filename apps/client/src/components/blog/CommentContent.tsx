@@ -1,10 +1,10 @@
 import { Fragment } from "react";
+import { jsx, jsxs } from "react/jsx-runtime";
 
 import { default as DOMPurify } from "dompurify";
 import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic";
 import { sanitize } from "hast-util-sanitize";
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
-import { jsx, jsxs } from "react/jsx-runtime";
 import { cn } from "tailwind-variants";
 
 import type { Status } from "@jeremyng/api/schemas/mastodon/status";

@@ -1,8 +1,8 @@
 import type { ComponentProps } from "react";
 import { Fragment } from "react";
+import { jsx, jsxs } from "react/jsx-runtime";
 
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
-import { jsx, jsxs } from "react/jsx-runtime";
 import type { SpecialLanguage } from "shiki/core";
 import { cn } from "tailwind-variants";
 

@@ -16,7 +16,7 @@ const oxfmtConfig = defineConfig({
     customGroups: [
       {
         groupName: "react",
-        elementNamePattern: ["react", "react-dom", "react-dom/*"],
+        elementNamePattern: ["react", "react-dom", "react/*", "react-dom/*"],
       },
     ],
     internalPattern: ["@jeremyng/"],
