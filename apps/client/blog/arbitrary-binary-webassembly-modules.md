@@ -26,7 +26,7 @@ In the WebAssembly binary specification, there includes a section for arbitrary 
 
 Unfortunately, since the WebAssembly text format doesn't currently have a syntax for adding custom sections,[^11] we will have to generate this programmatically with a script. While a direct implementation would actually be relatively straightforward—the most complicated part being the [LEB128](https://en.wikipedia.org/wiki/LEB128) encoding—to simplify generation, let's instead just use the npm library [binaryen.js](https://github.com/AssemblyScript/binaryen.js/) by AssemblyScript. Let's call the custom section "dat" as a nod to [.dat files](https://www.adobe.com/uk/acrobat/resources/document-files/data-files/dat.html) and because the name length does matter in terms of bytes.
 
-```ts
+```typescript
 import { readFile, writeFile } from "node:fs/promises";
 
 import binaryen from "binaryen";
@@ -42,7 +42,7 @@ await writeFile("./output.wasm", module.emitBinary());
 
 Now, to retrieve the data using a source phase import and the [`WebAssembly.Module.customSections`](https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/Module/customSections_static) function:
 
-```ts
+```typescript
 import source mod from "../dist/output.wasm";
 
 export const getWebAssemblyData = (): Uint8Array<ArrayBuffer> => {

@@ -76,7 +76,7 @@ Indeed, viewing the [IDNA mapping table](https://www.unicode.org/Public/idna/15.
 
 Since NFKC normalization is built into JavaScript, we can use a quick Node.js script using the [emojis-list](https://npmx.dev/package/emojis-list) library and find all the emojis that, when normalized with NFKC, output something other than themselves.
 
-```js
+```javascript
 import emojis from "emojis-list";
 
 const unidempotentEmoji = emojis.reduce((acc, emoji) => {
