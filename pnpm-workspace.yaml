@@ -29,3 +29,15 @@ allowBuilds:
 
 # Other Settings (https://pnpm.io/settings#other-settings)
 shellEmulator: true
+
+# Settings documented elsewhere (https://pnpm.io/settings#settings-documented-elsewhere)
+tasks:
+  build:
+    dependsOn: ["codegen", "^build"]
+    outputs: ["dist/**"]
+  codegen:
+    dependsOn: ["/^codegen:/"]
+    outputs: []
+
+pipelines:
+  default: [codegen, build]
