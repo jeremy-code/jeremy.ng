@@ -1,5 +1,4 @@
 import * as pluginRegexp from "eslint-plugin-regexp";
-import turbo from "eslint-plugin-turbo";
 import pluginZod from "eslint-plugin-zod";
 import { defineConfig } from "oxlint";
 
@@ -25,15 +24,8 @@ const baseConfig = defineConfig({
     "node",
     "promise",
   ],
-  jsPlugins: [
-    "eslint-plugin-turbo",
-    "eslint-plugin-zod",
-    "eslint-plugin-regexp",
-  ],
+  jsPlugins: ["eslint-plugin-zod", "eslint-plugin-regexp"],
   rules: {
-    // While in runtime, eslint-plugin-turbo always returns a single config,
-    // TypeScript does not know that. Use `.flat()` to always get an array
-    ...[turbo.configs?.["flat/recommended"]].flat()[0]?.rules,
     ...pluginZod.configs.recommended.rules,
     ...pluginRegexp.configs["flat/recommended"].rules,
 
