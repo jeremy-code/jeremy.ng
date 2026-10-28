@@ -395,9 +395,6 @@ importers:
       '@trpc/server':
         specifier: ^11.18.0
         version: 11.19.0(typescript@6.0.3)
-      dotenv:
-        specifier: ^18.0.6
-        version: 18.0.6
       graphql:
         specifier: ^17.0.2
         version: 17.0.2
@@ -3544,11 +3541,6 @@ packages:
 
   dompurify@3.4.16:
     resolution: {integrity: sha512-sqo+pNp3qRhCIpbgRi1y8Tgk27Bo2Ry7w0dC1NBeNTdZChWjz9Xb/KOoZbRP/R6pQZ80Qw8YhXw13hWWBbMRnQ==}
-
-  dotenv@18.0.6:
-    resolution: {integrity: sha512-ZMVmohV6CvAJtj++pZNyggluUt6hbRdQAxc2+Z635RL6/AG/ruXv5lHnybUFoxMPL/yrTL/tsF4paZu2l7RA6Q==}
-    engines: {node: '>=12'}
-    hasBin: true
 
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
@@ -8629,8 +8621,6 @@ snapshots:
   dompurify@3.4.16:
     optionalDependencies:
       '@types/trusted-types': 2.0.7
-
-  dotenv@18.0.6: {}
 
   dunder-proto@1.0.1:
     dependencies:

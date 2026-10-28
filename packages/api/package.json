@@ -9,13 +9,12 @@
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "codegen:graphql": "DOTENV_CONFIG_PATH=.env.local graphql-codegen --require dotenv/config"
+    "codegen:graphql": "graphql-codegen"
   },
   "dependencies": {
     "@octokit/graphql": "^9.0.4",
     "@t3-oss/env-core": "^0.13.11",
     "@trpc/server": "^11.18.0",
-    "dotenv": "^18.0.6",
     "graphql": "^17.0.2",
     "mailgun.js": "^14.0.2",
     "ofetch": "^1.5.1",

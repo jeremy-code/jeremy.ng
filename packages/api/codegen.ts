@@ -1,4 +1,12 @@
+import { loadEnvFile } from "node:process";
+
 import type { CodegenConfig } from "@graphql-codegen/cli";
+
+try {
+  loadEnvFile("./.env.local");
+} catch {
+  console.error(".env.local was not found!");
+}
 
 const codegenConfig = {
   schema: {
