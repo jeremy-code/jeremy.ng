@@ -38,7 +38,10 @@ tasks:
     outputs: ["dist/**"]
   codegen:
     dependsOn:
-      ["codegen:cf-types", "codegen:content-collections", "codegen:graphql"]
+      - "codegen:cf-types"
+      - "codegen:content-collections"
+      - "codegen:graphql"
+      - "codegen:openapi"
     inputs: []
     outputs: []
   codegen:cf-types:
