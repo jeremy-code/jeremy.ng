@@ -21,13 +21,13 @@
   "type": "module",
   "scripts": {
     "prepare": "husky",
-    "build": "pnpm pipeline",
+    "build": "pnpm pipeline --full",
     "dev": "pnpm --recursive run dev",
     "lint": "oxlint",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
     "typecheck": "pnpm --recursive run typecheck",
-    "codegen": "pnpm pipeline codegen",
+    "codegen": "pnpm pipeline codegen --full",
     "test": "vitest --run",
     "test:watch": "vitest"
   },

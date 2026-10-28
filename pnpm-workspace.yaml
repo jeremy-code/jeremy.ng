@@ -34,7 +34,7 @@ shellEmulator: true
 tasks:
   build:
     dependsOn: ["codegen", "^build"]
-    inputs: ["src/**", "!src/generated/**"]
+    inputs: ["src/**"]
     outputs: ["dist/**"]
   codegen:
     dependsOn:
@@ -45,8 +45,9 @@ tasks:
     inputs: ["wrangler.jsonc"]
     outputs: ["src/generated/worker-configuration.d.ts"]
   codegen:content-collections:
-    inputs: ["content-collections.ts", "blog/*.md"]
-    outputs: [".content-collections/generated/**"]
+    inputs: ["content-collections.ts", "blog/*"]
+    # .content-collections/generated/index.js includes a timestamp, so this is never cached
+    outputs: [".content-collections/generated/*"]
   codegen:graphql:
     inputs: ["codegen.ts", ".env.local"]
     outputs: ["src/generated/gql/**"]
