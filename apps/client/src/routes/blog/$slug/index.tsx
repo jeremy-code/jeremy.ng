@@ -188,7 +188,7 @@ const Route = createFileRoute("/blog/$slug/")({
               description: loaderData.metadata.lede,
               keywords: loaderData.metadata.tags,
               image: {
-                url: `${env.VITE_BASE_URL}/blog/${loaderData.metadata.slug}/og-image.jpg`,
+                url: `${env.BASE_URL}/blog/${loaderData.metadata.slug}/og-image.jpg`,
                 type: "image/jpeg",
                 width: 1200,
                 height: 600,
@@ -203,7 +203,7 @@ const Route = createFileRoute("/blog/$slug/")({
                 "@context": "https://schema.org",
                 "@graph": [
                   {
-                    "@id": `${env.VITE_BASE_URL}/blog/${loaderData.metadata.slug}#article`,
+                    "@id": `${env.BASE_URL}/blog/${loaderData.metadata.slug}#article`,
                     "@type": "BlogPosting",
                     datePublished: loaderData.metadata.publishedDate,
                     dateModified: loaderData.metadata.publishedDate,
@@ -212,16 +212,16 @@ const Route = createFileRoute("/blog/$slug/")({
                     abstract: loaderData.metadata.lede,
                     description: loaderData.metadata.lede,
                     author: {
-                      "@id": `${env.VITE_BASE_URL}/#person`,
+                      "@id": `${env.BASE_URL}/#person`,
                     },
                     keywords: loaderData.metadata.tags.join(","),
-                    url: `${env.VITE_BASE_URL}/blog/${loaderData.metadata.slug}`,
+                    url: `${env.BASE_URL}/blog/${loaderData.metadata.slug}`,
                     isPartOf: {
-                      "@id": `${env.VITE_BASE_URL}/blog#blog`,
+                      "@id": `${env.BASE_URL}/blog#blog`,
                     },
                     mainEntityOfPage: {
                       "@type": "WebPage",
-                      "@id": `${env.VITE_BASE_URL}/blog/${loaderData.metadata.slug}`,
+                      "@id": `${env.BASE_URL}/blog/${loaderData.metadata.slug}`,
                     },
                   },
                 ],

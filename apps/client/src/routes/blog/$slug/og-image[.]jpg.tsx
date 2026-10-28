@@ -37,11 +37,7 @@ const Route = createFileRoute("/blog/$slug/og-image.jpg")({
               }}
             />
             <div tw="m-0 flex items-center gap-4">
-              <img
-                width="60"
-                height="60"
-                src={`${env.VITE_BASE_URL}/favicon.svg`}
-              />
+              <img width="60" height="60" src={`${env.BASE_URL}/favicon.svg`} />
               <p tw="text-5xl/0 font-medium tracking-tight text-slate-950">
                 Jeremy Nguyen
               </p>

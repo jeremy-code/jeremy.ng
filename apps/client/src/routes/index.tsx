@@ -140,9 +140,9 @@ const Route = createFileRoute("/")({
           "@graph": [
             {
               "@type": "Person",
-              "@id": `${env.VITE_BASE_URL}/#person`,
+              "@id": `${env.BASE_URL}/#person`,
               name: "Jeremy Nguyen",
-              url: env.VITE_BASE_URL,
+              url: env.BASE_URL,
               image: "https://avatars.githubusercontent.com/u/43259194",
               email: "hi@jeremy.ng",
               nationality: {
@@ -156,24 +156,24 @@ const Route = createFileRoute("/")({
             },
             {
               "@type": "WebSite",
-              "@id": `${env.VITE_BASE_URL}/#website`,
-              url: env.VITE_BASE_URL,
+              "@id": `${env.BASE_URL}/#website`,
+              url: env.BASE_URL,
               name: "Jeremy Nguyen",
             },
             {
               "@type": "WebPage",
               name: "Jeremy Nguyen",
-              url: env.VITE_BASE_URL,
+              url: env.BASE_URL,
               description: "Personal website for Jeremy Nguyen",
               inLanguage: "en-US",
               author: {
-                "@id": `${env.VITE_BASE_URL}/#person`,
+                "@id": `${env.BASE_URL}/#person`,
               },
               mainEntity: {
-                "@id": `${env.VITE_BASE_URL}/#person`,
+                "@id": `${env.BASE_URL}/#person`,
               },
               isPartOf: {
-                "@id": `${env.VITE_BASE_URL}/#website`,
+                "@id": `${env.BASE_URL}/#website`,
               },
             },
           ],

@@ -97,16 +97,16 @@ const Route = createFileRoute("/blog/")({
           "@graph": [
             {
               "@type": "Blog",
-              "@id": `${env.VITE_BASE_URL}/blog#blog`,
+              "@id": `${env.BASE_URL}/blog#blog`,
               blogPost: loaderData?.posts.map((post) => ({
-                "@id": `${env.VITE_BASE_URL}/blog/${post.slug}#article`,
+                "@id": `${env.BASE_URL}/blog/${post.slug}#article`,
               })),
               author: {
-                "@id": `${env.VITE_BASE_URL}/#person`,
+                "@id": `${env.BASE_URL}/#person`,
               },
               inLanguage: "en-US",
               isPartOf: {
-                "@id": `${env.VITE_BASE_URL}/#website`,
+                "@id": `${env.BASE_URL}/#website`,
               },
             },
           ],

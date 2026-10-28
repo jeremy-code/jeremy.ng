@@ -9,9 +9,17 @@ const env = createEnv({
   clientPrefix: "VITE_",
   shared: {
     WORKERS_CI_BRANCH: z.string().min(1),
+    BASE_URL: z.preprocess(
+      (val) =>
+        val === "/"
+          ? import.meta.env.DEV
+            ? "http://localhost:3000"
+            : "http://localhost:4173"
+          : val,
+      z.url(),
+    ),
   },
   client: {
-    VITE_BASE_URL: z.url(),
     VITE_CF_TURNSTILE_SITE_KEY: siteKeySchema,
     VITE_GITHUB_USERNAME: z.string().min(1),
     VITE_NPM_REGISTRY_USERNAME: z.string().min(1),
