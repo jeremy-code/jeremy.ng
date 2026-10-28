@@ -34,10 +34,23 @@ shellEmulator: true
 tasks:
   build:
     dependsOn: ["codegen", "^build"]
+    inputs: ["src/**", "!src/generated/**"]
     outputs: ["dist/**"]
   codegen:
-    dependsOn: ["/^codegen:/"]
+    dependsOn:
+      ["codegen:cf-types", "codegen:content-collections", "codegen:graphql"]
+    inputs: []
     outputs: []
+  codegen:cf-types:
+    inputs: ["wrangler.jsonc"]
+    outputs: ["src/generated/worker-configuration.d.ts"]
+  codegen:content-collections:
+    inputs: ["content-collections.ts", "blog/*.md"]
+    outputs: [".content-collections/generated/**"]
+  codegen:graphql:
+    inputs: ["codegen.ts", ".env.local"]
+    outputs: ["src/generated/gql/**"]
 
 pipelines:
-  default: [codegen, build]
+  default: [build]
+  codegen: [codegen]
