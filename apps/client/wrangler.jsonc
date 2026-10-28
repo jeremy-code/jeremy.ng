@@ -10,6 +10,20 @@
     // external/public
     "global_fetch_strictly_public"
   ],
+  "routes": [
+    {
+      "pattern": "jeremy.ng",
+      "custom_domain": true,
+      "enabled": true,
+      "previews_enabled": false
+    },
+    {
+      "pattern": "www.jeremy.ng",
+      "custom_domain": true,
+      "enabled": true,
+      "previews_enabled": false
+    }
+  ],
   "observability": {
     "enabled": true,
     "logs": { "enabled": true },
