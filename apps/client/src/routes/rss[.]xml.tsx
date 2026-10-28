@@ -19,7 +19,7 @@ const Route = createFileRoute("/rss.xml")({
 
         const rssFeedItems = posts.map((post) => ({
           title: post.title,
-          link: `${env.VITE_BASE_URL}/blog/${post.slug}`,
+          link: `${env.BASE_URL}/blog/${post.slug}`,
           description: post.lede,
           authors: post.authors,
           categories: post.tags.map((tag) => ({ name: tag })),
@@ -36,7 +36,7 @@ const Route = createFileRoute("/rss.xml")({
 
         const rssFeed = generateRssFeed({
           title: "Jeremy Nguyen",
-          link: env.VITE_BASE_URL,
+          link: env.BASE_URL,
           description: "Personal website for Jeremy Nguyen",
           language: "en-US",
           pubDate: new Date(),

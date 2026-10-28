@@ -22,7 +22,7 @@ type ImageProps = DistributedOmit<
   "transformer"
 >;
 
-const CLOUDFLARE_DOMAIN = new URL(env.VITE_BASE_URL).host;
+const CLOUDFLARE_DOMAIN = new URL(env.BASE_URL).host;
 
 const baseTransform: TransformerFunction<
   CloudflareOperations,

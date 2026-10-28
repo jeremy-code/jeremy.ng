@@ -19,7 +19,7 @@ import { AppProvider } from "../components/misc/AppProvider";
 
 const RootDocument = ({ children }: Readonly<{ children: ReactNode }>) => {
   const pathname = useLocation({ select: (location) => location.pathname });
-  const canonicalUrl = new URL(pathname, env.VITE_BASE_URL).toString();
+  const canonicalUrl = new URL(pathname, env.BASE_URL).toString();
 
   return (
     /**
@@ -36,7 +36,7 @@ const RootDocument = ({ children }: Readonly<{ children: ReactNode }>) => {
           rel="alternate"
           type="application/rss+xml"
           title="RSS feed"
-          href={`${env.VITE_BASE_URL}/rss.xml`}
+          href={`${env.BASE_URL}/rss.xml`}
         ></link>
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:locale" content="en_US" />
@@ -79,7 +79,7 @@ const Route = createRootRouteWithContext<RouterContext>()({
           "personal-portfolio",
         ],
         image: {
-          url: `${env.VITE_BASE_URL}/og-image.jpg`,
+          url: `${env.BASE_URL}/og-image.jpg`,
           type: "image/jpeg",
           width: 1200,
           height: 600,

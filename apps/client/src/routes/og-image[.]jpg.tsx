@@ -27,11 +27,7 @@ const Route = createFileRoute("/og-image.jpg")({
                   "radial-gradient(at left top, oklch(54.5% 0.164 261.28 / .25) 0%, transparent 50%)",
               }}
             />
-            <img
-              width="150"
-              height="150"
-              src={`${env.VITE_BASE_URL}/favicon.svg`}
-            />
+            <img width="150" height="150" src={`${env.BASE_URL}/favicon.svg`} />
             <p tw="text-8xl font-medium tracking-tight text-slate-950">
               Jeremy Nguyen
             </p>
