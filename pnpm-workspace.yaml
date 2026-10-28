@@ -51,6 +51,9 @@ tasks:
   codegen:graphql:
     inputs: ["codegen.ts", ".env.local"]
     outputs: ["src/generated/gql/**"]
+  codegen:openapi:
+    inputs: ["openapi-ts.config.ts"]
+    outputs: ["src/generated/mastodon/**"]
 
 pipelines:
   default: [build]
